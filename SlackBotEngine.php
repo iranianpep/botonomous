@@ -15,6 +15,7 @@ class SlackBotEngine
     const OUTGOING_WEBHOOK_TOKEN = 'YOUR_OUTGOING_WEBHOOK_TOKEN';
     const CHAT_LOGGING = true;
     const CHAT_LOGGING_FILE_NAME = 'chat_log.txt';
+    const ICON_URL = 'YOUR_BOT_ICON_URL_48_BY_48';
 
     private $receivedData;
 
@@ -54,10 +55,12 @@ class SlackBotEngine
 
         $ch = curl_init(self::END_POINT);
         $data = http_build_query([
-            "token" => self::API_TOKEN,
-            "channel" => self::CHANNEL_NAME,
-            "text" => $message,
-            "username" => self::BOT_USERNAME,
+            'token' => self::API_TOKEN,
+            'channel' => self::CHANNEL_NAME,
+            'text' => $message,
+            'username' => self::BOT_USERNAME,
+            'as_user' => false,
+            'icon_url' => self::ICON_URL
         ]);
 
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
