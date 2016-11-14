@@ -3,10 +3,10 @@
 namespace SlackBot;
 
 /**
- * Class SlackBotEngine
+ * Class SlackBot
  * @package SlackBot
  */
-class SlackBotEngine
+class SlackBot
 {
     const END_POINT = 'https://slack.com/api/chat.postMessage';
     const API_TOKEN = 'YOUR_API_TOKEN';
@@ -20,14 +20,16 @@ class SlackBotEngine
     private $receivedData;
 
     /**
-     * SlackBotEngine constructor.
+     * SlackBot constructor.
      */
     public function __construct()
     {
         $this->receivedData = $_POST;
 
         if ($this->verifyRequest() !== true) {
-            throw new \Exception('Request is not valid');
+            //throw new \Exception('Request is not valid');
+            echo 'Request is not coming from Slack';
+            exit;
         }
     }
 
@@ -127,4 +129,4 @@ class SlackBotEngine
 /**
  * Start the engine
  */
-(new SlackBotEngine())->listen();
+(new SlackBot())->listen();
