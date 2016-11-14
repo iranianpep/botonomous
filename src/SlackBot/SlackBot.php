@@ -1,12 +1,12 @@
 <?php
 
-namespace SlackBot;
+namespace Slackbot;
 
 /**
- * Class SlackBot
- * @package SlackBot
+ * Class Slackbot
+ * @package Slackbot
  */
-class SlackBot
+class Slackbot
 {
     const END_POINT = 'https://slack.com/api/chat.postMessage';
     const API_TOKEN = 'YOUR_API_TOKEN';
@@ -20,7 +20,7 @@ class SlackBot
     private $receivedData;
 
     /**
-     * SlackBot constructor.
+     * Slackbot constructor.
      */
     public function __construct()
     {
@@ -129,4 +129,4 @@ class SlackBot
 /**
  * Start the engine
  */
-(new SlackBot())->listen();
+(new Slackbot())->listen();
