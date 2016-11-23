@@ -8,15 +8,6 @@ namespace Slackbot;
  */
 class Slackbot
 {
-    const END_POINT = 'https://slack.com/api/chat.postMessage';
-    const API_TOKEN = 'YOUR_API_TOKEN';
-    const CHANNEL_NAME = '#general';
-    const BOT_USERNAME = 'YOUR_BOT_USERNAME';
-    const OUTGOING_WEBHOOK_TOKEN = 'YOUR_OUTGOING_WEBHOOK_TOKEN';
-    const CHAT_LOGGING = true;
-    const CHAT_LOGGING_FILE_NAME = 'chat_log.txt';
-    const ICON_URL = 'YOUR_BOT_ICON_URL_48_BY_48';
-
     private $receivedData;
 
     /**
@@ -55,14 +46,16 @@ class Slackbot
             return false;
         }
 
-        $ch = curl_init(self::END_POINT);
+        $config = $this->getConfig();
+
+        $ch = curl_init($config->get('endPoint'));
         $data = http_build_query([
-            'token' => self::API_TOKEN,
-            'channel' => self::CHANNEL_NAME,
+            'token' => $config->get('apiToken'),
+            'channel' => $config->get('channelName'),
             'text' => $message,
-            'username' => self::BOT_USERNAME,
+            'username' => $config->get('botUsername'),
             'as_user' => false,
-            'icon_url' => self::ICON_URL
+            'icon_url' => $config->get('iconURL')
         ]);
 
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
@@ -96,7 +89,7 @@ class Slackbot
     private function verifyRequest()
     {
         if (isset($this->receivedData['token'])
-            && $this->receivedData['token'] === self::OUTGOING_WEBHOOK_TOKEN
+            && $this->receivedData['token'] === $this->getConfig()->get('outgoingWebhookToken')
             && $this->isThisBot() == false) {
             return true;
         } else {
@@ -112,17 +105,27 @@ class Slackbot
      */
     private function logChat($function, $message = '')
     {
-        if (self::CHAT_LOGGING !== true) {
+        $config = $this->getConfig();
+        
+        if ($config->get('chatLogging') !== true) {
             return false;
         }
 
         $currentTime = date('Y-m-d H:i:s');
 
         file_put_contents(
-            self::CHAT_LOGGING_FILE_NAME,
+            $config->get('chatLoggingFileName'),
             "{$currentTime}|{$function}|{$message}\r\n",
             FILE_APPEND
         );
+    }
+
+    /**
+     * @return Config
+     */
+    public function getConfig()
+    {
+        return (new Config());
     }
 }
 
