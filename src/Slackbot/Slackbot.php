@@ -58,7 +58,7 @@ class Slackbot
     {
         $this->logChat($this->getRequest('text'), __METHOD__);
 
-        $this->sendToSlack('Your message received');
+        $this->sendToSlack('Your message is received');
     }
 
     public function respond($message)
