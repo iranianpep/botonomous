@@ -27,12 +27,16 @@ class Slackbot
     /**
      * Listen to incoming requests from Slack
      */
-    public function listen()
+    public function listenToSlack()
     {
         $this->logChat($this->receivedData['text'], __METHOD__);
 
-        $this->send('Your message received');
-        // Body goes here
+        $this->sendToSlack('Your message received');
+    }
+
+    public function respond($message)
+    {
+        // TODO process the message here and return the response
     }
 
     /**
@@ -40,7 +44,7 @@ class Slackbot
      *
      * @return bool|mixed
      */
-    public function send($message)
+    public function sendToSlack($message)
     {
         if ($this->isThisBot()) {
             return false;

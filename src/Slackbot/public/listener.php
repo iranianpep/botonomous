@@ -5,4 +5,4 @@ require_once '../Slackbot.php';
 /**
  * Start the engine
  */
-(new \Slackbot\Slackbot())->listen();
+(new \Slackbot\Slackbot())->listenToSlack();
