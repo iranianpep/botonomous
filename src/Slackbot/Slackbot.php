@@ -128,8 +128,3 @@ class Slackbot
         return (new Config());
     }
 }
-
-/**
- * Start the engine
- */
-(new Slackbot())->listen();
