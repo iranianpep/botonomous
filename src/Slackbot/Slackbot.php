@@ -8,14 +8,14 @@ namespace Slackbot;
  */
 class Slackbot
 {
-    private $receivedData;
+    private $request;
 
     /**
      * Slackbot constructor.
      */
     public function __construct()
     {
-        $this->receivedData = $_POST;
+        $this->setRequest($_POST);
 
         if ($this->verifyRequest() !== true) {
             //throw new \Exception('Request is not valid');
@@ -25,11 +25,38 @@ class Slackbot
     }
 
     /**
+     * @param $request
+     */
+    public function setRequest($request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * @param null $key
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getRequest($key = null)
+    {
+        if ($key === null) {
+            // return the entire request since key is null
+            return $this->request;
+        } else {
+            if (!array_key_exists($key, $this->request)) {
+                throw new \Exception("Key: '{$key}' does not exist in the request");
+            }
+
+            return $this->request[$key];
+        }
+    }
+
+    /**
      * Listen to incoming requests from Slack
      */
     public function listenToSlack()
     {
-        $this->logChat($this->receivedData['text'], __METHOD__);
+        $this->logChat($this->getRequest('text'), __METHOD__);
 
         $this->sendToSlack('Your message received');
     }
@@ -79,8 +106,11 @@ class Slackbot
      */
     private function isThisBot()
     {
-        if ((isset($this->receivedData['user_id']) && $this->receivedData['user_id'] == 'USLACKBOT')
-            || (isset($this->receivedData['user_name']) && $this->receivedData['user_name'] == 'slackbot')) {
+        $userId = $this->getRequest('user_id');
+        $username = $this->getRequest('user_name');
+
+        if ((isset($userId) && $userId == 'USLACKBOT')
+            || (isset($username) && $username == 'slackbot')) {
             return true;
         } else {
             return false;
@@ -92,8 +122,9 @@ class Slackbot
      */
     private function verifyRequest()
     {
-        if (isset($this->receivedData['token'])
-            && $this->receivedData['token'] === $this->getConfig()->get('outgoingWebhookToken')
+        $token = $this->getRequest('token');
+        if (isset($token)
+            && $token === $this->getConfig()->get('outgoingWebhookToken')
             && $this->isThisBot() == false) {
             return true;
         } else {
