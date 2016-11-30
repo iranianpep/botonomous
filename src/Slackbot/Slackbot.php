@@ -2,6 +2,8 @@
 
 namespace Slackbot;
 
+/* TODO */ini_set('display_errors', 1);ini_set('display_startup_errors', 1);error_reporting(E_ALL);
+
 /**
  * Class Slackbot
  * @package Slackbot
@@ -12,16 +14,12 @@ class Slackbot
 
     /**
      * Slackbot constructor.
+     *
+     * @param $request
      */
-    public function __construct()
+    public function __construct($request)
     {
-        $this->setRequest($_POST);
-
-        if ($this->verifyRequest() !== true) {
-            //throw new \Exception('Request is not valid');
-            echo 'Request is not coming from Slack';
-            exit;
-        }
+        $this->setRequest($request);
     }
 
     /**
@@ -30,6 +28,12 @@ class Slackbot
     public function setRequest($request)
     {
         $this->request = $request;
+
+        if ($this->verifyRequest() !== true) {
+            //throw new \Exception('Request is not valid');
+            echo 'Request is not coming from Slack';
+            exit;
+        }
     }
 
     /**
@@ -43,12 +47,12 @@ class Slackbot
             // return the entire request since key is null
             return $this->request;
         } else {
-            if (!array_key_exists($key, $this->request)) {
-                throw new \Exception("Key: '{$key}' does not exist in the request");
+            if (array_key_exists($key, $this->request)) {
+                return $this->request[$key];
             }
-
-            return $this->request[$key];
         }
+
+        return null;
     }
 
     /**
