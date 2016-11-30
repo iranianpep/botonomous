@@ -62,12 +62,18 @@ class Slackbot
     {
         $this->logChat($this->getRequest('text'), __METHOD__);
 
+        $response = $this->respond($this->getRequest('text'));
+
+        // TODO pass $response to sendToSlack
         $this->sendToSlack('Your message is received');
     }
 
     public function respond($message)
     {
-        // TODO process the message here and return the response
+        /**
+         * TODO process the message here, figure out which module and action needs to be called
+         * and return the response
+         */
     }
 
     /**
