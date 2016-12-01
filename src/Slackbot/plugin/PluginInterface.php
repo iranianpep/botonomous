@@ -1,6 +1,6 @@
 <?php
 
-namespace SlackBot\plugins;
+namespace Slackbot\plugin;
 
 interface PluginInterface
 {

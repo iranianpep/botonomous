@@ -1,6 +1,6 @@
 <?php
 
-namespace SlackBot\plugins;
+namespace Slackbot\plugin;
 
 class Help extends AbstractPlugin
 {

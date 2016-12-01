@@ -12,7 +12,8 @@ class Command
      */
     public static $commands = [
         'help' => [
-            'module' => 'help'
+            'module' => 'help',
+            'description' => 'List all the available commands'
         ]
     ];
 }

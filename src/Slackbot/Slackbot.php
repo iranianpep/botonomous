@@ -74,6 +74,17 @@ class Slackbot
          * TODO process the message here, figure out which module and action needs to be called
          * and return the response
          */
+
+    }
+
+    /**
+     * Determine which module to call based on the command in the message
+     *
+     * @param $message
+     */
+    public function moduleToCall($message)
+    {
+
     }
 
     /**
