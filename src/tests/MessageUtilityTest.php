@@ -1,20 +1,38 @@
 <?php
 
+use Slackbot\utility\MessageUtility;
+
 class MessageUtilityTest extends PHPUnit_Framework_TestCase
 {
     public function testRemoveMentionedBotUsername()
     {
-        $utility = new \Slackbot\utility\MessageUtility();
-        $removed = $utility->removeMentionedBotUsername('@YOUR_BOT_USERNAME /help');
+        $utility = new MessageUtility();
+        $botUsername = (new \Slackbot\Config())->get('botUsername');
+        $removed = $utility->removeMentionedBotUsername("@{$botUsername} /help");
 
         $this->assertEquals($removed, ' /help');
     }
 
-    public function testExtractCommand()
+    public function testExtractCommandName()
     {
-        $utility = new \Slackbot\utility\MessageUtility();
-        $command = $utility->extractCommand('/help ewdwedew @test /help de');
+        $utility = new MessageUtility();
+        $command = $utility->extractCommandName('/help ewdwedew @test /help de');
 
         $this->assertEquals('help', $command);
+    }
+    
+    public function testExtractCommandDetails()
+    {
+        $utility = new MessageUtility();
+        $botUsername = (new \Slackbot\Config())->get('botUsername');
+        $commandDetails = $utility->extractCommandDetails("@{$botUsername} /ping");
+
+        $expected = [
+            'module' => 'Ping',
+            'description' => 'Use as a health check',
+            'action' => 'index'
+        ];
+
+        $this->assertEquals($expected, $commandDetails);
     }
 }

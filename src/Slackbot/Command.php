@@ -2,17 +2,26 @@
 
 namespace Slackbot;
 
-class Command
+class Command extends AbstractCommand
 {
     /**
-     * Multiple commands can refer to the same module
-     * If action is not set, the name of the command is considered as the action
+     * Multiple commands can refer to the same module, in other words a module can have multiple commands / actions / functions
+     * If action is empty, consider 'index' as the default action
      *
      * @var array
      */
-    public static $commands = [
+    protected static $commands = [
+        'ping' => [
+            'module' => 'Ping',
+            'description' => 'Use as a health check'
+        ],
+        'pong' => [
+            'module' => 'Ping',
+            'action' => 'pong',
+            'description' => 'Use as a health check'
+        ],
         'help' => [
-            'module' => 'help',
+            'module' => 'Help',
             'description' => 'List all the available commands'
         ]
     ];

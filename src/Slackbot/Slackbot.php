@@ -2,7 +2,8 @@
 
 namespace Slackbot;
 
-/* TODO */ini_set('display_errors', 1);ini_set('display_startup_errors', 1);error_reporting(E_ALL);
+use Slackbot\plugin\AbstractPlugin;
+use Slackbot\utility\MessageUtility;
 
 /**
  * Class Slackbot
@@ -62,29 +63,68 @@ class Slackbot
     {
         $this->logChat($this->getRequest('text'), __METHOD__);
 
-        $response = $this->respond($this->getRequest('text'));
+        try {
+            $response = $this->respond($this->getRequest('text'));
+        } catch (\Exception $e) {
+            // TODO this can be re-thrown and be handled in public/listener.php
+            echo $e->getMessage();
+            exit;
+        }
 
-        // TODO pass $response to sendToSlack
-        $this->sendToSlack('Your message is received');
+        $this->sendToSlack($response);
     }
 
-    public function respond($message)
+    public function respond($message = null)
     {
+        // If message is not set, get it from the current request
+        if ($message === null) {
+            $message = $this->getRequest('text');
+        }
+
         /**
-         * TODO process the message here, figure out which module and action needs to be called
-         * and return the response
+         * Process the message
          */
+        $command = (new MessageUtility())->extractCommandName($message);
 
-    }
+        // check command name
+        if (empty($command)) {
+            return "Sorry. I couldn't find any command in your message. I List the available commands using /help";
+        }
 
-    /**
-     * Determine which module to call based on the command in the message
-     *
-     * @param $message
-     */
-    public function moduleToCall($message)
-    {
+        $commandDetails = (new Command())->get($command);
 
+        // check command details
+        if (empty($commandDetails)) {
+            return "Sorry. I do not know anything about your command: '/{$command}'. I List the available commands using /help";
+        }
+
+        // check the module
+        if (!isset($commandDetails['module'])) {
+            throw new \Exception("Module is not set for this command");
+        }
+
+        // check the action
+        if (!isset($commandDetails['action'])) {
+            throw new \Exception("Action is not set for this command");
+        }
+
+        // create the class
+        $module = $commandDetails['module'];
+        $moduleClassFile = __NAMESPACE__ . "\\plugin\\{$module}";
+        $moduleClass = new $moduleClassFile();
+
+        // check class is valid
+        if (!$moduleClass instanceof AbstractPlugin) {
+            throw new \Exception("Couldn't create class: '{$moduleClassFile}'");
+        }
+
+        // check action exists
+        $action = $commandDetails['action'];
+        if (!method_exists($moduleClass, $action)) {
+            throw new \Exception("Action / function: '{$action}' does not exist in '{$moduleClassFile}'");
+        }
+
+        return $moduleClass->$action();
     }
 
     /**

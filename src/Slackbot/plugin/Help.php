@@ -4,7 +4,7 @@ namespace Slackbot\plugin;
 
 class Help extends AbstractPlugin
 {
-    public function help()
+    public function index()
     {
         return 'example response from help action in help module';
     }
