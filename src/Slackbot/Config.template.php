@@ -12,6 +12,11 @@ class Config extends AbstractConfig
         'outgoingWebhookToken' => 'YOUR_OUTGOING_WEBHOOK_TOKEN',
         'chatLogging' => true,
         'chatLoggingFileName' => 'chat_log.txt',
-        'iconURL' => 'YOUR_BOT_ICON_URL_48_BY_48'
+        'iconURL' => 'YOUR_BOT_ICON_URL_48_BY_48',
+        /**
+         * Generic messages
+         */
+        'noCommandMessage' => 'Sorry. I couldn\'t find any command in your message. List the available commands using /help',
+        'unknownCommandMessage' => "Sorry. I do not know anything about your command: '/{command}'. List the available commands using /help"
     ];
 }

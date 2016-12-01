@@ -103,6 +103,12 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                 ],
                 'o' => $config->get('noCommandMessage')
             ],
+            [
+                'i' => [
+                    'message' => "ddfg dfdfg df gdfg"
+                ],
+                'o' => $config->get('noCommandMessage')
+            ],
         ];
 
         foreach ($IOs as $io) {
