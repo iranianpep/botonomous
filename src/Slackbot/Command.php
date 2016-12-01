@@ -20,6 +20,11 @@ class Command extends AbstractCommand
             'action' => 'pong',
             'description' => 'Use as a health check'
         ],
+        'commandWithoutFunctionForTest' => [
+            'module' => 'Ping',
+            'action' => 'commandWithoutFunctionForTest',
+            'description' => 'Use as a health check'
+        ],
         'help' => [
             'module' => 'Help',
             'description' => 'List all the available commands'

@@ -91,11 +91,36 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                 ],
                 'o' => 'Sorry. I do not know anything about your command: \'/unknownCommand\'. I List the available commands using /help'
             ],
+            [
+                'i' => [
+                    'message' => "dummy message without any command"
+                ],
+                'o' => 'Sorry. I couldn\'t find any command in your message. I List the available commands using /help'
+            ]
         ];
 
         foreach ($IOs as $io) {
             $response = $slackbot->respond($io['i']['message']);
             $this->assertEquals($io['o'], $response);
         }
+    }
+
+    public function testRespondExceptException()
+    {
+        $config = new \Slackbot\Config();
+
+        /**
+         * Form the request
+         */
+        $botUsername = '@' . $config->get('botUsername');
+        $request = [
+            'token' => $config->get('outgoingWebhookToken'),
+            'text' => $botUsername . ' /commandWithoutFunctionForTest'
+        ];
+
+        $this->setExpectedException('Exception', 'Action / function: \'commandWithoutFunctionForTest\' does not exist in \'Slackbot\plugin\Ping\'');
+
+        $slackbot = new \Slackbot\Slackbot($request);
+        $slackbot->respond();
     }
 }
