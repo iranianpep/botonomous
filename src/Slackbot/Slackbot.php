@@ -66,7 +66,7 @@ class Slackbot
         try {
             $response = $this->respond($this->getRequest('text'));
         } catch (\Exception $e) {
-            // TODO this can be re-thrown and be handled in public/listener.php
+            // TODO this can be re-thrown and be handled in public/index.php
             echo $e->getMessage();
             exit;
         }
