@@ -89,14 +89,20 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                 'i' => [
                     'message' => "/unknownCommand"
                 ],
-                'o' => 'Sorry. I do not know anything about your command: \'/unknownCommand\'. I List the available commands using /help'
+                'o' => $config->get('unknownCommandMessage', ['command' => 'unknownCommand'])
             ],
             [
                 'i' => [
                     'message' => "dummy message without any command"
                 ],
-                'o' => 'Sorry. I couldn\'t find any command in your message. I List the available commands using /help'
-            ]
+                'o' => $config->get('noCommandMessage')
+            ],
+            [
+                'i' => [
+                    'message' => "sfdsf /ping"
+                ],
+                'o' => $config->get('noCommandMessage')
+            ],
         ];
 
         foreach ($IOs as $io) {

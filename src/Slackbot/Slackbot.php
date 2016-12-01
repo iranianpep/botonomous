@@ -86,16 +86,19 @@ class Slackbot
          */
         $command = (new MessageUtility())->extractCommandName($message);
 
+        $config = new Config();
+
         // check command name
         if (empty($command)) {
-            return "Sorry. I couldn't find any command in your message. I List the available commands using /help";
+            return $config->get('noCommandMessage');
         }
 
         $commandDetails = (new Command())->get($command);
 
         // check command details
         if (empty($commandDetails)) {
-            return "Sorry. I do not know anything about your command: '/{$command}'. I List the available commands using /help";
+            //return "Sorry. I do not know anything about your command: '/{$command}'. I List the available commands using /help";
+            return $config->get('unknownCommandMessage', ['command' => $command]);
         }
 
         // check the module

@@ -11,6 +11,10 @@ class MessageUtilityTest extends PHPUnit_Framework_TestCase
         $removed = $utility->removeMentionedBotUsername("@{$botUsername} /help");
 
         $this->assertEquals($removed, ' /help');
+
+        $removed = $utility->removeMentionedBotUsername(" /help");
+
+        $this->assertEquals($removed, ' /help');
     }
 
     public function testExtractCommandName()
@@ -19,6 +23,14 @@ class MessageUtilityTest extends PHPUnit_Framework_TestCase
         $command = $utility->extractCommandName('/help ewdwedew @test /help de');
 
         $this->assertEquals('help', $command);
+
+        $command = $utility->extractCommandName(' /help ewdwedew @test /help de');
+
+        $this->assertEquals('help', $command);
+
+        $command = $utility->extractCommandName(' ddsfsdf /help ewdwedew @test /help de');
+
+        $this->assertEquals(null, $command);
     }
     
     public function testExtractCommandDetails()
