@@ -13,7 +13,7 @@ class Config extends AbstractConfig
         'chatLogging' => true,
         'chatLoggingFileName' => 'chat_log.txt',
         'iconURL' => 'YOUR_BOT_ICON_URL_48_BY_48',
-        // possible values are: slack, text
+        // possible values are: slack, json
         'response' => 'slack',
         /**
          * Generic messages

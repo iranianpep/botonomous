@@ -78,16 +78,36 @@ class Slackbot
      * Final endpoint for the response
      *
      * @param $response
+     * @return bool
+     * @throws \Exception
      */
     public function send($response)
     {
+        if ($this->isThisBot()) {
+            return false;
+        }
+
         $responseType = $this->getConfig()->get('response');
 
+        $config = $this->getConfig();
+
+        $data = [
+             'token' => $config->get('apiToken'),
+             'channel' => $config->get('channelName'),
+             'text' => $response,
+             'username' => $config->get('botUsername'),
+             'as_user' => false,
+             'icon_url' => $config->get('iconURL')
+        ];
+
         if ($responseType === 'slack') {
-            $this->sendToSlack($response);
-        } else {
-            echo $response;
+            $this->sendToSlack($data);
+        } elseif ($responseType === 'json') {
+            header('Content-type:application/json;charset=utf-8');
+            echo json_encode($data);
         }
+
+        $this->logChat($response, __METHOD__);
 
         exit;
     }
@@ -149,12 +169,13 @@ class Slackbot
     }
 
     /**
-     * @param $message
+     * @param $data
      *
      * @return bool|mixed
      */
-    public function sendToSlack($message)
+    public function sendToSlack(array $data)
     {
+        // This is already used in send(), but since this method is public check it againg
         if ($this->isThisBot()) {
             return false;
         }
@@ -162,23 +183,15 @@ class Slackbot
         $config = $this->getConfig();
 
         $ch = curl_init($config->get('endPoint'));
-        $data = http_build_query([
-            'token' => $config->get('apiToken'),
-            'channel' => $config->get('channelName'),
-            'text' => $message,
-            'username' => $config->get('botUsername'),
-            'as_user' => false,
-            'icon_url' => $config->get('iconURL')
-        ]);
+        $data = http_build_query($data);
 
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:application/json']);
         $result = curl_exec($ch);
         curl_close($ch);
-
-        $this->logChat($message, __METHOD__);
 
         return $result;
     }
