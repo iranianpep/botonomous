@@ -112,8 +112,31 @@ class Slackbot
         exit;
     }
 
+    /**
+     * @param null $message
+     * @return mixed
+     * @throws \Exception
+     */
     public function respond($message = null)
     {
+        $result = $this->getModuleAction($message);
+
+        if (!empty($result['module']) && !empty($result['action'])) {
+            $moduleClass = $result['module'];
+            $action = $result['action'];
+
+            return $moduleClass->$action();
+        } else {
+            return $result['error'];
+        }
+    }
+
+    /**
+     * @param $message
+     * @return array|mixed
+     * @throws \Exception
+     */
+    public function getModuleAction($message) {
         // If message is not set, get it from the current request
         if ($message === null) {
             $message = $this->getRequest('text');
@@ -124,11 +147,16 @@ class Slackbot
          */
         $command = (new MessageUtility())->extractCommandName($message);
 
-        $config = new Config();
+        $config = $this->getConfig();
 
         // check command name
         if (empty($command)) {
-            return $config->get('noCommandMessage');
+            // get the default command if no command is find in the message
+            $command = $config->get('defaultCommand');
+
+            if (empty($command)) {
+                return ['error' => $config->get('noCommandMessage')];
+            }
         }
 
         $commandDetails = (new Command())->get($command);
@@ -136,7 +164,7 @@ class Slackbot
         // check command details
         if (empty($commandDetails)) {
             //return "Sorry. I do not know anything about your command: '/{$command}'. I List the available commands using /help";
-            return $config->get('unknownCommandMessage', ['command' => $command]);
+            return ['error' => $config->get('unknownCommandMessage', ['command' => $command])];
         }
 
         // check the module
@@ -150,8 +178,7 @@ class Slackbot
         }
 
         // create the class
-        $module = $commandDetails['module'];
-        $moduleClassFile = __NAMESPACE__ . "\\plugin\\{$module}";
+        $moduleClassFile = $commandDetails['class'];
         $moduleClass = new $moduleClassFile($this->getRequest());
 
         // check class is valid
@@ -165,7 +192,10 @@ class Slackbot
             throw new \Exception("Action / function: '{$action}' does not exist in '{$moduleClassFile}'");
         }
 
-        return $moduleClass->$action();
+        return [
+            'module' => $moduleClass,
+            'action' => $action
+        ];
     }
 
     /**

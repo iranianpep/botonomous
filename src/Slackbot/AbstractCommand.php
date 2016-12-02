@@ -28,6 +28,10 @@ abstract class AbstractCommand
                 if (empty($commandDetails['action'])) {
                     $commands[$commandName]['action'] = 'index';
                 }
+
+                // populate the class
+                $module = $commandDetails['module'];
+                $commands[$commandName]['class'] = __NAMESPACE__ . "\\plugin\\{$module}";
             }
         }
 

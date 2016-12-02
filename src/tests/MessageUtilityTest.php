@@ -42,7 +42,8 @@ class MessageUtilityTest extends PHPUnit_Framework_TestCase
         $expected = [
             'module' => 'Ping',
             'description' => 'Use as a health check',
-            'action' => 'index'
+            'action' => 'index',
+            'class' => 'Slackbot\plugin\Ping'
         ];
 
         $this->assertEquals($expected, $commandDetails);

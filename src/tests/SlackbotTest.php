@@ -95,25 +95,62 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                 'i' => [
                     'message' => "dummy message without any command"
                 ],
-                'o' => $config->get('noCommandMessage')
+                'o' => function($message) {
+                    $config = new \Slackbot\Config();
+                    $defaultCommand = $config->get('defaultCommand');
+                    if (!empty($defaultCommand)) {
+                        $command = (new \Slackbot\Command())->get($defaultCommand);
+                        $commandClass = $command['class'];
+                        return (new $commandClass(['text' => $message]))->index();
+                    } else {
+                        return $config->get('noCommandMessage');
+                    }
+                }
             ],
             [
                 'i' => [
                     'message' => "sfdsf /ping"
                 ],
-                'o' => $config->get('noCommandMessage')
+                'o' => function($message) {
+                    $config = new \Slackbot\Config();
+                    $defaultCommand = $config->get('defaultCommand');
+                    if (!empty($defaultCommand)) {
+                        $command = (new \Slackbot\Command())->get($defaultCommand);
+                        $commandClass = $command['class'];
+                        return (new $commandClass(['text' => $message]))->index();
+                    } else {
+                        return $config->get('noCommandMessage');
+                    }
+                }
             ],
             [
                 'i' => [
                     'message' => "ddfg dfdfg df gdfg"
                 ],
-                'o' => $config->get('noCommandMessage')
+                'o' => function($message) {
+                    $config = new \Slackbot\Config();
+                    $defaultCommand = $config->get('defaultCommand');
+                    if (!empty($defaultCommand)) {
+                        $command = (new \Slackbot\Command())->get($defaultCommand);
+                        $commandClass = $command['class'];
+                        return (new $commandClass(['text' => $message]))->index();
+                    } else {
+                        return $config->get('noCommandMessage');
+                    }
+                }
             ],
         ];
 
         foreach ($IOs as $io) {
             $response = $slackbot->respond($io['i']['message']);
-            $this->assertEquals($io['o'], $response);
+
+            if (is_callable($io['o'])) {
+                $output = call_user_func($io['o'], $io['i']['message']);
+            } else {
+                $output = $io['o'];
+            }
+
+            $this->assertEquals($output, $response);
         }
     }
 
