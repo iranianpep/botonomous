@@ -152,7 +152,7 @@ class Slackbot
         // create the class
         $module = $commandDetails['module'];
         $moduleClassFile = __NAMESPACE__ . "\\plugin\\{$module}";
-        $moduleClass = new $moduleClassFile();
+        $moduleClass = new $moduleClassFile($this->getRequest());
 
         // check class is valid
         if (!$moduleClass instanceof AbstractPlugin) {
