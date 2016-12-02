@@ -96,6 +96,7 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                     'message' => "dummy message without any command"
                 ],
                 'o' => function($message) {
+                    // If there is no command, get the default one, if default one is empty get noCommandMessage
                     $config = new \Slackbot\Config();
                     $defaultCommand = $config->get('defaultCommand');
                     if (!empty($defaultCommand)) {
