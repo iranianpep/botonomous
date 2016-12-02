@@ -71,7 +71,25 @@ class Slackbot
             exit;
         }
 
-        $this->sendToSlack($response);
+        $this->send($response);
+    }
+
+    /**
+     * Final endpoint for the response
+     *
+     * @param $response
+     */
+    public function send($response)
+    {
+        $responseType = $this->getConfig()->get('response');
+
+        if ($responseType === 'slack') {
+            $this->sendToSlack($response);
+        } else {
+            echo $response;
+        }
+
+        exit;
     }
 
     public function respond($message = null)
