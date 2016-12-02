@@ -100,14 +100,17 @@ class Slackbot
              'icon_url' => $config->get('iconURL')
         ];
 
+        $this->logChat($response, __METHOD__);
+
         if ($responseType === 'slack') {
-            $this->sendToSlack($data);
+            $result = $this->sendToSlack($data);
+
+            // log the response from Slack
+            $this->logChat($result, "{$responseType} response");
         } elseif ($responseType === 'json') {
             header('Content-type:application/json;charset=utf-8');
             echo json_encode($data);
         }
-
-        $this->logChat($response, __METHOD__);
 
         exit;
     }
@@ -219,7 +222,6 @@ class Slackbot
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:application/json']);
         $result = curl_exec($ch);
         curl_close($ch);
 

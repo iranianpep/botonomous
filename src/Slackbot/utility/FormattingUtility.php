@@ -6,6 +6,6 @@ class FormattingUtility
 {
     public function newLine()
     {
-        return '\n';
+        return "\n";
     }
 }
