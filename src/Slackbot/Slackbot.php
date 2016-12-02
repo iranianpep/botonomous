@@ -187,9 +187,7 @@ class Slackbot
     private function verifyRequest()
     {
         $token = $this->getRequest('token');
-        if (isset($token)
-            && $token === $this->getConfig()->get('outgoingWebhookToken')
-            && $this->isThisBot() == false) {
+        if (isset($token) && $token === $this->getConfig()->get('outgoingWebhookToken') && $this->isThisBot() == false) {
             return true;
         } else {
             return false;
