@@ -10,11 +10,10 @@ composer require slackbot/slackbot
 Start listening to Slack messages:
 
 ```
-$slackbot = new Slackbot();
-$slackbot->listen();
+(new \Slackbot\Slackbot($_POST))->listenToSlack();
 ```
 
-Send a message to Slack:
+Send a message to Slack (make sure response is set to slack in the config):
 ```
 $slackbot->send('Hello Slack!');
 ```
