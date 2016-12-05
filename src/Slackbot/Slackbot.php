@@ -255,8 +255,14 @@ class Slackbot
 
         $currentTime = date('Y-m-d H:i:s');
 
+        $tmpDir = $config->get('tmpFolderPath');
+        if (!is_dir($tmpDir)) {
+            // dir doesn't exist, make it
+            mkdir($tmpDir);
+        }
+
         file_put_contents(
-            $config->get('chatLoggingFileName'),
+            $tmpDir . DIRECTORY_SEPARATOR . $config->get('chatLoggingFileName'),
             "{$currentTime}|{$function}|{$message}\r\n",
             FILE_APPEND
         );

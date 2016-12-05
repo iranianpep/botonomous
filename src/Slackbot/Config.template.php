@@ -12,6 +12,7 @@ class Config extends AbstractConfig
         'botUsername' => 'YOUR_BOT_USERNAME',
         'outgoingWebhookToken' => 'YOUR_OUTGOING_WEBHOOK_TOKEN',
         'chatLogging' => true,
+        'tmpFolderPath' => __DIR__ . DIRECTORY_SEPARATOR . 'tmp',
         'chatLoggingFileName' => 'chat_log.txt',
         'iconURL' => 'YOUR_BOT_ICON_URL_48_BY_48',
         // possible values are: slack, json
