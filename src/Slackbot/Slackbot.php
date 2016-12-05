@@ -4,6 +4,7 @@ namespace Slackbot;
 
 use Slackbot\client\ApiClient;
 use Slackbot\plugin\AbstractPlugin;
+use Slackbot\utility\Logger;
 use Slackbot\utility\MessageUtility;
 
 /**
@@ -62,7 +63,7 @@ class Slackbot
      */
     public function listenToSlack()
     {
-        $this->logChat($this->getRequest('text'), __METHOD__);
+        (new Logger())->logChat(__METHOD__, $this->getRequest('text'));
 
         try {
             $response = $this->respond($this->getRequest('text'));
@@ -94,13 +95,11 @@ class Slackbot
              'text' => $response,
         ];
 
-        $this->logChat($response, __METHOD__);
+        $logChat = new Logger();
+        $logChat->logChat(__METHOD__, $response);
 
         if ($responseType === 'slack') {
-            $result = $this->sendToSlack($data);
-
-            // log the response from Slack
-            $this->logChat($result, "{$responseType} response");
+            $this->sendToSlack($data);
         } elseif ($responseType === 'json') {
             header('Content-type:application/json;charset=utf-8');
             echo json_encode($data);
@@ -207,7 +206,7 @@ class Slackbot
             return false;
         }
 
-        return (new ApiClient())->postMessage($data);
+        return (new ApiClient())->chatPostMessage($data);
     }
 
     /**
@@ -237,35 +236,6 @@ class Slackbot
         } else {
             return false;
         }
-    }
-
-    /**
-     * @param        $function
-     * @param string $message
-     *
-     * @return bool
-     */
-    private function logChat($function, $message = '')
-    {
-        $config = $this->getConfig();
-        
-        if ($config->get('chatLogging') !== true) {
-            return false;
-        }
-
-        $currentTime = date('Y-m-d H:i:s');
-
-        $tmpDir = $config->get('tmpFolderPath');
-        if (!is_dir($tmpDir)) {
-            // dir doesn't exist, make it
-            mkdir($tmpDir);
-        }
-
-        file_put_contents(
-            $tmpDir . DIRECTORY_SEPARATOR . $config->get('chatLoggingFileName'),
-            "{$currentTime}|{$function}|{$message}\r\n",
-            FILE_APPEND
-        );
     }
 
     /**

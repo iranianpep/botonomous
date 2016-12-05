@@ -3,6 +3,7 @@
 namespace Slackbot\client;
 
 use Slackbot\Config;
+use Slackbot\utility\Logger;
 
 class ApiClient
 {
@@ -34,6 +35,13 @@ class ApiClient
         $result = curl_exec($ch);
         curl_close($ch);
 
+        (new Logger())->logChat(__METHOD__ . ' ' . $method, $result);
+
+        // prettify the response
+        $result = json_decode($result, true);
+
+        // TODO check in the response "ok":true before getting members list
+
         return $result;
     }
 
@@ -41,8 +49,17 @@ class ApiClient
      * @param $args
      * @return mixed
      */
-    public function postMessage($args)
+    public function chatPostMessage($args)
     {
         return $this->apiCall('chat.postMessage', $args);
+    }
+
+    /**
+     * List all the Slack users in the team
+     * @return array
+     */
+    public function usersList()
+    {
+        return $this->apiCall('users.list')['members'];
     }
 }
