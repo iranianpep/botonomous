@@ -182,7 +182,7 @@ class Slackbot
 
         // create the class
         $moduleClassFile = $commandDetails['class'];
-        $moduleClass = new $moduleClassFile($this->getRequest());
+        $moduleClass = new $moduleClassFile($this);
 
         // check class is valid
         if (!$moduleClass instanceof AbstractPlugin) {

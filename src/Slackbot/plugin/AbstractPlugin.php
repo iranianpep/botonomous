@@ -2,28 +2,34 @@
 
 namespace Slackbot\plugin;
 
+use Slackbot\Slackbot;
+
 abstract class AbstractPlugin implements PluginInterface
 {
-    protected $request;
+    protected $slackbot;
 
-    public function __construct($request)
+    public function __construct(Slackbot $slackbot)
     {
-        $this->setRequest($request);
+        $this->setSlackbot($slackbot);
     }
 
     /**
-     * @return mixed
+     * Return Slackbot
+     *
+     * @return Slackbot
      */
-    public function getRequest()
+    public function getSlackbot()
     {
-        return $this->request;
+        return $this->slackbot;
     }
 
     /**
-     * @param mixed $request
+     * Set Slackbot
+     *
+     * @param Slackbot $slackbot
      */
-    public function setRequest($request)
+    public function setSlackbot($slackbot)
     {
-        $this->request = $request;
+        $this->slackbot = $slackbot;
     }
 }

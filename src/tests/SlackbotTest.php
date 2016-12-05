@@ -99,10 +99,14 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                     // If there is no command, get the default one, if default one is empty get noCommandMessage
                     $config = new \Slackbot\Config();
                     $defaultCommand = $config->get('defaultCommand');
+                    $token = $config->get('outgoingWebhookToken');
+
+                    $slackbot = new \Slackbot\Slackbot(['text' => $message, 'token' => $token]);
+
                     if (!empty($defaultCommand)) {
                         $command = (new \Slackbot\Command())->get($defaultCommand);
                         $commandClass = $command['class'];
-                        return (new $commandClass(['text' => $message]))->index();
+                        return (new $commandClass($slackbot))->index();
                     } else {
                         return $config->get('noCommandMessage');
                     }
@@ -115,10 +119,15 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                 'o' => function($message) {
                     $config = new \Slackbot\Config();
                     $defaultCommand = $config->get('defaultCommand');
+
+                    $token = $config->get('outgoingWebhookToken');
+
+                    $slackbot = new \Slackbot\Slackbot(['text' => $message, 'token' => $token]);
+
                     if (!empty($defaultCommand)) {
                         $command = (new \Slackbot\Command())->get($defaultCommand);
                         $commandClass = $command['class'];
-                        return (new $commandClass(['text' => $message]))->index();
+                        return (new $commandClass($slackbot))->index();
                     } else {
                         return $config->get('noCommandMessage');
                     }
@@ -131,10 +140,15 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                 'o' => function($message) {
                     $config = new \Slackbot\Config();
                     $defaultCommand = $config->get('defaultCommand');
+
+                    $token = $config->get('outgoingWebhookToken');
+
+                    $slackbot = new \Slackbot\Slackbot(['text' => $message, 'token' => $token]);
+
                     if (!empty($defaultCommand)) {
                         $command = (new \Slackbot\Command())->get($defaultCommand);
                         $commandClass = $command['class'];
-                        return (new $commandClass(['text' => $message]))->index();
+                        return (new $commandClass($slackbot))->index();
                     } else {
                         return $config->get('noCommandMessage');
                     }
