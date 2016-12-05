@@ -2,6 +2,7 @@
 
 namespace Slackbot;
 
+use Slackbot\client\ApiClient;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\utility\MessageUtility;
 
@@ -89,15 +90,8 @@ class Slackbot
 
         $responseType = $this->getConfig()->get('response');
 
-        $config = $this->getConfig();
-
         $data = [
-             'token' => $config->get('apiToken'),
-             'channel' => $config->get('channelName'),
              'text' => $response,
-             'username' => $config->get('botUsername'),
-             'as_user' => false,
-             'icon_url' => $config->get('iconURL')
         ];
 
         $this->logChat($response, __METHOD__);
@@ -213,19 +207,7 @@ class Slackbot
             return false;
         }
 
-        $config = $this->getConfig();
-
-        $ch = curl_init($config->get('endPoint'));
-        $data = http_build_query($data);
-
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $result = curl_exec($ch);
-        curl_close($ch);
-
-        return $result;
+        return (new ApiClient())->postMessage($data);
     }
 
     /**

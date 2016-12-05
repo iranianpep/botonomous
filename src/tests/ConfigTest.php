@@ -6,7 +6,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     {
         $config = new \Slackbot\Config();
 
-        $this->assertEquals('https://slack.com/api/chat.postMessage', $config->get('endPoint'));
+        $this->assertEquals('testValue', $config->get('testKey'));
     }
 
     public function testGetExceptException()

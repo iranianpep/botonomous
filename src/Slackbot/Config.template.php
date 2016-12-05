@@ -5,7 +5,8 @@ namespace Slackbot;
 class Config extends AbstractConfig
 {
     protected static $configs = [
-        'endPoint' => 'https://slack.com/api/chat.postMessage',
+        // This is only used for testing config class
+        'testKey' => 'testValue',
         'apiToken' => 'YOUR_API_TOKEN',
         'channelName' => '#general',
         'botUsername' => 'YOUR_BOT_USERNAME',
