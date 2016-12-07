@@ -67,13 +67,12 @@ class Slackbot
 
         try {
             $response = $this->respond($this->getRequest('text'));
+            $this->send($response);
         } catch (\Exception $e) {
             // TODO this can be re-thrown and be handled in public/index.php
             echo $e->getMessage();
             exit;
         }
-
-        $this->send($response);
     }
 
     /**
@@ -99,7 +98,7 @@ class Slackbot
         $logChat->logChat(__METHOD__, $response);
 
         if ($responseType === 'slack') {
-            $this->sendToSlack($data);
+            (new ApiClient())->chatPostMessage($data);
         } elseif ($responseType === 'json') {
             header('Content-type:application/json;charset=utf-8');
             echo json_encode($data);
@@ -192,21 +191,6 @@ class Slackbot
             'module' => $moduleClass,
             'action' => $action
         ];
-    }
-
-    /**
-     * @param $data
-     *
-     * @return bool|mixed
-     */
-    public function sendToSlack(array $data)
-    {
-        // This is already used in send(), but since this method is public check it againg
-        if ($this->isThisBot()) {
-            return false;
-        }
-
-        return (new ApiClient())->chatPostMessage($data);
     }
 
     /**
