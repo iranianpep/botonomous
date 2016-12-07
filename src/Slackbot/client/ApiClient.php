@@ -3,7 +3,7 @@
 namespace Slackbot\client;
 
 use Slackbot\Config;
-use Slackbot\utility\Logger;
+use Slackbot\utility\LoggerUtility;
 
 class ApiClient
 {
@@ -35,7 +35,7 @@ class ApiClient
         $result = curl_exec($ch);
         curl_close($ch);
 
-        (new Logger())->logChat(__METHOD__ . ' ' . $method, $result);
+        (new LoggerUtility())->logChat(__METHOD__ . ' ' . $method, $result);
 
         // prettify the response
         $result = json_decode($result, true);

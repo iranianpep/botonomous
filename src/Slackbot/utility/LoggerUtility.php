@@ -10,7 +10,7 @@ namespace Slackbot\utility;
 
 use Slackbot\Config;
 
-class Logger
+class LoggerUtility
 {
     /**
      * @param        $function
