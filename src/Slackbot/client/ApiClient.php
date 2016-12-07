@@ -10,7 +10,7 @@ class ApiClient
     const BASE_URL = 'https://slack.com/api/';
 
     /**
-     * API Call.
+     * API CURL Call
      *
      * @param $method
      * @param array $args
