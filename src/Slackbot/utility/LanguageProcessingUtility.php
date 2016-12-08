@@ -1,12 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ehsan.abbasi
- * Date: 7/12/2016
- * Time: 9:23 AM
- */
 
 namespace Slackbot\utility;
+
+use Slackbot\Dictionary;
 
 class LanguageProcessingUtility
 {
@@ -21,5 +17,27 @@ class LanguageProcessingUtility
 
         //return exec('python ' . $filePath . ' ' . escapeshellarg(json_encode([$text])), $output);
         return shell_exec('python ' . $filePath . ' ' . escapeshellarg(json_encode([$text])));
+    }
+
+    /**
+     * @param $text
+     * @param string $language
+     * @return string
+     */
+    public function removeStopWords($text, $language = 'en')
+    {
+        $stopWords = (new Dictionary())->get('stopwords-' . $language);
+
+        $words = explode(' ', $text);
+
+        if (!empty($words)) {
+            foreach ($words as $key => $word) {
+                if (in_array($word, $stopWords)) {
+                    unset($words[$key]);
+                }
+            }
+        }
+
+        return implode(' ', $words);
     }
 }
