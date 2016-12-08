@@ -22,6 +22,9 @@ class Slackbot
      */
     public function __construct($request)
     {
+        // set timezone
+        date_default_timezone_set($this->getConfig()->get('defaultTimeZone'));
+
         $this->setRequest($request);
     }
 
