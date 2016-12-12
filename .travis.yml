@@ -13,9 +13,11 @@ php:
 # Commands to be run before your environment runs
 before_script:
   - composer self-update
-  - composer install
+  - composer install --dev
   - sudo pip install -U nltk
   - python setup.py
+  - phpunit --coverage-clover build/logs/clover.xml
+  - ./vendor/bin/test-reporter
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
