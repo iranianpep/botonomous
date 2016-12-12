@@ -16,7 +16,7 @@ php:
   # aliased to a recent 7.x version
   - 7.0
 
-# Commands to be run before your environment runs.
+# Commands to be run before your environment runs
 before_script:
   - composer self-update
   - composer install
