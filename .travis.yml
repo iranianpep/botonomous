@@ -21,6 +21,9 @@ before_script:
   - composer self-update
   - composer install
   - sudo pip install -U nltk
+  - python
+  - import nltk
+  - nltk.download('all')
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
