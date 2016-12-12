@@ -17,3 +17,25 @@ Send a message to Slack (make sure response is set to slack in the config):
 ```
 $slackbot->send('Hello Slack!');
 ```
+
+## Using Python nltk
+
+1.Install Python
+```
+brew install python
+```
+
+2.Install nltk
+```
+curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python
+sudo easy_install pip
+sudo pip install -U nltk
+```
+
+3.Install nltk data
+
+Start Python and run the following
+```
+>>> import nltk
+>>> nltk.download()
+```
