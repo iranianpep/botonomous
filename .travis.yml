@@ -10,15 +10,20 @@ php:
   # aliased to a recent 7.x version
   - 7.0
 
+addons:
+  code_climate:
+    repo_token: 942f655463e0461a866a6f000b8d8ea267921a6010807045fa72f6da09c187f6
+
 # Commands to be run before your environment runs
 before_script:
   - composer self-update
   - composer install --dev
   - sudo pip install -U nltk
   - python setup.py
-  - phpunit --coverage-clover build/logs/clover.xml
-  - ./vendor/bin/test-reporter
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
-script: phpunit --bootstrap vendor/autoload.php --configuration vendor/phpunit/phpunit/phpunit.xml src/tests
+script: phpunit --bootstrap vendor/autoload.php --configuration vendor/phpunit/phpunit/phpunit.xml src/tests --coverage-clover build/logs/clover.xml
+
+after_success:
+  - vendor/bin/test-reporter
