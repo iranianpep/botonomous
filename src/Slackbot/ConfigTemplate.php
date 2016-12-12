@@ -2,7 +2,7 @@
 
 namespace Slackbot;
 
-class Config extends AbstractConfig
+class ConfigTemplate extends AbstractConfig
 {
     protected static $configs = [
         // This is only used for testing config class

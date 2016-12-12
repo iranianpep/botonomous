@@ -1,4 +1,5 @@
 .idea/*
 vendor/*
 composer.phar
+src/Slackbot/Config.php
 src/Slackbot/tmp/*
