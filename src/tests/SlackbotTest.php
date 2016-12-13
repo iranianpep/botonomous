@@ -95,7 +95,7 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                 'i' => [
                     'message' => "dummy message without any command"
                 ],
-                'o' => function($message) {
+                'o' => function ($message) {
                     // If there is no command, get the default one, if default one is empty get noCommandMessage
                     $config = new \Slackbot\Config();
                     $defaultCommand = $config->get('defaultCommand');
@@ -107,16 +107,16 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                         $command = (new \Slackbot\Command())->get($defaultCommand);
                         $commandClass = $command['class'];
                         return (new $commandClass($slackbot))->index();
-                    } else {
-                        return $config->get('noCommandMessage');
                     }
+
+                    return $config->get('noCommandMessage');
                 }
             ],
             [
                 'i' => [
                     'message' => "sfdsf /ping"
                 ],
-                'o' => function($message) {
+                'o' => function ($message) {
                     $config = new \Slackbot\Config();
                     $defaultCommand = $config->get('defaultCommand');
 
@@ -128,16 +128,16 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                         $command = (new \Slackbot\Command())->get($defaultCommand);
                         $commandClass = $command['class'];
                         return (new $commandClass($slackbot))->index();
-                    } else {
-                        return $config->get('noCommandMessage');
                     }
+
+                    return $config->get('noCommandMessage');
                 }
             ],
             [
                 'i' => [
                     'message' => "ddfg dfdfg df gdfg"
                 ],
-                'o' => function($message) {
+                'o' => function ($message) {
                     $config = new \Slackbot\Config();
                     $defaultCommand = $config->get('defaultCommand');
 
@@ -149,9 +149,9 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                         $command = (new \Slackbot\Command())->get($defaultCommand);
                         $commandClass = $command['class'];
                         return (new $commandClass($slackbot))->index();
-                    } else {
-                        return $config->get('noCommandMessage');
                     }
+
+                    return $config->get('noCommandMessage');
                 }
             ],
         ];
@@ -159,10 +159,10 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
         foreach ($inputsOutputs as $inputOutput) {
             $response = $slackbot->respond($inputOutput['i']['message']);
 
+            $output = $inputOutput['o'];
+
             if (is_callable($inputOutput['o'])) {
                 $output = call_user_func($inputOutput['o'], $inputOutput['i']['message']);
-            } else {
-                $output = $inputOutput['o'];
             }
 
             $this->assertEquals($output, $response);
