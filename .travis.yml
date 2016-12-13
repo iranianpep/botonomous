@@ -10,6 +10,10 @@ php:
   # aliased to a recent 7.x version
   - 7.0
 
+addons:
+    code_climate:
+        repo_token: 942f655463e0461a866a6f000b8d8ea267921a6010807045fa72f6da09c187f6
+
 # Commands to be run before your environment runs
 before_script:
   - composer self-update
