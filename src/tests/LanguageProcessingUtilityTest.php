@@ -21,16 +21,16 @@ class LanguageProcessingUtilityTest extends PHPUnit_Framework_TestCase
     {
         $utility = new LanguageProcessingUtility();
 
-        $ios = [
+        $inputsOutputs = [
             [
                 'i' => 'Stemming is funnier than a bummer says the sushi loving computer scientist',
                 'o' => 'Stemming funnier bummer sushi loving computer scientist'
             ]
         ];
 
-        foreach ($ios as $io) {
-            $result = $utility->removeStopWords($io['i']);
-            $this->assertEquals($io['o'], $result);
+        foreach ($inputsOutputs as $inputOutput) {
+            $result = $utility->removeStopWords($inputOutput['i']);
+            $this->assertEquals($inputOutput['o'], $result);
         }
     }
 }

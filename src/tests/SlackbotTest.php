@@ -54,7 +54,7 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('pong', $response);
 
-        $IOs = [
+        $inputsOutputs = [
             [
                 'i' => [
                     'message' => "$botUsername /ping"
@@ -156,13 +156,13 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        foreach ($IOs as $io) {
-            $response = $slackbot->respond($io['i']['message']);
+        foreach ($inputsOutputs as $inputOutput) {
+            $response = $slackbot->respond($inputOutput['i']['message']);
 
-            if (is_callable($io['o'])) {
-                $output = call_user_func($io['o'], $io['i']['message']);
+            if (is_callable($inputOutput['o'])) {
+                $output = call_user_func($inputOutput['o'], $inputOutput['i']['message']);
             } else {
-                $output = $io['o'];
+                $output = $inputOutput['o'];
             }
 
             $this->assertEquals($output, $response);
