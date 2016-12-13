@@ -54,6 +54,8 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('pong', $response);
 
+        $message = '';
+
         $inputsOutputs = [
             [
                 'i' => [
@@ -95,64 +97,19 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
                 'i' => [
                     'message' => "dummy message without any command"
                 ],
-                'o' => function ($message) {
-                    // If there is no command, get the default one, if default one is empty get noCommandMessage
-                    $config = new \Slackbot\Config();
-                    $defaultCommand = $config->get('defaultCommand');
-                    $token = $config->get('outgoingWebhookToken');
-
-                    $slackbot = new \Slackbot\Slackbot(['text' => $message, 'token' => $token]);
-
-                    if (!empty($defaultCommand)) {
-                        $command = (new \Slackbot\Command())->get($defaultCommand);
-                        $commandClass = $command['class'];
-                        return (new $commandClass($slackbot))->index();
-                    }
-
-                    return $config->get('noCommandMessage');
-                }
+                'o' => $this->outputOnNoCommand($message)
             ],
             [
                 'i' => [
                     'message' => "sfdsf /ping"
                 ],
-                'o' => function ($message) {
-                    $config = new \Slackbot\Config();
-                    $defaultCommand = $config->get('defaultCommand');
-
-                    $token = $config->get('outgoingWebhookToken');
-
-                    $slackbot = new \Slackbot\Slackbot(['text' => $message, 'token' => $token]);
-
-                    if (!empty($defaultCommand)) {
-                        $command = (new \Slackbot\Command())->get($defaultCommand);
-                        $commandClass = $command['class'];
-                        return (new $commandClass($slackbot))->index();
-                    }
-
-                    return $config->get('noCommandMessage');
-                }
+                'o' => $this->outputOnNoCommand($message)
             ],
             [
                 'i' => [
                     'message' => "ddfg dfdfg df gdfg"
                 ],
-                'o' => function ($message) {
-                    $config = new \Slackbot\Config();
-                    $defaultCommand = $config->get('defaultCommand');
-
-                    $token = $config->get('outgoingWebhookToken');
-
-                    $slackbot = new \Slackbot\Slackbot(['text' => $message, 'token' => $token]);
-
-                    if (!empty($defaultCommand)) {
-                        $command = (new \Slackbot\Command())->get($defaultCommand);
-                        $commandClass = $command['class'];
-                        return (new $commandClass($slackbot))->index();
-                    }
-
-                    return $config->get('noCommandMessage');
-                }
+                'o' => $this->outputOnNoCommand($message)
             ],
         ];
 
@@ -167,6 +124,24 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
 
             $this->assertEquals($output, $response);
         }
+    }
+
+    private function outputOnNoCommand($message)
+    {
+        $config = new \Slackbot\Config();
+        $defaultCommand = $config->get('defaultCommand');
+
+        $token = $config->get('outgoingWebhookToken');
+
+        $slackbot = new \Slackbot\Slackbot(['text' => $message, 'token' => $token]);
+
+        if (!empty($defaultCommand)) {
+            $command = (new \Slackbot\Command())->get($defaultCommand);
+            $commandClass = $command['class'];
+            return (new $commandClass($slackbot))->index();
+        }
+
+        return $config->get('noCommandMessage');
     }
 
     public function testRespondExceptException()
