@@ -74,7 +74,6 @@ class Slackbot
         } catch (\Exception $e) {
             // TODO this can be re-thrown and be handled in public/index.php
             echo $e->getMessage();
-            exit;
         }
     }
 
@@ -106,8 +105,6 @@ class Slackbot
             header('Content-type:application/json;charset=utf-8');
             echo json_encode($data);
         }
-
-        exit;
     }
 
     /**
@@ -119,14 +116,14 @@ class Slackbot
     {
         $result = $this->getModuleAction($message);
 
-        if (!empty($result['module']) && !empty($result['action'])) {
-            $moduleClass = $result['module'];
-            $action = $result['action'];
-
-            return $moduleClass->$action();
-        } else {
+        if (empty($result['module']) || empty($result['action'])) {
             return $result['error'];
         }
+
+        $moduleClass = $result['module'];
+        $action = $result['action'];
+
+        return $moduleClass->$action();
     }
 
     /**
@@ -204,12 +201,8 @@ class Slackbot
         $userId = $this->getRequest('user_id');
         $username = $this->getRequest('user_name');
 
-        if ((isset($userId) && $userId == 'USLACKBOT')
-            || (isset($username) && $username == 'slackbot')) {
-            return true;
-        } else {
-            return false;
-        }
+        return (isset($userId) && $userId == 'USLACKBOT')
+        || (isset($username) && $username == 'slackbot') ? true : false;
     }
 
     /**
@@ -218,11 +211,8 @@ class Slackbot
     private function verifyRequest()
     {
         $token = $this->getRequest('token');
-        if (isset($token) && $token === $this->getConfig()->get('outgoingWebhookToken') && $this->isThisBot() == false) {
-            return true;
-        } else {
-            return false;
-        }
+        return isset($token) && $token === $this->getConfig()->get('outgoingWebhookToken')
+        && $this->isThisBot() == false ? true : false;
     }
 
     /**

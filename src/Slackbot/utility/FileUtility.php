@@ -13,7 +13,7 @@ class FileUtility
      * @return array|mixed
      * @throws \Exception
      */
-    public function jsonFileToArray($filePath, $checkFileType = false)
+    public function jsonFileToArray($filePath)
     {
         if (empty($filePath)) {
             throw new \Exception('File path is empty');
@@ -23,7 +23,7 @@ class FileUtility
             throw new \Exception("File: '{$filePath}' does not exist or is not a file");
         }
 
-        if ($checkFileType === true && pathinfo($filePath, PATHINFO_EXTENSION) !== 'json') {
+        if (pathinfo($filePath, PATHINFO_EXTENSION) !== 'json') {
             throw new \Exception("File: '{$filePath}' is not a json file");
         }
 

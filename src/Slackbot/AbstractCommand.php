@@ -9,13 +9,12 @@ abstract class AbstractCommand
     public function get($key)
     {
         $commands = $this->getAll();
-        if (array_key_exists($key, $commands)) {
-            $commandDetails = $commands[$key];
 
-            return $commandDetails;
-        } else {
+        if (!array_key_exists($key, $commands)) {
             return null;
         }
+
+        return $commands[$key];
     }
 
     public function getAll()

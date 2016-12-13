@@ -19,7 +19,7 @@ class ApiClient
      */
     public function apiCall($method, array $args = [])
     {
-        $ch = curl_init(self::BASE_URL . $method);
+        $connection = curl_init(self::BASE_URL . $method);
         
         $config = new Config();
         $args['token'] = $config->get('apiToken');
@@ -30,12 +30,12 @@ class ApiClient
         
         $data = http_build_query($args);
 
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $result = curl_exec($ch);
-        curl_close($ch);
+        curl_setopt($connection, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($connection, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($connection, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($connection, CURLOPT_SSL_VERIFYPEER, false);
+        $result = curl_exec($connection);
+        curl_close($connection);
 
         (new LoggerUtility())->logChat(__METHOD__ . ' ' . $method, $result);
 

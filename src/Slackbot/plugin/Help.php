@@ -16,7 +16,7 @@ class Help extends AbstractPlugin
             $formattingUtility = (new FormattingUtility());
 
             foreach ($allCommands as $commandName => $commandDetails) {
-                $response .= "/{$commandName}" . $formattingUtility->newLine();
+                $response .= "/{$commandName}" . $formattingUtility->newLine() . ' - ' . $commandDetails['description'];
             }
         }
 

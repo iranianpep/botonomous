@@ -8,21 +8,20 @@ abstract class AbstractConfig
 
     public function get($key, $replacements = [])
     {
-        if (array_key_exists($key, static::$configs)) {
-
-            $found = static::$configs[$key];
-
-            if (empty($replacements)) {
-                return $found;
-            }
-            
-            foreach ($replacements as $key => $value) {
-                $found = str_replace('{' . $key . '}', $value, $found);
-            }
-
-            return $found;
-        } else {
+        if (!array_key_exists($key, static::$configs)) {
             throw new \Exception("Key: '{$key}' does not exist in configs");
         }
+
+        $found = static::$configs[$key];
+
+        if (empty($replacements)) {
+            return $found;
+        }
+
+        foreach ($replacements as $key => $value) {
+            $found = str_replace('{' . $key . '}', $value, $found);
+        }
+
+        return $found;
     }
 }
