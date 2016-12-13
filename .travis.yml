@@ -22,7 +22,7 @@ before_script:
   - python setup.py
 
 script: phpunit --bootstrap vendor/autoload.php --configuration vendor/phpunit/phpunit/phpunit.xml src/tests
-script: phpunit --coverage-clover build/logs/clover.xml --configuration vendor/phpunit/phpunit/phpunit.xml --bootstrap vendor/autoload.php src/tests
+script: phpunit --coverage-clover build/logs/clover.xml --configuration phpunit.xml --bootstrap vendor/autoload.php src/tests
 
 after_script:
   - vendor/bin/test-reporter
