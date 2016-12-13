@@ -30,6 +30,8 @@ class Slackbot
 
     /**
      * @param $request
+     *
+     * @throws \Exception
      */
     public function setRequest($request)
     {
@@ -38,7 +40,7 @@ class Slackbot
         if ($this->verifyRequest() !== true) {
             //throw new \Exception('Request is not valid');
             echo 'Request is not coming from Slack';
-            exit;
+            throw new \Exception('Request is not coming from Slack');
         }
     }
 
@@ -52,10 +54,10 @@ class Slackbot
         if ($key === null) {
             // return the entire request since key is null
             return $this->request;
-        } else {
-            if (array_key_exists($key, $this->request)) {
-                return $this->request[$key];
-            }
+        }
+
+        if (array_key_exists($key, $this->request)) {
+            return $this->request[$key];
         }
 
         return null;
@@ -131,7 +133,8 @@ class Slackbot
      * @return array|mixed
      * @throws \Exception
      */
-    public function getModuleAction($message) {
+    public function getModuleAction($message)
+    {
         // If message is not set, get it from the current request
         if ($message === null) {
             $message = $this->getRequest('text');
@@ -158,7 +161,6 @@ class Slackbot
 
         // check command details
         if (empty($commandDetails)) {
-            //return "Sorry. I do not know anything about your command: '/{$command}'. I List the available commands using /help";
             return ['error' => $config->get('unknownCommandMessage', ['command' => $command])];
         }
 
