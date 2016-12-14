@@ -35,7 +35,7 @@ class FileUtilityTest extends PHPUnit_Framework_TestCase
     {
         try {
             (new FileUtility())->jsonFileToArray('/path/to/dummy.json');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->assertEquals('File does not exist or is not a file', $e->getMessage());
         }
     }
@@ -46,7 +46,7 @@ class FileUtilityTest extends PHPUnit_Framework_TestCase
 
         try {
             (new FileUtility())->jsonFileToArray($dir);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->assertEquals('File is not a json file', $e->getMessage());
         }
     }

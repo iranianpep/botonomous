@@ -20,10 +20,10 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     {
         $config = new \Slackbot\Config();
 
-        $this->setExpectedException('Exception', 'Key: \'dummyKey\' does not exist in configs');
-
-        $value = $config->get('dummyKey');
-
-        $this->assertEquals('', $value);
+        try {
+            $config->get('dummyKey');
+        } catch (Exception $e) {
+            $this->assertEquals('Key: \'dummyKey\' does not exist in configs', $e->getMessage());
+        }
     }
 }
