@@ -4,3 +4,6 @@ engines:
     config:
       file_extensions: "php"
       standard: "PSR2"
+ratings:
+   paths:
+   - "src/**/*"
