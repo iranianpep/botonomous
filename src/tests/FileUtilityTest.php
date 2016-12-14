@@ -22,7 +22,7 @@ class FileUtilityTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException
+     * @expectedException Exception
      * @throws Exception
      */
     public function testJsonFileToArrayEmptyPath()
@@ -33,7 +33,7 @@ class FileUtilityTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException
+     * @expectedException Exception
      * @throws Exception
      */
     public function testJsonFileToArrayMissingFile()
@@ -44,7 +44,7 @@ class FileUtilityTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException
+     * @expectedException Exception
      * @throws Exception
      */
     public function testJsonFileToArrayInvalidFile()
