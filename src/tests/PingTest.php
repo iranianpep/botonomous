@@ -6,19 +6,7 @@ class PingTest extends PHPUnit_Framework_TestCase
 {
     public function testPong()
     {
-        $config = new \Slackbot\Config();
-
-        /**
-         * Form the request
-         */
-        $botUsername = '@' . $config->get('botUsername');
-        $request = [
-            'token' => $config->get('outgoingWebhookToken'),
-            'text' => $botUsername . ' /ping'
-        ];
-
-        $slackbot = new \Slackbot\Slackbot($request);
-
+        $slackbot = $this->getSlackbot();
         $ping = new Ping($slackbot);
         $pongResponse = $ping->pong();
 
@@ -26,6 +14,15 @@ class PingTest extends PHPUnit_Framework_TestCase
     }
     
     public function testGetSlackbot()
+    {
+        $slackbot = $this->getSlackbot();
+        $ping = new Ping($slackbot);
+        $getResult = $ping->getSlackbot();
+        
+        $this->assertEquals($slackbot, $getResult);
+    }
+
+    private function getSlackbot()
     {
         $config = new \Slackbot\Config();
 
@@ -38,12 +35,6 @@ class PingTest extends PHPUnit_Framework_TestCase
             'text' => $botUsername . ' /ping'
         ];
 
-        $slackbot = new \Slackbot\Slackbot($request);
-
-        $ping = new Ping($slackbot);
-        
-        $getResult = $ping->getSlackbot();
-        
-        $this->assertEquals($slackbot, $getResult);
+        return new \Slackbot\Slackbot($request);
     }
 }

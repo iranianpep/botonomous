@@ -24,4 +24,11 @@ abstract class AbstractConfig
 
         return $found;
     }
+
+    public function set($key, $value)
+    {
+        if (array_key_exists($key, static::$configs)) {
+            static::$configs[$key] = $value;
+        }
+    }
 }

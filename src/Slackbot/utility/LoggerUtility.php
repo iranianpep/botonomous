@@ -13,14 +13,17 @@ use Slackbot\Config;
 class LoggerUtility
 {
     /**
-     * @param        $function
+     * @param $function
      * @param string $message
-     *
+     * @param Config|null $config
      * @return bool
+     * @throws \Exception
      */
-    public function logChat($function, $message = '')
+    public function logChat($function, $message = '', Config $config = null)
     {
-        $config = new Config();
+        if ($config === null) {
+            $config = new Config();    
+        }
 
         if ($config->get('chatLogging') !== true) {
             return false;
@@ -39,5 +42,7 @@ class LoggerUtility
             "{$currentTime}|{$function}|{$message}\r\n",
             FILE_APPEND
         );
+        
+        return true;
     }
 }
