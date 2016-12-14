@@ -21,38 +21,33 @@ class FileUtilityTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $array);
     }
 
-    /**
-     * @expectedException Exception
-     * @throws Exception
-     */
     public function testJsonFileToArrayEmptyPath()
     {
-        $this->setExpectedException('Exception', 'File path is empty');
+        try {
+            (new FileUtility())->jsonFileToArray('');
+        } catch (Exception $e) {
+            $this->assertEquals('File path is empty', $e->getMessage());
+        }
 
-        (new FileUtility())->jsonFileToArray('');
     }
 
-    /**
-     * @expectedException Exception
-     * @throws Exception
-     */
     public function testJsonFileToArrayMissingFile()
     {
-        $this->setExpectedException('Exception', 'File: \'/path/to/dummy.json\' does not exist or is not a file');
-
-        (new FileUtility())->jsonFileToArray('/path/to/dummy.json');
+        try {
+            (new FileUtility())->jsonFileToArray('/path/to/dummy.json');
+        } catch (\Exception $e) {
+            $this->assertEquals('File: \'/path/to/dummy.json\' does not exist or is not a file', $e->getMessage());
+        }
     }
 
-    /**
-     * @expectedException Exception
-     * @throws Exception
-     */
     public function testJsonFileToArrayInvalidFile()
     {
         $dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Slackbot' . DIRECTORY_SEPARATOR . 'Config.php';
 
-        $this->setExpectedException('Exception', 'File: \'/Applications/MAMP/htdocs/slackbot/src/Slackbot/Config.php\' is not a json file');
-
-        (new FileUtility())->jsonFileToArray($dir);
+        try {
+            (new FileUtility())->jsonFileToArray($dir);
+        } catch (\Exception $e) {
+            $this->assertEquals('File: \'/Applications/MAMP/htdocs/slackbot/src/Slackbot/Config.php\' is not a json file', $e->getMessage());
+        }
     }
 }
