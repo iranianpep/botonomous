@@ -4,6 +4,7 @@ namespace Slackbot\Tests;
 
 use Slackbot\Command;
 use Slackbot\Config;
+use Slackbot\plugin\Ping;
 use Slackbot\Slackbot;
 
 /**
@@ -44,7 +45,24 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($config, $slackbot->getConfig());
     }
-    
+
+    public function testSetConfig()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request
+         */
+        $request = [
+            'token' => $config->get('outgoingWebhookToken')
+        ];
+
+        $slackbot = new Slackbot($request);
+        $slackbot->setConfig($config);
+
+        $this->assertEquals($config, $slackbot->getConfig());
+    }
+
     public function testRespond()
     {
         $config = new Config();
@@ -173,5 +191,50 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $slackbot = new Slackbot($request);
         $slackbot->respond();
+    }
+
+    public function testGetModuleAction()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request
+         */
+        $request = [
+            'token' => $config->get('outgoingWebhookToken')
+        ];
+
+        $slackbot = new Slackbot($request);
+        $result = $slackbot->getModuleAction('/ping message');
+
+        $expected = [
+            'module' => new Ping($slackbot),
+            'action' => 'index'
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetModuleActionWithoutDefaultCommand()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request
+         */
+        $request = [
+            'token' => $config->get('outgoingWebhookToken')
+        ];
+
+        $config->set('defaultCommand', '');
+
+        $slackbot = new Slackbot($request);
+        $result = $slackbot->getModuleAction('dummy message without command');
+
+        $expected = [
+            'error' => $config->get('noCommandMessage')
+        ];
+
+        $this->assertEquals($expected, $result);
     }
 }
