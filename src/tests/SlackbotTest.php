@@ -237,4 +237,24 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $result);
     }
+
+    public function testSend()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request
+         */
+        $request = [
+            'token' => $config->get('outgoingWebhookToken')
+        ];
+
+        $config->set('response', 'json');
+
+        $slackbot = new Slackbot($request, $config);
+
+        $this->expectOutputString('{"text":"test response"}');
+
+        $slackbot->send('test response');
+    }
 }

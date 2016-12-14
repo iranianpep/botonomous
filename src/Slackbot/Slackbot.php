@@ -110,7 +110,10 @@ class Slackbot
         if ($responseType === 'slack') {
             (new ApiClient())->chatPostMessage($data);
         } elseif ($responseType === 'json') {
-            header('Content-type:application/json;charset=utf-8');
+            // headers_sent is used to avoid issue in the test
+            if (!headers_sent()) {
+                header('Content-type:application/json;charset=utf-8');
+            }
             echo json_encode($data);
         }
     }
