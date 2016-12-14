@@ -20,6 +20,10 @@ abstract class AbstractUtility
      */
     public function getConfig()
     {
+        if ($this->config === null) {
+            return new Config();
+        }
+        
         return $this->config;
     }
 

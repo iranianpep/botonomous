@@ -11,17 +11,13 @@ class CommandTest extends PHPUnit_Framework_TestCase
 {
     public function testGet()
     {
-        $command = new Command();
-        $info = $command->get('ping');
-        
+        $info = (new Command())->get('ping');
         $this->assertEquals($info['module'], 'Ping');
     }
 
     public function testGetAll()
     {
-        $command = new Command();
-        $commands = $command->getAll();
-
+        $commands = (new Command())->getAll();
         $this->assertEquals($commands['ping']['module'], 'Ping');
     }
 }

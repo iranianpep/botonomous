@@ -1,14 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ehsan.abbasi
- * Date: 5/12/2016
- * Time: 1:28 PM
- */
 
 namespace Slackbot\utility;
-
-use Slackbot\Config;
 
 class LoggerUtility extends AbstractUtility
 {
@@ -21,29 +13,51 @@ class LoggerUtility extends AbstractUtility
     public function logChat($function, $message = '')
     {
         $config = $this->getConfig();
-        
-        if ($config === null) {
-            $config = new Config();    
-        }
 
         if ($config->get('chatLogging') !== true) {
             return false;
         }
 
-        $currentTime = date('Y-m-d H:i:s');
-
-        $tmpDir = dirname(__DIR__) . DIRECTORY_SEPARATOR . $config->get('tmpFolderName');
+        $tmpDir = $this->getTempDir();
         if (!is_dir($tmpDir)) {
             // dir doesn't exist, make it
             mkdir($tmpDir);
         }
 
         file_put_contents(
-            $tmpDir . DIRECTORY_SEPARATOR . $config->get('chatLoggingFileName'),
-            "{$currentTime}|{$function}|{$message}\r\n",
+            $this->getLogFilePath(),
+            $this->getLogContent($function, $message),
             FILE_APPEND
         );
         
         return true;
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    public function getTempDir()
+    {
+        return dirname(__DIR__) . DIRECTORY_SEPARATOR . $this->getConfig()->get('tmpFolderName');
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    public function getLogFilePath()
+    {
+        return $this->getTempDir() . DIRECTORY_SEPARATOR . $this->getConfig()->get('chatLoggingFileName');
+    }
+
+    /**
+     * @param $function
+     * @param $message
+     * @return string
+     */
+    public function getLogContent($function, $message)
+    {
+        return date('Y-m-d H:i:s') . "|{$function}|{$message}\r\n";
     }
 }

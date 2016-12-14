@@ -1,5 +1,6 @@
 <?php
 
+use Slackbot\Config;
 use Slackbot\plugin\Ping;
 
 class PingTest extends PHPUnit_Framework_TestCase
@@ -24,7 +25,7 @@ class PingTest extends PHPUnit_Framework_TestCase
 
     private function getSlackbot()
     {
-        $config = new \Slackbot\Config();
+        $config = new Config();
 
         /**
          * Form the request

@@ -39,7 +39,7 @@ class MessageUtilityTest extends PHPUnit_Framework_TestCase
     public function testExtractCommandDetails()
     {
         $utility = new MessageUtility();
-        $botUsername = (new \Slackbot\Config())->get('botUsername');
+        $botUsername = (new Config())->get('botUsername');
         $commandDetails = $utility->extractCommandDetails("@{$botUsername} /ping");
 
         $expected = [
