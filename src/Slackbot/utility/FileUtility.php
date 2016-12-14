@@ -20,11 +20,11 @@ class FileUtility
         }
 
         if (!file_exists($filePath) || !is_file($filePath)) {
-            throw new \Exception("File: '{$filePath}' does not exist or is not a file");
+            throw new \Exception("File does not exist or is not a file");
         }
 
         if (pathinfo($filePath, PATHINFO_EXTENSION) !== 'json') {
-            throw new \Exception("File: '{$filePath}' is not a json file");
+            throw new \Exception("File is not a json file");
         }
 
         $content = file_get_contents($filePath);
