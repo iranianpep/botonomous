@@ -5,7 +5,8 @@ namespace Slackbot;
 class Command extends AbstractCommand
 {
     /**
-     * Multiple commands can refer to the same module, in other words a module can have multiple commands / actions / functions
+     * Multiple commands can refer to the same module,
+     * in other words a module can have multiple commands / actions / functions
      * If action is empty, consider 'index' as the default action
      *
      * @var array

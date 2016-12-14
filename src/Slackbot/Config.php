@@ -25,7 +25,9 @@ class Config extends AbstractConfig
         /**
          * Generic messages
          */
-        'noCommandMessage' => 'Sorry. I couldn\'t find any command in your message. List the available commands using /help',
-        'unknownCommandMessage' => "Sorry. I do not know anything about your command: '/{command}'. List the available commands using /help"
+        'noCommandMessage' => 'Sorry. I couldn\'t find any command in your message.
+        List the available commands using /help',
+        'unknownCommandMessage' => "Sorry. I do not know anything about your command: '/{command}'.
+        List the available commands using /help"
     ];
 }
