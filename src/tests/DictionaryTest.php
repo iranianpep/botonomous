@@ -1,8 +1,10 @@
 <?php
 
+namespace Slackbot\Tests;
+
 use Slackbot\Dictionary;
 
-class DictionaryTest extends PHPUnit_Framework_TestCase
+class DictionaryTest extends \PHPUnit_Framework_TestCase
 {
     public function testGet()
     {

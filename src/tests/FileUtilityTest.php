@@ -1,15 +1,18 @@
 <?php
 
+namespace Slackbot\Tests;
+
 use Slackbot\utility\FileUtility;
 
-class FileUtilityTest extends PHPUnit_Framework_TestCase
+class FileUtilityTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function testJsonFileToArray()
     {
-        $dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Slackbot' . DIRECTORY_SEPARATOR . 'dictionary' . DIRECTORY_SEPARATOR . 'test.json';
+        $dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Slackbot' . DIRECTORY_SEPARATOR . 'dictionary' .
+            DIRECTORY_SEPARATOR . 'test.json';
 
         $array = (new FileUtility())->jsonFileToArray($dir);
 
@@ -25,17 +28,16 @@ class FileUtilityTest extends PHPUnit_Framework_TestCase
     {
         try {
             (new FileUtility())->jsonFileToArray('');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertEquals('File path is empty', $e->getMessage());
         }
-
     }
 
     public function testJsonFileToArrayMissingFile()
     {
         try {
             (new FileUtility())->jsonFileToArray('/path/to/dummy.json');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertEquals('File does not exist or is not a file', $e->getMessage());
         }
     }
@@ -46,7 +48,7 @@ class FileUtilityTest extends PHPUnit_Framework_TestCase
 
         try {
             (new FileUtility())->jsonFileToArray($dir);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertEquals('File is not a json file', $e->getMessage());
         }
     }

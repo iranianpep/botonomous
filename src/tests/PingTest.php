@@ -1,9 +1,11 @@
 <?php
 
+namespace Slackbot\Tests;
+
 use Slackbot\Config;
 use Slackbot\plugin\Ping;
 
-class PingTest extends PHPUnit_Framework_TestCase
+class PingTest extends \PHPUnit_Framework_TestCase
 {
     public function testPong()
     {

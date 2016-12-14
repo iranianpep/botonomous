@@ -1,8 +1,10 @@
 <?php
 
+namespace Slackbot\Tests;
+
 use Slackbot\utility\LanguageProcessingUtility;
 
-class LanguageProcessingUtilityTest extends PHPUnit_Framework_TestCase
+class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
 {
     public function testStem()
     {

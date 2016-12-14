@@ -1,8 +1,10 @@
 <?php
 
+namespace Slackbot\Tests;
+
 use Slackbot\utility\StringUtility;
 
-class StringUtilityTest extends PHPUnit_Framework_TestCase
+class StringUtilityTest extends \PHPUnit_Framework_TestCase
 {
     public function testJsonToArray()
     {

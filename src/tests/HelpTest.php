@@ -1,6 +1,8 @@
 <?php
 
-class HelpTest extends PHPUnit_Framework_TestCase
+namespace Slackbot\Tests;
+
+class HelpTest extends \PHPUnit_Framework_TestCase
 {
     public function testIndex()
     {

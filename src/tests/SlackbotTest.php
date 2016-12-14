@@ -1,10 +1,19 @@
 <?php
 
-class SlackbotTest extends PHPUnit_Framework_TestCase
+namespace Slackbot\Tests;
+
+use Slackbot\Command;
+use Slackbot\Config;
+use Slackbot\Slackbot;
+
+/**
+ * Class SlackbotTest
+ */
+class SlackbotTest extends \PHPUnit_Framework_TestCase
 {
     public function testSetGetRequest()
     {
-        $config = new \Slackbot\Config();
+        $config = new Config();
 
         /**
          * Form the request
@@ -13,7 +22,7 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
             'token' => $config->get('outgoingWebhookToken')
         ];
 
-        $slackbot = new \Slackbot\Slackbot($request);
+        $slackbot = new Slackbot($request);
 
         $this->assertEquals($request, $slackbot->getRequest());
 
@@ -22,7 +31,7 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
 
     public function testGetConfig()
     {
-        $config = new \Slackbot\Config();
+        $config = new Config();
 
         /**
          * Form the request
@@ -31,14 +40,14 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
             'token' => $config->get('outgoingWebhookToken')
         ];
 
-        $slackbot = new \Slackbot\Slackbot($request);
+        $slackbot = new Slackbot($request);
 
         $this->assertEquals($config, $slackbot->getConfig());
     }
     
     public function testRespond()
     {
-        $config = new \Slackbot\Config();
+        $config = new Config();
 
         /**
          * Form the request
@@ -128,15 +137,15 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
 
     private function outputOnNoCommand($message)
     {
-        $config = new \Slackbot\Config();
+        $config = new Config();
         $defaultCommand = $config->get('defaultCommand');
 
         $token = $config->get('outgoingWebhookToken');
 
-        $slackbot = new \Slackbot\Slackbot(['text' => $message, 'token' => $token]);
+        $slackbot = new Slackbot(['text' => $message, 'token' => $token]);
 
         if (!empty($defaultCommand)) {
-            $command = (new \Slackbot\Command())->get($defaultCommand);
+            $command = (new Command())->get($defaultCommand);
             $commandClass = $command['class'];
             return (new $commandClass($slackbot))->index();
         }
@@ -146,7 +155,7 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
 
     public function testRespondExceptException()
     {
-        $config = new \Slackbot\Config();
+        $config = new Config();
 
         /**
          * Form the request
@@ -157,9 +166,12 @@ class SlackbotTest extends PHPUnit_Framework_TestCase
             'text' => $botUsername . ' /commandWithoutFunctionForTest'
         ];
 
-        $this->setExpectedException('Exception', 'Action / function: \'commandWithoutFunctionForTest\' does not exist in \'Slackbot\plugin\Ping\'');
+        $this->setExpectedException(
+            '\Exception',
+            'Action / function: \'commandWithoutFunctionForTest\' does not exist in \'Slackbot\plugin\Ping\''
+        );
 
-        $slackbot = new \Slackbot\Slackbot($request);
+        $slackbot = new Slackbot($request);
         $slackbot->respond();
     }
 }

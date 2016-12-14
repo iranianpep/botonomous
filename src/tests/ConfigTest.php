@@ -1,8 +1,10 @@
 <?php
 
+namespace Slackbot\Tests;
+
 use Slackbot\Config;
 
-class ConfigTest extends PHPUnit_Framework_TestCase
+class ConfigTest extends \PHPUnit_Framework_TestCase
 {
     public function testGet()
     {
@@ -24,7 +26,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
 
         try {
             $config->get('dummyKey');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertEquals('Key: \'dummyKey\' does not exist in configs', $e->getMessage());
         }
     }

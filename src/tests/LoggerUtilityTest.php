@@ -1,9 +1,11 @@
 <?php
 
+namespace Slackbot\Tests;
+
 use Slackbot\Config;
 use Slackbot\utility\LoggerUtility;
 
-class LoggerUtilityTest extends PHPUnit_Framework_TestCase
+class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 {
     public function testLogChatDisabled()
     {

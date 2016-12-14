@@ -1,9 +1,11 @@
 <?php
 
+namespace Slackbot\Tests;
+
 use Slackbot\Config;
 use Slackbot\utility\MessageUtility;
 
-class MessageUtilityTest extends PHPUnit_Framework_TestCase
+class MessageUtilityTest extends \PHPUnit_Framework_TestCase
 {
     public function testRemoveMentionedBotUsername()
     {

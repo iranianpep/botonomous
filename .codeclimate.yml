@@ -4,6 +4,8 @@ engines:
     config:
       file_extensions: "php"
       standard: "PSR2"
+  fixme:
+      enabled: false
 ratings:
    paths:
    - "src/**/*"
