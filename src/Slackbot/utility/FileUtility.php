@@ -2,7 +2,7 @@
 
 namespace Slackbot\utility;
 
-class FileUtility
+class FileUtility extends AbstractUtility
 {
     /**
      * Validate and convert a (JSON) file content to a PHP array

@@ -4,7 +4,7 @@ namespace Slackbot\utility;
 
 use Slackbot\Dictionary;
 
-class LanguageProcessingUtility
+class LanguageProcessingUtility extends AbstractUtility
 {
     /**
      * @param $text

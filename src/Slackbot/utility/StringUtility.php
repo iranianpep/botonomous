@@ -2,7 +2,7 @@
 
 namespace Slackbot\utility;
 
-class StringUtility
+class StringUtility extends AbstractUtility
 {
     /**
      * @param $json

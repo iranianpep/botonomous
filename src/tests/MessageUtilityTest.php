@@ -1,13 +1,16 @@
 <?php
 
+use Slackbot\Config;
 use Slackbot\utility\MessageUtility;
 
 class MessageUtilityTest extends PHPUnit_Framework_TestCase
 {
     public function testRemoveMentionedBotUsername()
     {
-        $utility = new MessageUtility();
-        $botUsername = (new \Slackbot\Config())->get('botUsername');
+        $config = new Config();
+        $utility = new MessageUtility($config);
+        
+        $botUsername = $config->get('botUsername');
         $removed = $utility->removeMentionedBotUsername("@{$botUsername} /help");
 
         $this->assertEquals($removed, ' /help');

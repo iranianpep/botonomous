@@ -5,7 +5,7 @@ namespace Slackbot\utility;
 use Slackbot\Command;
 use Slackbot\Config;
 
-class MessageUtility
+class MessageUtility extends AbstractUtility
 {
     /**
      * Remove the mentioned bot username from the message
@@ -16,7 +16,12 @@ class MessageUtility
      */
     public function removeMentionedBotUsername($message)
     {
-        $config = new Config();
+        $config = $this->getConfig();
+
+        if ($config === null) {
+            $config = new Config();
+        }
+
         $botUsername = $config->get('botUsername');
         $mentionedBotUsername = "@{$botUsername}";
 

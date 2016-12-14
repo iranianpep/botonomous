@@ -2,7 +2,7 @@
 
 namespace Slackbot\utility;
 
-class FormattingUtility
+class FormattingUtility extends AbstractUtility
 {
     public function newLine()
     {

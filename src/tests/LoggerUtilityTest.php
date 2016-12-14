@@ -10,8 +10,8 @@ class LoggerUtilityTest extends PHPUnit_Framework_TestCase
         $config = new Config();
         $config->set('chatLogging', false);
         
-        $utility = new LoggerUtility();
-        $result = $utility->logChat(__METHOD__, 'test message', $config);
+        $utility = new LoggerUtility($config);
+        $result = $utility->logChat(__METHOD__, 'test message');
 
         $this->assertFalse($result);
     }

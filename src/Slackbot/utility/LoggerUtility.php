@@ -10,17 +10,18 @@ namespace Slackbot\utility;
 
 use Slackbot\Config;
 
-class LoggerUtility
+class LoggerUtility extends AbstractUtility
 {
     /**
      * @param $function
      * @param string $message
-     * @param Config|null $config
      * @return bool
      * @throws \Exception
      */
-    public function logChat($function, $message = '', Config $config = null)
+    public function logChat($function, $message = '')
     {
+        $config = $this->getConfig();
+        
         if ($config === null) {
             $config = new Config();    
         }
