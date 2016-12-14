@@ -7,6 +7,7 @@ class Config extends AbstractConfig
     protected static $configs = [
         // This is only used for testing config class
         'testKey' => 'testValue',
+        'testKeyReplace' => 'testValue {replaceIt}',
         'defaultTimeZone' => 'Australia/Melbourne',
         'apiToken' => 'YOUR_API_TOKEN',
         'channelName' => '#general',
