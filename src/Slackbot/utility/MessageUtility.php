@@ -18,10 +18,6 @@ class MessageUtility extends AbstractUtility
     {
         $config = $this->getConfig();
 
-        if ($config === null) {
-            $config = new Config();
-        }
-
         $botUsername = $config->get('botUsername');
         $mentionedBotUsername = "@{$botUsername}";
 

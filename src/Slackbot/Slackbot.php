@@ -14,16 +14,22 @@ use Slackbot\utility\MessageUtility;
 class Slackbot
 {
     private $request;
+    private $config;
 
     /**
      * Slackbot constructor.
      *
      * @param $request
+     * @param Config|null $config
      */
-    public function __construct($request)
+    public function __construct($request, Config $config = null)
     {
         // set timezone
         date_default_timezone_set($this->getConfig()->get('defaultTimeZone'));
+
+        if ($config !== null) {
+            $this->setConfig($config);
+        }
 
         $this->setRequest($request);
     }
@@ -222,6 +228,18 @@ class Slackbot
      */
     public function getConfig()
     {
-        return (new Config());
+        if ($this->config === null) {
+            $this->config = (new Config());
+        }
+
+        return $this->config;
+    }
+
+    /**
+     * @param Config $config
+     */
+    public function setConfig(Config $config)
+    {
+        $this->config = $config;
     }
 }

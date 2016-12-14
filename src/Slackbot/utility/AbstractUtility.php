@@ -21,7 +21,7 @@ abstract class AbstractUtility
     public function getConfig()
     {
         if ($this->config === null) {
-            return new Config();
+            $this->config = new Config();
         }
         
         return $this->config;
