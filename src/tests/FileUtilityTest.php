@@ -4,6 +4,10 @@ namespace Slackbot\Tests;
 
 use Slackbot\utility\FileUtility;
 
+/**
+ * Class FileUtilityTest
+ * @package Slackbot\Tests
+ */
 class FileUtilityTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -24,6 +28,9 @@ class FileUtilityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $array);
     }
 
+    /**
+     * Test
+     */
     public function testJsonFileToArrayEmptyPath()
     {
         try {

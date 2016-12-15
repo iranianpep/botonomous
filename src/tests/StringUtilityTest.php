@@ -4,8 +4,15 @@ namespace Slackbot\Tests;
 
 use Slackbot\utility\StringUtility;
 
+/**
+ * Class StringUtilityTest
+ * @package Slackbot\Tests
+ */
 class StringUtilityTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Convert json to array
+     */
     public function testJsonToArray()
     {
         $utility = new StringUtility();

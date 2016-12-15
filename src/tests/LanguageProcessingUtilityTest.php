@@ -4,8 +4,15 @@ namespace Slackbot\Tests;
 
 use Slackbot\utility\LanguageProcessingUtility;
 
+/**
+ * Class LanguageProcessingUtilityTest
+ * @package Slackbot\Tests
+ */
 class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test stem
+     */
     public function testStem()
     {
         $utility = new LanguageProcessingUtility();
@@ -19,6 +26,9 @@ class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $result);
     }
 
+    /**
+     * Test removeStopWords
+     */
     public function testRemoveStopWords()
     {
         $utility = new LanguageProcessingUtility();

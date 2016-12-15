@@ -5,8 +5,15 @@ namespace Slackbot\Tests;
 use Slackbot\Config;
 use Slackbot\utility\MessageUtility;
 
+/**
+ * Class MessageUtilityTest
+ * @package Slackbot\Tests
+ */
 class MessageUtilityTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function testRemoveMentionedBotUsername()
     {
         $config = new Config();
@@ -22,6 +29,9 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($removed, ' /help');
     }
 
+    /**
+     *  Test extractCommandName
+     */
     public function testExtractCommandName()
     {
         $utility = new MessageUtility();
@@ -37,7 +47,10 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(null, $command);
     }
-    
+
+    /**
+     * @throws \Exception
+     */
     public function testExtractCommandDetails()
     {
         $utility = new MessageUtility();

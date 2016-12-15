@@ -12,6 +12,9 @@ use Slackbot\Slackbot;
  */
 class SlackbotTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function testSetGetRequest()
     {
         $config = new Config();
@@ -30,6 +33,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($config->get('outgoingWebhookToken'), $slackbot->getRequest('token'));
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testGetConfig()
     {
         $config = new Config();
@@ -46,6 +52,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($config, $slackbot->getConfig());
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testSetConfig()
     {
         $config = new Config();
@@ -63,6 +72,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($config, $slackbot->getConfig());
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testRespond()
     {
         $config = new Config();
@@ -153,6 +165,11 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * @param $message
+     * @return mixed
+     * @throws \Exception
+     */
     private function outputOnNoCommand($message)
     {
         $config = new Config();
@@ -171,6 +188,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         return $config->get('noCommandMessage');
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testRespondExceptException()
     {
         $config = new Config();
@@ -193,6 +213,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $slackbot->respond();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testGetModuleAction()
     {
         $config = new Config();
@@ -215,6 +238,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testGetModuleActionWithoutDefaultCommand()
     {
         $config = new Config();
@@ -238,6 +264,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testSend()
     {
         $config = new Config();

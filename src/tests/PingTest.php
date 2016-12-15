@@ -5,8 +5,15 @@ namespace Slackbot\Tests;
 use Slackbot\Config;
 use Slackbot\plugin\Ping;
 
+/**
+ * Class PingTest
+ * @package Slackbot\Tests
+ */
 class PingTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test pong
+     */
     public function testPong()
     {
         $slackbot = $this->getSlackbot();
@@ -15,7 +22,10 @@ class PingTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('ping', $pongResponse);
     }
-    
+
+    /**
+     * Test getSlackbot
+     */
     public function testGetSlackbot()
     {
         $slackbot = $this->getSlackbot();
@@ -25,6 +35,10 @@ class PingTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($slackbot, $getResult);
     }
 
+    /**
+     * @return \Slackbot\Slackbot
+     * @throws \Exception
+     */
     private function getSlackbot()
     {
         $config = new Config();

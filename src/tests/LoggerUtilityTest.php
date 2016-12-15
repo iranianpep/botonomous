@@ -5,8 +5,15 @@ namespace Slackbot\Tests;
 use Slackbot\Config;
 use Slackbot\utility\LoggerUtility;
 
+/**
+ * Class LoggerUtilityTest
+ * @package Slackbot\Tests
+ */
 class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test logChatDisabled
+     */
     public function testLogChatDisabled()
     {
         $config = new Config();
@@ -17,7 +24,10 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($result);
     }
-    
+
+    /**
+     * Test logChatEnabled
+     */
     public function testLogChatEnabled()
     {
         date_default_timezone_set('Australia/Melbourne');
