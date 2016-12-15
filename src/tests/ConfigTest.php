@@ -5,8 +5,7 @@ namespace Slackbot\Tests;
 use Slackbot\Config;
 
 /**
- * Class ConfigTest
- * @package Slackbot\Tests
+ * Class ConfigTest.
  */
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,7 +30,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test getExceptException
+     * Test getExceptException.
      */
     public function testGetExceptException()
     {

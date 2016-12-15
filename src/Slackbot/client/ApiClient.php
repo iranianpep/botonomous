@@ -6,32 +6,33 @@ use Slackbot\Config;
 use Slackbot\utility\LoggerUtility;
 
 /**
- * Class ApiClient
- * @package Slackbot\client
+ * Class ApiClient.
  */
 class ApiClient
 {
     const BASE_URL = 'https://slack.com/api/';
 
     /**
-     * API CURL Call with post method
+     * API CURL Call with post method.
      *
      * @param $method
      * @param array $args
-     * @return mixed
+     *
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function apiCall($method, array $args = [])
     {
-        $connection = curl_init(self::BASE_URL . $method);
-        
+        $connection = curl_init(self::BASE_URL.$method);
+
         $config = new Config();
         $args['token'] = $config->get('apiToken');
         $args['channel'] = $config->get('channelName');
         $args['username'] = $config->get('botUsername');
         $args['as_user'] = false;
         $args['icon_url'] = $config->get('iconURL');
-        
+
         $data = http_build_query($args);
 
         curl_setopt($connection, CURLOPT_CUSTOMREQUEST, 'POST');
@@ -41,7 +42,7 @@ class ApiClient
         $result = curl_exec($connection);
         curl_close($connection);
 
-        (new LoggerUtility())->logChat(__METHOD__ . ' ' . $method, $result);
+        (new LoggerUtility())->logChat(__METHOD__.' '.$method, $result);
 
         // prettify the response
         $result = json_decode($result, true);
@@ -53,6 +54,7 @@ class ApiClient
 
     /**
      * @param $args
+     *
      * @return mixed
      */
     public function chatPostMessage($args)
@@ -61,7 +63,8 @@ class ApiClient
     }
 
     /**
-     * List all the Slack users in the team
+     * List all the Slack users in the team.
+     *
      * @return array
      */
     public function usersList()

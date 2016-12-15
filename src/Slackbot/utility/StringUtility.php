@@ -3,16 +3,16 @@
 namespace Slackbot\utility;
 
 /**
- * Class StringUtility
- * @package Slackbot\utility
+ * Class StringUtility.
  */
 class StringUtility extends AbstractUtility
 {
     /**
      * @param $json
      *
-     * @return array|mixed
      * @throws \Exception
+     *
+     * @return array|mixed
      */
     public function jsonToArray($json)
     {

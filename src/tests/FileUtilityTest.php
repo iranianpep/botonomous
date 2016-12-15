@@ -5,8 +5,7 @@ namespace Slackbot\Tests;
 use Slackbot\utility\FileUtility;
 
 /**
- * Class FileUtilityTest
- * @package Slackbot\Tests
+ * Class FileUtilityTest.
  */
 class FileUtilityTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,21 +14,21 @@ class FileUtilityTest extends \PHPUnit_Framework_TestCase
      */
     public function testJsonFileToArray()
     {
-        $dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Slackbot' . DIRECTORY_SEPARATOR . 'dictionary' .
-            DIRECTORY_SEPARATOR . 'test.json';
+        $dir = dirname(__DIR__).DIRECTORY_SEPARATOR.'Slackbot'.DIRECTORY_SEPARATOR.'dictionary'.
+            DIRECTORY_SEPARATOR.'test.json';
 
         $array = (new FileUtility())->jsonFileToArray($dir);
 
         $expected = [
             'test1',
-            'test2'
+            'test2',
         ];
 
         $this->assertEquals($expected, $array);
     }
 
     /**
-     * Test jsonFileToArrayEmptyPath
+     * Test jsonFileToArrayEmptyPath.
      */
     public function testJsonFileToArrayEmptyPath()
     {
@@ -41,7 +40,7 @@ class FileUtilityTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test jsonFileToArrayMissingFile
+     * Test jsonFileToArrayMissingFile.
      */
     public function testJsonFileToArrayMissingFile()
     {
@@ -53,11 +52,11 @@ class FileUtilityTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test jsonFileToArrayInvalidFile
+     * Test jsonFileToArrayInvalidFile.
      */
     public function testJsonFileToArrayInvalidFile()
     {
-        $dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Slackbot' . DIRECTORY_SEPARATOR . 'Config.php';
+        $dir = dirname(__DIR__).DIRECTORY_SEPARATOR.'Slackbot'.DIRECTORY_SEPARATOR.'Config.php';
 
         try {
             (new FileUtility())->jsonFileToArray($dir);

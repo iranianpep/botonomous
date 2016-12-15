@@ -5,8 +5,7 @@ namespace Slackbot\plugin;
 use Slackbot\Slackbot;
 
 /**
- * Class AbstractPlugin
- * @package Slackbot\plugin
+ * Class AbstractPlugin.
  */
 abstract class AbstractPlugin implements PluginInterface
 {
@@ -23,7 +22,7 @@ abstract class AbstractPlugin implements PluginInterface
     }
 
     /**
-     * Return Slackbot
+     * Return Slackbot.
      *
      * @return Slackbot
      */
@@ -33,7 +32,7 @@ abstract class AbstractPlugin implements PluginInterface
     }
 
     /**
-     * Set Slackbot
+     * Set Slackbot.
      *
      * @param Slackbot $slackbot
      */

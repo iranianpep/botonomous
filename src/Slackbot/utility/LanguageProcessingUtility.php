@@ -5,32 +5,33 @@ namespace Slackbot\utility;
 use Slackbot\Dictionary;
 
 /**
- * Class LanguageProcessingUtility
- * @package Slackbot\utility
+ * Class LanguageProcessingUtility.
  */
 class LanguageProcessingUtility extends AbstractUtility
 {
     /**
      * @param $text
+     *
      * @return string
      */
     public function stem($text)
     {
         // Execute the python script with the JSON data
-        $filePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'py' . DIRECTORY_SEPARATOR . 'stemmer.py';
+        $filePath = dirname(__DIR__).DIRECTORY_SEPARATOR.'py'.DIRECTORY_SEPARATOR.'stemmer.py';
 
         //return exec('python ' . $filePath . ' ' . escapeshellarg(json_encode([$text])), $output);
-        return shell_exec('python ' . $filePath . ' ' . escapeshellarg(json_encode([$text])));
+        return shell_exec('python '.$filePath.' '.escapeshellarg(json_encode([$text])));
     }
 
     /**
      * @param $text
      * @param string $language
+     *
      * @return string
      */
     public function removeStopWords($text, $language = 'en')
     {
-        $stopWords = (new Dictionary())->get('stopwords-' . $language);
+        $stopWords = (new Dictionary())->get('stopwords-'.$language);
 
         $words = explode(' ', $text);
 

@@ -3,8 +3,7 @@
 namespace Slackbot;
 
 /**
- * Class AbstractConfig
- * @package Slackbot
+ * Class AbstractConfig.
  */
 abstract class AbstractConfig
 {
@@ -14,8 +13,9 @@ abstract class AbstractConfig
      * @param       $key
      * @param array $replacements
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function get($key, $replacements = [])
     {
@@ -30,7 +30,7 @@ abstract class AbstractConfig
         }
 
         foreach ($replacements as $key => $value) {
-            $found = str_replace('{' . $key . '}', $value, $found);
+            $found = str_replace('{'.$key.'}', $value, $found);
         }
 
         return $found;

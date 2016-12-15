@@ -5,8 +5,7 @@ namespace Slackbot;
 use Slackbot\utility\FileUtility;
 
 /**
- * Class Dictionary
- * @package Slackbot
+ * Class Dictionary.
  */
 class Dictionary
 {
@@ -15,12 +14,14 @@ class Dictionary
     /**
      * @param $key
      *
-     * @return array|mixed
      * @throws \Exception
+     *
+     * @return array|mixed
      */
     private function load($key)
     {
-        $stopWordsPath = __DIR__ . DIRECTORY_SEPARATOR . 'dictionary' . DIRECTORY_SEPARATOR . $key . '.json';
+        $stopWordsPath = __DIR__.DIRECTORY_SEPARATOR.'dictionary'.DIRECTORY_SEPARATOR.$key.'.json';
+
         return (new FileUtility())->jsonFileToArray($stopWordsPath);
     }
 

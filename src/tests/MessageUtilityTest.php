@@ -6,8 +6,7 @@ use Slackbot\Config;
 use Slackbot\utility\MessageUtility;
 
 /**
- * Class MessageUtilityTest
- * @package Slackbot\Tests
+ * Class MessageUtilityTest.
  */
 class MessageUtilityTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,19 +17,19 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
     {
         $config = new Config();
         $utility = new MessageUtility($config);
-        
+
         $botUsername = $config->get('botUsername');
         $removed = $utility->removeMentionedBotUsername("@{$botUsername} /help");
 
         $this->assertEquals($removed, ' /help');
 
-        $removed = $utility->removeMentionedBotUsername(" /help");
+        $removed = $utility->removeMentionedBotUsername(' /help');
 
         $this->assertEquals($removed, ' /help');
     }
 
     /**
-     *  Test extractCommandName
+     *  Test extractCommandName.
      */
     public function testExtractCommandName()
     {
@@ -58,10 +57,10 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
         $commandDetails = $utility->extractCommandDetails("@{$botUsername} /ping");
 
         $expected = [
-            'module' => 'Ping',
+            'module'      => 'Ping',
             'description' => 'Use as a health check',
-            'action' => 'index',
-            'class' => 'Slackbot\plugin\Ping'
+            'action'      => 'index',
+            'class'       => 'Slackbot\plugin\Ping',
         ];
 
         $this->assertEquals($expected, $commandDetails);

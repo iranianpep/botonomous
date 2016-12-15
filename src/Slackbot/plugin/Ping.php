@@ -3,8 +3,7 @@
 namespace Slackbot\plugin;
 
 /**
- * Class Ping
- * @package Slackbot\plugin
+ * Class Ping.
  */
 class Ping extends AbstractPlugin
 {

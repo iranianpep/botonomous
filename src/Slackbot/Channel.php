@@ -3,10 +3,8 @@
 namespace Slackbot;
 
 /**
- * Class Channel
- * @package Slackbot
+ * Class Channel.
  */
 class Channel
 {
-
 }

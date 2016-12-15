@@ -3,8 +3,7 @@
 namespace Slackbot\plugin;
 
 /**
- * Interface PluginInterface
- * @package Slackbot\plugin
+ * Interface PluginInterface.
  */
 interface PluginInterface
 {

@@ -5,13 +5,12 @@ namespace Slackbot\Tests;
 use Slackbot\Command;
 
 /**
- * Class CommandTest
- * @package Slackbot\Tests
+ * Class CommandTest.
  */
 class CommandTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test get
+     * Test get.
      */
     public function testGet()
     {
@@ -20,7 +19,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test getAll
+     * Test getAll.
      */
     public function testGetAll()
     {

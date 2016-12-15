@@ -1,7 +1,7 @@
 <?php
 
-$composerAutoload = dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'vendor' .
-    DIRECTORY_SEPARATOR . 'autoload.php';
+$composerAutoload = dirname(dirname(dirname(__DIR__))).DIRECTORY_SEPARATOR.'vendor'.
+    DIRECTORY_SEPARATOR.'autoload.php';
 
 if (!file_exists($composerAutoload)) {
     echo 'Error: Could not find Composer autoload.php';
@@ -10,7 +10,7 @@ if (!file_exists($composerAutoload)) {
 
 require_once $composerAutoload;
 
-/**
+/*
  * Start the engine
  */
 (new \Slackbot\Slackbot($_POST))->listenToSlack();
