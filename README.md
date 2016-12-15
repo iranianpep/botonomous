@@ -9,10 +9,10 @@
 [![Code consistency](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/slackbot/grade.svg)](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/slackbot)
 [![StyleCI](https://styleci.io/repos/73189365/shield?branch=master)](https://styleci.io/repos/73189365)
 
-The first and the only PHP Slackbot framework allowing developers to create Slackbots quickly.
+A PHP framework to create Slackbots faaaaaaaaster!
 
 ## Getting started
-Using composer the slackbot can be installed quickly:
+Using composer:
 ```
 composer require slackbot/slackbot
 ```
@@ -27,6 +27,9 @@ Send a message to Slack (make sure response is set to slack in the config):
 ```
 $slackbot->send('Hello Slack!');
 ```
+
+## Add a new plugin / command
+Add the new command to `src/Slackbot/Command.php` and also add the plugin file to `src/Slackbot/plugin`.
 
 ## Using Python nltk
 
