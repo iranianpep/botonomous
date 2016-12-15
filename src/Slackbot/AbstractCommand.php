@@ -2,10 +2,19 @@
 
 namespace Slackbot;
 
+/**
+ * Class AbstractCommand
+ * @package Slackbot
+ */
 abstract class AbstractCommand
 {
     protected static $commands;
 
+    /**
+     * @param $key
+     *
+     * @return null
+     */
     public function get($key)
     {
         $commands = $this->getAll();
@@ -17,6 +26,9 @@ abstract class AbstractCommand
         return $commands[$key];
     }
 
+    /**
+     * @return mixed
+     */
     public function getAll()
     {
         $commands = static::$commands;

@@ -4,10 +4,19 @@ namespace Slackbot\utility;
 
 use Slackbot\Config;
 
+/**
+ * Class AbstractUtility
+ * @package Slackbot\utility
+ */
 abstract class AbstractUtility
 {
     private $config;
-    
+
+    /**
+     * AbstractUtility constructor.
+     *
+     * @param Config|null $config
+     */
     public function __construct(Config $config = null)
     {
         if ($config !== null) {

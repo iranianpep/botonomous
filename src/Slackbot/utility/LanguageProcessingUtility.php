@@ -4,6 +4,10 @@ namespace Slackbot\utility;
 
 use Slackbot\Dictionary;
 
+/**
+ * Class LanguageProcessingUtility
+ * @package Slackbot\utility
+ */
 class LanguageProcessingUtility extends AbstractUtility
 {
     /**

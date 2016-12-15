@@ -4,10 +4,19 @@ namespace Slackbot\plugin;
 
 use Slackbot\Slackbot;
 
+/**
+ * Class AbstractPlugin
+ * @package Slackbot\plugin
+ */
 abstract class AbstractPlugin implements PluginInterface
 {
     protected $slackbot;
 
+    /**
+     * AbstractPlugin constructor.
+     *
+     * @param Slackbot $slackbot
+     */
     public function __construct(Slackbot $slackbot)
     {
         $this->setSlackbot($slackbot);

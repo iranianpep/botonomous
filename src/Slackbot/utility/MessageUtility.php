@@ -3,8 +3,11 @@
 namespace Slackbot\utility;
 
 use Slackbot\Command;
-use Slackbot\Config;
 
+/**
+ * Class MessageUtility
+ * @package Slackbot\utility
+ */
 class MessageUtility extends AbstractUtility
 {
     /**

@@ -2,10 +2,21 @@
 
 namespace Slackbot;
 
+/**
+ * Class AbstractConfig
+ * @package Slackbot
+ */
 abstract class AbstractConfig
 {
     protected static $configs;
 
+    /**
+     * @param       $key
+     * @param array $replacements
+     *
+     * @return mixed
+     * @throws \Exception
+     */
     public function get($key, $replacements = [])
     {
         if (!array_key_exists($key, static::$configs)) {
@@ -25,6 +36,10 @@ abstract class AbstractConfig
         return $found;
     }
 
+    /**
+     * @param $key
+     * @param $value
+     */
     public function set($key, $value)
     {
         if (array_key_exists($key, static::$configs)) {

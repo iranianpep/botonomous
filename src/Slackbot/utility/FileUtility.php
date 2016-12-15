@@ -2,14 +2,16 @@
 
 namespace Slackbot\utility;
 
+/**
+ * Class FileUtility
+ * @package Slackbot\utility
+ */
 class FileUtility extends AbstractUtility
 {
     /**
      * Validate and convert a (JSON) file content to a PHP array
      *
      * @param      $filePath
-     * @param bool $checkFileType
-     *
      * @return array|mixed
      * @throws \Exception
      */

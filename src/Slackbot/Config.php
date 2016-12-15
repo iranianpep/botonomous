@@ -2,6 +2,10 @@
 
 namespace Slackbot;
 
+/**
+ * Class Config
+ * @package Slackbot
+ */
 class Config extends AbstractConfig
 {
     protected static $configs = [

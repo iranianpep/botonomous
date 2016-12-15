@@ -4,8 +4,15 @@ namespace Slackbot\Tests;
 
 use Slackbot\Config;
 
+/**
+ * Class ConfigTest
+ * @package Slackbot\Tests
+ */
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function testGet()
     {
         $config = new Config();
@@ -13,6 +20,9 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('testValue', $config->get('testKey'));
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testGetWithReplace()
     {
         $config = new Config();
@@ -20,6 +30,9 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('testValue replaced', $config->get('testKeyReplace', ['replaceIt' => 'replaced']));
     }
 
+    /**
+     * Test getExceptException
+     */
     public function testGetExceptException()
     {
         $config = new Config();
@@ -30,7 +43,10 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals('Key: \'dummyKey\' does not exist in configs', $e->getMessage());
         }
     }
-    
+
+    /**
+     * @throws \Exception
+     */
     public function testSet()
     {
         $config = new Config();

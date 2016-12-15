@@ -4,8 +4,15 @@ namespace Slackbot\Tests;
 
 use Slackbot\Dictionary;
 
+/**
+ * Class DictionaryTest
+ * @package Slackbot\Tests
+ */
 class DictionaryTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test get
+     */
     public function testGet()
     {
         $dictionary = new Dictionary();

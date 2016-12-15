@@ -2,6 +2,10 @@
 
 namespace Slackbot\utility;
 
+/**
+ * Class StringUtility
+ * @package Slackbot\utility
+ */
 class StringUtility extends AbstractUtility
 {
     /**

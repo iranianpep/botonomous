@@ -5,6 +5,10 @@ namespace Slackbot\client;
 use Slackbot\Config;
 use Slackbot\utility\LoggerUtility;
 
+/**
+ * Class ApiClient
+ * @package Slackbot\client
+ */
 class ApiClient
 {
     const BASE_URL = 'https://slack.com/api/';

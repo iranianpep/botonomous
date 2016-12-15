@@ -29,7 +29,7 @@ class FileUtilityTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test
+     * Test jsonFileToArrayEmptyPath
      */
     public function testJsonFileToArrayEmptyPath()
     {
@@ -40,6 +40,9 @@ class FileUtilityTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * Test jsonFileToArrayMissingFile
+     */
     public function testJsonFileToArrayMissingFile()
     {
         try {
@@ -49,6 +52,9 @@ class FileUtilityTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * Test jsonFileToArrayInvalidFile
+     */
     public function testJsonFileToArrayInvalidFile()
     {
         $dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Slackbot' . DIRECTORY_SEPARATOR . 'Config.php';

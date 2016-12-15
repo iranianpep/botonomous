@@ -2,6 +2,10 @@
 
 namespace Slackbot\utility;
 
+/**
+ * Class LoggerUtility
+ * @package Slackbot\utility
+ */
 class LoggerUtility extends AbstractUtility
 {
     /**

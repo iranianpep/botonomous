@@ -2,6 +2,10 @@
 
 namespace Slackbot;
 
+/**
+ * Class Command
+ * @package Slackbot
+ */
 class Command extends AbstractCommand
 {
     /**

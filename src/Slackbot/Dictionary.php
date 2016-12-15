@@ -4,10 +4,20 @@ namespace Slackbot;
 
 use Slackbot\utility\FileUtility;
 
+/**
+ * Class Dictionary
+ * @package Slackbot
+ */
 class Dictionary
 {
     private $data;
 
+    /**
+     * @param $key
+     *
+     * @return array|mixed
+     * @throws \Exception
+     */
     private function load($key)
     {
         $stopWordsPath = __DIR__ . DIRECTORY_SEPARATOR . 'dictionary' . DIRECTORY_SEPARATOR . $key . '.json';
@@ -30,6 +40,11 @@ class Dictionary
         $this->data = $data;
     }
 
+    /**
+     * @param $key
+     *
+     * @return mixed
+     */
     public function get($key)
     {
         $data = $this->getData();
