@@ -6,13 +6,12 @@ use Slackbot\Config;
 use Slackbot\plugin\Ping;
 
 /**
- * Class PingTest
- * @package Slackbot\Tests
+ * Class PingTest.
  */
 class PingTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test pong
+     * Test pong.
      */
     public function testPong()
     {
@@ -24,32 +23,33 @@ class PingTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test getSlackbot
+     * Test getSlackbot.
      */
     public function testGetSlackbot()
     {
         $slackbot = $this->getSlackbot();
         $ping = new Ping($slackbot);
         $getResult = $ping->getSlackbot();
-        
+
         $this->assertEquals($slackbot, $getResult);
     }
 
     /**
-     * @return \Slackbot\Slackbot
      * @throws \Exception
+     *
+     * @return \Slackbot\Slackbot
      */
     private function getSlackbot()
     {
         $config = new Config();
 
         /**
-         * Form the request
+         * Form the request.
          */
-        $botUsername = '@' . $config->get('botUsername');
+        $botUsername = '@'.$config->get('botUsername');
         $request = [
             'token' => $config->get('outgoingWebhookToken'),
-            'text' => $botUsername . ' /ping'
+            'text'  => $botUsername.' /ping',
         ];
 
         return new \Slackbot\Slackbot($request);

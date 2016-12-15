@@ -6,8 +6,7 @@ use Slackbot\Command;
 use Slackbot\utility\FormattingUtility;
 
 /**
- * Class Help
- * @package Slackbot\plugin
+ * Class Help.
  */
 class Help extends AbstractPlugin
 {
@@ -23,7 +22,7 @@ class Help extends AbstractPlugin
             $formattingUtility = (new FormattingUtility());
 
             foreach ($allCommands as $commandName => $commandDetails) {
-                $response .= "/{$commandName}" . $formattingUtility->newLine() . ' - ' . $commandDetails['description'];
+                $response .= "/{$commandName}".$formattingUtility->newLine().' - '.$commandDetails['description'];
             }
         }
 

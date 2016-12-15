@@ -5,8 +5,7 @@ namespace Slackbot\utility;
 use Slackbot\Config;
 
 /**
- * Class AbstractUtility
- * @package Slackbot\utility
+ * Class AbstractUtility.
  */
 abstract class AbstractUtility
 {
@@ -32,7 +31,7 @@ abstract class AbstractUtility
         if ($this->config === null) {
             $this->config = new Config();
         }
-        
+
         return $this->config;
     }
 

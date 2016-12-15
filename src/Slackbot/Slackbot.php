@@ -8,8 +8,7 @@ use Slackbot\utility\LoggerUtility;
 use Slackbot\utility\MessageUtility;
 
 /**
- * Class Slackbot
- * @package Slackbot
+ * Class Slackbot.
  */
 class Slackbot
 {
@@ -52,8 +51,10 @@ class Slackbot
 
     /**
      * @param null $key
-     * @return mixed
+     *
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function getRequest($key = null)
     {
@@ -65,12 +66,10 @@ class Slackbot
         if (array_key_exists($key, $this->request)) {
             return $this->request[$key];
         }
-
-        return null;
     }
 
     /**
-     * Listen to incoming requests from Slack
+     * Listen to incoming requests from Slack.
      */
     public function listenToSlack()
     {
@@ -86,11 +85,13 @@ class Slackbot
     }
 
     /**
-     * Final endpoint for the response
+     * Final endpoint for the response.
      *
      * @param $response
-     * @return bool
+     *
      * @throws \Exception
+     *
+     * @return bool
      */
     public function send($response)
     {
@@ -120,8 +121,10 @@ class Slackbot
 
     /**
      * @param null $message
-     * @return mixed
+     *
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function respond($message = null)
     {
@@ -139,8 +142,10 @@ class Slackbot
 
     /**
      * @param $message
-     * @return array|mixed
+     *
      * @throws \Exception
+     *
+     * @return array|mixed
      */
     public function getModuleAction($message)
     {
@@ -150,7 +155,7 @@ class Slackbot
         }
 
         /**
-         * Process the message
+         * Process the message.
          */
         $command = (new MessageUtility())->extractCommandName($message);
 
@@ -175,12 +180,12 @@ class Slackbot
 
         // check the module
         if (!isset($commandDetails['module'])) {
-            throw new \Exception("Module is not set for this command");
+            throw new \Exception('Module is not set for this command');
         }
 
         // check the action
         if (!isset($commandDetails['action'])) {
-            throw new \Exception("Action is not set for this command");
+            throw new \Exception('Action is not set for this command');
         }
 
         // create the class
@@ -200,7 +205,7 @@ class Slackbot
 
         return [
             'module' => $moduleClass,
-            'action' => $action
+            'action' => $action,
         ];
     }
 
@@ -222,6 +227,7 @@ class Slackbot
     private function verifyRequest()
     {
         $token = $this->getRequest('token');
+
         return isset($token) && $token === $this->getConfig()->get('outgoingWebhookToken')
         && $this->isThisBot() == false ? true : false;
     }

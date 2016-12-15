@@ -5,17 +5,18 @@ namespace Slackbot\utility;
 use Slackbot\Command;
 
 /**
- * Class MessageUtility
- * @package Slackbot\utility
+ * Class MessageUtility.
  */
 class MessageUtility extends AbstractUtility
 {
     /**
-     * Remove the mentioned bot username from the message
+     * Remove the mentioned bot username from the message.
      *
      * @param $message
-     * @return mixed
+     *
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function removeMentionedBotUsername($message)
     {
@@ -29,9 +30,10 @@ class MessageUtility extends AbstractUtility
     }
 
     /**
-     * Return command name in the message
+     * Return command name in the message.
      *
      * @param $message
+     *
      * @return null|string
      */
     public function extractCommandName($message)
@@ -40,7 +42,7 @@ class MessageUtility extends AbstractUtility
         $message = $this->removeMentionedBotUsername($message);
 
         /**
-         * Command must start with / and at the beginning of the sentence
+         * Command must start with / and at the beginning of the sentence.
          */
         $pattern = '/^(\/\w{1,})/';
         preg_match($pattern, ltrim($message), $groups);
@@ -50,9 +52,10 @@ class MessageUtility extends AbstractUtility
     }
 
     /**
-     * Return command details in the message
+     * Return command details in the message.
      *
      * @param $message
+     *
      * @return null
      */
     public function extractCommandDetails($message)

@@ -8,7 +8,7 @@ use Slackbot\plugin\Ping;
 use Slackbot\Slackbot;
 
 /**
- * Class SlackbotTest
+ * Class SlackbotTest.
  */
 class SlackbotTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,10 +20,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
 
         /**
-         * Form the request
+         * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken')
+            'token' => $config->get('outgoingWebhookToken'),
         ];
 
         $slackbot = new Slackbot($request);
@@ -41,10 +41,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
 
         /**
-         * Form the request
+         * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken')
+            'token' => $config->get('outgoingWebhookToken'),
         ];
 
         $slackbot = new Slackbot($request);
@@ -60,10 +60,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
 
         /**
-         * Form the request
+         * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken')
+            'token' => $config->get('outgoingWebhookToken'),
         ];
 
         $slackbot = new Slackbot($request);
@@ -80,12 +80,12 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
 
         /**
-         * Form the request
+         * Form the request.
          */
-        $botUsername = '@' . $config->get('botUsername');
+        $botUsername = '@'.$config->get('botUsername');
         $request = [
             'token' => $config->get('outgoingWebhookToken'),
-            'text' => $botUsername . ' /ping'
+            'text'  => $botUsername.' /ping',
         ];
 
         $slackbot = new \Slackbot\Slackbot($request);
@@ -98,57 +98,57 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $inputsOutputs = [
             [
                 'i' => [
-                    'message' => "$botUsername /ping"
+                    'message' => "$botUsername /ping",
                 ],
-                'o' => 'pong'
+                'o' => 'pong',
             ],
             [
                 'i' => [
-                    'message' => "$botUsername /pong"
+                    'message' => "$botUsername /pong",
                 ],
-                'o' => 'ping'
+                'o' => 'ping',
             ],
             [
                 'i' => [
-                    'message' => "/ping"
+                    'message' => '/ping',
                 ],
-                'o' => 'pong'
+                'o' => 'pong',
             ],
             [
                 'i' => [
-                    'message' => "/pong"
+                    'message' => '/pong',
                 ],
-                'o' => 'ping'
+                'o' => 'ping',
             ],
             [
                 'i' => [
-                    'message' => "/pong"
+                    'message' => '/pong',
                 ],
-                'o' => 'ping'
+                'o' => 'ping',
             ],
             [
                 'i' => [
-                    'message' => "/unknownCommand"
+                    'message' => '/unknownCommand',
                 ],
-                'o' => $config->get('unknownCommandMessage', ['command' => 'unknownCommand'])
+                'o' => $config->get('unknownCommandMessage', ['command' => 'unknownCommand']),
             ],
             [
                 'i' => [
-                    'message' => "dummy message without any command"
+                    'message' => 'dummy message without any command',
                 ],
-                'o' => $this->outputOnNoCommand($message)
+                'o' => $this->outputOnNoCommand($message),
             ],
             [
                 'i' => [
-                    'message' => "sfdsf /ping"
+                    'message' => 'sfdsf /ping',
                 ],
-                'o' => $this->outputOnNoCommand($message)
+                'o' => $this->outputOnNoCommand($message),
             ],
             [
                 'i' => [
-                    'message' => "ddfg dfdfg df gdfg"
+                    'message' => 'ddfg dfdfg df gdfg',
                 ],
-                'o' => $this->outputOnNoCommand($message)
+                'o' => $this->outputOnNoCommand($message),
             ],
         ];
 
@@ -167,8 +167,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $message
-     * @return mixed
+     *
      * @throws \Exception
+     *
+     * @return mixed
      */
     private function outputOnNoCommand($message)
     {
@@ -182,6 +184,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         if (!empty($defaultCommand)) {
             $command = (new Command())->get($defaultCommand);
             $commandClass = $command['class'];
+
             return (new $commandClass($slackbot))->index();
         }
 
@@ -196,12 +199,12 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
 
         /**
-         * Form the request
+         * Form the request.
          */
-        $botUsername = '@' . $config->get('botUsername');
+        $botUsername = '@'.$config->get('botUsername');
         $request = [
             'token' => $config->get('outgoingWebhookToken'),
-            'text' => $botUsername . ' /commandWithoutFunctionForTest'
+            'text'  => $botUsername.' /commandWithoutFunctionForTest',
         ];
 
         $this->setExpectedException(
@@ -221,10 +224,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
 
         /**
-         * Form the request
+         * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken')
+            'token' => $config->get('outgoingWebhookToken'),
         ];
 
         $slackbot = new Slackbot($request);
@@ -232,7 +235,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'module' => new Ping($slackbot),
-            'action' => 'index'
+            'action' => 'index',
         ];
 
         $this->assertEquals($expected, $result);
@@ -246,10 +249,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
 
         /**
-         * Form the request
+         * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken')
+            'token' => $config->get('outgoingWebhookToken'),
         ];
 
         $config->set('defaultCommand', '');
@@ -258,7 +261,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $result = $slackbot->getModuleAction('dummy message without command');
 
         $expected = [
-            'error' => $config->get('noCommandMessage')
+            'error' => $config->get('noCommandMessage'),
         ];
 
         $this->assertEquals($expected, $result);
@@ -272,10 +275,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
 
         /**
-         * Form the request
+         * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken')
+            'token' => $config->get('outgoingWebhookToken'),
         ];
 
         $config->set('response', 'json');

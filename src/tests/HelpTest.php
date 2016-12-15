@@ -3,13 +3,12 @@
 namespace Slackbot\Tests;
 
 /**
- * Class HelpTest
- * @package Slackbot\Tests
+ * Class HelpTest.
  */
 class HelpTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test index
+     * Test index.
      */
     public function testIndex()
     {

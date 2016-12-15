@@ -5,13 +5,12 @@ namespace Slackbot\Tests;
 use Slackbot\utility\LanguageProcessingUtility;
 
 /**
- * Class LanguageProcessingUtilityTest
- * @package Slackbot\Tests
+ * Class LanguageProcessingUtilityTest.
  */
 class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test stem
+     * Test stem.
      */
     public function testStem()
     {
@@ -27,7 +26,7 @@ class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test removeStopWords
+     * Test removeStopWords.
      */
     public function testRemoveStopWords()
     {
@@ -36,8 +35,8 @@ class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
         $inputsOutputs = [
             [
                 'i' => 'Stemming is funnier than a bummer says the sushi loving computer scientist',
-                'o' => 'Stemming funnier bummer sushi loving computer scientist'
-            ]
+                'o' => 'Stemming funnier bummer sushi loving computer scientist',
+            ],
         ];
 
         foreach ($inputsOutputs as $inputOutput) {

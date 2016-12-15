@@ -3,8 +3,7 @@
 namespace Slackbot;
 
 /**
- * Class AbstractCommand
- * @package Slackbot
+ * Class AbstractCommand.
  */
 abstract class AbstractCommand
 {
@@ -20,7 +19,7 @@ abstract class AbstractCommand
         $commands = $this->getAll();
 
         if (!array_key_exists($key, $commands)) {
-            return null;
+            return;
         }
 
         return $commands[$key];
@@ -42,7 +41,7 @@ abstract class AbstractCommand
 
                 // populate the class
                 $module = $commandDetails['module'];
-                $commands[$commandName]['class'] = __NAMESPACE__ . "\\plugin\\{$module}";
+                $commands[$commandName]['class'] = __NAMESPACE__."\\plugin\\{$module}";
             }
         }
 

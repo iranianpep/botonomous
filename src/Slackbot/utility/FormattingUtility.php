@@ -3,8 +3,7 @@
 namespace Slackbot\utility;
 
 /**
- * Class FormattingUtility
- * @package Slackbot\utility
+ * Class FormattingUtility.
  */
 class FormattingUtility extends AbstractUtility
 {

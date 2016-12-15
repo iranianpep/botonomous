@@ -3,10 +3,8 @@
 namespace Slackbot;
 
 /**
- * Class Message
- * @package Slackbot
+ * Class Message.
  */
 class Message
 {
-
 }

@@ -6,19 +6,18 @@ use Slackbot\Config;
 use Slackbot\utility\LoggerUtility;
 
 /**
- * Class LoggerUtilityTest
- * @package Slackbot\Tests
+ * Class LoggerUtilityTest.
  */
 class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test logChatDisabled
+     * Test logChatDisabled.
      */
     public function testLogChatDisabled()
     {
         $config = new Config();
         $config->set('chatLogging', false);
-        
+
         $utility = new LoggerUtility($config);
         $result = $utility->logChat(__METHOD__, 'test message');
 
@@ -26,12 +25,12 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test logChatEnabled
+     * Test logChatEnabled.
      */
     public function testLogChatEnabled()
     {
         date_default_timezone_set('Australia/Melbourne');
-        
+
         $config = new Config();
         $config->set('chatLogging', true);
         $config->set('chatLoggingFileName', 'test_chat_log');
