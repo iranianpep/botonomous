@@ -289,4 +289,29 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $slackbot->send('test response');
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function testListenToSlack()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request.
+         */
+        $request = [
+            'token' => $config->get('outgoingWebhookToken'),
+            'text' => '/ping'
+        ];
+
+        $config->set('response', 'json');
+        $config->set('chatLogging', false);
+
+        $slackbot = new Slackbot($request, $config);
+
+        $this->expectOutputString('{"text":"pong"}');
+
+        $slackbot->listenToSlack();
+    }
 }
