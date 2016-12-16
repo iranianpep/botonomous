@@ -69,4 +69,69 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
             }
         }
     }
+
+    /**
+     * Test removeStringFromString
+     */
+    public function testRemoveStringFromString()
+    {
+        $utility = new StringUtility();
+
+        $inputOutputs = [
+            [
+                'input'  => [
+                    'toRemove' => 'test',
+                    'subject' => 'this contains test'
+                ],
+                'output' => 'this contains',
+            ],
+            [
+                'input'  => [
+                    'toRemove' => 'test',
+                    'subject' => 'this contains test test test'
+                ],
+                'output' => 'this contains',
+            ],
+            [
+                'input'  => [
+                    'toRemove' => 'test',
+                    'subject' => 'this contains test test test and another word'
+                ],
+                'output' => 'this contains and another word',
+            ],
+            [
+                'input'  => [
+                    'toRemove' => ' ',
+                    'subject' => 'this contains test test test and another word'
+                ],
+                'output' => 'thiscontainstesttesttestandanotherword',
+            ],
+            [
+                'input'  => [
+                    'toRemove' => '',
+                    'subject' => 'this contains test test test and another word'
+                ],
+                'output' => 'this contains test test test and another word',
+            ],
+            [
+                'input'  => [
+                    'toRemove' => '',
+                    'subject' => 'this contains test test test and another word '
+                ],
+                'output' => 'this contains test test test and another word',
+            ],
+            [
+                'input'  => [
+                    'toRemove' => 'blah blah',
+                    'subject' => 'this contains    test test test and another word'
+                ],
+                'output' => 'this contains test test test and another word',
+            ]
+        ];
+
+        foreach ($inputOutputs as $inputOutput) {
+            $result = $utility->removeStringFromString($inputOutput['input']['toRemove'], $inputOutput['input']['subject']);
+            $this->assertEquals($inputOutput['output'], $result);
+        }
+    }
 }

@@ -24,4 +24,15 @@ class StringUtility extends AbstractUtility
 
         return $array;
     }
+
+    /**
+     * @param $toRemove
+     * @param $subject
+     * @return string
+     */
+    public function removeStringFromString($toRemove, $subject)
+    {
+        // pattern: !\s+! is used to replace multiple spaces with single space
+        return trim(preg_replace('!\s+!', ' ', str_replace($toRemove, '', $subject)));
+    }
 }
