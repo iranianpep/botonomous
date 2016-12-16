@@ -71,7 +71,7 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test removeStringFromString
+     * Test removeStringFromString.
      */
     public function testRemoveStringFromString()
     {
@@ -81,52 +81,52 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
             [
                 'input'  => [
                     'toRemove' => 'test',
-                    'subject' => 'this contains test'
+                    'subject'  => 'this contains test',
                 ],
                 'output' => 'this contains',
             ],
             [
                 'input'  => [
                     'toRemove' => 'test',
-                    'subject' => 'this contains test test test'
+                    'subject'  => 'this contains test test test',
                 ],
                 'output' => 'this contains',
             ],
             [
                 'input'  => [
                     'toRemove' => 'test',
-                    'subject' => 'this contains test test test and another word'
+                    'subject'  => 'this contains test test test and another word',
                 ],
                 'output' => 'this contains and another word',
             ],
             [
                 'input'  => [
                     'toRemove' => ' ',
-                    'subject' => 'this contains test test test and another word'
+                    'subject'  => 'this contains test test test and another word',
                 ],
                 'output' => 'thiscontainstesttesttestandanotherword',
             ],
             [
                 'input'  => [
                     'toRemove' => '',
-                    'subject' => 'this contains test test test and another word'
+                    'subject'  => 'this contains test test test and another word',
                 ],
                 'output' => 'this contains test test test and another word',
             ],
             [
                 'input'  => [
                     'toRemove' => '',
-                    'subject' => 'this contains test test test and another word '
+                    'subject'  => 'this contains test test test and another word ',
                 ],
                 'output' => 'this contains test test test and another word',
             ],
             [
                 'input'  => [
                     'toRemove' => 'blah blah',
-                    'subject' => 'this contains    test test test and another word'
+                    'subject'  => 'this contains    test test test and another word',
                 ],
                 'output' => 'this contains test test test and another word',
-            ]
+            ],
         ];
 
         foreach ($inputOutputs as $inputOutput) {
