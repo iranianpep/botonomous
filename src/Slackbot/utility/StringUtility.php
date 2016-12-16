@@ -28,6 +28,7 @@ class StringUtility extends AbstractUtility
     /**
      * @param $toRemove
      * @param $subject
+     *
      * @return string
      */
     public function removeStringFromString($toRemove, $subject)
