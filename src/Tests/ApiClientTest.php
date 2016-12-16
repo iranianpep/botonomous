@@ -6,8 +6,7 @@ use Slackbot\client\ApiClient;
 use Slackbot\Config;
 
 /**
- * Class ApiClientTest
- * @package Slackbot\Tests
+ * Class ApiClientTest.
  */
 class ApiClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -21,11 +20,11 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
 
         $expected = [
-            'token' => $config->get('apiToken'),
-            'channel' => $config->get('channelName'),
+            'token'    => $config->get('apiToken'),
+            'channel'  => $config->get('channelName'),
             'username' => $config->get('botUsername'),
-            'as_user' => false,
-            'icon_url' => $config->get('iconURL')
+            'as_user'  => false,
+            'icon_url' => $config->get('iconURL'),
         ];
 
         $this->assertEquals($expected, $args);

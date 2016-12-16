@@ -46,19 +46,20 @@ class ApiClient
     }
 
     /**
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function getArgs()
     {
         $config = new Config();
 
         return [
-            'token' => $config->get('apiToken'),
-            'channel' => $config->get('channelName'),
+            'token'    => $config->get('apiToken'),
+            'channel'  => $config->get('channelName'),
             'username' => $config->get('botUsername'),
-            'as_user' => false,
-            'icon_url' => $config->get('iconURL')
+            'as_user'  => false,
+            'icon_url' => $config->get('iconURL'),
         ];
     }
 
