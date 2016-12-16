@@ -24,17 +24,10 @@ class ApiClient
      */
     public function apiCall($method, array $args = [])
     {
-        $connection = curl_init(self::BASE_URL.$method);
-
-        $config = new Config();
-        $args['token'] = $config->get('apiToken');
-        $args['channel'] = $config->get('channelName');
-        $args['username'] = $config->get('botUsername');
-        $args['as_user'] = false;
-        $args['icon_url'] = $config->get('iconURL');
-
+        $args = array_merge($args, $this->getArgs());
         $data = http_build_query($args);
 
+        $connection = curl_init(self::BASE_URL.$method);
         curl_setopt($connection, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($connection, CURLOPT_POSTFIELDS, $data);
         curl_setopt($connection, CURLOPT_RETURNTRANSFER, true);
@@ -50,6 +43,23 @@ class ApiClient
         // TODO check in the response "ok":true before getting members list
 
         return $result;
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function getArgs()
+    {
+        $config = new Config();
+
+        return [
+            'token' => $config->get('apiToken'),
+            'channel' => $config->get('channelName'),
+            'username' => $config->get('botUsername'),
+            'as_user' => false,
+            'icon_url' => $config->get('iconURL')
+        ];
     }
 
     /**
