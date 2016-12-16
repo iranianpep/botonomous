@@ -16,8 +16,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetArgs()
     {
-        $apiClient = new ApiClient();
-        $args = $apiClient->getArgs();
+        $args = (new ApiClient())->getArgs();
 
         $config = new Config();
 
