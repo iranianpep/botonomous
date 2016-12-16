@@ -130,7 +130,9 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
         ];
 
         foreach ($inputOutputs as $inputOutput) {
-            $result = $utility->removeStringFromString($inputOutput['input']['toRemove'], $inputOutput['input']['subject']);
+            $toRemove = $inputOutput['input']['toRemove'];
+            $subject = $inputOutput['input']['subject'];
+            $result = $utility->removeStringFromString($toRemove, $subject);
             $this->assertEquals($inputOutput['output'], $result);
         }
     }
