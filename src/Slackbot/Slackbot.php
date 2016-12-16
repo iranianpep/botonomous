@@ -30,7 +30,11 @@ class Slackbot
             $this->setConfig($config);
         }
 
-        $this->setRequest($request);
+        try {
+            $this->setRequest($request);
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
     /**
@@ -44,7 +48,6 @@ class Slackbot
 
         if ($this->verifyRequest() !== true) {
             //throw new \Exception('Request is not valid');
-            echo 'Request is not coming from Slack';
             throw new \Exception('Request is not coming from Slack');
         }
     }

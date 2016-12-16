@@ -293,6 +293,30 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
+    public function testSendByBot()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request.
+         */
+        $request = [
+            'token' => $config->get('outgoingWebhookToken'),
+            'user_id' => 'USLACKBOT'
+        ];
+
+        $config->set('response', 'json');
+
+        try {
+            new Slackbot($request, $config);
+        } catch (\Exception $e) {
+            $this->assertEquals('Request is not coming from Slack', $e->getMessage());
+        }
+    }
+
+    /**
+     * @throws \Exception
+     */
     public function testListenToSlack()
     {
         $config = new Config();

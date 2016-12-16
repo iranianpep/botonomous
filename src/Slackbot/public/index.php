@@ -13,4 +13,8 @@ require_once $composerAutoload;
 /*
  * Start the engine
  */
-(new \Slackbot\Slackbot($_POST))->listenToSlack();
+try {
+    (new \Slackbot\Slackbot($_POST))->listenToSlack();
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
