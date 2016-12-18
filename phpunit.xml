@@ -6,15 +6,7 @@
          verbose="true">
   <testsuites>
     <testsuite name="small">
-      <directory suffix="Test.php">tests/Framework</directory>
-      <directory suffix="Test.php">tests/Extensions</directory>
-      <directory suffix="Test.php">tests/Runner</directory>
-      <directory suffix="Test.php">tests/Util</directory>
-    </testsuite>
-
-    <testsuite name="large">
-      <directory suffix=".phpt">tests/TextUI</directory>
-      <directory suffix=".phpt">tests/Regression</directory>
+      <directory suffix="Test.php">src/tests</directory>
     </testsuite>
   </testsuites>
 
