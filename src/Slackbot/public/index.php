@@ -3,18 +3,21 @@
 $composerAutoload = dirname(dirname(dirname(__DIR__))).DIRECTORY_SEPARATOR.'vendor'.
     DIRECTORY_SEPARATOR.'autoload.php';
 
+$composerAutoloadExists = true;
 if (!file_exists($composerAutoload)) {
+    $composerAutoloadExists = false;
     echo 'Error: Could not find Composer autoload.php';
-    exit;
 }
 
-require_once $composerAutoload;
+if ($composerAutoloadExists === true) {
+    require_once $composerAutoload;
 
-/*
- * Start the engine
- */
-try {
-    (new \Slackbot\Slackbot($_POST))->listenToSlack();
-} catch (Exception $e) {
-    echo $e->getMessage();
+    /*
+     * Start the engine
+     */
+    try {
+        (new \Slackbot\Slackbot($_POST))->listenToSlack();
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 }

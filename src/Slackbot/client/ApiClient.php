@@ -38,11 +38,7 @@ class ApiClient
         (new LoggerUtility())->logChat(__METHOD__.' '.$method, $result);
 
         // prettify the response
-        $result = json_decode($result, true);
-
-        // TODO check in the response "ok":true before getting members list
-
-        return $result;
+        return json_decode($result, true);
     }
 
     /**

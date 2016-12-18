@@ -47,7 +47,6 @@ class Slackbot
         $this->request = $request;
 
         if ($this->verifyRequest() !== true) {
-            //throw new \Exception('Request is not valid');
             throw new \Exception('Request is not coming from Slack');
         }
     }
@@ -231,7 +230,7 @@ class Slackbot
         $token = $this->getRequest('token');
 
         return isset($token) && $token === $this->getConfig()->get('outgoingWebhookToken')
-        && $this->isThisBot() == false ? true : false;
+        && $this->isThisBot() === false ? true : false;
     }
 
     /**

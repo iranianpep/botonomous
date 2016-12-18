@@ -25,7 +25,6 @@ class MessageUtility extends AbstractUtility
         $botUsername = $config->get('botUsername');
         $mentionedBotUsername = "@{$botUsername}";
 
-        // TODO only remove it from the beginning
         return str_replace($mentionedBotUsername, '', $message);
     }
 

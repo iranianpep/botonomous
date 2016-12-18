@@ -19,7 +19,6 @@ class LanguageProcessingUtility extends AbstractUtility
         // Execute the python script with the JSON data
         $filePath = dirname(__DIR__).DIRECTORY_SEPARATOR.'py'.DIRECTORY_SEPARATOR.'stemmer.py';
 
-        //return exec('python ' . $filePath . ' ' . escapeshellarg(json_encode([$text])), $output);
         return shell_exec('python '.$filePath.' '.escapeshellarg(json_encode([$text])));
     }
 
