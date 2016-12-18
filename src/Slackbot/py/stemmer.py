@@ -3,10 +3,7 @@ import sys, json, traceback
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 
-stemmer = PorterStemmer()
-
 try:
-    #TODO use argparse instead this check
     #get the arguments passed
     argList = sys.argv
 
