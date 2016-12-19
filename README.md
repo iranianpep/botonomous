@@ -42,12 +42,12 @@ $slackbot->send('Hello Slack!');
 <tr>
 <td>testKey</td>
 <td>string</td>
-<td>value: testValue</td>
+<td>This is only used for testing and to make sure that Config class works fine. value: testValue</td>
 </tr>
 <tr>
 <td>testKeyReplace</td>
 <td>string</td>
-<td>value: testValue {replaceIt}</td>
+<td>This is used only for testing and to make sure that Config class works fine. value: testValue {replaceIt}</td>
 </tr>
 <tr>
 <td>defaultTimeZone</td>
