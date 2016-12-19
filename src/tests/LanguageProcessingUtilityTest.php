@@ -20,9 +20,29 @@ class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('Stem is funnier than a bummer say the sushi love comput scientist', $result);
 
-        //$result = $utility->stem('');
+        $result = $utility->stem('');
 
-        //$this->assertEquals('', $result);
+        $this->assertEquals('', $result);
+    }
+
+    /**
+     * Test removePunctuations.
+     */
+    public function testRemovePunctuations()
+    {
+        $utility = new LanguageProcessingUtility();
+
+        $result = $utility->removePunctuations('A dummy text?');
+
+        $expected = 'A dummy text';
+
+        $this->assertEquals($expected, $result);
+
+        $result = $utility->removePunctuations('A dummy text.');
+
+        $expected = 'A dummy text';
+
+        $this->assertEquals($expected, $result);
     }
 
     /**

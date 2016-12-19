@@ -44,4 +44,14 @@ class LanguageProcessingUtility extends AbstractUtility
 
         return implode(' ', $words);
     }
+
+    /**
+     * @param $text
+     * @return mixed
+     */
+    public function removePunctuations($text)
+    {
+        $punctuations = (new Dictionary())->get('punctuations');
+        return str_replace($punctuations, '', $text);
+    }
 }
