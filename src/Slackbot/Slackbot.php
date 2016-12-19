@@ -4,6 +4,7 @@ namespace Slackbot;
 
 use Slackbot\client\ApiClient;
 use Slackbot\plugin\AbstractPlugin;
+use Slackbot\utility\FormattingUtility;
 use Slackbot\utility\LoggerUtility;
 use Slackbot\utility\MessageUtility;
 
@@ -75,7 +76,9 @@ class Slackbot
      */
     public function listenToSlack()
     {
-        (new LoggerUtility())->logChat(__METHOD__, $this->getRequest('text'));
+        $logger = new LoggerUtility();
+        $logger->logRaw((new FormattingUtility())->newLine());
+        $logger->logChat(__METHOD__, $this->getRequest('text'));
 
         try {
             $response = $this->respond($this->getRequest('text'));

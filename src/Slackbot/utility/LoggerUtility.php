@@ -17,23 +17,65 @@ class LoggerUtility extends AbstractUtility
      */
     public function logChat($function, $message = '')
     {
-        $config = $this->getConfig();
-
-        if ($config->get('chatLogging') !== true) {
+        if ($this->canLog() !== true) {
             return false;
         }
 
+        $this->makeTmpDir();
+        $this->write($this->getLogContent($function, $message));
+
+        return true;
+    }
+
+    /**
+     * @return bool
+     * @throws \Exception
+     */
+    private function canLog()
+    {
+        if ($this->getConfig()->get('chatLogging') !== true) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Make temp dir IF does not exist
+     */
+    private function makeTmpDir()
+    {
         $tmpDir = $this->getTempDir();
         if (!is_dir($tmpDir)) {
             // dir doesn't exist, make it
             mkdir($tmpDir);
         }
+    }
 
+    /**
+     * @param $text
+     */
+    private function write($text)
+    {
         file_put_contents(
             $this->getLogFilePath(),
-            $this->getLogContent($function, $message),
+            $text,
             FILE_APPEND
         );
+    }
+
+    /**
+     * @param $message
+     * @return bool
+     */
+    public function logRaw($message)
+    {
+        if ($this->canLog() !== true) {
+            return false;
+        }
+
+        $this->makeTmpDir();
+        $this->write($message);
 
         return true;
     }
