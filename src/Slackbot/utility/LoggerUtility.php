@@ -28,8 +28,9 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @return bool
      * @throws \Exception
+     *
+     * @return bool
      */
     private function canLog()
     {
@@ -41,7 +42,7 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * Make temp dir IF does not exist
+     * Make temp dir IF does not exist.
      */
     private function makeTmpDir()
     {
@@ -66,6 +67,7 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * @param $message
+     *
      * @return bool
      */
     public function logRaw($message)
