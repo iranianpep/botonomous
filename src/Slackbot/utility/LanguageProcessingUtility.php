@@ -47,11 +47,13 @@ class LanguageProcessingUtility extends AbstractUtility
 
     /**
      * @param $text
-     * @return mixed
+     * 
+     * @return string
      */
     public function removePunctuations($text)
     {
         $punctuations = (new Dictionary())->get('punctuations');
+        
         return str_replace($punctuations, '', $text);
     }
 }
