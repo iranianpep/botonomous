@@ -58,23 +58,23 @@ Add the new command to `src/Slackbot/Command.php` and also add the plugin file t
 ## Using Python nltk
 
 1. Install Python
-```
-brew install python
-```
+    ```
+    brew install python
+    ```
 
 2. Install nltk
-```
-curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python
-sudo easy_install pip
-sudo pip install -U nltk
-```
+    ```
+    curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python
+    sudo easy_install pip
+    sudo pip install -U nltk
+    ```
 
 3. Install nltk data
     Start Python and run the following
-```
->>> import nltk
->>> nltk.download('all')
-```
+    ```
+    >>> import nltk
+    >>> nltk.download('all')
+    ```
 
 ## Buy me half of a coffee if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
