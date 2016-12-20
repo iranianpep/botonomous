@@ -70,7 +70,6 @@ sudo pip install -U nltk
 ```
 
 3. Install nltk data
-
     Start Python and run the following
 ```
 >>> import nltk
