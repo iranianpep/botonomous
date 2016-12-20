@@ -12,6 +12,10 @@
 
 A PHP framework to create Slackbots faaaaaaaaster!
 
+## Requirements
+- PHP 5.5+ (also compatible with HHVM)
+- Slack channel
+
 ## Getting started
 Using composer:
 ```
@@ -19,7 +23,6 @@ composer require slackbot/slackbot
 ```
 
 Start listening to Slack messages:
-
 ```
 (new \Slackbot\Slackbot($_POST))->listenToSlack();
 ```
@@ -30,118 +33,45 @@ $slackbot->send('Hello Slack!');
 ```
 
 ## Configurations
-<table width='100%'>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>testKey</td>
-<td>string</td>
-<td>This is only used for testing and to make sure that Config class works fine. value: testValue</td>
-</tr>
-<tr>
-<td>testKeyReplace</td>
-<td>string</td>
-<td>This is used only for testing and to make sure that Config class works fine. value: testValue {replaceIt}</td>
-</tr>
-<tr>
-<td>defaultTimeZone</td>
-<td>string</td>
-<td>default value: Australia/Melbourne</td>
-</tr>
-<tr>
-<td>apiToken</td>
-<td>string</td>
-<td>Your API key</td>
-</tr>
-<tr>
-<td>channelName</td>
-<td>string</td>
-<td>default value: #general</td>
-</tr>
-<tr>
-<td>botUsername</td>
-<td>string</td>
-<td>Your bot username</td>
-</tr>
-<tr>
-<td>outgoingWebhookToken</td>
-<td>string</td>
-<td>Your outgoing webhook token</td>
-</tr>
-<tr>
-<td>chatLogging</td>
-<td>boolean</td>
-<td>When is set to true, all the conversations are logged in a text file</td>
-</tr>
-<tr>
-<td>tmpFolderName</td>
-<td>string</td>
-<td>Temporary folder for the log file</td>
-</tr>
-<tr>
-<td>chatLoggingFileName</td>
-<td>string</td>
-<td>Log file name</td>
-</tr>
-<tr>
-<td>iconURL</td>
-<td>string</td>
-<td>Bot image URL</td>
-</tr>
-<tr>
-<td>response</td>
-<td>string</td>
-<td>Response type. Possible values are json or slack</td>
-</tr>
-<tr>
-<td>rootNamespace</td>
-<td>string</td>
-<td>Root namespace</td>
-</tr>
-<tr>
-<td>defaultCommand</td>
-<td>string</td>
-<td>Default command if there is no command has been specified in the message</td>
-</tr>
-<tr>
-<td>noCommandMessage</td>
-<td>string</td>
-<td>Message in case there is no command found in the message</td>
-</tr>
-<tr>
-<td>unknownCommandMessage</td>
-<td>string</td>
-<td>Message in case the command in the message is unknown</td>
-</tr>
-</tbody>
-</table>
+|   Name    | Type | Description |
+|:----------|:-----|:------------|
+| testKey | string | This is only used for testing and to make sure that Config class works fine. value: `testValue` |
+| testKeyReplace | string | This is used only for testing and to make sure that Config class works fine. value: `testValue {replaceIt}` |
+| defaultTimeZone | string | default value: `Australia/Melbourne` |
+| apiToken | string | Your API key |
+| channelName | string | default value: `#general` |
+| botUsername | string | Bot username |
+| outgoingWebhookToken | string | Slack outgoing webhook token |
+| chatLogging | boolean | If is true, all the conversations are logged in a text file |
+| tmpFolderName | string | Temporary folder for the log file |
+| chatLoggingFileName | string | Log file name |
+| iconURL | string | Bot image URL |
+| response | string | Response type. Possible values are `slack` or `json` |
+| rootNamespace | string | Root namespace |
+| defaultCommand | string | Default command if there is no command has been specified in the message |
+| noCommandMessage | string | Message in case there is no command found in the message |
+| unknownCommandMessage | string | Message in case the command in the message is unknown |
 
 ## Add a new plugin / command
 Add the new command to `src/Slackbot/Command.php` and also add the plugin file to `src/Slackbot/plugin`.
 
 ## Using Python nltk
 
-1.Install Python
+1. Install Python
 ```
 brew install python
 ```
 
-2.Install nltk
+2. Install nltk
 ```
 curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python
 sudo easy_install pip
 sudo pip install -U nltk
 ```
 
-3.Install nltk data
+3. Install nltk data
 
-Start Python and run the following
+    Start Python and run the following
 ```
 >>> import nltk
 >>> nltk.download('all')
