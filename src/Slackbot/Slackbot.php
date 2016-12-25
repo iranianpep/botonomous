@@ -78,9 +78,11 @@ class Slackbot
      */
     public function listenToSlack()
     {
-        $logger = new LoggerUtility();
-        $logger->logRaw((new FormattingUtility())->newLine());
-        $logger->logChat(__METHOD__, $this->getRequest('text'));
+        if (empty($this->getRequest('debug'))) {
+            $logger = new LoggerUtility();
+            $logger->logRaw((new FormattingUtility())->newLine());
+            $logger->logChat(__METHOD__, $this->getRequest('text'));
+        }
 
         try {
             $response = $this->respond($this->getRequest('text'));
@@ -106,17 +108,21 @@ class Slackbot
         }
 
         $responseType = $this->getConfig()->get('response');
+        $debug = $this->getRequest('debug');
 
         $data = [
              'text' => $response,
         ];
 
         $logChat = new LoggerUtility();
-        $logChat->logChat(__METHOD__, $response);
 
-        if ($responseType === 'slack') {
+        if ($debug == true) {
+            echo json_encode($data);
+        } elseif ($responseType === 'slack') {
+            $logChat->logChat(__METHOD__, $response);
             (new ApiClient())->chatPostMessage($data);
         } elseif ($responseType === 'json') {
+            $logChat->logChat(__METHOD__, $response);
             // headers_sent is used to avoid issue in the test
             if (!headers_sent()) {
                 header('Content-type:application/json;charset=utf-8');

@@ -35,8 +35,6 @@ class ApiClient
         $result = curl_exec($connection);
         curl_close($connection);
 
-        (new LoggerUtility())->logChat(__METHOD__.' '.$method, $result);
-
         // prettify the response
         return json_decode($result, true);
     }

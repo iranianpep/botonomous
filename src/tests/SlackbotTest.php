@@ -311,6 +311,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          */
         $request = [
             'token' => $config->get('outgoingWebhookToken'),
+            'debug' => true
         ];
 
         $config->set('response', 'json');
