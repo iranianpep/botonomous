@@ -12,7 +12,6 @@
     <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
         <properties>
             <property name="maxmethods" value="25" />
-            <property name="TooManyPublicMethods" value="25" />
         </properties>
     </rule>
 </ruleset>
