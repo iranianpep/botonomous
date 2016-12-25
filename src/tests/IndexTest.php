@@ -2,7 +2,7 @@
 
 namespace Slackbot\Tests;
 
-/**
+/*
  * Class IndexTest.
  */
 use Slackbot\Config;
@@ -15,8 +15,8 @@ class IndexTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
         $data = http_build_query([
             'token' => $config->get('outgoingWebhookToken'),
-            'text' => '/ping',
-            'debug' => true
+            'text'  => '/ping',
+            'debug' => true,
         ]);
 
         $url = $config->get('baseUrl').DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'index.php';

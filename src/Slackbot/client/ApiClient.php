@@ -3,7 +3,6 @@
 namespace Slackbot\client;
 
 use Slackbot\Config;
-use Slackbot\utility\LoggerUtility;
 
 /**
  * Class ApiClient.
