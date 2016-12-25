@@ -8,5 +8,6 @@ namespace Slackbot\plugin;
 interface PluginInterface
 {
     public function index();
+
     //public function respond();
 }

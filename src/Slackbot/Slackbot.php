@@ -71,8 +71,6 @@ class Slackbot
         if (array_key_exists($key, $this->request)) {
             return $this->request[$key];
         }
-
-        return null;
     }
 
     /**
