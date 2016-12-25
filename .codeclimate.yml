@@ -4,6 +4,16 @@ engines:
     config:
       file_extensions: "php"
       standard: "PSR2"
+  fixme:
+      enabled: true
+  phpmd:
+      enabled: true
+      engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        php:
 ratings:
    paths:
    - "src/**/*"
