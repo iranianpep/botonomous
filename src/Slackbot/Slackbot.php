@@ -108,7 +108,7 @@ class Slackbot
         }
 
         $responseType = $this->getConfig()->get('response');
-        $debug = (boolean) $this->getRequest('debug');
+        $debug = (bool) $this->getRequest('debug');
 
         $data = [
              'text' => $response,
