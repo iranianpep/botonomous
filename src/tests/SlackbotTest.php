@@ -169,6 +169,30 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @throws \Exception
+     */
+    public function testRespondWithoutDefaultCommand()
+    {
+        $config = new Config();
+        $config->set('defaultCommand', '');
+
+        $message = 'dummy dummy dummy dummy';
+
+        /**
+         * Form the request.
+         */
+        $botUsername = '@'.$config->get('botUsername');
+        $request = [
+            'token' => $config->get('outgoingWebhookToken'),
+            'text'  => $message,
+        ];
+
+        $slackbot = new Slackbot($request);
+
+        $this->assertEquals($this->outputOnNoCommand($message), $slackbot->respond());
+    }
+
+    /**
      * @param $message
      *
      * @throws \Exception
