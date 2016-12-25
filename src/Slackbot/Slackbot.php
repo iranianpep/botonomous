@@ -108,7 +108,7 @@ class Slackbot
         }
 
         $responseType = $this->getConfig()->get('response');
-        $debug = $this->getRequest('debug');
+        $debug = (boolean) $this->getRequest('debug');
 
         $data = [
              'text' => $response,
@@ -116,7 +116,7 @@ class Slackbot
 
         $logChat = new LoggerUtility();
 
-        if ($debug == true) {
+        if ($debug === true) {
             echo json_encode($data);
         } elseif ($responseType === 'slack') {
             $logChat->logChat(__METHOD__, $response);
