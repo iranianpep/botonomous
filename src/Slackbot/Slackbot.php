@@ -136,16 +136,20 @@ class Slackbot
      */
     public function respond($message = null)
     {
-        $result = $this->getModuleAction($message);
+        try {
+            $result = $this->getModuleAction($message);
 
-        if (empty($result['module']) || empty($result['action'])) {
-            return $result['error'];
+            if (empty($result['module']) || empty($result['action'])) {
+                return $result['error'];
+            }
+
+            $moduleClass = $result['module'];
+            $action = $result['action'];
+
+            return $moduleClass->$action();
+        } catch (\Exception $e) {
+            throw $e;
         }
-
-        $moduleClass = $result['module'];
-        $action = $result['action'];
-
-        return $moduleClass->$action();
     }
 
     /**

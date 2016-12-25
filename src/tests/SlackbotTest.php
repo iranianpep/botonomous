@@ -210,11 +210,11 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         if (!empty($defaultCommand)) {
             $command = (new Command())->get($defaultCommand);
-            $commandObject = (new $command['class']($slackbot));
 
             /*
              * @var AbstractPlugin $commandObject
              */
+            $commandObject = (new $command['class']($slackbot));
             return $commandObject->index();
         }
 
@@ -243,7 +243,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         );
 
         $slackbot = new Slackbot($request);
-        $slackbot->respond();
+        $response = $slackbot->respond();
+
+        $this->assertEquals('', $response);
     }
 
     /**
