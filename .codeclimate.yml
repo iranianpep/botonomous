@@ -8,7 +8,10 @@ engines:
       enabled: true
   phpmd:
       enabled: true
-      rulesets: "unusedcode,naming,phpmd.xml"
+      file_extensions:
+        - php
+        - inc
+      rulesets: "unusedcode,naming"
   duplication:
     enabled: true
     config:
