@@ -68,8 +68,8 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     private function getExpectedInvalidAuth()
     {
         return [
-            'ok' => false,
-            'error' => 'invalid_auth'
+            'ok'    => false,
+            'error' => 'invalid_auth',
         ];
     }
 }
