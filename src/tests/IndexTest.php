@@ -12,7 +12,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
 {
     public function testIndex()
     {
-//        $config = new Config();
+        //        $config = new Config();
 //        $data = http_build_query([
 //            'token' => $config->get('outgoingWebhookToken'),
 //            'text'  => '/ping',
