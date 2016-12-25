@@ -7,6 +7,8 @@ use Slackbot\utility\StringUtility;
 /**
  * Class StringUtilityTest.
  */
+
+/** @noinspection PhpUndefinedClassInspection */
 class StringUtilityTest extends \PHPUnit_Framework_TestCase
 {
     /**

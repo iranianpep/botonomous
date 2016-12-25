@@ -4,10 +4,13 @@ namespace Slackbot\Tests;
 
 use Slackbot\Config;
 use Slackbot\plugin\ping\Ping;
+use Slackbot\Slackbot;
 
 /**
  * Class PingTest.
  */
+
+/** @noinspection PhpUndefinedClassInspection */
 class PingTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -52,6 +55,6 @@ class PingTest extends \PHPUnit_Framework_TestCase
             'text'  => $botUsername.' /ping',
         ];
 
-        return new \Slackbot\Slackbot($request);
+        return new Slackbot($request);
     }
 }

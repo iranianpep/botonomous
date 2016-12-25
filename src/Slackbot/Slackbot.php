@@ -21,6 +21,8 @@ class Slackbot
      *
      * @param $request
      * @param Config|null $config
+     *
+     * @throws \Exception
      */
     public function __construct($request, Config $config = null)
     {
@@ -69,6 +71,8 @@ class Slackbot
         if (array_key_exists($key, $this->request)) {
             return $this->request[$key];
         }
+
+        return null;
     }
 
     /**
@@ -121,6 +125,8 @@ class Slackbot
             }
             echo json_encode($data);
         }
+
+        return true;
     }
 
     /**

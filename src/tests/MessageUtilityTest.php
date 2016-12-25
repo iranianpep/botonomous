@@ -8,6 +8,8 @@ use Slackbot\utility\MessageUtility;
 /**
  * Class MessageUtilityTest.
  */
+
+/** @noinspection PhpUndefinedClassInspection */
 class MessageUtilityTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -34,15 +36,15 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
     public function testExtractCommandName()
     {
         $utility = new MessageUtility();
-        $command = $utility->extractCommandName('/help ewdwedew @test /help de');
+        $command = $utility->extractCommandName('/help dummy @test /help de');
 
         $this->assertEquals('help', $command);
 
-        $command = $utility->extractCommandName(' /help ewdwedew @test /help de');
+        $command = $utility->extractCommandName(' /help dummy @test /help de');
 
         $this->assertEquals('help', $command);
 
-        $command = $utility->extractCommandName(' ddsfsdf /help ewdwedew @test /help de');
+        $command = $utility->extractCommandName(' dummy /help dummy @test /help dummy');
 
         $this->assertEquals(null, $command);
     }

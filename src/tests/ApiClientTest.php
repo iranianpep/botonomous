@@ -8,6 +8,8 @@ use Slackbot\Config;
 /**
  * Class ApiClientTest.
  */
+
+/** @noinspection PhpUndefinedClassInspection */
 class ApiClientTest extends \PHPUnit_Framework_TestCase
 {
     /**

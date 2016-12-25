@@ -7,6 +7,8 @@ use Slackbot\utility\FileUtility;
 /**
  * Class FileUtilityTest.
  */
+
+/** @noinspection PhpUndefinedClassInspection */
 class FileUtilityTest extends \PHPUnit_Framework_TestCase
 {
     /**

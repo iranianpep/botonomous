@@ -4,12 +4,15 @@ namespace Slackbot\Tests;
 
 use Slackbot\Command;
 use Slackbot\Config;
+use Slackbot\plugin\AbstractPlugin;
 use Slackbot\plugin\ping\Ping;
 use Slackbot\Slackbot;
 
 /**
  * Class SlackbotTest.
  */
+
+/** @noinspection PhpUndefinedClassInspection */
 class SlackbotTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -140,13 +143,13 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'i' => [
-                    'message' => 'sfdsf /ping',
+                    'message' => 'dummy /ping',
                 ],
                 'o' => $this->outputOnNoCommand($message),
             ],
             [
                 'i' => [
-                    'message' => 'ddfg dfdfg df gdfg',
+                    'message' => 'dummy dummy dummy dummy',
                 ],
                 'o' => $this->outputOnNoCommand($message),
             ],
@@ -183,9 +186,12 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         if (!empty($defaultCommand)) {
             $command = (new Command())->get($defaultCommand);
-            $commandClass = $command['class'];
+            $commandObject = (new $command['class']($slackbot));
 
-            return (new $commandClass($slackbot))->index();
+            /**
+             * @var AbstractPlugin $commandObject
+             */
+            return $commandObject->index();
         }
 
         return $config->get('noCommandMessage');

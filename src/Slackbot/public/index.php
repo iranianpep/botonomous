@@ -10,6 +10,7 @@ if (!file_exists($composerAutoload)) {
 }
 
 if ($composerAutoloadExists === true) {
+    /** @noinspection PhpIncludeInspection */
     require_once $composerAutoload;
 
     /*

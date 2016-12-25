@@ -8,6 +8,8 @@ use Slackbot\utility\LoggerUtility;
 /**
  * Class LoggerUtilityTest.
  */
+
+/** @noinspection PhpUndefinedClassInspection */
 class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 {
     /**

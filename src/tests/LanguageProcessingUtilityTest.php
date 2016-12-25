@@ -7,6 +7,8 @@ use Slackbot\utility\LanguageProcessingUtility;
 /**
  * Class LanguageProcessingUtilityTest.
  */
+
+/** @noinspection PhpUndefinedClassInspection */
 class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
 {
     /**
