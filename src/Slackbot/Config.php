@@ -11,6 +11,7 @@ class Config extends AbstractConfig
         // This is only used for testing config class
         'testKey'              => 'testValue',
         'testKeyReplace'       => 'testValue {replaceIt}',
+        'baseUrl'              => 'http://localhost:8888',
         'defaultTimeZone'      => 'Australia/Melbourne',
         'apiToken'             => 'YOUR_API_TOKEN',
         'channelName'          => '#general',

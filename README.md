@@ -37,6 +37,7 @@ $slackbot->send('Hello Slack!');
 |:----------|:-----|:------------|
 | testKey | string | This is only used for testing and to make sure that Config class works fine. value: `testValue` |
 | testKeyReplace | string | This is used only for testing and to make sure that Config class works fine. value: `testValue {replaceIt}` |
+| baseUrl | string | Base URL for listener. value: `http://localhost:8888` |
 | defaultTimeZone | string | default value: `Australia/Melbourne` |
 | apiToken | string | Your API key |
 | channelName | string | default value: `#general` |

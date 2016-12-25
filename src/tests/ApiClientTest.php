@@ -31,4 +31,45 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $args);
     }
+
+    /**
+     * Test apiCall.
+     */
+    public function testApiCallInvalidAuth()
+    {
+        $result = (new ApiClient())->apiCall('chat.postMessage', []);
+
+        $this->assertEquals($this->getExpectedInvalidAuth(), $result);
+    }
+
+    /**
+     * Test chatPostMessage.
+     */
+    public function testChatPostMessage()
+    {
+        $result = (new ApiClient())->chatPostMessage([]);
+
+        $this->assertEquals($this->getExpectedInvalidAuth(), $result);
+    }
+
+    /**
+     * Test usersList.
+     */
+    public function testUsersList()
+    {
+        $result = (new ApiClient())->usersList();
+
+        $this->assertEquals($this->getExpectedInvalidAuth(), $result);
+    }
+
+    /**
+     * @return array
+     */
+    private function getExpectedInvalidAuth()
+    {
+        return [
+            'ok' => false,
+            'error' => 'invalid_auth'
+        ];
+    }
 }
