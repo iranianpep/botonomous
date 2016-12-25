@@ -181,7 +181,6 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         /**
          * Form the request.
          */
-        $botUsername = '@'.$config->get('botUsername');
         $request = [
             'token' => $config->get('outgoingWebhookToken'),
             'text'  => $message,
@@ -211,7 +210,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         if (!empty($defaultCommand)) {
             $command = (new Command())->get($defaultCommand);
 
-            /*
+            /**
              * @var AbstractPlugin $commandObject
              */
             $commandObject = (new $command['class']($slackbot));
