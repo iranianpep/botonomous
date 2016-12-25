@@ -42,4 +42,21 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($result);
     }
+
+    /**
+     * Test logRaw.
+     */
+    public function testLogRaw()
+    {
+        date_default_timezone_set('Australia/Melbourne');
+
+        $config = new Config();
+        $config->set('chatLogging', true);
+        $config->set('chatLoggingFileName', 'test_chat_log');
+
+        $utility = new LoggerUtility($config);
+        $result = $utility->logChat(__METHOD__, 'this is a raw log');
+
+        $this->assertTrue($result);
+    }
 }
