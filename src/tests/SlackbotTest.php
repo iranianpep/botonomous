@@ -4,7 +4,7 @@ namespace Slackbot\Tests;
 
 use Slackbot\Command;
 use Slackbot\Config;
-use Slackbot\plugin\Ping;
+use Slackbot\plugin\ping\Ping;
 use Slackbot\Slackbot;
 
 /**
@@ -88,7 +88,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             'text'  => $botUsername.' /ping',
         ];
 
-        $slackbot = new \Slackbot\Slackbot($request);
+        $slackbot = new Slackbot($request);
         $response = $slackbot->respond();
 
         $this->assertEquals('pong', $response);
@@ -209,7 +209,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException(
             '\Exception',
-            'Action / function: \'commandWithoutFunctionForTest\' does not exist in \'Slackbot\plugin\Ping\''
+            'Action / function: \'commandWithoutFunctionForTest\' does not exist in \'Slackbot\plugin\ping\Ping\''
         );
 
         $slackbot = new Slackbot($request);

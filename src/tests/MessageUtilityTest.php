@@ -60,7 +60,7 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
             'module'      => 'Ping',
             'description' => 'Use as a health check',
             'action'      => 'index',
-            'class'       => 'Slackbot\plugin\Ping',
+            'class'       => 'Slackbot\plugin\ping\Ping',
         ];
 
         $this->assertEquals($expected, $commandDetails);

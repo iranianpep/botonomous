@@ -3,7 +3,7 @@
 namespace Slackbot\Tests;
 
 use Slackbot\Config;
-use Slackbot\plugin\Ping;
+use Slackbot\plugin\ping\Ping;
 
 /**
  * Class PingTest.
