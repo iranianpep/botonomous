@@ -8,10 +8,9 @@ engines:
       enabled: true
   phpmd:
       enabled: true
-      file_extensions:
-        - php
-        - inc
-      rulesets: "unusedcode,naming"
+      checks:
+            Design/TooManyPublicMethods:
+              enabled: false
   duplication:
     enabled: true
     config:
