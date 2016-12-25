@@ -59,7 +59,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $result = (new ApiClient())->usersList();
 
-        $this->assertEquals($this->getExpectedInvalidAuth(), $result);
+        $this->assertEquals([], $result);
     }
 
     /**

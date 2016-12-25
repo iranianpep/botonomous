@@ -76,6 +76,12 @@ class ApiClient
      */
     public function usersList()
     {
+        $result = $this->apiCall('users.list');
+
+        if (!isset($result['members'])) {
+            return [];
+        }
+
         return $this->apiCall('users.list')['members'];
     }
 }
