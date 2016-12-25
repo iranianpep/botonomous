@@ -212,7 +212,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             $command = (new Command())->get($defaultCommand);
             $commandObject = (new $command['class']($slackbot));
 
-            /**
+            /*
              * @var AbstractPlugin $commandObject
              */
             return $commandObject->index();

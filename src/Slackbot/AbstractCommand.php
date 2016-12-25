@@ -19,7 +19,7 @@ abstract class AbstractCommand
         $commands = $this->getAll();
 
         if (!array_key_exists($key, $commands)) {
-            return null;
+            return;
         }
 
         return $commands[$key];
