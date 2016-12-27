@@ -32,6 +32,11 @@ Send a message to Slack (make sure response is set to slack in the config):
 $slackbot->send('Hello Slack!');
 ```
 
+Also every functionality needs to be handled by a command e.g. `/help` which belongs to a plugin e.g. `Help` plugin. In other words, a plugin can have one or more commands.
+
+## Add a new plugin / command
+Add the new command to `src/Slackbot/Command.php` and also add the plugin file to `src/Slackbot/plugin`. For every command plugin name, action (which is a function with the same name in the plugin) and description need to be specified.
+
 ## Configurations
 |   Name    | Type | Description |
 |:----------|:-----|:------------|
@@ -52,9 +57,6 @@ $slackbot->send('Hello Slack!');
 | defaultCommand | string | Default command if there is no command has been specified in the message |
 | noCommandMessage | string | Message in case there is no command found in the message |
 | unknownCommandMessage | string | Message in case the command in the message is unknown |
-
-## Add a new plugin / command
-Add the new command to `src/Slackbot/Command.php` and also add the plugin file to `src/Slackbot/plugin`.
 
 ## Using Python nltk
 

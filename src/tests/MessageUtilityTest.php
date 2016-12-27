@@ -59,7 +59,7 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
         $commandDetails = $utility->extractCommandDetails("@{$botUsername} /ping");
 
         $expected = [
-            'module'      => 'Ping',
+            'plugin'      => 'Ping',
             'description' => 'Use as a health check',
             'action'      => 'index',
             'class'       => 'Slackbot\plugin\ping\Ping',

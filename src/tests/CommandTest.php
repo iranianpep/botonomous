@@ -17,7 +17,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     public function testGet()
     {
         $info = (new Command())->get('ping');
-        $this->assertEquals($info['module'], 'Ping');
+        $this->assertEquals($info['plugin'], 'Ping');
     }
 
     /**
@@ -26,6 +26,6 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     public function testGetAll()
     {
         $commands = (new Command())->getAll();
-        $this->assertEquals($commands['ping']['module'], 'Ping');
+        $this->assertEquals($commands['ping']['plugin'], 'Ping');
     }
 }

@@ -40,10 +40,10 @@ abstract class AbstractCommand
                 }
 
                 // populate the class
-                $module = $commandDetails['module'];
-                $moduleDir = strtolower($commandDetails['module']);
+                $plugin = $commandDetails['plugin'];
+                $pluginDir = strtolower($commandDetails['plugin']);
 
-                $commands[$commandName]['class'] = __NAMESPACE__."\\plugin\\{$moduleDir}\\{$module}";
+                $commands[$commandName]['class'] = __NAMESPACE__."\\plugin\\{$pluginDir}\\{$plugin}";
             }
         }
 

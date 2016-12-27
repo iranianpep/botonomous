@@ -143,16 +143,16 @@ class Slackbot
     public function respond($message = null)
     {
         try {
-            $result = $this->getModuleAction($message);
+            $result = $this->getPluginAction($message);
 
-            if (empty($result['module']) || empty($result['action'])) {
+            if (empty($result['plugin']) || empty($result['action'])) {
                 return $result['error'];
             }
 
-            $moduleClass = $result['module'];
+            $pluginClass = $result['plugin'];
             $action = $result['action'];
 
-            return $moduleClass->$action();
+            return $pluginClass->$action();
         } catch (\Exception $e) {
             throw $e;
         }
@@ -165,7 +165,7 @@ class Slackbot
      *
      * @return array|mixed
      */
-    public function getModuleAction($message)
+    public function getPluginAction($message)
     {
         // If message is not set, get it from the current request
         if ($message === null) {
@@ -196,9 +196,9 @@ class Slackbot
             return ['error' => $config->get('unknownCommandMessage', ['command' => $command])];
         }
 
-        // check the module
-        if (!isset($commandDetails['module'])) {
-            throw new \Exception('Module is not set for this command');
+        // check the plugin
+        if (!isset($commandDetails['plugin'])) {
+            throw new \Exception('Plugin is not set for this command');
         }
 
         // check the action
@@ -207,22 +207,22 @@ class Slackbot
         }
 
         // create the class
-        $moduleClassFile = $commandDetails['class'];
-        $moduleClass = new $moduleClassFile($this);
+        $pluginClassFile = $commandDetails['class'];
+        $pluginClass = new $pluginClassFile($this);
 
         // check class is valid
-        if (!$moduleClass instanceof AbstractPlugin) {
-            throw new \Exception("Couldn't create class: '{$moduleClassFile}'");
+        if (!$pluginClass instanceof AbstractPlugin) {
+            throw new \Exception("Couldn't create class: '{$pluginClassFile}'");
         }
 
         // check action exists
         $action = $commandDetails['action'];
-        if (!method_exists($moduleClass, $action)) {
-            throw new \Exception("Action / function: '{$action}' does not exist in '{$moduleClassFile}'");
+        if (!method_exists($pluginClass, $action)) {
+            throw new \Exception("Action / function: '{$action}' does not exist in '{$pluginClassFile}'");
         }
 
         return [
-            'module' => $moduleClass,
+            'plugin' => $pluginClass,
             'action' => $action,
         ];
     }

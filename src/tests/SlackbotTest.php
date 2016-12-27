@@ -251,7 +251,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testGetModuleAction()
+    public function testGetPluginAction()
     {
         $config = new Config();
 
@@ -263,10 +263,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         ];
 
         $slackbot = new Slackbot($request);
-        $result = $slackbot->getModuleAction('/ping message');
+        $result = $slackbot->getPluginAction('/ping message');
 
         $expected = [
-            'module' => new Ping($slackbot),
+            'plugin' => new Ping($slackbot),
             'action' => 'index',
         ];
 
@@ -276,7 +276,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testGetModuleActionWithoutDefaultCommand()
+    public function testGetPluginActionWithoutDefaultCommand()
     {
         $config = new Config();
 
@@ -290,7 +290,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config->set('defaultCommand', '');
 
         $slackbot = new Slackbot($request);
-        $result = $slackbot->getModuleAction('dummy message without command');
+        $result = $slackbot->getPluginAction('dummy message without command');
 
         $expected = [
             'error' => $config->get('noCommandMessage'),
