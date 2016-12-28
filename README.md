@@ -35,7 +35,18 @@ $slackbot->send('Hello Slack!');
 Also every functionality needs to be handled by a command e.g. `/help` which belongs to a plugin e.g. `Help` plugin. In other words, a plugin can have one or more commands.
 
 ## Add a new plugin / command
-Add the new command to `src/Slackbot/Command.php` and also add the plugin file to `src/Slackbot/plugin`. For every command plugin name, action (which is a function with the same name in the plugin) and description need to be specified.
+Add the new command to `src/Slackbot/Command.php` and also add the plugin file to `src/Slackbot/plugin`. For every command plugin name, action (which is a function with the same name in the plugin) and description need to be specified. e.g.
+```
+protected static $commands = [
+    'ping' => [
+        'plugin'      => 'Ping',
+        'action'      => 'index',  
+        'description' => 'Use as a health check',
+    ]
+];
+```
+
+Please note if `action` is not specified, `index` is considered as the default action.
 
 ## Configurations
 |   Name    | Type | Description |
