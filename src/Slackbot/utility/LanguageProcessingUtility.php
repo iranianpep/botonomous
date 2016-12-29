@@ -2,6 +2,8 @@
 
 namespace Slackbot\utility;
 
+use NlpTools\Stemmers\PorterStemmer;
+use NlpTools\Tokenizers\WhitespaceTokenizer;
 use Slackbot\Dictionary;
 
 /**
@@ -10,16 +12,27 @@ use Slackbot\Dictionary;
 class LanguageProcessingUtility extends AbstractUtility
 {
     /**
-     * @param $text
+     * @param        $text
+     * @param string $language PHP method is much more faster than the Python one
      *
      * @return string
      */
-    public function stem($text)
+    public function stem($text, $language = 'php')
     {
-        // Execute the python script with the JSON data
-        $filePath = dirname(__DIR__).DIRECTORY_SEPARATOR.'py'.DIRECTORY_SEPARATOR.'stemmer.py';
+        switch ($language) {
+            case 'python':
+                // Execute the python script with the JSON data
+                $filePath = dirname(__DIR__).DIRECTORY_SEPARATOR.'py'.DIRECTORY_SEPARATOR.'stemmer.py';
 
-        return shell_exec('python '.$filePath.' '.escapeshellarg(json_encode([$text])));
+                return shell_exec('python '.$filePath.' '.escapeshellarg(json_encode([$text])));
+                break;
+            default:
+                $tokens = (new WhitespaceTokenizer())->tokenize($text);
+
+                $stemmed = (new PorterStemmer())->stemAll($tokens);
+
+                return implode(' ', $stemmed);
+        }
     }
 
     /**
