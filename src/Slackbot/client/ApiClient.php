@@ -2,6 +2,8 @@
 
 namespace Slackbot\client;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
 use Slackbot\Config;
 
 /**
@@ -23,19 +25,24 @@ class ApiClient
      */
     public function apiCall($method, array $args = [])
     {
-        $args = array_merge($args, $this->getArgs());
-        $data = http_build_query($args);
+        try {
+            $request = new Request(
+                'POST',
+                self::BASE_URL . $method,
+                ['Content-Type' => 'application/x-www-form-urlencoded'],
+                http_build_query(array_merge($args, $this->getArgs()))
+            );
 
-        $connection = curl_init(self::BASE_URL.$method);
-        curl_setopt($connection, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($connection, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($connection, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($connection, CURLOPT_SSL_VERIFYPEER, false);
-        $result = curl_exec($connection);
-        curl_close($connection);
+            $response = (new Client())->send($request);
+        } catch (\Exception $e) {
+            throw new \Exception('Failed to send data to the Slack API');
+        }
 
-        // prettify the response
-        return json_decode($result, true);
+        try {
+            return json_decode($response->getBody()->getContents(), true);
+        } catch (\Exception $e) {
+            throw new \Exception('Failed to process response from the Slack API');
+        }
     }
 
     /**
