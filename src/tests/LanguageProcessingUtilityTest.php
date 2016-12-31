@@ -14,7 +14,7 @@ class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
     /**
      * Test stem.
      */
-    public function testStem()
+    public function testStemPython()
     {
         $utility = new LanguageProcessingUtility();
 
@@ -24,6 +24,14 @@ class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals('Stem is funnier than a bummer say the sushi love comput scientist', $result);
+    }
+
+    /**
+     * Test stem.
+     */
+    public function testStemPhp()
+    {
+        $utility = new LanguageProcessingUtility();
 
         $result = $utility->stem(
             'Stemming is funnier than a bummer says the sushi loving computer scientist',
@@ -31,10 +39,26 @@ class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals('Stem is funnier than a bummer sai the sushi love comput scientist', $result);
+    }
+
+    /**
+     * Test stem.
+     */
+    public function testStemDefault()
+    {
+        $utility = new LanguageProcessingUtility();
 
         $result = $utility->stem('Stemming is funnier than a bummer says the sushi loving computer scientist');
 
         $this->assertEquals('Stem is funnier than a bummer sai the sushi love comput scientist', $result);
+    }
+
+    /**
+     * Test stem.
+     */
+    public function testStemEmpty()
+    {
+        $utility = new LanguageProcessingUtility();
 
         $result = $utility->stem('');
 
