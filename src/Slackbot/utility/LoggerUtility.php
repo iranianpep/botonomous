@@ -67,8 +67,9 @@ class LoggerUtility extends AbstractUtility
     /**
      * @param $text
      *
-     * @return bool
      * @throws \Exception
+     *
+     * @return bool
      */
     private function write($text)
     {
@@ -92,8 +93,9 @@ class LoggerUtility extends AbstractUtility
     /**
      * @param $message
      *
-     * @return bool
      * @throws \Exception
+     *
+     * @return bool
      */
     public function logRaw($message)
     {

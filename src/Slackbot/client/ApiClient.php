@@ -35,13 +35,13 @@ class ApiClient
 
             $response = (new Client())->send($request);
         } catch (\Exception $e) {
-            throw new \Exception('Failed to send data to the Slack API: ' . $e->getMessage());
+            throw new \Exception('Failed to send data to the Slack API: '.$e->getMessage());
         }
 
         try {
             return json_decode($response->getBody()->getContents(), true);
         } catch (\Exception $e) {
-            throw new \Exception('Failed to process response from the Slack API: ' . $e->getMessage());
+            throw new \Exception('Failed to process response from the Slack API: '.$e->getMessage());
         }
     }
 
