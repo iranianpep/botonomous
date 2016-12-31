@@ -94,10 +94,14 @@ class LoggerUtility extends AbstractUtility
             return false;
         }
 
-        $this->makeTmpDir();
-        $this->write($message);
+        $makeDirResult = $this->makeTmpDir();
+        $writeResult = $this->write($message);
 
-        return true;
+        if ($makeDirResult === true && $writeResult === true) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

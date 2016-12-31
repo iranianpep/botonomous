@@ -62,7 +62,7 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 
         $utility = new LoggerUtility($config);
 
-        $this->assertTrue($utility->logChat(__METHOD__, 'this is a raw log'));
+        $this->assertTrue($utility->logRaw('this is a raw log'));
 
         $this->removeTestChatLogFile($utility->getLogFilePath());
     }
@@ -76,7 +76,7 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 
         $utility = new LoggerUtility($config);
 
-        $this->assertFalse($utility->logChat(__METHOD__, 'this is a raw log'));
+        $this->assertFalse($utility->logRaw('this is a raw log'));
     }
 
     /**
