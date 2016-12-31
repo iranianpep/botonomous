@@ -58,7 +58,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             new RequestException("Error Communicating with Server", new Request('Post', $apiClient::BASE_URL . 'test'))
         ]);
 
-        $handler = HandlerStack::create($mock);
+        $handler = new HandlerStack($mock);
         $client = new Client(['handler' => $handler]);
 
         $apiClient->setClient($client);

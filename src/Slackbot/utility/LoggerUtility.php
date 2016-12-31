@@ -22,11 +22,8 @@ class LoggerUtility extends AbstractUtility
     public function logChat($function, $message = '')
     {
         try {
-            if ($this->canLog() !== true) {
-                return false;
-            }
-
-            if ($this->makeTmpDir() === true && $this->write($this->getLogContent($function, $message)) === true) {
+            if ($this->canLog() === true && $this->makeTmpDir() === true &&
+                $this->write($this->getLogContent($function, $message)) === true) {
                 return true;
             }
 
@@ -104,11 +101,7 @@ class LoggerUtility extends AbstractUtility
     public function logRaw($message)
     {
         try {
-            if ($this->canLog() !== true) {
-                return false;
-            }
-
-            if ($this->makeTmpDir() === true && $this->write($message) === true) {
+            if ($this->canLog() === true && $this->makeTmpDir() === true && $this->write($message) === true) {
                 return true;
             }
 
