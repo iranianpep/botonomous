@@ -13,6 +13,8 @@ class ApiClient
 {
     const BASE_URL = 'https://slack.com/api/';
 
+    private $client;
+
     /**
      * API CURL Call with post method.
      *
@@ -33,7 +35,7 @@ class ApiClient
                 http_build_query(array_merge($args, $this->getArgs()))
             );
 
-            $response = (new Client())->send($request);
+            $response = $this->getClient()->send($request);
         } catch (\Exception $e) {
             throw new \Exception('Failed to send data to the Slack API: '.$e->getMessage());
         }
@@ -87,5 +89,25 @@ class ApiClient
         }
 
         return $this->apiCall('users.list')['members'];
+    }
+
+    /**
+     * @param Client $client
+     */
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+    }
+
+    /**
+     * @return Client
+     */
+    public function getClient()
+    {
+        if (!isset($this->client)) {
+            $this->setClient(new Client());
+        }
+
+        return $this->client;
     }
 }

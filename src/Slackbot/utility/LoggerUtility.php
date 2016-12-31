@@ -21,15 +21,19 @@ class LoggerUtility extends AbstractUtility
      */
     public function logChat($function, $message = '')
     {
-        if ($this->canLog() !== true) {
+        try {
+            if ($this->canLog() !== true) {
+                return false;
+            }
+
+            if ($this->makeTmpDir() === true && $this->write($this->getLogContent($function, $message)) === true) {
+                return true;
+            }
+
             return false;
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
         }
-
-        if ($this->makeTmpDir() === true && $this->write($this->getLogContent($function, $message)) === true) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

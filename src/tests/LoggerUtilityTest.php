@@ -14,6 +14,8 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 {
     const TEST_CHAT_LOG_FILE = 'test_chat_log';
     const TIMEZONE = 'Australia/Melbourne';
+    const TEST_MESSAGE = 'test message';
+    const TEST_RAW_MESSAGE = 'this is a raw log';
 
     /**
      * Test logChatDisabled.
@@ -26,7 +28,7 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 
         $utility = new LoggerUtility($config);
 
-        $this->assertFalse($utility->logChat(__METHOD__, 'test message'));
+        $this->assertFalse($utility->logChat(__METHOD__, self::TEST_MESSAGE));
 
         $this->removeTestChatLogFile($utility->getLogFilePath());
     }
@@ -44,7 +46,7 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 
         $utility = new LoggerUtility($config);
 
-        $this->assertTrue($utility->logChat(__METHOD__, 'test message'));
+        $this->assertTrue($utility->logChat(__METHOD__, self::TEST_MESSAGE));
 
         $this->removeTestChatLogFile($utility->getLogFilePath());
     }
@@ -62,15 +64,13 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 
         $utility = new LoggerUtility($config);
 
-        $this->assertTrue($utility->logRaw('this is a raw log'));
+        $this->assertTrue($utility->logRaw(self::TEST_RAW_MESSAGE));
 
         $this->removeTestChatLogFile($utility->getLogFilePath());
     }
 
     /**
      * Test logRaw.
-     *
-     * @throws \Exception
      */
     public function testLogRawLoggingException()
     {
@@ -88,7 +88,29 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
             'Failed to write to the log file'
         );
 
-        $this->assertTrue($utility->logRaw('this is a raw log'));
+        $this->assertTrue($utility->logRaw(self::TEST_RAW_MESSAGE));
+    }
+
+    /**
+     * Test logChat.
+     */
+    public function testLogChatLoggingException()
+    {
+        date_default_timezone_set(self::TIMEZONE);
+
+        $config = new Config();
+        $config->set('chatLogging', true);
+        $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
+
+        $utility = new LoggerUtility($config);
+        $utility->setLogFilePath('dummy/file/path');
+
+        $this->setExpectedException(
+            '\Exception',
+            'Failed to write to the log file'
+        );
+
+        $this->assertTrue($utility->logChat(__METHOD__, self::TEST_RAW_MESSAGE));
     }
 
     /**
@@ -103,7 +125,7 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
 
         $utility = new LoggerUtility($config);
 
-        $this->assertFalse($utility->logRaw('this is a raw log'));
+        $this->assertFalse($utility->logRaw(self::TEST_RAW_MESSAGE));
     }
 
     /**

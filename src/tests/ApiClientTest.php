@@ -2,6 +2,11 @@
 
 namespace Slackbot\Tests;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
 use Slackbot\client\ApiClient;
 use Slackbot\Config;
 
@@ -40,6 +45,30 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $result = (new ApiClient())->apiCall('chat.postMessage', []);
 
         $this->assertEquals($this->getExpectedInvalidAuth(), $result);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testApiCallException()
+    {
+        $apiClient = new ApiClient();
+
+        $mock = new MockHandler([
+            new RequestException("Error Communicating with Server", new Request('Post', $apiClient::BASE_URL . 'test'))
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
+
+        $apiClient->setClient($client);
+
+        $this->setExpectedException(
+            '\Exception',
+            'Failed to send data to the Slack API: Error Communicating with Server'
+        );
+
+        $apiClient->apiCall('test');
     }
 
     /**
