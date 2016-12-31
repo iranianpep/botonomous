@@ -7,6 +7,10 @@ namespace Slackbot\utility;
  */
 class LoggerUtility extends AbstractUtility
 {
+    const DATE_FORMAT = 'Y-m-d H:i:s';
+
+    private $logFilePath;
+
     /**
      * @param $function
      * @param string $message
@@ -21,10 +25,7 @@ class LoggerUtility extends AbstractUtility
             return false;
         }
 
-        $makeDirResult = $this->makeTmpDir();
-        $writeResult = $this->write($this->getLogContent($function, $message));
-
-        if ($makeDirResult === true && $writeResult === true) {
+        if ($this->makeTmpDir() === true && $this->write($this->getLogContent($function, $message)) === true) {
             return true;
         }
 
@@ -67,41 +68,48 @@ class LoggerUtility extends AbstractUtility
      * @param $text
      *
      * @return bool
+     * @throws \Exception
      */
     private function write($text)
     {
-        $result = file_put_contents(
-            $this->getLogFilePath(),
-            $text,
-            FILE_APPEND
-        );
+        try {
+            $result = file_put_contents(
+                $this->getLogFilePath(),
+                $text,
+                FILE_APPEND
+            );
 
-        if ($result !== false) {
-            return true;
+            if ($result !== false) {
+                return true;
+            }
+
+            return false;
+        } catch (\Exception $e) {
+            throw new \Exception('Failed to write to the log file');
         }
-
-        return false;
     }
 
     /**
      * @param $message
      *
      * @return bool
+     * @throws \Exception
      */
     public function logRaw($message)
     {
-        if ($this->canLog() !== true) {
+        try {
+            if ($this->canLog() !== true) {
+                return false;
+            }
+
+            if ($this->makeTmpDir() === true && $this->write($message) === true) {
+                return true;
+            }
+
             return false;
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
         }
-
-        $makeDirResult = $this->makeTmpDir();
-        $writeResult = $this->write($message);
-
-        if ($makeDirResult === true && $writeResult === true) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -115,13 +123,26 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
+     * @param $logFilePath
+     */
+    public function setLogFilePath($logFilePath)
+    {
+        $this->logFilePath = $logFilePath;
+    }
+
+    /**
      * @throws \Exception
      *
      * @return string
      */
     public function getLogFilePath()
     {
-        return $this->getTempDir().DIRECTORY_SEPARATOR.$this->getConfig()->get('chatLoggingFileName');
+        if (!isset($this->logFilePath)) {
+            $logFilePath = $this->getTempDir().DIRECTORY_SEPARATOR.$this->getConfig()->get('chatLoggingFileName');
+            $this->setLogFilePath($logFilePath);
+        }
+
+        return $this->logFilePath;
     }
 
     /**
@@ -132,6 +153,6 @@ class LoggerUtility extends AbstractUtility
      */
     public function getLogContent($function, $message)
     {
-        return date('Y-m-d H:i:s')."|{$function}|{$message}\r\n";
+        return date(self::DATE_FORMAT)."|{$function}|{$message}\r\n";
     }
 }

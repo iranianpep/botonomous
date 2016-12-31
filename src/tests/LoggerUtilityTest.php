@@ -67,6 +67,33 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
         $this->removeTestChatLogFile($utility->getLogFilePath());
     }
 
+    /**
+     * Test logRaw.
+     *
+     * @throws \Exception
+     */
+    public function testLogRawLoggingException()
+    {
+        date_default_timezone_set(self::TIMEZONE);
+
+        $config = new Config();
+        $config->set('chatLogging', true);
+        $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
+
+        $utility = new LoggerUtility($config);
+        $utility->setLogFilePath('dummy/file/path');
+
+        $this->setExpectedException(
+            '\Exception',
+            'Failed to write to the log file'
+        );
+
+        $this->assertTrue($utility->logRaw('this is a raw log'));
+    }
+
+    /**
+     * Test logRaw.
+     */
     public function testLogRawNotLogging()
     {
         date_default_timezone_set(self::TIMEZONE);
