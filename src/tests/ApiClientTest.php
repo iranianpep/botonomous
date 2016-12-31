@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use Slackbot\client\ApiClient;
 use Slackbot\Config;
 
@@ -17,6 +18,49 @@ use Slackbot\Config;
 /** @noinspection PhpUndefinedClassInspection */
 class ApiClientTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test usersList.
+     */
+    public function testUsersList()
+    {
+        $apiClient = new ApiClient();
+
+        $mock = new MockHandler([
+            new Response(200, [], '{"members": [{"id": "U023BECGF"}]}'),
+        ]);
+
+        $handler = new HandlerStack($mock);
+        $client = new Client(['handler' => $handler]);
+
+        $apiClient->setClient($client);
+
+        $this->assertEquals([['id' => 'U023BECGF']], $apiClient->usersList());
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testApiCallContentException()
+    {
+        $apiClient = new ApiClient();
+
+        $mock = new MockHandler([
+            new Response(200, [], 'test'),
+        ]);
+
+        $handler = new HandlerStack($mock);
+        $client = new Client(['handler' => $handler]);
+
+        $apiClient->setClient($client);
+
+        $this->setExpectedException(
+            '\Exception',
+            'Failed to process response from the Slack API'
+        );
+
+        $apiClient->apiCall('test');
+    }
+
     /**
      * @throws \Exception
      */
@@ -84,7 +128,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     /**
      * Test usersList.
      */
-    public function testUsersList()
+    public function testUsersListEmpty()
     {
         $result = (new ApiClient())->usersList();
 

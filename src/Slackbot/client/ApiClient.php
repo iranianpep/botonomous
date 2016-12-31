@@ -40,11 +40,13 @@ class ApiClient
             throw new \Exception('Failed to send data to the Slack API: '.$e->getMessage());
         }
 
-        try {
-            return json_decode($response->getBody()->getContents(), true);
-        } catch (\Exception $e) {
-            throw new \Exception('Failed to process response from the Slack API: '.$e->getMessage());
+        $response = json_decode($response->getBody()->getContents(), true);
+
+        if (!is_array($response)) {
+            throw new \Exception('Failed to process response from the Slack API');
         }
+
+        return $response;
     }
 
     /**
@@ -88,7 +90,7 @@ class ApiClient
             return [];
         }
 
-        return $this->apiCall('users.list')['members'];
+        return $result['members'];
     }
 
     /**
