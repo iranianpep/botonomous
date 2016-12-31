@@ -28,7 +28,7 @@ class ApiClient
         try {
             $request = new Request(
                 'POST',
-                self::BASE_URL . $method,
+                self::BASE_URL.$method,
                 ['Content-Type' => 'application/x-www-form-urlencoded'],
                 http_build_query(array_merge($args, $this->getArgs()))
             );
