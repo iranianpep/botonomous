@@ -21,10 +21,14 @@ class LoggerUtility extends AbstractUtility
             return false;
         }
 
-        $this->makeTmpDir();
-        $this->write($this->getLogContent($function, $message));
+        $makeDirResult = $this->makeTmpDir();
+        $writeResult = $this->write($this->getLogContent($function, $message));
 
-        return true;
+        if ($makeDirResult === true && $writeResult === true) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -43,26 +47,40 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * Make temp dir IF does not exist.
+     *
+     * @return bool
      */
     private function makeTmpDir()
     {
         $tmpDir = $this->getTempDir();
-        if (!is_dir($tmpDir)) {
-            // dir doesn't exist, make it
-            mkdir($tmpDir);
+
+        // Directory already exists, return true
+        if (is_dir($tmpDir)) {
+            return true;
         }
+
+        // dir doesn't exist, make it
+        return mkdir($tmpDir);
     }
 
     /**
      * @param $text
+     *
+     * @return bool
      */
     private function write($text)
     {
-        file_put_contents(
+        $result = file_put_contents(
             $this->getLogFilePath(),
             $text,
             FILE_APPEND
         );
+
+        if ($result !== false) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

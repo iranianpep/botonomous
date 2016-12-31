@@ -25,9 +25,8 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
         $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
-        $result = $utility->logChat(__METHOD__, 'test message');
 
-        $this->assertFalse($result);
+        $this->assertFalse($utility->logChat(__METHOD__, 'test message'));
 
         $this->removeTestChatLogFile($utility->getLogFilePath());
     }
@@ -44,9 +43,8 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
         $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
-        $result = $utility->logChat(__METHOD__, 'test message');
 
-        $this->assertTrue($result);
+        $this->assertTrue($utility->logChat(__METHOD__, 'test message'));
 
         $this->removeTestChatLogFile($utility->getLogFilePath());
     }
@@ -54,7 +52,7 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
     /**
      * Test logRaw.
      */
-    public function testLogRaw()
+    public function testLogRawLogging()
     {
         date_default_timezone_set(self::TIMEZONE);
 
@@ -63,11 +61,22 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
         $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
-        $result = $utility->logChat(__METHOD__, 'this is a raw log');
 
-        $this->assertTrue($result);
+        $this->assertTrue($utility->logChat(__METHOD__, 'this is a raw log'));
 
         $this->removeTestChatLogFile($utility->getLogFilePath());
+    }
+
+    public function testLogRawNotLogging()
+    {
+        date_default_timezone_set(self::TIMEZONE);
+
+        $config = new Config();
+        $config->set('chatLogging', false);
+
+        $utility = new LoggerUtility($config);
+
+        $this->assertFalse($utility->logChat(__METHOD__, 'this is a raw log'));
     }
 
     /**
