@@ -1,6 +1,6 @@
 from __future__ import print_function
 import sys, json, traceback
-from nltk.stem import PorterStemmer
+from nltk.stem.porter import *
 from nltk.tokenize import word_tokenize
 
 try:
