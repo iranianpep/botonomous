@@ -9,7 +9,7 @@ use Slackbot\CommandContainer;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class CommandTest extends \PHPUnit_Framework_TestCase
+class CommandContainerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test get.
