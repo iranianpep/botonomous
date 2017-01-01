@@ -11,7 +11,7 @@ try:
         data = json.loads(argList[1])
         words = word_tokenize(data[0])
 
-        sentence = " ".join(PorterStemmer().stem_word(word) for word in words);
+        sentence = " ".join(PorterStemmer().stem(word) for word in words);
 
         # remove the new line using end=''
         print(sentence, end='')
