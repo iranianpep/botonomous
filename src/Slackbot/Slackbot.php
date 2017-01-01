@@ -189,7 +189,7 @@ class Slackbot
             }
         }
 
-        $commandDetails = (new Command())->get($command);
+        $commandDetails = (new CommandContainer())->get($command);
 
         // check command details
         if (empty($commandDetails)) {

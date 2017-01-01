@@ -2,7 +2,7 @@
 
 namespace Slackbot\utility;
 
-use Slackbot\Command;
+use Slackbot\CommandContainer;
 
 /**
  * Class MessageUtility.
@@ -63,6 +63,6 @@ class MessageUtility extends AbstractUtility
         $command = $this->extractCommandName($message);
 
         // then get the command details
-        return (new Command())->get($command);
+        return (new CommandContainer())->get($command);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Slackbot\plugin\help;
 
-use Slackbot\Command;
+use Slackbot\CommandContainer;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\utility\FormattingUtility;
 
@@ -16,7 +16,7 @@ class Help extends AbstractPlugin
      */
     public function index()
     {
-        $allCommands = (new Command())->getAll();
+        $allCommands = (new CommandContainer())->getAll();
 
         $response = '';
         if (!empty($allCommands)) {

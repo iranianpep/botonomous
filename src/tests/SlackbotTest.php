@@ -2,7 +2,7 @@
 
 namespace Slackbot\Tests;
 
-use Slackbot\Command;
+use Slackbot\CommandContainer;
 use Slackbot\Config;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\plugin\ping\Ping;
@@ -208,7 +208,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $slackbot = new Slackbot(['text' => $message, 'token' => $token]);
 
         if (!empty($defaultCommand)) {
-            $command = (new Command())->get($defaultCommand);
+            $command = (new CommandContainer())->get($defaultCommand);
 
             /**
              * @var AbstractPlugin
