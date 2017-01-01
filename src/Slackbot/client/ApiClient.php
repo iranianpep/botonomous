@@ -2,8 +2,10 @@
 
 namespace Slackbot\client;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
+use /** @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Client;
+use /** @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Psr7\Request;
 use Slackbot\Config;
 
 /**
@@ -28,6 +30,7 @@ class ApiClient
     public function apiCall($method, array $args = [])
     {
         try {
+            /** @noinspection PhpUndefinedClassInspection */
             $request = new Request(
                 'POST',
                 self::BASE_URL.$method,
@@ -91,15 +94,17 @@ class ApiClient
         }
 
         return $result['members'];
-    }
+    }/** @noinspection PhpUndefinedClassInspection */
 
     /**
      * @param Client $client
      */
-    public function setClient(Client $client)
+    public function setClient(
+        /** @noinspection PhpUndefinedClassInspection */
+        Client $client)
     {
         $this->client = $client;
-    }
+    }/** @noinspection PhpUndefinedClassInspection */
 
     /**
      * @return Client
@@ -107,6 +112,7 @@ class ApiClient
     public function getClient()
     {
         if (!isset($this->client)) {
+            /** @noinspection PhpUndefinedClassInspection */
             $this->setClient(new Client());
         }
 

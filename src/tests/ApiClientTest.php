@@ -2,12 +2,18 @@
 
 namespace Slackbot\Tests;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
+use /** @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Client;
+use /** @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Exception\RequestException;
+use /** @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Handler\MockHandler;
+use /** @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\HandlerStack;
+use /** @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Psr7\Request;
+use /** @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Psr7\Response;
 use Slackbot\client\ApiClient;
 use Slackbot\Config;
 
@@ -25,11 +31,15 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $apiClient = new ApiClient();
 
+        /** @noinspection PhpUndefinedClassInspection */
+        /** @noinspection PhpUndefinedClassInspection */
         $mock = new MockHandler([
             new Response(200, [], '{"members": [{"id": "U023BECGF"}]}'),
         ]);
 
+        /** @noinspection PhpUndefinedClassInspection */
         $handler = new HandlerStack($mock);
+        /** @noinspection PhpUndefinedClassInspection */
         $client = new Client(['handler' => $handler]);
 
         $apiClient->setClient($client);
@@ -44,11 +54,15 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $apiClient = new ApiClient();
 
+        /** @noinspection PhpUndefinedClassInspection */
+        /** @noinspection PhpUndefinedClassInspection */
         $mock = new MockHandler([
             new Response(200, [], 'test'),
         ]);
 
+        /** @noinspection PhpUndefinedClassInspection */
         $handler = new HandlerStack($mock);
+        /** @noinspection PhpUndefinedClassInspection */
         $client = new Client(['handler' => $handler]);
 
         $apiClient->setClient($client);
@@ -98,11 +112,16 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $apiClient = new ApiClient();
 
+        /** @noinspection PhpUndefinedClassInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        /** @noinspection PhpUndefinedClassInspection */
         $mock = new MockHandler([
             new RequestException('Error Communicating with Server', new Request('Post', $apiClient::BASE_URL.'test')),
         ]);
 
+        /** @noinspection PhpUndefinedClassInspection */
         $handler = new HandlerStack($mock);
+        /** @noinspection PhpUndefinedClassInspection */
         $client = new Client(['handler' => $handler]);
 
         $apiClient->setClient($client);
