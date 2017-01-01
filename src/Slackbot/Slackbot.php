@@ -201,11 +201,6 @@ class Slackbot
             throw new \Exception('Plugin is not set for this command');
         }
 
-        // check the action
-        if (!isset($commandDetails['action'])) {
-            throw new \Exception('Action is not set for this command');
-        }
-
         // create the class
         $pluginClassFile = $commandDetails['class'];
         $pluginClass = new $pluginClassFile($this);
