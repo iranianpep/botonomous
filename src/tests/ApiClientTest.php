@@ -2,17 +2,17 @@
 
 namespace Slackbot\Tests;
 
-use /** @noinspection PhpUndefinedClassInspection */
+use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
-use /** @noinspection PhpUndefinedClassInspection */
+use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Exception\RequestException;
-use /** @noinspection PhpUndefinedClassInspection */
+use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Handler\MockHandler;
-use /** @noinspection PhpUndefinedClassInspection */
+use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\HandlerStack;
-use /** @noinspection PhpUndefinedClassInspection */
+use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
-use /** @noinspection PhpUndefinedClassInspection */
+use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Response;
 use Slackbot\client\ApiClient;
 use Slackbot\Config;
