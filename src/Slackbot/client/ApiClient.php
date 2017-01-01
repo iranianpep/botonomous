@@ -99,14 +99,12 @@ class ApiClient
     /**
      * @param Client $client
      */
-    public function setClient(
-        /** @noinspection PhpUndefinedClassInspection */
-        Client $client)
+    public function setClient(Client $client)
     {
         $this->client = $client;
-    }/** @noinspection PhpUndefinedClassInspection */
+    }
 
-    /**
+    /**g
      * @return Client
      */
     public function getClient()
