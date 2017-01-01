@@ -2,9 +2,9 @@
 
 namespace Slackbot\client;
 
-use /** @noinspection PhpUndefinedClassInspection */
+use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
-use /** @noinspection PhpUndefinedClassInspection */
+use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
 use Slackbot\Config;
 
@@ -94,7 +94,9 @@ class ApiClient
         }
 
         return $result['members'];
-    }/** @noinspection PhpUndefinedClassInspection */
+    }
+
+    /** @noinspection PhpUndefinedClassInspection */
 
     /**
      * @param Client $client
@@ -110,7 +112,7 @@ class ApiClient
     public function getClient()
     {
         if (!isset($this->client)) {
-            /** @noinspection PhpUndefinedClassInspection */
+            /* @noinspection PhpUndefinedClassInspection */
             $this->setClient(new Client());
         }
 
