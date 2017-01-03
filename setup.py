@@ -1,2 +1,3 @@
 import nltk
-nltk.download()
+print(nltk.__version__)
+nltk.download('all')

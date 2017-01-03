@@ -21,6 +21,7 @@ addons:
 before_script:
   - composer self-update
   - composer install --dev
+  - python --version
   - sudo pip install -U nltk
   - python setup.py
 
