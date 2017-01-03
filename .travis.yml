@@ -22,8 +22,6 @@ before_script:
   - composer self-update
   - composer install --dev
   - sudo pip install -U nltk
-  - which python
-  - python --version
   - python setup.py
 
 script: phpunit --bootstrap vendor/autoload.php --configuration vendor/phpunit/phpunit/phpunit.xml src/tests
