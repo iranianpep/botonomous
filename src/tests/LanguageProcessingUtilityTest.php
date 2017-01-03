@@ -23,7 +23,7 @@ class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
             'python'
         );
 
-        $this->assertEquals('Stem is funnier than a bummer say the sushi love comput scientist', $result);
+        $this->assertEquals('stem is funnier than a bummer say the sushi love comput scientist', $result);
     }
 
     /**
