@@ -19,7 +19,7 @@ abstract class AbstractCommandContainer
         $commands = $this->getAll($key);
 
         if (!array_key_exists($key, $commands)) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 

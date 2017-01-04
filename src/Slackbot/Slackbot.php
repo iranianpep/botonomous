@@ -60,6 +60,7 @@ class Slackbot
      *
      * @return mixed
      */
+
     /** @noinspection PhpInconsistentReturnPointsInspection */
     public function getRequest($key = null)
     {

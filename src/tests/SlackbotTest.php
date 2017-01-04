@@ -217,7 +217,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
              */
             $pluginObject = (new $commandClass($slackbot));
 
-            /** @noinspection PhpUndefinedMethodInspection */
+            /* @noinspection PhpUndefinedMethodInspection */
             return $pluginObject->index();
         }
 
