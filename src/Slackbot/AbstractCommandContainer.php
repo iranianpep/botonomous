@@ -28,8 +28,9 @@ abstract class AbstractCommandContainer
     /**
      * @param null $key
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function getAll($key = null)
     {
@@ -59,8 +60,9 @@ abstract class AbstractCommandContainer
     /**
      * @param array $row
      *
-     * @return Command
      * @throws \Exception
+     *
+     * @return Command
      */
     private function mapToCommandObject(array $row)
     {

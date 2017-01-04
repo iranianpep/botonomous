@@ -91,7 +91,7 @@ class Command
     public function getClass()
     {
         if (empty($this->class)) {
-            $class = __NAMESPACE__."\\plugin\\".strtolower($this->getPlugin())."\\".$this->getPlugin();
+            $class = __NAMESPACE__.'\\plugin\\'.strtolower($this->getPlugin()).'\\'.$this->getPlugin();
             $this->setClass($class);
         }
 
