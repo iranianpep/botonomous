@@ -59,10 +59,10 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
         $botUsername = (new Config())->get('botUsername');
         $commandObject = $utility->extractCommandDetails("@{$botUsername} /ping");
 
-        $commandObjectExpected = new Command('ping');
-        $commandObjectExpected->setPlugin('Ping');
-        $commandObjectExpected->setDescription('Use as a health check');
+        $expected = new Command('ping');
+        $expected->setPlugin('Ping');
+        $expected->setDescription('Use as a health check');
 
-        $this->assertEquals($commandObjectExpected, $commandObject);
+        $this->assertEquals($expected, $commandObject);
     }
 }
