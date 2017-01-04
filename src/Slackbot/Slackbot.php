@@ -15,6 +15,7 @@ class Slackbot
 {
     private $request;
     private $config;
+    private $commands;
 
     /**
      * Slackbot constructor.
@@ -57,10 +58,9 @@ class Slackbot
     /**
      * @param null $key
      *
-     * @throws \Exception
-     *
      * @return mixed
      */
+    /** @noinspection PhpInconsistentReturnPointsInspection */
     public function getRequest($key = null)
     {
         if ($key === null) {
@@ -267,5 +267,25 @@ class Slackbot
     public function setConfig(Config $config)
     {
         $this->config = $config;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCommands()
+    {
+        if (!isset($this->commands)) {
+            $this->setCommands((new CommandContainer())->getAll());
+        }
+
+        return $this->commands;
+    }
+
+    /**
+     * @param array $commands
+     */
+    public function setCommands(array $commands)
+    {
+        $this->commands = $commands;
     }
 }

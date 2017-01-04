@@ -209,6 +209,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         if (!empty($defaultCommand)) {
             $commandObject = (new CommandContainer())->get($defaultCommand);
+            /** @noinspection PhpUndefinedMethodInspection */
             $commandClass = $commandObject->getClass();
 
             /**
@@ -216,6 +217,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
              */
             $pluginObject = (new $commandClass($slackbot));
 
+            /** @noinspection PhpUndefinedMethodInspection */
             return $pluginObject->index();
         }
 

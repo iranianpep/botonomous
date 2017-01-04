@@ -9,8 +9,6 @@ use Slackbot\Config;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-
-/** @noinspection PhpUndefinedClassInspection */
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
     /**
