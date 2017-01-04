@@ -189,20 +189,24 @@ class Slackbot
             }
         }
 
-        $commandDetails = (new CommandContainer())->get($command);
+        $commandObject = (new CommandContainer())->get($command);
 
         // check command details
-        if (empty($commandDetails)) {
+        if (empty($commandObject)) {
             return ['error' => $config->get('unknownCommandMessage', ['command' => $command])];
         }
 
+        if (!$commandObject instanceof Command) {
+            throw new \Exception('Command is not an object');
+        }
+
         // check the plugin
-        if (!isset($commandDetails['plugin'])) {
+        if (empty($commandObject->getPlugin())) {
             throw new \Exception('Plugin is not set for this command');
         }
 
         // create the class
-        $pluginClassFile = $commandDetails['class'];
+        $pluginClassFile = $commandObject->getClass();
         $pluginClass = new $pluginClassFile($this);
 
         // check class is valid
@@ -211,7 +215,7 @@ class Slackbot
         }
 
         // check action exists
-        $action = $commandDetails['action'];
+        $action = $commandObject->getAction();
         if (!method_exists($pluginClass, $action)) {
             throw new \Exception("Action / function: '{$action}' does not exist in '{$pluginClassFile}'");
         }

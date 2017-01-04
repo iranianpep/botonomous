@@ -208,14 +208,15 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $slackbot = new Slackbot(['text' => $message, 'token' => $token]);
 
         if (!empty($defaultCommand)) {
-            $command = (new CommandContainer())->get($defaultCommand);
+            $commandObject = (new CommandContainer())->get($defaultCommand);
+            $commandClass = $commandObject->getClass();
 
             /**
              * @var AbstractPlugin
              */
-            $commandObject = (new $command['class']($slackbot));
+            $pluginObject = (new $commandClass($slackbot));
 
-            return $commandObject->index();
+            return $pluginObject->index();
         }
 
         return $config->get('noCommandMessage');

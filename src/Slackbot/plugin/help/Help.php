@@ -2,6 +2,7 @@
 
 namespace Slackbot\plugin\help;
 
+use Slackbot\Command;
 use Slackbot\CommandContainer;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\utility\FormattingUtility;
@@ -22,8 +23,12 @@ class Help extends AbstractPlugin
         if (!empty($allCommands)) {
             $formattingUtility = (new FormattingUtility());
 
-            foreach ($allCommands as $commandName => $commandDetails) {
-                $response .= "/{$commandName}".$formattingUtility->newLine().' - '.$commandDetails['description'];
+            foreach ($allCommands as $commandName => $commandObject) {
+                if (!$commandObject instanceof Command) {
+                    continue;
+                }
+
+                $response .= "/{$commandName}".$formattingUtility->newLine().' - '.$commandObject->getDescription();
             }
         }
 

@@ -16,7 +16,7 @@ abstract class AbstractCommandContainer
      */
     public function get($key)
     {
-        $commands = $this->getAll();
+        $commands = $this->getAll($key);
 
         if (!array_key_exists($key, $commands)) {
             return;
@@ -26,27 +26,58 @@ abstract class AbstractCommandContainer
     }
 
     /**
+     * @param null $key
+     *
      * @return mixed
+     * @throws \Exception
      */
-    public function getAll()
+    public function getAll($key = null)
     {
         $commands = static::$commands;
 
         if (!empty($commands)) {
-            foreach ($commands as $commandName => $commandDetails) {
-                // If action is empty, consider 'index' as the default action
-                if (empty($commandDetails['action'])) {
-                    $commands[$commandName]['action'] = 'index';
+            foreach ($commands as $commandKey => $commandDetails) {
+                if (!empty($key) && $commandKey !== $key) {
+                    continue;
                 }
 
-                // populate the class
-                $plugin = $commandDetails['plugin'];
-                $pluginDir = strtolower($commandDetails['plugin']);
+                $commandDetails['key'] = $commandKey;
 
-                $commands[$commandName]['class'] = __NAMESPACE__."\\plugin\\{$pluginDir}\\{$plugin}";
+                $mappedObject = $this->mapToCommandObject($commandDetails);
+
+                if (empty($mappedObject)) {
+                    continue;
+                }
+
+                $commands[$commandKey] = $mappedObject;
             }
         }
 
         return $commands;
+    }
+
+    /**
+     * @param array $row
+     *
+     * @return Command
+     * @throws \Exception
+     */
+    private function mapToCommandObject(array $row)
+    {
+        if (!isset($row['key'])) {
+            throw new \Exception('Key must be provided');
+        }
+
+        $mappedObject = new Command($row['key']);
+
+        unset($row['key']);
+
+        if (!empty($row)) {
+            foreach ($row as $key => $value) {
+                $mappedObject->{'set'.ucwords($key)}($value);
+            }
+        }
+
+        return $mappedObject;
     }
 }

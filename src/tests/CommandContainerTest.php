@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use Slackbot\Command;
 use Slackbot\CommandContainer;
 
 /**
@@ -16,8 +17,11 @@ class CommandContainerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGet()
     {
-        $info = (new CommandContainer())->get('ping');
-        $this->assertEquals($info['plugin'], 'Ping');
+        $commandObject = (new CommandContainer())->get('ping');
+
+        $this->assertTrue($commandObject instanceof Command);
+
+        $this->assertEquals($commandObject->getPlugin(), 'Ping');
     }
 
     /**
@@ -26,6 +30,6 @@ class CommandContainerTest extends \PHPUnit_Framework_TestCase
     public function testGetAll()
     {
         $commands = (new CommandContainer())->getAll();
-        $this->assertEquals($commands['ping']['plugin'], 'Ping');
+        $this->assertEquals($commands['ping']->getPlugin(), 'Ping');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use Slackbot\Command;
 use Slackbot\Config;
 use Slackbot\utility\MessageUtility;
 
@@ -56,15 +57,12 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
     {
         $utility = new MessageUtility();
         $botUsername = (new Config())->get('botUsername');
-        $commandDetails = $utility->extractCommandDetails("@{$botUsername} /ping");
+        $commandObject = $utility->extractCommandDetails("@{$botUsername} /ping");
 
-        $expected = [
-            'plugin'      => 'Ping',
-            'description' => 'Use as a health check',
-            'action'      => 'index',
-            'class'       => 'Slackbot\plugin\ping\Ping',
-        ];
+        $commandObjectExpected = new Command('ping');
+        $commandObjectExpected->setPlugin('Ping');
+        $commandObjectExpected->setDescription('Use as a health check');
 
-        $this->assertEquals($expected, $commandDetails);
+        $this->assertEquals($commandObjectExpected, $commandObject);
     }
 }
