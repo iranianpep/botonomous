@@ -91,8 +91,7 @@ Please note if `action` is not specified, `index` is considered as the default a
     >>> nltk.download('all')
     ```
 
-In case there is a need to update nltk use this:
-
+4. In case there is a need to update nltk use this:
     ```
     sudo -H pip install nltk --upgrade --ignore-installed six
     ```
