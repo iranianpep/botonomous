@@ -27,7 +27,7 @@ class Help extends AbstractPlugin
                     continue;
                 }
 
-                $response .= "/{$commandName}".$formattingUtility->newLine().' - '.$commandObject->getDescription();
+                $response .= "/{$commandName} - ".$commandObject->getDescription().$formattingUtility->newLine();
             }
         }
 
