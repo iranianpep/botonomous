@@ -9,7 +9,7 @@ use Slackbot\Slackbot;
 class HelpTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * test index
+     * test index.
      */
     public function testIndex()
     {
@@ -18,7 +18,7 @@ class HelpTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * test invalid commands in index
+     * test invalid commands in index.
      */
     public function testIndexInvalidCommands()
     {
