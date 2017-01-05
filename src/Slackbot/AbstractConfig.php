@@ -15,7 +15,7 @@ abstract class AbstractConfig
      *
      * @throws \Exception
      *
-     * @return mixed
+     * @return string
      */
     public function get($key, $replacements = [])
     {
