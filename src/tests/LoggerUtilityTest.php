@@ -23,7 +23,7 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
     public function testLogChatDisabled()
     {
         date_default_timezone_set(self::TIMEZONE);
-        
+
         $config = new Config();
         $config->set('chatLogging', false);
         $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
