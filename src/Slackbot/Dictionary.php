@@ -23,7 +23,8 @@ class Dictionary
      */
     private function load($key)
     {
-        $stopWordsPath = __DIR__.DIRECTORY_SEPARATOR.self::DICTIONARY_DIR.DIRECTORY_SEPARATOR.$key.'.'.self::DICTIONARY_FILE_SUFFIX;
+        $stopWordsPath = __DIR__.DIRECTORY_SEPARATOR.self::DICTIONARY_DIR.DIRECTORY_SEPARATOR.$key.'.'.
+            self::DICTIONARY_FILE_SUFFIX;
 
         return (new FileUtility())->jsonFileToArray($stopWordsPath);
     }

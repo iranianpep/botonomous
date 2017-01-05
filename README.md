@@ -47,7 +47,22 @@ protected static $commands = [
 ];
 ```
 
-Please note if `action` is not specified, `index` is considered as the default action.
+Please note if `action` is not specified, `index` is considered as the default action. Finally, for each action add a function with the same name to the plugin file:
+```
+/**
+ * Class Ping.
+ */
+class Ping extends AbstractPlugin
+{
+    /**
+     * @return string
+     */
+    public function index()
+    {
+        return 'pong';
+    }
+}
+```
 
 ## Configurations
 |   Name    | Type | Description |
