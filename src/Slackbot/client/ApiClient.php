@@ -96,9 +96,7 @@ class ApiClient
         return $result['members'];
     }
 
-    /** @noinspection PhpUndefinedClassInspection */
-
-    /**
+    /** @noinspection PhpUndefinedClassInspection
      * @param Client $client
      */
     public function setClient(Client $client)
@@ -106,7 +104,7 @@ class ApiClient
         $this->client = $client;
     }
 
-    /**g
+    /** @noinspection PhpUndefinedClassInspection
      * @return Client
      */
     public function getClient()

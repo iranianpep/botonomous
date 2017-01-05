@@ -6,6 +6,7 @@ use Slackbot\Config;
 use Slackbot\plugin\help\Help;
 use Slackbot\Slackbot;
 
+/** @noinspection PhpUndefinedClassInspection */
 class HelpTest extends \PHPUnit_Framework_TestCase
 {
     /**

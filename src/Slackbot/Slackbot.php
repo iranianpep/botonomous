@@ -55,13 +55,11 @@ class Slackbot
         }
     }
 
-    /**
+    /** @noinspection PhpInconsistentReturnPointsInspection
      * @param null $key
      *
-     * @return mixed
+     * @return
      */
-
-    /** @noinspection PhpInconsistentReturnPointsInspection */
     public function getRequest($key = null)
     {
         if ($key === null) {
