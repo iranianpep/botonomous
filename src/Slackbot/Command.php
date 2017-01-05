@@ -5,6 +5,7 @@ namespace Slackbot;
 class Command
 {
     const DEFAULT_ACTION = 'index';
+    const PLUGIN_DIR = 'plugin';
 
     private $key;
     private $plugin;
@@ -91,7 +92,7 @@ class Command
     public function getClass()
     {
         if (empty($this->class)) {
-            $class = __NAMESPACE__.'\\plugin\\'.strtolower($this->getPlugin()).'\\'.$this->getPlugin();
+            $class = __NAMESPACE__.'\\'.self::PLUGIN_DIR.'\\'.strtolower($this->getPlugin()).'\\'.$this->getPlugin();
             $this->setClass($class);
         }
 
