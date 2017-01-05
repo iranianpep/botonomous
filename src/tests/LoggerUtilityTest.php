@@ -90,7 +90,7 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
             'Failed to write to the log file'
         );
 
-        $this->assertTrue($utility->logRaw(self::TEST_RAW_MESSAGE));
+        $utility->logRaw(self::TEST_RAW_MESSAGE);
     }
 
     /**
@@ -112,7 +112,7 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
             'Failed to write to the log file'
         );
 
-        $this->assertTrue($utility->logChat(__METHOD__, self::TEST_RAW_MESSAGE));
+        $utility->logChat(__METHOD__, self::TEST_RAW_MESSAGE);
     }
 
     /**
