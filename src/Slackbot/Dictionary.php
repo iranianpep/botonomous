@@ -9,6 +9,9 @@ use Slackbot\utility\FileUtility;
  */
 class Dictionary
 {
+    const DICTIONARY_DIR = 'dictionary';
+    const DICTIONARY_FILE_SUFFIX = 'json';
+
     private $data;
 
     /**
@@ -20,7 +23,7 @@ class Dictionary
      */
     private function load($key)
     {
-        $stopWordsPath = __DIR__.DIRECTORY_SEPARATOR.'dictionary'.DIRECTORY_SEPARATOR.$key.'.json';
+        $stopWordsPath = __DIR__.DIRECTORY_SEPARATOR.self::DICTIONARY_DIR.DIRECTORY_SEPARATOR.$key.'.'.self::DICTIONARY_FILE_SUFFIX;
 
         return (new FileUtility())->jsonFileToArray($stopWordsPath);
     }
