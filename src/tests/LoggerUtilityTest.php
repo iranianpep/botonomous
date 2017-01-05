@@ -91,7 +91,9 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
         );
 
         $utility->logRaw(self::TEST_RAW_MESSAGE);
-    } // @codeCoverageIgnore
+    }
+
+ // @codeCoverageIgnore
 
     /**
      * Test logChat.
@@ -113,7 +115,9 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
         );
 
         $utility->logChat(__METHOD__, self::TEST_RAW_MESSAGE);
-    } // @codeCoverageIgnore
+    }
+
+ // @codeCoverageIgnore
 
     /**
      * Test logRaw.
