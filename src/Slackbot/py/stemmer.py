@@ -17,5 +17,5 @@ try:
         print(sentence, end='')
     else:
         print('', end='')
-except:
+except Exception:
     traceback.print_exc()
