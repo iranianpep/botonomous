@@ -85,6 +85,7 @@ class Ping extends AbstractPlugin
 | defaultCommand | string | Default command if there is no command has been specified in the message |
 | noCommandMessage | string | Message in case there is no command found in the message |
 | unknownCommandMessage | string | Message in case the command in the message is unknown |
+| confirmReceivedMessage | string | Message in case a message is received by the bot |
 
 ## Using Python nltk
 
