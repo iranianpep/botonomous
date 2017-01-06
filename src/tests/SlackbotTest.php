@@ -160,9 +160,11 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
             $output = $inputOutput['o'];
 
+            // @codeCoverageIgnoreStart
             if (is_callable($inputOutput['o'])) {
                 $output = call_user_func($inputOutput['o'], $inputOutput['i']['message']);
             }
+            // @codeCoverageIgnoreEnd
 
             $this->assertEquals($output, $response);
         }
@@ -248,7 +250,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $slackbot = new Slackbot($request);
         $response = $slackbot->respond();
 
+        // @codeCoverageIgnoreStart
         $this->assertEquals('', $response);
+        // @codeCoverageIgnoreEnd
     }
 
     /**
