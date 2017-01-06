@@ -370,10 +370,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $slackbot = new Slackbot($request, $config);
 
-        $confirmReceivedMessage = $slackbot->getConfig()->get('confirmReceivedMessage');
+        $confirmMessage = $slackbot->getConfig()->get('confirmReceivedMessage');
 
         $response = '';
-        if (!empty($confirmReceivedMessage)) {
+        if (!empty($confirmMessage)) {
             $response .= '{"text":"I have received your message and am thinking about it! :thought_balloon:"}';
         }
 

@@ -84,10 +84,10 @@ class Slackbot
         }
 
         try {
-            $confirmReceivedMessage = $this->getConfig()->get('confirmReceivedMessage');
+            $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
 
-            if (!empty($confirmReceivedMessage)) {
-                $this->send($confirmReceivedMessage);
+            if (!empty($confirmMessage)) {
+                $this->send($confirmMessage);
             }
 
             $response = $this->respond($this->getRequest('text'));
