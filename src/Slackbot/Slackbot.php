@@ -102,9 +102,11 @@ class Slackbot
      */
     public function send($response)
     {
+        // @codeCoverageIgnoreStart
         if ($this->isThisBot()) {
             return false;
         }
+        // @codeCoverageIgnoreEnd
 
         $responseType = $this->getConfig()->get('response');
         $debug = (bool) $this->getRequest('debug');
