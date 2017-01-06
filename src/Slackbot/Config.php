@@ -34,6 +34,6 @@ class Config extends AbstractConfig
         'unknownCommandMessage' => "Sorry. I do not know anything about your command: '/{command}'.
         List the available commands using /help",
         // leave it empty to disable it
-        'confirmReceivedMessage' => "I have received your message and am thinking about it!"
+        'confirmReceivedMessage' => "I have received your message and am thinking about it! :thought_balloon:"
     ];
 }
