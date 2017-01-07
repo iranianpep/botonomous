@@ -182,8 +182,9 @@ class Slackbot
     /**
      * @param null $message
      *
-     * @return bool|Command
      * @throws \Exception
+     *
+     * @return bool|Command
      */
     public function getCommandByMessage($message = null)
     {
@@ -194,6 +195,7 @@ class Slackbot
 
         if (empty($message)) {
             $this->setLastError('Message is empty');
+
             return false;
         }
 
@@ -211,6 +213,7 @@ class Slackbot
 
             if (empty($command)) {
                 $this->setLastError($config->get('noCommandMessage'));
+
                 return false;
             }
         }
@@ -220,6 +223,7 @@ class Slackbot
         // check command details
         if (empty($commandObject)) {
             $this->setLastError($config->get('unknownCommandMessage', ['command' => $command]));
+
             return false;
         }
 
