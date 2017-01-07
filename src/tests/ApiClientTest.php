@@ -32,7 +32,6 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $apiClient = new ApiClient();
 
         /** @noinspection PhpUndefinedClassInspection */
-        /** @noinspection PhpUndefinedClassInspection */
         $mock = new MockHandler([
             new Response(200, [], '{"members": [{"id": "U023BECGF"}]}'),
         ]);
@@ -55,7 +54,6 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $apiClient = new ApiClient();
 
         /** @noinspection PhpUndefinedClassInspection */
-        /** @noinspection PhpUndefinedClassInspection */
         $mock = new MockHandler([
             new Response(200, [], 'test'),
         ]);
@@ -72,8 +70,11 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             'Failed to process response from the Slack API'
         );
 
+        // @codeCoverageIgnoreStart
         $apiClient->apiCall('test');
     }
+
+    // @codeCoverageIgnoreEnd
 
     /**
      * @throws \Exception
@@ -113,8 +114,6 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $apiClient = new ApiClient();
 
         /** @noinspection PhpUndefinedClassInspection */
-        /** @noinspection PhpUndefinedClassInspection */
-        /** @noinspection PhpUndefinedClassInspection */
         $mock = new MockHandler([
             new RequestException('Error Communicating with Server', new Request('Post', $apiClient::BASE_URL.'test')),
         ]);
@@ -131,8 +130,11 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             'Failed to send data to the Slack API: Error Communicating with Server'
         );
 
+        // @codeCoverageIgnoreStart
         $apiClient->apiCall('test');
     }
+
+    // @codeCoverageIgnoreEnd
 
     /**
      * Test chatPostMessage.

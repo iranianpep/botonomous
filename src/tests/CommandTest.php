@@ -3,6 +3,7 @@
 namespace Slackbot;
 
 /** @noinspection PhpUndefinedClassInspection */
+/** @noinspection PhpUndefinedClassInspection */
 class CommandTest extends \PHPUnit_Framework_TestCase
 {
     const PING_KEY = 'ping';

@@ -5,7 +5,6 @@ namespace Slackbot\Tests;
 use Slackbot\CommandContainer;
 use Slackbot\Config;
 use Slackbot\plugin\AbstractPlugin;
-use Slackbot\plugin\ping\Ping;
 use Slackbot\Slackbot;
 
 /**
