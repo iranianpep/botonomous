@@ -218,7 +218,7 @@ class Slackbot
             }
         }
 
-        $commandObject = (new CommandContainer())->get($command);
+        $commandObject = (new CommandContainer())->getAsObject($command);
 
         // check command details
         if (empty($commandObject)) {
@@ -288,7 +288,7 @@ class Slackbot
     public function getCommands()
     {
         if (!isset($this->commands)) {
-            $this->setCommands((new CommandContainer())->getAll());
+            $this->setCommands((new CommandContainer())->getAllAsObject());
         }
 
         return $this->commands;

@@ -63,6 +63,6 @@ class MessageUtility extends AbstractUtility
         $command = $this->extractCommandName($message);
 
         // then get the command details
-        return (new CommandContainer())->get($command);
+        return (new CommandContainer())->getAsObject($command);
     }
 }

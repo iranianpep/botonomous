@@ -14,9 +14,9 @@ abstract class AbstractCommandContainer
      *
      * @return null
      */
-    public function get($key)
+    public function getAsObject($key)
     {
-        $commands = $this->getAll($key);
+        $commands = $this->getAllAsObject($key);
 
         if (!array_key_exists($key, $commands)) {
             /* @noinspection PhpInconsistentReturnPointsInspection */
@@ -35,15 +35,23 @@ abstract class AbstractCommandContainer
     }
 
     /**
+     * @return array
+     */
+    public function getAll()
+    {
+        return static::$commands;
+    }
+
+    /**
      * @param null $key
      *
      * @throws \Exception
      *
      * @return mixed
      */
-    public function getAll($key = null)
+    public function getAllAsObject($key = null)
     {
-        $commands = static::$commands;
+        $commands = $this->getAll();
 
         if (!empty($commands)) {
             foreach ($commands as $commandKey => $commandDetails) {

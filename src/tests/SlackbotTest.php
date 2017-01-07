@@ -210,7 +210,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $slackbot = new Slackbot(['text' => $message, 'token' => $token]);
 
         if (!empty($defaultCommand)) {
-            $commandObject = (new CommandContainer())->get($defaultCommand);
+            $commandObject = (new CommandContainer())->getAsObject($defaultCommand);
             /** @noinspection PhpUndefinedMethodInspection */
             $commandClass = $commandObject->getClass();
 
