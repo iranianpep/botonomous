@@ -88,6 +88,7 @@ class Ping extends AbstractPlugin
 | confirmReceivedMessage | string | Message in case a message is received by the bot |
 
 ## Using Python nltk
+If you need to use Python NLTK instead of PHP nlp-tools for the natural processing, these are the steps to install Python NLTK:
 
 1. Install Python
     ```
