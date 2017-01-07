@@ -61,7 +61,11 @@ abstract class AbstractCommandContainer
 
                 $commandDetails['key'] = $commandKey;
 
-                $mappedObject = $this->mapToCommandObject($commandDetails);
+                try {
+                    $mappedObject = $this->mapToCommandObject($commandDetails);
+                } catch (\Exception $e) {
+                    throw $e;
+                }
 
                 if (empty($mappedObject)) {
                     continue;
@@ -93,7 +97,14 @@ abstract class AbstractCommandContainer
 
         if (!empty($row)) {
             foreach ($row as $key => $value) {
-                $mappedObject->{'set'.ucwords($key)}($value);
+                $methodName = 'set'.ucwords($key);
+
+                // check setter exists
+                if (!method_exists($mappedObject, $methodName)) {
+                    continue;
+                }
+
+                $mappedObject->$methodName($value);
             }
         }
 
