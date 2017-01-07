@@ -27,6 +27,14 @@ abstract class AbstractCommandContainer
     }
 
     /**
+     * @param $commands
+     */
+    public function setAll($commands)
+    {
+        static::$commands = $commands;
+    }
+
+    /**
      * @param null $key
      *
      * @throws \Exception

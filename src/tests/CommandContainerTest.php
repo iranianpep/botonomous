@@ -17,7 +17,8 @@ class CommandContainerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGet()
     {
-        $commandObject = (new CommandContainer())->get('ping');
+        $commandContainer = new CommandContainer();
+        $commandObject = $commandContainer->get('ping');
 
         $this->assertTrue($commandObject instanceof Command);
 
@@ -33,5 +34,17 @@ class CommandContainerTest extends \PHPUnit_Framework_TestCase
         $commands = (new CommandContainer())->getAll();
         /* @noinspection PhpUndefinedMethodInspection */
         $this->assertEquals($commands['ping']->getPlugin(), 'Ping');
+    }
+
+    /**
+     * Test getAll.
+     */
+    public function testGetAllEmpty()
+    {
+        $commands = new CommandContainer();
+        $commands->setAll([]);
+
+        /* @noinspection PhpUndefinedMethodInspection */
+        $this->assertEquals([], $commands->getAll());
     }
 }
