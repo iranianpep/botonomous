@@ -18,66 +18,6 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testSetGetRequest()
-    {
-        $config = new Config();
-
-        /**
-         * Form the request.
-         */
-        $request = [
-            'token' => $config->get('outgoingWebhookToken'),
-        ];
-
-        $slackbot = new Slackbot($request);
-
-        $this->assertEquals($request, $slackbot->getRequest());
-
-        $this->assertEquals($config->get('outgoingWebhookToken'), $slackbot->getRequest('token'));
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function testGetConfig()
-    {
-        $config = new Config();
-
-        /**
-         * Form the request.
-         */
-        $request = [
-            'token' => $config->get('outgoingWebhookToken'),
-        ];
-
-        $slackbot = new Slackbot($request);
-
-        $this->assertEquals($config, $slackbot->getConfig());
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function testSetConfig()
-    {
-        $config = new Config();
-
-        /**
-         * Form the request.
-         */
-        $request = [
-            'token' => $config->get('outgoingWebhookToken'),
-        ];
-
-        $slackbot = new Slackbot($request);
-        $slackbot->setConfig($config);
-
-        $this->assertEquals($config, $slackbot->getConfig());
-    }
-
-    /**
-     * @throws \Exception
-     */
     public function testRespond()
     {
         $config = new Config();
@@ -173,6 +113,66 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
+    public function testSetGetRequest()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request.
+         */
+        $request = [
+            'token' => $config->get('outgoingWebhookToken'),
+        ];
+
+        $slackbot = new Slackbot($request);
+
+        $this->assertEquals($request, $slackbot->getRequest());
+
+        $this->assertEquals($config->get('outgoingWebhookToken'), $slackbot->getRequest('token'));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testGetConfig()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request.
+         */
+        $request = [
+            'token' => $config->get('outgoingWebhookToken'),
+        ];
+
+        $slackbot = new Slackbot($request);
+
+        $this->assertEquals($config, $slackbot->getConfig());
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testSetConfig()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request.
+         */
+        $request = [
+            'token' => $config->get('outgoingWebhookToken'),
+        ];
+
+        $slackbot = new Slackbot($request);
+        $slackbot->setConfig($config);
+
+        $this->assertEquals($config, $slackbot->getConfig());
+    }
+
+    /**
+     * @throws \Exception
+     */
     public function testRespondWithoutDefaultCommand()
     {
         $config = new Config();
@@ -258,32 +258,25 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testGetPluginAction()
+    public function testGetCommandByMessage()
     {
-        $config = new Config();
-
         /**
          * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
+            'token' => (new Config())->get('outgoingWebhookToken'),
         ];
 
-        $slackbot = new Slackbot($request);
-        $result = $slackbot->getPluginAction('/ping message');
+        $result = (new Slackbot($request))->getCommandByMessage('/ping message');
 
-        $expected = [
-            'plugin' => new Ping($slackbot),
-            'action' => 'index',
-        ];
-
-        $this->assertEquals($expected, $result);
+        $this->assertEquals('index', $result->getAction());
+        $this->assertEquals('Ping', $result->getPlugin());
     }
 
     /**
      * @throws \Exception
      */
-    public function testGetPluginActionWithoutDefaultCommand()
+    public function testGetCommandByMessageWithoutDefaultCommand()
     {
         $config = new Config();
 
@@ -297,13 +290,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config->set('defaultCommand', '');
 
         $slackbot = new Slackbot($request);
-        $result = $slackbot->getPluginAction('dummy message without command');
+        $slackbot->getCommandByMessage('dummy message without command');
 
-        $expected = [
-            'error' => $config->get('noCommandMessage'),
-        ];
-
-        $this->assertEquals($expected, $result);
+        $this->assertEquals($config->get('noCommandMessage'), $slackbot->getLastError());
     }
 
     /**

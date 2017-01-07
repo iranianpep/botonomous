@@ -16,6 +16,7 @@ class Slackbot
     private $request;
     private $config;
     private $commands;
+    private $lastError;
 
     /**
      * Slackbot constructor.
@@ -150,14 +151,27 @@ class Slackbot
     public function respond($message = null)
     {
         try {
-            $result = $this->getPluginAction($message);
+            $command = $this->getCommandByMessage($message);
 
-            if (empty($result['plugin']) || empty($result['action'])) {
-                return $result['error'];
+            if (!$command instanceof Command) {
+                // something went wrong, error will tell us!
+                return $this->getLastError();
             }
 
-            $pluginClass = $result['plugin'];
-            $action = $result['action'];
+            // create the class
+            $pluginClassFile = $command->getClass();
+            $pluginClass = new $pluginClassFile($this);
+
+            // check class is valid
+            if (!$pluginClass instanceof AbstractPlugin) {
+                throw new \Exception("Couldn't create class: '{$pluginClassFile}'");
+            }
+
+            // check action exists
+            $action = $command->getAction();
+            if (!method_exists($pluginClass, $action)) {
+                throw new \Exception("Action / function: '{$action}' does not exist in '{$pluginClassFile}'");
+            }
 
             return $pluginClass->$action();
         } catch (\Exception $e) {
@@ -166,17 +180,21 @@ class Slackbot
     }
 
     /**
-     * @param $message
+     * @param null $message
      *
+     * @return bool|Command
      * @throws \Exception
-     *
-     * @return array|mixed
      */
-    public function getPluginAction($message)
+    public function getCommandByMessage($message = null)
     {
         // If message is not set, get it from the current request
         if ($message === null) {
             $message = $this->getRequest('text');
+        }
+
+        if (empty($message)) {
+            $this->setLastError('Message is empty');
+            return false;
         }
 
         /**
@@ -192,7 +210,8 @@ class Slackbot
             $command = $config->get('defaultCommand');
 
             if (empty($command)) {
-                return ['error' => $config->get('noCommandMessage')];
+                $this->setLastError($config->get('noCommandMessage'));
+                return false;
             }
         }
 
@@ -200,37 +219,20 @@ class Slackbot
 
         // check command details
         if (empty($commandObject)) {
-            return ['error' => $config->get('unknownCommandMessage', ['command' => $command])];
+            $this->setLastError($config->get('unknownCommandMessage', ['command' => $command]));
+            return false;
         }
 
         if (!$commandObject instanceof Command) {
             throw new \Exception('Command is not an object');
         }
 
-        // check the plugin
+        // check the plugin for the command
         if (empty($commandObject->getPlugin())) {
             throw new \Exception('Plugin is not set for this command');
         }
 
-        // create the class
-        $pluginClassFile = $commandObject->getClass();
-        $pluginClass = new $pluginClassFile($this);
-
-        // check class is valid
-        if (!$pluginClass instanceof AbstractPlugin) {
-            throw new \Exception("Couldn't create class: '{$pluginClassFile}'");
-        }
-
-        // check action exists
-        $action = $commandObject->getAction();
-        if (!method_exists($pluginClass, $action)) {
-            throw new \Exception("Action / function: '{$action}' does not exist in '{$pluginClassFile}'");
-        }
-
-        return [
-            'plugin' => $pluginClass,
-            'action' => $action,
-        ];
+        return $commandObject;
     }
 
     /**
@@ -294,5 +296,21 @@ class Slackbot
     public function setCommands(array $commands)
     {
         $this->commands = $commands;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastError()
+    {
+        return $this->lastError;
+    }
+
+    /**
+     * @param string $lastError
+     */
+    public function setLastError($lastError)
+    {
+        $this->lastError = $lastError;
     }
 }
