@@ -61,15 +61,7 @@ abstract class AbstractCommandContainer
 
                 $commandDetails['key'] = $commandKey;
 
-                try {
-                    $mappedObject = $this->mapToCommandObject($commandDetails);
-                } catch (\Exception $e) {
-                    throw $e;
-                }
-
-                if (empty($mappedObject)) {
-                    continue;
-                }
+                $mappedObject = $this->mapToCommandObject($commandDetails);
 
                 $commands[$commandKey] = $mappedObject;
             }
@@ -87,10 +79,6 @@ abstract class AbstractCommandContainer
      */
     private function mapToCommandObject(array $row)
     {
-        if (!isset($row['key'])) {
-            throw new \Exception('Key must be provided');
-        }
-
         $mappedObject = new Command($row['key']);
 
         unset($row['key']);
