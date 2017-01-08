@@ -81,6 +81,15 @@ class ApiClient
     }
 
     /**
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getTeamInfo()
+    {
+        return $this->apiCall('team.info');
+    }
+
+    /**
      * List all the Slack users in the team.
      *
      * @return array
