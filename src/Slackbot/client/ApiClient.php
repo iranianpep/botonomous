@@ -84,17 +84,19 @@ class ApiClient
 
     /**
      * @param bool $assoc
-     * @return Team
+     *
      * @throws \Exception
+     *
+     * @return Team
      */
     public function getTeamInfo($assoc = false)
     {
         $teamInfo = $this->apiCall('team.info')['team'];
-        
+
         if ($assoc === true) {
             return $teamInfo;
         }
-        
+
         // return as object
         $teamObject = new Team();
         $stringUtility = new StringUtility();

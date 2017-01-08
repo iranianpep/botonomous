@@ -4,7 +4,6 @@ namespace Slackbot;
 
 /**
  * Class Team.
- * @package Slackbot
  */
 class Team
 {
