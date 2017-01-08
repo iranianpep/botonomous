@@ -40,6 +40,7 @@ class StringUtility extends AbstractUtility
     /**
      * @param $toFind
      * @param $subject
+     *
      * @return bool
      */
     public function findInString($toFind, $subject)
