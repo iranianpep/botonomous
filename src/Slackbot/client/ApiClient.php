@@ -7,6 +7,8 @@ use /* @noinspection PhpUndefinedClassInspection */
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
 use Slackbot\Config;
+use Slackbot\Team;
+use Slackbot\utility\StringUtility;
 
 /**
  * Class ApiClient.
@@ -81,12 +83,33 @@ class ApiClient
     }
 
     /**
-     * @return mixed
+     * @param bool $assoc
+     * @return Team
      * @throws \Exception
      */
-    public function getTeamInfo()
+    public function getTeamInfo($assoc = false)
     {
-        return $this->apiCall('team.info');
+        $teamInfo = $this->apiCall('team.info')['team'];
+        
+        if ($assoc === true) {
+            return $teamInfo;
+        }
+        
+        // return as object
+        $teamObject = new Team();
+        $stringUtility = new StringUtility();
+        foreach ($teamInfo as $key => $value) {
+            // For id, we cannot use 'set'.$stringUtility->snakeCaseToCamelCase($key) since it's named slackId
+            if ($key === 'id') {
+                $teamObject->setSlackId($value);
+                continue;
+            }
+
+            $method = 'set'.$stringUtility->snakeCaseToCamelCase($key);
+            $teamObject->$method($value);
+        }
+
+        return $teamObject;
     }
 
     /**
