@@ -144,7 +144,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             'token'    => $config->get('apiToken'),
             'channel'  => $config->get('channelName'),
             'username' => $config->get('botUsername'),
-            'as_user'  => false,
+            'as_user'  => true,
             'icon_url' => $config->get('iconURL'),
         ];
 
@@ -220,5 +220,16 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             'ok'    => false,
             'error' => 'invalid_auth',
         ];
+    }
+
+    /**
+     * Test test.
+     */
+    public function testTest()
+    {
+        $this->assertEquals(
+            ['ok' => true],
+            $this->getApiClient('{"ok":true}')->test()
+        );
     }
 }

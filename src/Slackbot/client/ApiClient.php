@@ -67,7 +67,7 @@ class ApiClient
             'token'    => $config->get('apiToken'),
             'channel'  => $config->get('channelName'),
             'username' => $config->get('botUsername'),
-            'as_user'  => false,
+            'as_user'  => true,
             'icon_url' => $config->get('iconURL'),
         ];
     }
@@ -142,6 +142,15 @@ class ApiClient
         }
 
         return $result['members'];
+    }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
+    public function test()
+    {
+        return $this->apiCall('api.test');
     }
 
     /** @noinspection PhpUndefinedClassInspection
