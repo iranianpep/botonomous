@@ -38,19 +38,35 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testTeamInfo()
     {
-        $this->assertEquals(['id' => 'T0LCJF334'], $this->getApiClient('{"team": [{"id": "T0LCJF334"}]}')->teamInfo());
+        $this->assertEquals(['id' => 'T0LCJF334'], $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334"}}')->teamInfo());
+    }
+
+    /**
+     * Test teamInfo.
+     */
+    public function testTeamInfoEmpty()
+    {
+        $this->assertEquals([], $this->getApiClient('{"ok":true}')->teamInfo());
     }
 
     /**
      * Test teamInfoAsObject.
      */
-//    public function testTeamInfoAsObject()
-//    {
-//        $teamObject = new Team();
-//        $teamObject->setSlackId('T0LCJF334');
-//
-//        $this->assertEquals($teamObject, $this->getApiClient('{"team": [{"id": "T0LCJF334"}]}')->teamInfoAsObject());
-//    }
+    public function testTeamInfoAsObjectEmpty()
+    {
+        $this->assertEquals(null, $this->getApiClient('{"ok":true}')->teamInfoAsObject());
+    }
+    
+    /**
+     * Test teamInfoAsObject.
+     */
+    public function testTeamInfoAsObject()
+    {
+        $teamObject = new Team();
+        $teamObject->setSlackId('T0LCJF334');
+
+        $this->assertEquals($teamObject, $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334"}}')->teamInfoAsObject());
+    }
 
     /**
      * @param $content

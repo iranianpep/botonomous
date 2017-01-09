@@ -112,8 +112,6 @@ class ApiClient
         $teamObject = new Team();
         $stringUtility = new StringUtility();
 
-        /* TODO */echo'<pre>';var_dump($teamInfo);echo'</pre>';exit;
-
         foreach ($teamInfo as $key => $value) {
             // For id, we cannot use 'set'.$stringUtility->snakeCaseToCamelCase($key) since it's named slackId
             if ($key === 'id') {
