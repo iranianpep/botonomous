@@ -17,6 +17,7 @@ class Slackbot
     private $config;
     private $commands;
     private $lastError;
+    private $currentCommand;
 
     /**
      * Slackbot constructor.
@@ -54,6 +55,9 @@ class Slackbot
         if ($this->verifyRequest() !== true) {
             throw new \Exception('Request is not coming from Slack');
         }
+
+        // set the current command at this point
+        $this->setCurrentCommand((new MessageUtility())->extractCommandName($this->getRequest('text')));
     }
 
     /** @noinspection PhpInconsistentReturnPointsInspection
@@ -316,5 +320,21 @@ class Slackbot
     public function setLastError($lastError)
     {
         $this->lastError = $lastError;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrentCommand()
+    {
+        return $this->currentCommand;
+    }
+
+    /**
+     * @param string $currentCommand
+     */
+    public function setCurrentCommand($currentCommand)
+    {
+        $this->currentCommand = $currentCommand;
     }
 }
