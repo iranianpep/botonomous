@@ -138,4 +138,64 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($inputOutput['output'], $result);
         }
     }
+
+    /**
+     * Test snakeCaseToCamelCase.
+     */
+    public function testSnakeCaseToCamelCase()
+    {
+        $utility = new StringUtility();
+
+        $inputOutputs = [
+            [
+                'input'  => 'email_domain',
+                'output' => 'EmailDomain',
+            ],
+            [
+                'input'  => 'id',
+                'output' => 'Id',
+            ],
+        ];
+
+        foreach ($inputOutputs as $inputOutput) {
+            $result = $utility->snakeCaseToCamelCase($inputOutput['input']);
+            $this->assertEquals($inputOutput['output'], $result);
+        }
+    }
+
+    /**
+     * Test findInString.
+     */
+    public function testFindInString()
+    {
+        $utility = new StringUtility();
+
+        $inputOutputs = [
+            [
+                'toFind' => 'email',
+                'string' => 'This is email',
+                'output' => true,
+            ],
+            [
+                'toFind' => 'email',
+                'string' => 'This is',
+                'output' => false,
+            ],
+            [
+                'toFind' => 'emailTest',
+                'string' => 'This is',
+                'output' => false,
+            ],
+            [
+                'toFind' => 'email',
+                'string' => '',
+                'output' => false,
+            ],
+        ];
+
+        foreach ($inputOutputs as $inputOutput) {
+            $result = $utility->findInString($inputOutput['toFind'], $inputOutput['string']);
+            $this->assertEquals($inputOutput['output'], $result);
+        }
+    }
 }
