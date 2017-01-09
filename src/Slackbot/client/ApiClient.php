@@ -154,6 +154,21 @@ class ApiClient
         return $this->apiCall('api.test');
     }
 
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function imList()
+    {
+        $result = $this->apiCall('im.list');
+
+        if (!isset($result['ims'])) {
+            return [];
+        }
+
+        return $result['ims'];
+    }
+
     /** @noinspection PhpUndefinedClassInspection
      * @param Client $client
      */

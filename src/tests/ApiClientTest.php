@@ -232,4 +232,15 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             $this->getApiClient('{"ok":true}')->test()
         );
     }
+
+    /**
+     * Test imList.
+     */
+    public function testImList()
+    {
+        $this->assertEquals(
+            [['id' => 'D39PQF1C4']],
+            $this->getApiClient('{"ok":true,"ims":[{"id":"D39PQF1C4"}]}')->imList()
+        );
+    }
 }
