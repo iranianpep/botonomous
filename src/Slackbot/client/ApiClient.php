@@ -145,8 +145,9 @@ class ApiClient
     }
 
     /**
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function test()
     {
