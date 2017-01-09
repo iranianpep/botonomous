@@ -83,16 +83,29 @@ class ApiClient
     }
 
     /**
-     * @param bool $assoc
-     * @return Team
+     * @return array
      * @throws \Exception
      */
-    public function getTeamInfo($assoc = false)
+    public function getTeamInfo()
     {
-        $teamInfo = $this->apiCall('team.info')['team'];
+        $teamInfo = $this->apiCall('team.info');
         
-        if ($assoc === true) {
-            return $teamInfo;
+        if (!isset($teamInfo['team'])) {
+            return [];
+        }
+        
+        return $teamInfo['team'];
+    }
+
+    /**
+     * @return Team|void
+     */
+    public function getTeamInfoAsObject()
+    {
+        $teamInfo = $this->getTeamInfo();
+
+        if (empty($teamInfo)) {
+            return;
         }
         
         // return as object
