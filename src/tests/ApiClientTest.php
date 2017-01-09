@@ -56,7 +56,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(null, $this->getApiClient('{"ok":true}')->teamInfoAsObject());
     }
-    
+
     /**
      * Test teamInfoAsObject.
      */
@@ -70,6 +70,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $content
+     *
      * @return ApiClient
      */
     private function getApiClient($content)
@@ -87,10 +88,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $client = new Client(['handler' => $handler]);
 
         $apiClient->setClient($client);
-        
+
         return $apiClient;
     }
-    
+
     /**
      * @throws \Exception
      */

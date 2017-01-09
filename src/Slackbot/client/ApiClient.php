@@ -83,19 +83,19 @@ class ApiClient
     }
 
     /**
-     * @return array
      * @throws \Exception
      *
+     * @return array
      * @return Team
      */
     public function teamInfo()
     {
         $teamInfo = $this->apiCall('team.info');
-        
+
         if (!isset($teamInfo['team'])) {
             return [];
         }
-        
+
         return $teamInfo['team'];
     }
 
