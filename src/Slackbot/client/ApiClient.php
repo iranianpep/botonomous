@@ -85,6 +85,8 @@ class ApiClient
     /**
      * @return array
      * @throws \Exception
+     *
+     * @return Team
      */
     public function teamInfo()
     {
@@ -107,7 +109,7 @@ class ApiClient
         if (empty($teamInfo)) {
             return;
         }
-        
+
         // return as object
         $teamObject = new Team();
         $stringUtility = new StringUtility();
