@@ -2,7 +2,7 @@
 
 namespace Slackbot\Tests;
 
-/**
+/*
  * Class TeamTest.
  */
 use Slackbot\Team;
@@ -33,7 +33,7 @@ class TeamTest extends \PHPUnit_Framework_TestCase
         $icon = [
             'image_34'      => 'http:',
             'image_44'      => 'http:',
-            'image_default' => true
+            'image_default' => true,
         ];
 
         $team->setIcon($icon);
@@ -48,7 +48,7 @@ class TeamTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('test', $team->getEmailDomain());
     }
-    
+
     public function testGetDomain()
     {
         $team = new Team();
@@ -56,7 +56,7 @@ class TeamTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('test', $team->getDomain());
     }
-    
+
     public function testIsIconDefault()
     {
         $team = new Team();
@@ -64,7 +64,7 @@ class TeamTest extends \PHPUnit_Framework_TestCase
         $icon = [
             'image_34'      => 'http:',
             'image_44'      => 'http:',
-            'image_default' => true
+            'image_default' => true,
         ];
 
         $team->setIcon($icon);
