@@ -144,7 +144,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             'token'    => $config->get('apiToken'),
             'channel'  => $config->get('channelName'),
             'username' => $config->get('botUsername'),
-            'as_user'  => true,
+            'as_user'  => false,
             'icon_url' => $config->get('iconURL'),
         ];
 
