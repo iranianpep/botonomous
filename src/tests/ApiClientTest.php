@@ -16,6 +16,7 @@ use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Response;
 use Slackbot\client\ApiClient;
 use Slackbot\Config;
+use Slackbot\Team;
 
 /**
  * Class ApiClientTest.
@@ -29,11 +30,39 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testUsersList()
     {
+        $this->assertEquals([['id' => 'U023BECGF']], $this->getApiClient('{"members": [{"id": "U023BECGF"}]}')->usersList());
+    }
+
+    /**
+     * Test teamInfo.
+     */
+    public function testTeamInfo()
+    {
+        $this->assertEquals(['id' => 'T0LCJF334'], $this->getApiClient('{"team": [{"id": "T0LCJF334"}]}')->teamInfo());
+    }
+
+    /**
+     * Test teamInfoAsObject.
+     */
+//    public function testTeamInfoAsObject()
+//    {
+//        $teamObject = new Team();
+//        $teamObject->setSlackId('T0LCJF334');
+//
+//        $this->assertEquals($teamObject, $this->getApiClient('{"team": [{"id": "T0LCJF334"}]}')->teamInfoAsObject());
+//    }
+
+    /**
+     * @param $content
+     * @return ApiClient
+     */
+    private function getApiClient($content)
+    {
         $apiClient = new ApiClient();
 
         /** @noinspection PhpUndefinedClassInspection */
         $mock = new MockHandler([
-            new Response(200, [], '{"members": [{"id": "U023BECGF"}]}'),
+            new Response(200, [], $content),
         ]);
 
         /** @noinspection PhpUndefinedClassInspection */
@@ -42,10 +71,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $client = new Client(['handler' => $handler]);
 
         $apiClient->setClient($client);
-
-        $this->assertEquals([['id' => 'U023BECGF']], $apiClient->usersList());
+        
+        return $apiClient;
     }
-
+    
     /**
      * @throws \Exception
      */

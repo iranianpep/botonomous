@@ -86,7 +86,7 @@ class ApiClient
      * @return array
      * @throws \Exception
      */
-    public function getTeamInfo()
+    public function teamInfo()
     {
         $teamInfo = $this->apiCall('team.info');
         
@@ -100,9 +100,9 @@ class ApiClient
     /**
      * @return Team|void
      */
-    public function getTeamInfoAsObject()
+    public function teamInfoAsObject()
     {
-        $teamInfo = $this->getTeamInfo();
+        $teamInfo = $this->teamInfo();
 
         if (empty($teamInfo)) {
             return;
@@ -111,6 +111,9 @@ class ApiClient
         // return as object
         $teamObject = new Team();
         $stringUtility = new StringUtility();
+
+        /* TODO */echo'<pre>';var_dump($teamInfo);echo'</pre>';exit;
+
         foreach ($teamInfo as $key => $value) {
             // For id, we cannot use 'set'.$stringUtility->snakeCaseToCamelCase($key) since it's named slackId
             if ($key === 'id') {
