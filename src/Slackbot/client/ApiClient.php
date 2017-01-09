@@ -155,8 +155,9 @@ class ApiClient
     }
 
     /**
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function imList()
     {
