@@ -92,4 +92,18 @@ class Team
     {
         $this->icon = $icon;
     }
+
+    /**
+     * @return bool
+     */
+    public function isIconDefault()
+    {
+        $icon = $this->getIcon();
+        
+        if (isset($icon['image_default']) && $icon['image_default'] === true) {
+            return true;
+        }
+        
+        return false;
+    }
 }
