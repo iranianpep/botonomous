@@ -30,7 +30,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testUsersList()
     {
-        $this->assertEquals([['id' => 'U023BECGF']], $this->getApiClient('{"members": [{"id": "U023BECGF"}]}')->usersList());
+        $this->assertEquals(
+            [['id' => 'U023BECGF']],
+            $this->getApiClient('{"members": [{"id": "U023BECGF"}]}')->usersList()
+        );
     }
 
     /**
@@ -38,7 +41,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testTeamInfo()
     {
-        $this->assertEquals(['id' => 'T0LCJF334'], $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334"}}')->teamInfo());
+        $this->assertEquals(
+            ['id' => 'T0LCJF334'],
+            $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334"}}')->teamInfo()
+        );
     }
 
     /**
@@ -65,7 +71,10 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $teamObject = new Team();
         $teamObject->setSlackId('T0LCJF334');
 
-        $this->assertEquals($teamObject, $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334"}}')->teamInfoAsObject());
+        $this->assertEquals(
+            $teamObject,
+            $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334"}}')->teamInfoAsObject()
+        );
     }
 
     /**
