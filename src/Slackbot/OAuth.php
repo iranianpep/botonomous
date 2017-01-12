@@ -121,10 +121,10 @@ class OAuth
         $scope = implode(',', $this->getScopes());
         $clientId = $this->getClientId();
 
+        $cssClass = '';
+
         if (!empty($cssClass)) {
             $cssClass = "class={$cssClass}";
-        } else {
-            $cssClass = '';
         }
 
         $html = "<a href='{$authorizationUrl}?scope={$scope}&client_id={$clientId}'>
