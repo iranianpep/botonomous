@@ -3,8 +3,7 @@
 namespace Slackbot;
 
 /**
- * Class OAuth
- * @package Slackbot
+ * Class OAuth.
  */
 class OAuth
 {
