@@ -17,6 +17,14 @@ class ApiClient
 {
     const BASE_URL = 'https://slack.com/api/';
 
+    private $required = [
+        'oauth.access' => [
+            'client_id',
+            'client_secret',
+            'code'
+        ]
+    ];
+
     private $client;
 
     /**
@@ -170,6 +178,20 @@ class ApiClient
         return $result['ims'];
     }
 
+    /**
+     * @param $args
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    public function oauthAccess($args)
+    {
+        $method = 'oauth.access';
+        if ($this->validateFields($method, $args)) {
+            return $this->apiCall('oauth.access');
+        }
+    }
+
     /** @noinspection PhpUndefinedClassInspection
      * @param Client $client
      */
@@ -189,5 +211,26 @@ class ApiClient
         }
 
         return $this->client;
+    }
+
+    /**
+     * @param $method
+     * @param $args
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    private function validateFields($method, $args)
+    {
+        // get required fields for the method
+        $requiredFields = $this->required[$method];
+
+        foreach ($requiredFields as $requiredField) {
+            if (!isset($args[$requiredField]) || empty($args[$requiredField])) {
+                throw new \Exception("{$requiredField} must be provided for {$method}");
+            }
+        }
+
+        return true;
     }
 }
