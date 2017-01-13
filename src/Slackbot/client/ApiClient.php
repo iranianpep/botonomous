@@ -21,8 +21,8 @@ class ApiClient
         'oauth.access' => [
             'client_id',
             'client_secret',
-            'code'
-        ]
+            'code',
+        ],
     ];
 
     private $client;
@@ -181,8 +181,9 @@ class ApiClient
     /**
      * @param $args
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function oauthAccess($args)
     {
@@ -217,8 +218,9 @@ class ApiClient
      * @param $method
      * @param $args
      *
-     * @return bool
      * @throws \Exception
+     *
+     * @return bool
      */
     private function validateFields($method, $args)
     {
