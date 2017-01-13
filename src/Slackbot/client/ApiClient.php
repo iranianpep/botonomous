@@ -188,7 +188,7 @@ class ApiClient
     {
         $method = 'oauth.access';
         if ($this->validateFields($method, $args)) {
-            return $this->apiCall('oauth.access');
+            return $this->apiCall($method);
         }
     }
 

@@ -243,4 +243,41 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             $this->getApiClient('{"ok":true,"ims":[{"id":"D39PQF1C4"}]}')->imList()
         );
     }
+
+    /**
+     * Test validateFields.
+     */
+    public function testValidateFields()
+    {
+        $apiClient = new ApiClient();
+
+        $this->setExpectedException(
+            '\Exception',
+            'client_id must be provided for oauth.access'
+        );
+
+        $apiClient->oauthAccess([]);
+    }
+
+    /**
+     * Test oauthAccess.
+     */
+    public function testOauthAccess()
+    {
+        $client = $this->getApiClient('{"access_token": "xoxp-23984754863-2348975623103","scope": "read"}');
+
+        $response = $client->oauthAccess([
+            'client_id' => '4b39e9-752c4',
+            'client_secret' => '33fea0113f5b1',
+            'code' => 'ccdaa72ad'
+        ]);
+
+        $this->assertEquals(
+            [
+                "access_token" => "xoxp-23984754863-2348975623103",
+                "scope" => "read"
+            ],
+            $response
+        );
+    }
 }
