@@ -18,6 +18,8 @@ class OAuth
     private $state;
     private $teamId;
     private $accessToken;
+    private $botUserId;
+    private $botAccessToken;
 
     /**
      * OAuth constructor.
@@ -155,7 +157,11 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     public function getAccessToken($code = null)
     {
         if (!isset($this->accessToken)) {
-            $this->setAccessToken($this->requestAccessToken($code));
+            $response = $this->requestAccessToken($code);
+            $this->setAccessToken($response['access_token']);
+            $this->setTeamId($response['team_id']);
+            $this->setBotUserId($response['bot']['bot_user_id']);
+            $this->setBotAccessToken($response['bot']['bot_access_token']);
         }
 
         return $this->accessToken;
@@ -202,5 +208,37 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     public function setClientSecret($clientSecret)
     {
         $this->clientSecret = $clientSecret;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBotUserId()
+    {
+        return $this->botUserId;
+    }
+
+    /**
+     * @param string $botUserId
+     */
+    public function setBotUserId($botUserId)
+    {
+        $this->botUserId = $botUserId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBotAccessToken()
+    {
+        return $this->botAccessToken;
+    }
+
+    /**
+     * @param string $botAccessToken
+     */
+    public function setBotAccessToken($botAccessToken)
+    {
+        $this->botAccessToken = $botAccessToken;
     }
 }
