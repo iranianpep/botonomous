@@ -151,8 +151,9 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @param null $code
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function getAccessToken($code = null)
     {
@@ -170,8 +171,9 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @param $code
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     private function requestAccessToken($code)
     {
@@ -180,9 +182,9 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         }
 
         return (new ApiClient())->oauthAccess([
-            'client_id' => $this->getClientId(),
+            'client_id'     => $this->getClientId(),
             'client_secret' => $this->getClientSecret(),
-            'code' => $code
+            'code'          => $code,
         ]);
     }
 
