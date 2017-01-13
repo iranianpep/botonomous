@@ -17,7 +17,28 @@ class OAuth
     private $redirectUri;
     private $state;
     private $teamId;
+
+    /**
+     * @var string configuration_url will be the URL that you can point your user to if they'd like to edit
+     * or remove this integration in Slack
+     */
+    private $configurationUrl;
+
+    /**
+     * @var string The team_name field will be the name of the team that installed your app
+     */
+    private $teamName;
     private $accessToken;
+
+    /**
+     * @var string the channel will be the channel name that they have chosen to post to
+     */
+    private $channel;
+
+    /**
+     * @var string you will need to use bot_user_id and bot_access_token whenever you are acting on behalf of
+     * that bot user for that team context. Use the top-level access_token value for other integration points.
+     */
     private $botUserId;
     private $botAccessToken;
 
@@ -162,6 +183,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
             $this->setTeamId($response['team_id']);
             $this->setBotUserId($response['bot']['bot_user_id']);
             $this->setBotAccessToken($response['bot']['bot_access_token']);
+            $this->setChannel($response['incoming_webhook']['channel']);
         }
 
         return $this->accessToken;
@@ -240,5 +262,53 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     public function setBotAccessToken($botAccessToken)
     {
         $this->botAccessToken = $botAccessToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChannel()
+    {
+        return $this->channel;
+    }
+
+    /**
+     * @param string $channel
+     */
+    public function setChannel($channel)
+    {
+        $this->channel = $channel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTeamName()
+    {
+        return $this->teamName;
+    }
+
+    /**
+     * @param string $teamName
+     */
+    public function setTeamName($teamName)
+    {
+        $this->teamName = $teamName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfigurationUrl()
+    {
+        return $this->configurationUrl;
+    }
+
+    /**
+     * @param string $configurationUrl
+     */
+    public function setConfigurationUrl($configurationUrl)
+    {
+        $this->configurationUrl = $configurationUrl;
     }
 }
