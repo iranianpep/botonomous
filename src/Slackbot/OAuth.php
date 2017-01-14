@@ -17,6 +17,7 @@ class OAuth
     private $redirectUri;
     private $state;
     private $teamId;
+    private $apiClient;
 
     /**
      * @var string configuration_url will be the URL that you can point your user to if they'd like to edit
@@ -47,11 +48,13 @@ class OAuth
      * OAuth constructor.
      *
      * @param       $clientId
+     * @param       $clientSecret
      * @param array $scopes
      */
-    public function __construct($clientId, array $scopes)
+    public function __construct($clientId, $clientSecret, array $scopes)
     {
         $this->setClientId($clientId);
+        $this->setClientSecret($clientSecret);
         $this->setScopes($scopes);
     }
 
@@ -169,13 +172,12 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     }
 
     /**
-     * @param null $code
-     *
-     * @throws \Exception
+     * @param $code
      *
      * @return mixed
+     * @throws \Exception
      */
-    public function getAccessToken($code = null)
+    public function getAccessToken($code)
     {
         if (!isset($this->accessToken)) {
             $response = $this->requestAccessToken($code);
@@ -202,7 +204,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
             throw new \Exception('Code must be provided to get the access token');
         }
 
-        return (new ApiClient())->oauthAccess([
+        return $this->getApiClient()->oauthAccess([
             'client_id'     => $this->getClientId(),
             'client_secret' => $this->getClientSecret(),
             'code'          => $code,
@@ -311,5 +313,25 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     public function setConfigurationUrl($configurationUrl)
     {
         $this->configurationUrl = $configurationUrl;
+    }
+
+    /**
+     * @return ApiClient
+     */
+    public function getApiClient()
+    {
+        if (!isset($this->apiClient)) {
+            $this->setApiClient(new ApiClient());
+        }
+
+        return $this->apiClient;
+    }
+
+    /**
+     * @param ApiClient $apiClient
+     */
+    public function setApiClient(ApiClient $apiClient)
+    {
+        $this->apiClient = $apiClient;
     }
 }
