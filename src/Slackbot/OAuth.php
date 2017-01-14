@@ -37,7 +37,8 @@ class OAuth
 
     /**
      * @var string you will need to use bot_user_id and bot_access_token whenever you are acting on behalf of
-     * that bot user for that team context. Use the top-level access_token value for other integration points.
+     * that bot user for that team context.
+     * Use the top-level access_token value for other integration points.
      */
     private $botUserId;
     private $botAccessToken;
@@ -146,8 +147,6 @@ class OAuth
         $authorizationUrl = self::AUTHORIZATION_URL;
         $scope = implode(',', $this->getScopes());
         $clientId = $this->getClientId();
-
-        $cssClass = '';
 
         if (!empty($cssClass)) {
             $cssClass = "class={$cssClass}";
