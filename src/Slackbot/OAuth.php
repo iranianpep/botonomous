@@ -180,12 +180,28 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     public function getAccessToken($code)
     {
         if (!isset($this->accessToken)) {
-            $response = $this->requestAccessToken($code);
+            try {
+                $response = $this->requestAccessToken($code);
+            } catch (\Exception $e) {
+                throw $e;
+            }
+
+            if ($response['ok'] !== true) {
+                throw new \Exception($response['error']);
+            }
+
             $this->setAccessToken($response['access_token']);
             $this->setTeamId($response['team_id']);
             $this->setBotUserId($response['bot']['bot_user_id']);
             $this->setBotAccessToken($response['bot']['bot_access_token']);
-            $this->setChannel($response['incoming_webhook']['channel']);
+
+            $channel = '';
+
+            if (isset($response['incoming_webhook']['channel'])) {
+                $channel = $response['incoming_webhook']['channel'];
+            }
+
+            $this->setChannel($channel);
         }
 
         return $this->accessToken;
@@ -204,11 +220,15 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
             throw new \Exception('Code must be provided to get the access token');
         }
 
-        return $this->getApiClient()->oauthAccess([
-            'client_id'     => $this->getClientId(),
-            'client_secret' => $this->getClientSecret(),
-            'code'          => $code,
-        ]);
+        try {
+            return $this->getApiClient()->oauthAccess([
+                'client_id'     => $this->getClientId(),
+                'client_secret' => $this->getClientSecret(),
+                'code'          => $code,
+            ]);
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
     /**

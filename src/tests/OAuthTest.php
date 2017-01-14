@@ -65,6 +65,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         $oAuth = new OAuth($clientId, $clientSecret, $scope);
 
         $content = '{
+    "ok": true,
     "access_token": "xoxp-XXXXXXXX-XXXXXXXX-XXXXX",
     "scope": "incoming-webhook,commands,bot",
     "team_name": "Team Installing Your Hook",
