@@ -20,7 +20,7 @@ class OAuth
 
     /**
      * @var string configuration_url will be the URL that you can point your user to if they'd like to edit
-     * or remove this integration in Slack
+     *             or remove this integration in Slack
      */
     private $configurationUrl;
 
