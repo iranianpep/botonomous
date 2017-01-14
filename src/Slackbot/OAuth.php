@@ -2,7 +2,10 @@
 
 namespace Slackbot;
 
+session_abort();
+
 use Slackbot\client\ApiClient;
+use Slackbot\utility\SecurityUtility;
 
 /**
  * Class OAuth.
@@ -111,6 +114,10 @@ class OAuth
      */
     public function getState()
     {
+        if (!isset($this->state)) {
+            $this->setState((new SecurityUtility())->generateToken());
+        }
+
         return $this->state;
     }
 
@@ -119,6 +126,7 @@ class OAuth
      */
     public function setState($state)
     {
+        $_SESSION['state'] = $state;
         $this->state = $state;
     }
 
