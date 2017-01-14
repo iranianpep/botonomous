@@ -2,6 +2,10 @@
 
 namespace Slackbot;
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -27,7 +31,14 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
         $oAuth = new OAuth($clientId, $clientSecret, $scope);
         $addButton = $oAuth->generateAddButton();
 
-        $expected = "<a href='{$authorizationUrl}?scope={$scopeString}&client_id={$clientId}'>
+        $stateQueryString = '';
+
+        if (!empty($oAuth->getState())) {
+            $state = $oAuth->getState();
+            $stateQueryString = "&state={$state}";
+        }
+
+        $expected = "<a href='{$authorizationUrl}?scope={$scopeString}&client_id={$clientId}{$stateQueryString}'>
 <img  alt='Add to Slack' height='40' width='139'
 src='https://platform.slack-edge.com/img/add_to_slack.png'
 srcset='https://platform.slack-edge.com/img/add_to_slack.png 1x,

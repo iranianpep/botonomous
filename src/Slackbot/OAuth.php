@@ -2,7 +2,9 @@
 
 namespace Slackbot;
 
-session_abort();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 use Slackbot\client\ApiClient;
 use Slackbot\utility\SecurityUtility;
