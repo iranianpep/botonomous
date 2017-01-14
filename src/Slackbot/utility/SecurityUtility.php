@@ -35,7 +35,6 @@ class SecurityUtility
         $this->hashAlgorithm = $hashAlgorithm;
     }
 
-
     /**
      * @return string
      */

@@ -2,7 +2,6 @@
 
 namespace Slackbot\Tests;
 
-
 use Slackbot\utility\SecurityUtility;
 
 class SecurityUtilityTest extends \PHPUnit_Framework_TestCase
@@ -21,7 +20,7 @@ class SecurityUtilityTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test getHashAlgorithm
+     * Test getHashAlgorithm.
      *
      * @throws \Exception
      */
