@@ -10,7 +10,6 @@ use Slackbot\client\ApiClient;
 
 /**
  * Class OAuthTest.
- * @package Slackbot
  */
 class OAuthTest extends \PHPUnit_Framework_TestCase
 {
