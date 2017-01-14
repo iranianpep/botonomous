@@ -174,8 +174,9 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @param $code
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function getAccessToken($code)
     {
