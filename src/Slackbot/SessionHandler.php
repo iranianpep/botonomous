@@ -4,7 +4,6 @@ namespace Slackbot;
 
 /**
  * Class SessionHandler.
- * @package Slackbot
  */
 class SessionHandler
 {
@@ -47,6 +46,7 @@ class SessionHandler
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function get($key)
