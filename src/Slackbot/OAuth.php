@@ -2,10 +2,6 @@
 
 namespace Slackbot;
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
 use Slackbot\client\ApiClient;
 use Slackbot\utility\SecurityUtility;
 
@@ -23,6 +19,7 @@ class OAuth
     private $state;
     private $teamId;
     private $apiClient;
+    private $sessionHandler;
 
     /**
      * @var string configuration_url will be the URL that you can point your user to if they'd like to edit
@@ -128,7 +125,7 @@ class OAuth
      */
     public function setState($state)
     {
-        $_SESSION['state'] = $state;
+        $this->getSessionHandler()->set('state', $state);
         $this->state = $state;
     }
 
@@ -364,5 +361,25 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     public function setApiClient(ApiClient $apiClient)
     {
         $this->apiClient = $apiClient;
+    }
+
+    /**
+     * @param SessionHandler $sessionHandler
+     */
+    public function setSessionHandler(SessionHandler $sessionHandler)
+    {
+        $this->sessionHandler = $sessionHandler;
+    }
+
+    /**
+     * @return SessionHandler
+     */
+    public function getSessionHandler()
+    {
+        if (!isset($this->sessionHandler)) {
+            $this->setSessionHandler(new SessionHandler());
+        }
+
+        return $this->sessionHandler;
     }
 }

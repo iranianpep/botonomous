@@ -2,10 +2,6 @@
 
 namespace Slackbot;
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -17,6 +13,13 @@ use Slackbot\client\ApiClient;
  */
 class OAuthTest extends \PHPUnit_Framework_TestCase
 {
+    public function __construct()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
     /**
      * Test OAuth.
      */
