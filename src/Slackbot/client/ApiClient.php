@@ -29,14 +29,14 @@ class ApiClient
             'code',
         ],
         'team.info' => [
-            'token'
+            'token',
         ],
         'im.list' => [
-            'token'
+            'token',
         ],
         'users.list' => [
-            'token'
-        ]
+            'token',
+        ],
     ];
 
     private $client;
