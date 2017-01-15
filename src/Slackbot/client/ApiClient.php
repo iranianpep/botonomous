@@ -18,11 +18,25 @@ class ApiClient
     const BASE_URL = 'https://slack.com/api/';
 
     private $required = [
+//        'chat.postMessage' => [
+//            'token',
+//            'channel',
+//            'text'
+//        ],
         'oauth.access' => [
             'client_id',
             'client_secret',
             'code',
         ],
+        'team.info' => [
+            'token'
+        ],
+        'im.list' => [
+            'token'
+        ],
+        'users.list' => [
+            'token'
+        ]
     ];
 
     private $client;
@@ -39,13 +53,17 @@ class ApiClient
      */
     public function apiCall($method, array $args = [])
     {
+        $args = array_merge($args, $this->getArgs());
+
+        $this->validateFields($method, $args);
+
         try {
             /** @noinspection PhpUndefinedClassInspection */
             $request = new Request(
                 'POST',
                 self::BASE_URL.$method,
                 ['Content-Type' => 'application/x-www-form-urlencoded'],
-                http_build_query(array_merge($args, $this->getArgs()))
+                http_build_query($args)
             );
 
             $response = $this->getClient()->send($request);
@@ -187,10 +205,7 @@ class ApiClient
      */
     public function oauthAccess($args)
     {
-        $method = 'oauth.access';
-        if ($this->validateFields($method, $args)) {
-            return $this->apiCall($method, $args);
-        }
+        return $this->apiCall('oauth.access', $args);
     }
 
     /** @noinspection PhpUndefinedClassInspection
@@ -224,6 +239,10 @@ class ApiClient
      */
     private function validateFields($method, $args)
     {
+        if (!isset($this->required[$method])) {
+            return true;
+        }
+
         // get required fields for the method
         $requiredFields = $this->required[$method];
 
