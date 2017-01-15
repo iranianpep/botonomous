@@ -113,4 +113,22 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
 
         $this->assertEquals('xoxp-XXXXXXXX-XXXXXXXX-XXXXX', $oAuth->getAccessToken('1234'));
     }
+
+    /**
+     * Test verifyState.
+     */
+    public function testVerifyState()
+    {
+        $oauth = new OAuth('12345', '12345', ['bot']);
+
+        $result = $oauth->verifyState('dummyState');
+
+        $this->assertFalse($result);
+
+        $dummyState = $oauth->getState();
+
+        $result = $oauth->verifyState($dummyState);
+
+        $this->assertTrue($result);
+    }
 }

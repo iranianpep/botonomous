@@ -11,6 +11,7 @@ use Slackbot\utility\SecurityUtility;
 class OAuth
 {
     const AUTHORIZATION_URL = 'https://slack.com/oauth/authorize';
+    const SESSION_STATE_KEY = 'state';
 
     private $clientId;
     private $clientSecret;
@@ -125,8 +126,24 @@ class OAuth
      */
     public function setState($state)
     {
-        $this->getSessionHandler()->set('state', $state);
+        $this->getSessionHandler()->set(self::SESSION_STATE_KEY, $state);
         $this->state = $state;
+    }
+
+    /**
+     * @param $state
+     *
+     * @return bool
+     */
+    public function verifyState($state)
+    {
+        $storedState = $this->getSessionHandler()->get(self::SESSION_STATE_KEY);
+
+        if ($state === $storedState) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
