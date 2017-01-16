@@ -22,30 +22,30 @@ class ApiClient
             'required' => [
                 'token',
                 'channel',
-                'text'
-            ]
+                'text',
+            ],
         ],
         'oauth.access' => [
             'required' => [
                 'client_id',
                 'client_secret',
                 'code',
-            ]
+            ],
         ],
         'team.info' => [
             'required' => [
                 'token',
-            ]
+            ],
         ],
         'im.list' => [
             'required' => [
                 'token',
-            ]
+            ],
         ],
         'users.list' => [
             'required' => [
                 'token',
-            ]
+            ],
         ],
     ];
 
@@ -265,8 +265,9 @@ class ApiClient
     /**
      * @param null $method
      *
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function getArguments($method = null)
     {
