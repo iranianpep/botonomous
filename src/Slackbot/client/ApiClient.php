@@ -18,11 +18,11 @@ class ApiClient
     const BASE_URL = 'https://slack.com/api/';
 
     private $required = [
-//        'chat.postMessage' => [
-//            'token',
-//            'channel',
-//            'text'
-//        ],
+        'chat.postMessage' => [
+            'token',
+            'channel',
+            'text'
+        ],
         'oauth.access' => [
             'client_id',
             'client_secret',

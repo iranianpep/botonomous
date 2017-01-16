@@ -156,9 +156,12 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testApiCallInvalidAuth()
     {
-        $result = (new ApiClient())->apiCall('chat.postMessage', []);
+        $this->setExpectedException(
+            'Exception',
+            'text must be provided for chat.postMessage'
+        );
 
-        $this->assertEquals($this->getExpectedInvalidAuth(), $result);
+        (new ApiClient())->apiCall('chat.postMessage', []);
     }
 
     /**
@@ -196,9 +199,12 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testChatPostMessage()
     {
-        $result = (new ApiClient())->chatPostMessage([]);
+        $this->setExpectedException(
+            'Exception',
+            'text must be provided for chat.postMessage'
+        );
 
-        $this->assertEquals($this->getExpectedInvalidAuth(), $result);
+        (new ApiClient())->chatPostMessage([]);
     }
 
     /**
@@ -209,17 +215,6 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $result = (new ApiClient())->usersList();
 
         $this->assertEquals([], $result);
-    }
-
-    /**
-     * @return array
-     */
-    private function getExpectedInvalidAuth()
-    {
-        return [
-            'ok'    => false,
-            'error' => 'invalid_auth',
-        ];
     }
 
     /**
