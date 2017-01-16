@@ -14,14 +14,14 @@ class ArrayUtilityTest extends \PHPUnit_Framework_TestCase
         $utility = new ArrayUtility();
 
         $toFilter = [
-            'token' => '123',
+            'token'    => '123',
             'dummyKey' => '333',
-            'access' => 'public'
+            'access'   => 'public',
         ];
 
         $expected = [
-            'token' => '123',
-            'access' => 'public'
+            'token'  => '123',
+            'access' => 'public',
         ];
 
         $filtered = $utility->filterArray($toFilter, [

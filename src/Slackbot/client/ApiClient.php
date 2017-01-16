@@ -35,7 +35,7 @@ class ApiClient
                 'as_user',
                 'icon_url',
                 'icon_emoji',
-            ]
+            ],
         ],
         'oauth.access' => [
             'required' => [
@@ -45,7 +45,7 @@ class ApiClient
             ],
             'optional' => [
                 'redirect_uri',
-            ]
+            ],
         ],
         'team.info' => [
             'required' => [
@@ -63,7 +63,7 @@ class ApiClient
             ],
             'optional' => [
                 'presence',
-            ]
+            ],
         ],
     ];
 
