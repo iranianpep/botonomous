@@ -8,6 +8,7 @@ use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
 use Slackbot\Config;
 use Slackbot\Team;
+use Slackbot\utility\ArrayUtility;
 use Slackbot\utility\StringUtility;
 
 /**
@@ -22,7 +23,18 @@ class ApiClient
             'required' => [
                 'token',
                 'channel',
-                'text'
+                'text',
+            ],
+            'optional' => [
+                'parse',
+                'link_names',
+                'attachments',
+                'unfurl_links',
+                'unfurl_media',
+                'username',
+                'as_user',
+                'icon_url',
+                'icon_emoji',
             ]
         ],
         'oauth.access' => [
@@ -30,6 +42,9 @@ class ApiClient
                 'client_id',
                 'client_secret',
                 'code',
+            ],
+            'optional' => [
+                'redirect_uri',
             ]
         ],
         'team.info' => [
@@ -45,6 +60,9 @@ class ApiClient
         'users.list' => [
             'required' => [
                 'token',
+            ],
+            'optional' => [
+                'presence',
             ]
         ],
     ];
@@ -65,7 +83,11 @@ class ApiClient
     {
         $args = array_merge($args, $this->getArgs());
 
+        // check the required arguments are provided
         $this->validateRequiredArguments($method, $args);
+
+        // filter unwanted arguments
+        $args = $this->filterArguments($method, $args);
 
         try {
             /** @noinspection PhpUndefinedClassInspection */
@@ -287,5 +309,28 @@ class ApiClient
     public function setArguments(array $arguments)
     {
         $this->arguments = $arguments;
+    }
+
+    /**
+     * @param       $method
+     * @param array $args
+     *
+     * @return array
+     */
+    public function filterArguments($method, array $args)
+    {
+        $arguments = $this->getArguments($method);
+
+        if (empty($arguments)) {
+            return $args;
+        }
+
+        if (!isset($arguments['optional'])) {
+            $arguments['optional'] = [];
+        }
+
+        $extractedArguments = array_merge($arguments['required'], $arguments['optional']);
+
+        return (new ArrayUtility())->filterArray($args, $extractedArguments);
     }
 }
