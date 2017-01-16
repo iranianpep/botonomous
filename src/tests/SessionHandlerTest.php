@@ -12,7 +12,7 @@ class SessionHandlerTest extends \PHPUnit_Framework_TestCase
     public function __construct()
     {
         if (session_status() == PHP_SESSION_NONE) {
-            session_start();    
+            session_start();
         }
     }
 
