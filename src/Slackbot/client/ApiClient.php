@@ -50,12 +50,12 @@ class ApiClient
         'team.info' => [
             'required' => [
                 'token',
-            ]
+            ],
         ],
         'im.list' => [
             'required' => [
                 'token',
-            ]
+            ],
         ],
         'users.list' => [
             'required' => [
@@ -287,8 +287,9 @@ class ApiClient
     /**
      * @param null $method
      *
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function getArguments($method = null)
     {
