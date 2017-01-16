@@ -17,25 +17,35 @@ class ApiClient
 {
     const BASE_URL = 'https://slack.com/api/';
 
-    private $required = [
+    private $arguments = [
         'chat.postMessage' => [
-            'token',
-            'channel',
-            'text'
+            'required' => [
+                'token',
+                'channel',
+                'text'
+            ]
         ],
         'oauth.access' => [
-            'client_id',
-            'client_secret',
-            'code',
+            'required' => [
+                'client_id',
+                'client_secret',
+                'code',
+            ]
         ],
         'team.info' => [
-            'token',
+            'required' => [
+                'token',
+            ]
         ],
         'im.list' => [
-            'token',
+            'required' => [
+                'token',
+            ]
         ],
         'users.list' => [
-            'token',
+            'required' => [
+                'token',
+            ]
         ],
     ];
 
@@ -55,7 +65,7 @@ class ApiClient
     {
         $args = array_merge($args, $this->getArgs());
 
-        $this->validateFields($method, $args);
+        $this->validateRequiredArguments($method, $args);
 
         try {
             /** @noinspection PhpUndefinedClassInspection */
@@ -237,21 +247,45 @@ class ApiClient
      *
      * @return bool
      */
-    private function validateFields($method, $args)
+    private function validateRequiredArguments($method, $args)
     {
-        if (!isset($this->required[$method])) {
-            return true;
-        }
+        $arguments = $this->getArguments($method);
 
-        // get required fields for the method
-        $requiredFields = $this->required[$method];
-
-        foreach ($requiredFields as $requiredField) {
-            if (!isset($args[$requiredField]) || empty($args[$requiredField])) {
-                throw new \Exception("{$requiredField} must be provided for {$method}");
+        if (!empty($arguments['required'])) {
+            foreach ($arguments['required'] as $argument) {
+                if (!isset($args[$argument]) || empty($args[$argument])) {
+                    throw new \Exception("{$argument} must be provided for {$method}");
+                }
             }
         }
 
         return true;
+    }
+
+    /**
+     * @param null $method
+     *
+     * @return array
+     * @throws \Exception
+     */
+    public function getArguments($method = null)
+    {
+        if ($method !== null) {
+            if (!isset($this->arguments[$method])) {
+                return;
+            }
+
+            return $this->arguments[$method];
+        }
+
+        return $this->arguments;
+    }
+
+    /**
+     * @param array $arguments
+     */
+    public function setArguments(array $arguments)
+    {
+        $this->arguments = $arguments;
     }
 }
