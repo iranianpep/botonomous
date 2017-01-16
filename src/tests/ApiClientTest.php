@@ -281,8 +281,8 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $apiClient = new ApiClient();
 
         $apiClient->filterArguments('users.list', [
-            'token' => '123',
-            'dummyKey' => 'dummyValue'
+            'token'    => '123',
+            'dummyKey' => 'dummyValue',
         ]);
     }
 }
