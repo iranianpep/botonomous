@@ -21,7 +21,7 @@ class ApiClient
         'chat.postMessage' => [
             'token',
             'channel',
-            'text'
+            'text',
         ],
         'oauth.access' => [
             'client_id',
