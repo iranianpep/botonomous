@@ -26,8 +26,8 @@ class ApiClient
             'optional' => [
                 'simple_latest',
                 'no_unreads',
-                'mpim_aware'
-            ]
+                'mpim_aware',
+            ],
         ],
         'chat.postMessage' => [
             'required' => [
@@ -153,8 +153,9 @@ class ApiClient
     /**
      * @param $args
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function rtmStart($args)
     {
