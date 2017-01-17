@@ -19,6 +19,16 @@ class ApiClient
     const BASE_URL = 'https://slack.com/api/';
 
     private $arguments = [
+        'rtm.start' => [
+            'required' => [
+                'token',
+            ],
+            'optional' => [
+                'simple_latest',
+                'no_unreads',
+                'mpim_aware'
+            ]
+        ],
         'chat.postMessage' => [
             'required' => [
                 'token',
@@ -138,6 +148,17 @@ class ApiClient
     public function chatPostMessage($args)
     {
         return $this->apiCall('chat.postMessage', $args);
+    }
+
+    /**
+     * @param $args
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    public function rtmStart($args)
+    {
+        return $this->apiCall('rtm.start', $args);
     }
 
     /**
