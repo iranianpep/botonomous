@@ -133,7 +133,6 @@ class ApiClient
 
         return [
             'token'    => $config->get('apiToken'),
-            'channel'  => $config->get('channelName'),
             'username' => $config->get('botUsername'),
             'as_user'  => false,
             'icon_url' => $config->get('iconURL'),

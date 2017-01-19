@@ -142,7 +142,6 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'token'    => $config->get('apiToken'),
-            'channel'  => $config->get('channelName'),
             'username' => $config->get('botUsername'),
             'as_user'  => false,
             'icon_url' => $config->get('iconURL'),
@@ -158,7 +157,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException(
             'Exception',
-            'text must be provided for chat.postMessage'
+            'channel must be provided for chat.postMessage'
         );
 
         (new ApiClient())->apiCall('chat.postMessage', []);
@@ -201,7 +200,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException(
             'Exception',
-            'text must be provided for chat.postMessage'
+            'channel must be provided for chat.postMessage'
         );
 
         (new ApiClient())->chatPostMessage([]);

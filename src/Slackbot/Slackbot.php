@@ -92,11 +92,11 @@ class Slackbot
             $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
 
             if (!empty($confirmMessage)) {
-                $this->send($confirmMessage);
+                $this->send($this->getRequest('channel_name'), $confirmMessage);
             }
 
             $response = $this->respond($this->getRequest('text'));
-            $this->send($response);
+            $this->send($this->getRequest('channel_name'), $response);
         } catch (\Exception $e) {
             throw $e;
         }
@@ -105,13 +105,12 @@ class Slackbot
     /**
      * Final endpoint for the response.
      *
+     * @param $channel
      * @param $response
-     *
-     * @throws \Exception
-     *
      * @return bool
+     * @throws \Exception
      */
-    public function send($response)
+    public function send($channel, $response)
     {
         // @codeCoverageIgnoreStart
         if ($this->isThisBot()) {
@@ -122,8 +121,13 @@ class Slackbot
         $responseType = $this->getConfig()->get('response');
         $debug = (bool) $this->getRequest('debug');
 
+        if (empty($channel)) {
+            $channel = $this->getConfig()->get('channelName');
+        }
+
         $data = [
-             'text' => $response,
+            'text' => $response,
+            'channel' => '#'.$channel
         ];
 
         $logChat = new LoggerUtility();
