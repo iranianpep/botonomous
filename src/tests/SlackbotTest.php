@@ -366,7 +366,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $response = '';
         if (!empty($confirmMessage)) {
-            $response .= '{"text":"I have received your message and am thinking about it! :thought_balloon:","channel":"#general"}';
+            $response .= '{"text":"'.$confirmMessage.'","channel":"#general"}';
         }
 
         $response .= '{"text":"pong","channel":"#general"}';
