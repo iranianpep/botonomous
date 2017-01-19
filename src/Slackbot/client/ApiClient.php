@@ -26,8 +26,8 @@ class ApiClient
             'optional' => [
                 'simple_latest',
                 'no_unreads',
-                'mpim_aware'
-            ]
+                'mpim_aware',
+            ],
         ],
         'chat.postMessage' => [
             'required' => [
@@ -133,7 +133,6 @@ class ApiClient
 
         return [
             'token'    => $config->get('apiToken'),
-            'channel'  => $config->get('channelName'),
             'username' => $config->get('botUsername'),
             'as_user'  => false,
             'icon_url' => $config->get('iconURL'),
@@ -153,8 +152,9 @@ class ApiClient
     /**
      * @param $args
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function rtmStart($args)
     {

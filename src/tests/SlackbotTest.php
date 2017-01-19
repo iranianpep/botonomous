@@ -313,9 +313,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $slackbot = new Slackbot($request, $config);
 
-        $this->expectOutputString('{"text":"test response"}');
+        $this->expectOutputString('{"text":"test response","channel":"#general"}');
 
-        $slackbot->send('test response');
+        $slackbot->send('general', 'test response');
     }
 
     /**
@@ -366,10 +366,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $response = '';
         if (!empty($confirmMessage)) {
-            $response .= '{"text":"I have received your message and am thinking about it! :thought_balloon:"}';
+            $response .= '{"text":"'.$confirmMessage.'","channel":"#general"}';
         }
 
-        $response .= '{"text":"pong"}';
+        $response .= '{"text":"pong","channel":"#general"}';
 
         $this->expectOutputString($response);
 

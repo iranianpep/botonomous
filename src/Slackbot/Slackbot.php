@@ -50,6 +50,12 @@ class Slackbot
      */
     public function setRequest($request)
     {
+        if (!empty($request['trigger_word'])) {
+            // remove the trigger_word from beginning of the message
+            $count = 1;
+            $request['text'] = ltrim(str_replace($request['trigger_word'], '', $request['text'], $count));
+        }
+
         $this->request = $request;
 
         if ($this->verifyRequest() !== true) {
@@ -92,11 +98,11 @@ class Slackbot
             $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
 
             if (!empty($confirmMessage)) {
-                $this->send($confirmMessage);
+                $this->send($this->getRequest('channel_name'), $confirmMessage);
             }
 
             $response = $this->respond($this->getRequest('text'));
-            $this->send($response);
+            $this->send($this->getRequest('channel_name'), $response);
         } catch (\Exception $e) {
             throw $e;
         }
@@ -105,13 +111,14 @@ class Slackbot
     /**
      * Final endpoint for the response.
      *
+     * @param $channel
      * @param $response
      *
      * @throws \Exception
      *
      * @return bool
      */
-    public function send($response)
+    public function send($channel, $response)
     {
         // @codeCoverageIgnoreStart
         if ($this->isThisBot()) {
@@ -122,8 +129,13 @@ class Slackbot
         $responseType = $this->getConfig()->get('response');
         $debug = (bool) $this->getRequest('debug');
 
+        if (empty($channel)) {
+            $channel = $this->getConfig()->get('channelName');
+        }
+
         $data = [
-             'text' => $response,
+            'text'    => $response,
+            'channel' => '#'.$channel,
         ];
 
         $logChat = new LoggerUtility();
