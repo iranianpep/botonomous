@@ -15,7 +15,7 @@ class WebSocket
         $loop = Factory::create();
 
         $logger = new Logger();
-        $writer = new Stream("php://output");
+        $writer = new Stream('php://output');
         $logger->addWriter($writer);
 
         $client = new \Devristo\Phpws\Client\WebSocket($this->getWebSocketUrl(), $loop, $logger);
