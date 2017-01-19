@@ -6,8 +6,6 @@ use Slackbot\utility\StringUtility;
 
 /**
  * Class EventListener.
- *
- * @package Slackbot
  */
 class EventListener
 {
@@ -17,8 +15,8 @@ class EventListener
     private $apiAppId;
     private $event;
     private $requestEventMaps = [
-        'ts' => 'timestamp',
-        'event_ts' => 'eventTimestamp'
+        'ts'       => 'timestamp',
+        'event_ts' => 'eventTimestamp',
     ];
 
     public function __construct($request)
