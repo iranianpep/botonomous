@@ -113,8 +113,10 @@ class Slackbot
      *
      * @param $channel
      * @param $response
-     * @return bool
+     *
      * @throws \Exception
+     *
+     * @return bool
      */
     public function send($channel, $response)
     {
@@ -132,8 +134,8 @@ class Slackbot
         }
 
         $data = [
-            'text' => $response,
-            'channel' => '#'.$channel
+            'text'    => $response,
+            'channel' => '#'.$channel,
         ];
 
         $logChat = new LoggerUtility();
