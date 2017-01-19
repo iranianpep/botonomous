@@ -50,6 +50,12 @@ class Slackbot
      */
     public function setRequest($request)
     {
+        if (!empty($request['trigger_word'])) {
+            // remove the trigger_word from beginning of the message
+            $count = 1;
+            $request['text'] = ltrim(str_replace($request['trigger_word'], '', $request['text'], $count));
+        }
+
         $this->request = $request;
 
         if ($this->verifyRequest() !== true) {
