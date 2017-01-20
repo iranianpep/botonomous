@@ -19,10 +19,45 @@ class EventListener
         'event_ts' => 'eventTimestamp',
     ];
 
-    public function __construct($request)
+    public function __construct()
     {
-        $this->setRequest($request);
-        $this->loadEvent();
+    }
+
+    public function listen()
+    {
+        if ($this->extractRequest() === true) {
+            $this->processRequest();
+        }
+    }
+
+    private function extractRequest()
+    {
+        $requestBody = file_get_contents('php://input');
+
+        if (empty($requestBody)) {
+            return;
+        }
+
+        $this->setRequest(json_decode($requestBody, true));
+
+        return true;
+    }
+
+    public function processRequest()
+    {
+        // Slack recommends responding to events with a HTTP 200 OK ASAP
+        header("HTTP/1.1 200 OK");
+        header("Content-type:application/x-www-form-urlencoded");
+
+        $request = $this->getRequest();
+
+        // in case URL verification handshake is required
+        if (!empty($request['challenge'])) {
+            echo $request['challenge'];
+        } else {
+            // process the event
+            $this->loadEvent();
+        }
     }
 
     /**
@@ -94,6 +129,10 @@ class EventListener
      */
     public function getEvent()
     {
+        if (!isset($this->event)) {
+            $this->loadEvent();
+        }
+
         return $this->event;
     }
 
@@ -110,20 +149,20 @@ class EventListener
      */
     public function loadEvent()
     {
-        $args = $this->getRequest();
+        $request = $this->getRequest();
 
-        if (!isset($args['type'])) {
+        if (!isset($request['type'])) {
             throw new \Exception('Event type must be specified');
         }
 
         // create the event
-        $eventObject = new Event($args['type']);
+        $eventObject = new Event($request['type']);
 
         // exclude type from the args since it's already passed
-        unset($args['type']);
+        unset($request['type']);
 
         $stringUtility = new StringUtility();
-        foreach ($args as $argKey => $argValue) {
+        foreach ($request as $argKey => $argValue) {
             if (array_key_exists($argKey, $this->requestEventMaps)) {
                 $argKey = $this->requestEventMaps[$argKey];
             }

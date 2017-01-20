@@ -65,4 +65,16 @@ class MessageUtility extends AbstractUtility
         // then get the command details
         return (new CommandContainer())->getAsObject($command);
     }
+
+    /**
+     * @param $triggerWord
+     * @param $message
+     *
+     * @return string
+     */
+    public function removeTriggerWord($triggerWord, $message)
+    {
+        $count = 1;
+        return ltrim(str_replace($triggerWord, '', $message, $count));
+    }
 }

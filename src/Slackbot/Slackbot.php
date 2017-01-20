@@ -50,10 +50,10 @@ class Slackbot
      */
     public function setRequest($request)
     {
+        // remove the trigger_word from beginning of the message
+        $utility = new MessageUtility();
         if (!empty($request['trigger_word'])) {
-            // remove the trigger_word from beginning of the message
-            $count = 1;
-            $request['text'] = ltrim(str_replace($request['trigger_word'], '', $request['text'], $count));
+            $request['text'] = $utility->removeTriggerWord($request['trigger_word'], $request['text']);
         }
 
         $this->request = $request;
@@ -63,7 +63,7 @@ class Slackbot
         }
 
         // set the current command at this point
-        $this->setCurrentCommand((new MessageUtility())->extractCommandName($this->getRequest('text')));
+        $this->setCurrentCommand($utility->extractCommandName($this->getRequest('text')));
     }
 
     /** @noinspection PhpInconsistentReturnPointsInspection
@@ -95,17 +95,25 @@ class Slackbot
         }
 
         try {
-            $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
-
-            if (!empty($confirmMessage)) {
-                $this->send($this->getRequest('channel_name'), $confirmMessage);
-            }
-
-            $response = $this->respond($this->getRequest('text'));
-            $this->send($this->getRequest('channel_name'), $response);
+            $this->process();
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function process()
+    {
+        $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
+
+        if (!empty($confirmMessage)) {
+            $this->send($this->getRequest('channel_name'), $confirmMessage);
+        }
+
+        $response = $this->respond($this->getRequest('text'));
+        $this->send($this->getRequest('channel_name'), $response);
     }
 
     /**
