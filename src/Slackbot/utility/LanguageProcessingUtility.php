@@ -12,7 +12,7 @@ use Slackbot\Dictionary;
 class LanguageProcessingUtility extends AbstractUtility
 {
     /**
-     * @param        $text
+     * @param   $text
      *
      * @return string
      */
