@@ -65,4 +65,15 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $commandObject);
     }
+
+    /**
+     * test removeTriggerWord.
+     */
+    public function testRemoveTriggerWord()
+    {
+        $utility = new MessageUtility();
+        $result = $utility->removeTriggerWord('google_bot:', 'google_bot: do this google_bot');
+
+        $this->assertEquals('do this google_bot', $result);
+    }
 }
