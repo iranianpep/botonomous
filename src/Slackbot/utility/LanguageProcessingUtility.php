@@ -13,26 +13,16 @@ class LanguageProcessingUtility extends AbstractUtility
 {
     /**
      * @param        $text
-     * @param string $language PHP method is much more faster than the Python one
      *
      * @return string
      */
-    public function stem($text, $language = 'php')
+    public function stem($text)
     {
-        switch ($language) {
-            case 'python':
-                // Execute the python script with the JSON data
-                $filePath = dirname(__DIR__).DIRECTORY_SEPARATOR.'py'.DIRECTORY_SEPARATOR.'stemmer.py';
+        $tokens = (new WhitespaceTokenizer())->tokenize($text);
 
-                return shell_exec('python '.$filePath.' '.escapeshellarg(json_encode([$text])));
-                break;
-            default:
-                $tokens = (new WhitespaceTokenizer())->tokenize($text);
+        $stemmed = (new PorterStemmer())->stemAll($tokens);
 
-                $stemmed = (new PorterStemmer())->stemAll($tokens);
-
-                return implode(' ', $stemmed);
-        }
+        return implode(' ', $stemmed);
     }
 
     /**

@@ -14,21 +14,6 @@ class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
     /**
      * Test stem.
      */
-    public function testStemPython()
-    {
-        $utility = new LanguageProcessingUtility();
-
-        $result = $utility->stem(
-            'Stemming is funnier than a bummer says the sushi loving computer scientist',
-            'python'
-        );
-
-        $this->assertEquals('stem is funnier than a bummer say the sushi love comput scientist', $result);
-    }
-
-    /**
-     * Test stem.
-     */
     public function testStemPhp()
     {
         $utility = new LanguageProcessingUtility();
