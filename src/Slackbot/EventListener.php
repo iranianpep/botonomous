@@ -46,8 +46,8 @@ class EventListener
     public function processRequest()
     {
         // Slack recommends responding to events with a HTTP 200 OK ASAP
-        header("HTTP/1.1 200 OK");
-        header("Content-type:application/x-www-form-urlencoded");
+        header('HTTP/1.1 200 OK');
+        header('Content-type:application/x-www-form-urlencoded');
 
         $request = $this->getRequest();
 

@@ -75,6 +75,7 @@ class MessageUtility extends AbstractUtility
     public function removeTriggerWord($triggerWord, $message)
     {
         $count = 1;
+
         return ltrim(str_replace($triggerWord, '', $message, $count));
     }
 }
