@@ -56,6 +56,7 @@ class EventListener extends BaseListener
         // in case URL verification handshake is required
         if (!empty($request['challenge'])) {
             echo $request['challenge'];
+
             return;
         }
 
@@ -169,8 +170,9 @@ class EventListener extends BaseListener
     }
 
     /**
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function verifyOrigin()
     {
@@ -178,10 +180,11 @@ class EventListener extends BaseListener
     }
 
     /**
-     * Check if the request belongs to the bot itself
+     * Check if the request belongs to the bot itself.
+     *
+     * @throws \Exception
      *
      * @return array
-     * @throws \Exception
      */
     public function isThisBot()
     {

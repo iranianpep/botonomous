@@ -19,7 +19,7 @@ class Slackbot
     private $currentCommand;
 
     /**
-     * Dependencies
+     * Dependencies.
      */
     private $config;
     private $listener;
@@ -91,7 +91,7 @@ class Slackbot
      */
     public function run()
     {
-        /**
+        /*
          * Start listening
          */
         $this->getListener()->listen();
@@ -262,8 +262,9 @@ class Slackbot
     }
 
     /**
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     private function verifyRequest()
     {
@@ -276,7 +277,7 @@ class Slackbot
         if ($originCheck['success'] !== true) {
             return [
                 'success' => false,
-                'message' => $originCheck['message']
+                'message' => $originCheck['message'],
             ];
         }
 
@@ -285,13 +286,13 @@ class Slackbot
         if ($isThisBot == true) {
             return [
                 'success' => false,
-                'message' => 'Request comes from the bot'
+                'message' => 'Request comes from the bot',
             ];
         }
 
         return [
             'success' => true,
-            'message' => 'Yay!'
+            'message' => 'Yay!',
         ];
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Slackbot;
 
 class WebhookListener extends BaseListener
@@ -26,8 +25,9 @@ class WebhookListener extends BaseListener
     }
 
     /**
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function verifyOrigin()
     {
@@ -36,7 +36,7 @@ class WebhookListener extends BaseListener
         if (empty($token)) {
             return [
                 'success' => false,
-                'message' => 'Token is missing'
+                'message' => 'Token is missing',
             ];
         }
 
@@ -49,19 +49,20 @@ class WebhookListener extends BaseListener
         if ($token === $expectedToken) {
             return [
                 'success' => true,
-                'message' => 'Awesome!'
+                'message' => 'Awesome!',
             ];
         }
 
         return [
             'success' => false,
-            'message' => 'Token is not valid'
+            'message' => 'Token is not valid',
         ];
     }
 
     /**
-     * @return bool
      * @throws \Exception
+     *
+     * @return bool
      */
     public function isThisBot()
     {
