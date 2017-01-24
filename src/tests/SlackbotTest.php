@@ -25,9 +25,9 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
-            'text'  => '/ping',
-            'user_id' => 'dummyId',
+            'token'     => $config->get('outgoingWebhookToken'),
+            'text'      => '/ping',
+            'user_id'   => 'dummyId',
             'user_name' => $config->get('botUsername'),
         ];
 
@@ -410,10 +410,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
-            'debug' => true,
-            'user_id' => 'dummyId',
-            'user_name' => 'dummyUsername'
+            'token'     => $config->get('outgoingWebhookToken'),
+            'debug'     => true,
+            'user_id'   => 'dummyId',
+            'user_name' => 'dummyUsername',
         ];
 
         $config->set('response', 'json');

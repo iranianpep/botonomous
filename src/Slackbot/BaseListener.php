@@ -8,10 +8,12 @@ abstract class BaseListener
     private $request;
 
     abstract public function listen();
+
     abstract public function extractRequest();
 
     /**
      * @param null $key
+     *
      * @return mixed
      */
     public function getRequest($key = null)
@@ -29,8 +31,6 @@ abstract class BaseListener
         if (is_array($this->request) && array_key_exists($key, $this->request)) {
             return $this->request[$key];
         }
-
-        return;
     }
 
     /**
@@ -63,18 +63,20 @@ abstract class BaseListener
 
     /**
      * Verify the request comes from Slack
-     * Each listener must have have this and has got its own way to check the request
+     * Each listener must have have this and has got its own way to check the request.
+     *
+     * @throws \Exception
      *
      * @return array
-     * @throws \Exception
      */
     abstract public function verifyOrigin();
 
     /**
-     * Check if the request belongs to the bot itself
+     * Check if the request belongs to the bot itself.
+     *
+     * @throws \Exception
      *
      * @return array
-     * @throws \Exception
      */
     abstract public function isThisBot();
 }
