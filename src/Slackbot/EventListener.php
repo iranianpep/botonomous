@@ -7,9 +7,8 @@ use Slackbot\utility\StringUtility;
 /**
  * Class EventListener.
  */
-class EventListener
+class EventListener extends BaseListener
 {
-    private $request;
     private $token;
     private $teamId;
     private $apiAppId;
@@ -25,12 +24,17 @@ class EventListener
 
     public function listen()
     {
-        if ($this->extractRequest() === true) {
-            $this->processRequest();
+        $request = $this->extractRequest();
+
+        if (empty($request)) {
+            return;
         }
+
+        $this->processRequest();
+        $this->setRequest($request);
     }
 
-    private function extractRequest()
+    public function extractRequest()
     {
         $requestBody = file_get_contents('php://input');
 
@@ -38,9 +42,7 @@ class EventListener
             return;
         }
 
-        $this->setRequest(json_decode($requestBody, true));
-
-        return true;
+        return json_decode($requestBody, true);
     }
 
     public function processRequest()
@@ -54,26 +56,11 @@ class EventListener
         // in case URL verification handshake is required
         if (!empty($request['challenge'])) {
             echo $request['challenge'];
-        } else {
-            // process the event
-            $this->loadEvent();
+            return;
         }
-    }
 
-    /**
-     * @return array
-     */
-    public function getRequest()
-    {
-        return $this->request;
-    }
-
-    /**
-     * @param array $request
-     */
-    public function setRequest(array $request)
-    {
-        $this->request = $request;
+        // process the event
+        $this->loadEvent();
     }
 
     /**
@@ -147,7 +134,7 @@ class EventListener
     /**
      * @throws \Exception
      */
-    public function loadEvent()
+    private function loadEvent()
     {
         $request = $this->getRequest();
 
@@ -179,5 +166,25 @@ class EventListener
 
         // set it
         $this->setEvent($eventObject);
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function verifyOrigin()
+    {
+        // TODO: Implement verifyOrigin() method.
+    }
+
+    /**
+     * Check if the request belongs to the bot itself
+     *
+     * @return array
+     * @throws \Exception
+     */
+    public function isThisBot()
+    {
+        // TODO: Implement isThisBot() method.
     }
 }

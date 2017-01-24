@@ -49,6 +49,14 @@ class HelpTest extends \PHPUnit_Framework_TestCase
             'text'  => $botUsername.' /ping',
         ];
 
-        return new Slackbot($request);
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
+        return $slackbot;
     }
 }

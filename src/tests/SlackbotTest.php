@@ -17,6 +17,51 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
+    public function testRun()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request.
+         */
+        $request = [
+            'token' => $config->get('outgoingWebhookToken'),
+            'text'  => '/ping',
+            'user_id' => 'dummyId',
+            'user_name' => $config->get('botUsername'),
+        ];
+
+        $config->set('response', 'json');
+        $config->set('chatLogging', false);
+
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+        $slackbot->setListener($listener);
+
+        $slackbot->setConfig($config);
+
+        $confirmMessage = $slackbot->getConfig()->get('confirmReceivedMessage');
+
+        $response = '';
+        if (!empty($confirmMessage)) {
+            $response .= '{"text":"'.$confirmMessage.'","channel":"#general"}';
+        }
+
+        $response .= '{"text":"pong","channel":"#general"}';
+
+        $this->expectOutputString($response);
+
+        $slackbot->run();
+    }
+
+    /**
+     * @throws \Exception
+     */
     public function testRespond()
     {
         $config = new Config();
@@ -30,7 +75,14 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             'text'  => $botUsername.' /ping',
         ];
 
-        $slackbot = new Slackbot($request);
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
         $response = $slackbot->respond();
 
         $this->assertEquals('pong', $response);
@@ -123,7 +175,13 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             'token' => $config->get('outgoingWebhookToken'),
         ];
 
-        $slackbot = new Slackbot($request);
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
 
         $this->assertEquals($request, $slackbot->getRequest());
 
@@ -144,7 +202,13 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             'token' => $config->get('outgoingWebhookToken'),
         ];
 
-        $slackbot = new Slackbot($request);
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
 
         $this->assertEquals($config, $slackbot->getConfig());
     }
@@ -163,7 +227,14 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             'token' => $config->get('outgoingWebhookToken'),
         ];
 
-        $slackbot = new Slackbot($request);
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
         $slackbot->setConfig($config);
 
         $this->assertEquals($config, $slackbot->getConfig());
@@ -187,7 +258,13 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             'text'  => $message,
         ];
 
-        $slackbot = new Slackbot($request);
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
 
         $this->assertEquals($this->outputOnNoCommand($message), $slackbot->respond());
     }
@@ -206,7 +283,13 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $token = $config->get('outgoingWebhookToken');
 
-        $slackbot = new Slackbot(['text' => $message, 'token' => $token]);
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest(['text' => $message, 'token' => $token]);
 
         if (!empty($defaultCommand)) {
             $commandObject = (new CommandContainer())->getAsObject($defaultCommand);
@@ -246,7 +329,14 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             'Action / function: \'commandWithoutFunctionForTest\' does not exist in \'Slackbot\plugin\ping\Ping\''
         );
 
-        $slackbot = new Slackbot($request);
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
         $response = $slackbot->respond();
 
         // @codeCoverageIgnoreStart
@@ -266,7 +356,15 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             'token' => (new Config())->get('outgoingWebhookToken'),
         ];
 
-        $result = (new Slackbot($request))->getCommandByMessage('/ping message');
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
+        $result = $slackbot->getCommandByMessage('/ping message');
 
         $this->assertEquals('index', $result->getAction());
         $this->assertEquals('Ping', $result->getPlugin());
@@ -288,7 +386,14 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $config->set('defaultCommand', '');
 
-        $slackbot = new Slackbot($request);
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
         $slackbot->getCommandByMessage('dummy message without command');
 
         $this->assertEquals($config->get('noCommandMessage'), $slackbot->getLastError());
@@ -307,11 +412,21 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $request = [
             'token' => $config->get('outgoingWebhookToken'),
             'debug' => true,
+            'user_id' => 'dummyId',
+            'user_name' => 'dummyUsername'
         ];
 
         $config->set('response', 'json');
 
-        $slackbot = new Slackbot($request, $config);
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
+        $slackbot->setConfig($config);
 
         $this->expectOutputString('{"text":"test response","channel":"#general"}');
 
@@ -336,43 +451,17 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config->set('response', 'json');
 
         try {
-            new Slackbot($request, $config);
+            $slackbot = new Slackbot();
+
+            // get listener
+            $listener = $slackbot->getListener();
+
+            // set request
+            $listener->setRequest($request);
+
+            $slackbot->setConfig($config);
         } catch (\Exception $e) {
             $this->assertEquals('Request is not coming from Slack', $e->getMessage());
         }
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function testListenToSlack()
-    {
-        $config = new Config();
-
-        /**
-         * Form the request.
-         */
-        $request = [
-            'token' => $config->get('outgoingWebhookToken'),
-            'text'  => '/ping',
-        ];
-
-        $config->set('response', 'json');
-        $config->set('chatLogging', false);
-
-        $slackbot = new Slackbot($request, $config);
-
-        $confirmMessage = $slackbot->getConfig()->get('confirmReceivedMessage');
-
-        $response = '';
-        if (!empty($confirmMessage)) {
-            $response .= '{"text":"'.$confirmMessage.'","channel":"#general"}';
-        }
-
-        $response .= '{"text":"pong","channel":"#general"}';
-
-        $this->expectOutputString($response);
-
-        $slackbot->listenToSlack();
     }
 }

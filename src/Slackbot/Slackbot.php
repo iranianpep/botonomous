@@ -14,33 +14,35 @@ use Slackbot\utility\MessageUtility;
 class Slackbot
 {
     private $request;
-    private $config;
     private $commands;
     private $lastError;
     private $currentCommand;
 
     /**
+     * Dependencies
+     */
+    private $config;
+    private $listener;
+    private $messageUtility;
+    private $commandContainer;
+    private $formattingUtility;
+    private $loggerUtility;
+
+    /**
      * Slackbot constructor.
      *
-     * @param $request
      * @param Config|null $config
      *
      * @throws \Exception
      */
-    public function __construct($request, Config $config = null)
+    public function __construct(Config $config = null)
     {
-        // set timezone
-        date_default_timezone_set($this->getConfig()->get('defaultTimeZone'));
-
         if ($config !== null) {
             $this->setConfig($config);
         }
 
-        try {
-            $this->setRequest($request);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        // set timezone
+        date_default_timezone_set($this->getConfig()->get('defaultTimeZone'));
     }
 
     /**
@@ -51,61 +53,57 @@ class Slackbot
     public function setRequest($request)
     {
         // remove the trigger_word from beginning of the message
-        $utility = new MessageUtility();
         if (!empty($request['trigger_word'])) {
-            $request['text'] = $utility->removeTriggerWord($request['trigger_word'], $request['text']);
+            $request['text'] = $this->getMessageUtility()->removeTriggerWord(
+                $request['trigger_word'],
+                $request['text']
+            );
         }
 
         $this->request = $request;
 
-        if ($this->verifyRequest() !== true) {
-            throw new \Exception('Request is not coming from Slack');
-        }
-
-        // set the current command at this point
-        $this->setCurrentCommand($utility->extractCommandName($this->getRequest('text')));
-    }
-
-    /** @noinspection PhpInconsistentReturnPointsInspection
-     * @param null $key
-     *
-     * @return
-     */
-    public function getRequest($key = null)
-    {
-        if ($key === null) {
-            // return the entire request since key is null
-            return $this->request;
-        }
-
-        if (array_key_exists($key, $this->request)) {
-            return $this->request[$key];
-        }
-    }
-
-    /**
-     * Listen to incoming requests from Slack.
-     */
-    public function listenToSlack()
-    {
-        if (empty($this->getRequest('debug'))) {
-            $logger = new LoggerUtility();
-            $logger->logRaw((new FormattingUtility())->newLine());
-            $logger->logChat(__METHOD__, $this->getRequest('text'));
-        }
-
         try {
-            $this->process();
+            $verificationResult = $this->verifyRequest();
+
+            if ($verificationResult['success'] !== true) {
+                throw new \Exception($verificationResult['message']);
+            }
         } catch (\Exception $e) {
             throw $e;
         }
+
+        // set the current command at this point
+        $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($this->getRequest('text')));
+    }
+
+    /**
+     * @param null $key
+     *
+     * @return mixed
+     */
+    public function getRequest($key = null)
+    {
+        return $this->getListener()->getRequest($key);
     }
 
     /**
      * @throws \Exception
      */
-    public function process()
+    public function run()
     {
+        /**
+         * Start listening
+         */
+        $this->getListener()->listen();
+        $request = $this->getListener()->getRequest();
+
+        $this->setRequest($request);
+
+        if (empty($this->getRequest('debug'))) {
+            $this->getLoggerUtility()->logRaw($this->getFormattingUtility()->newLine());
+            $this->getLoggerUtility()->logChat(__METHOD__, $this->getRequest('text'));
+        }
+
         $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
 
         if (!empty($confirmMessage)) {
@@ -113,7 +111,9 @@ class Slackbot
         }
 
         $response = $this->respond($this->getRequest('text'));
+        //$response = $this->respond($this->getListener()->getRequest('text'));
         $this->send($this->getRequest('channel_name'), $response);
+        //$this->send($this->getListener()->getRequest('channel'), $response);
     }
 
     /**
@@ -129,7 +129,7 @@ class Slackbot
     public function send($channel, $response)
     {
         // @codeCoverageIgnoreStart
-        if ($this->isThisBot()) {
+        if ($this->getListener()->isThisBot() == true) {
             return false;
         }
         // @codeCoverageIgnoreEnd
@@ -146,15 +146,13 @@ class Slackbot
             'channel' => '#'.$channel,
         ];
 
-        $logChat = new LoggerUtility();
-
         if ($debug === true) {
             echo json_encode($data);
         } elseif ($responseType === 'slack') {
-            $logChat->logChat(__METHOD__, $response);
+            $this->getLoggerUtility()->logChat(__METHOD__, $response);
             (new ApiClient())->chatPostMessage($data);
         } elseif ($responseType === 'json') {
-            $logChat->logChat(__METHOD__, $response);
+            $this->getLoggerUtility()->logChat(__METHOD__, $response);
             // headers_sent is used to avoid issue in the test
             if (!headers_sent()) {
                 header('Content-type:application/json;charset=utf-8');
@@ -226,7 +224,7 @@ class Slackbot
         /**
          * Process the message.
          */
-        $command = (new MessageUtility())->extractCommandName($message);
+        $command = $this->getMessageUtility()->extractCommandName($message);
 
         $config = $this->getConfig();
 
@@ -242,7 +240,7 @@ class Slackbot
             }
         }
 
-        $commandObject = (new CommandContainer())->getAsObject($command);
+        $commandObject = $this->getCommandContainer()->getAsObject($command);
 
         // check command details
         if (empty($commandObject)) {
@@ -264,26 +262,37 @@ class Slackbot
     }
 
     /**
-     * @return bool
-     */
-    private function isThisBot()
-    {
-        $userId = $this->getRequest('user_id');
-        $username = $this->getRequest('user_name');
-
-        return (isset($userId) && $userId == 'USLACKBOT')
-        || (isset($username) && $username == 'slackbot') ? true : false;
-    }
-
-    /**
-     * @return bool
+     * @return array
+     * @throws \Exception
      */
     private function verifyRequest()
     {
-        $token = $this->getRequest('token');
+        $originCheck = $this->getListener()->verifyOrigin();
 
-        return isset($token) && $token === $this->getConfig()->get('outgoingWebhookToken')
-        && $this->isThisBot() === false ? true : false;
+        if (!isset($originCheck['success'])) {
+            throw new \Exception('Success must be provided in verifyOrigin response');
+        }
+
+        if ($originCheck['success'] !== true) {
+            return [
+                'success' => false,
+                'message' => $originCheck['message']
+            ];
+        }
+
+        $isThisBot = $this->getListener()->isThisBot();
+
+        if ($isThisBot == true) {
+            return [
+                'success' => false,
+                'message' => 'Request comes from the bot'
+            ];
+        }
+
+        return [
+            'success' => true,
+            'message' => 'Yay!'
+        ];
     }
 
     /**
@@ -312,7 +321,7 @@ class Slackbot
     public function getCommands()
     {
         if (!isset($this->commands)) {
-            $this->setCommands((new CommandContainer())->getAllAsObject());
+            $this->setCommands($this->getCommandContainer()->getAllAsObject());
         }
 
         return $this->commands;
@@ -356,5 +365,107 @@ class Slackbot
     public function setCurrentCommand($currentCommand)
     {
         $this->currentCommand = $currentCommand;
+    }
+
+    /**
+     * @return BaseListener
+     */
+    public function getListener()
+    {
+        if (!isset($this->listener)) {
+            $rootNamespace = $this->getConfig()->get('rootNamespace');
+            $listenerClass = $rootNamespace.'\\'.ucwords($this->getConfig()->get('listenerType')).'Listener';
+            $this->setListener(new $listenerClass());
+        }
+
+        return $this->listener;
+    }
+
+    /**
+     * @param BaseListener $listener
+     */
+    public function setListener(BaseListener $listener)
+    {
+        $this->listener = $listener;
+    }
+
+    /**
+     * @return MessageUtility
+     */
+    public function getMessageUtility()
+    {
+        if (!isset($this->messageUtility)) {
+            $this->setMessageUtility(new MessageUtility());
+        }
+
+        return $this->messageUtility;
+    }
+
+    /**
+     * @param MessageUtility $messageUtility
+     */
+    public function setMessageUtility(MessageUtility $messageUtility)
+    {
+        $this->messageUtility = $messageUtility;
+    }
+
+    /**
+     * @return CommandContainer
+     */
+    public function getCommandContainer()
+    {
+        if (!isset($this->commandContainer)) {
+            $this->setCommandContainer(new CommandContainer());
+        }
+
+        return $this->commandContainer;
+    }
+
+    /**
+     * @param CommandContainer $commandContainer
+     */
+    public function setCommandContainer(CommandContainer $commandContainer)
+    {
+        $this->commandContainer = $commandContainer;
+    }
+
+    /**
+     * @return FormattingUtility
+     */
+    public function getFormattingUtility()
+    {
+        if (!isset($this->formattingUtility)) {
+            $this->setFormattingUtility(new FormattingUtility());
+        }
+
+        return $this->formattingUtility;
+    }
+
+    /**
+     * @param FormattingUtility $formattingUtility
+     */
+    public function setFormattingUtility(FormattingUtility $formattingUtility)
+    {
+        $this->formattingUtility = $formattingUtility;
+    }
+
+    /**
+     * @return LoggerUtility
+     */
+    public function getLoggerUtility()
+    {
+        if (!isset($this->loggerUtility)) {
+            $this->setLoggerUtility(new LoggerUtility());
+        }
+
+        return $this->loggerUtility;
+    }
+
+    /**
+     * @param LoggerUtility $loggerUtility
+     */
+    public function setLoggerUtility(LoggerUtility $loggerUtility)
+    {
+        $this->loggerUtility = $loggerUtility;
     }
 }
