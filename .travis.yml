@@ -12,6 +12,7 @@ php:
   - '7.0'
   - '7.1'
   - hhvm
+  - hhvm-nightly
 
 addons:
     code_climate:
@@ -21,7 +22,6 @@ addons:
 before_script:
   - composer self-update
   - composer install --dev
-  - sudo apt-get install hhvm-nightly
 
 script: phpunit --bootstrap vendor/autoload.php --configuration vendor/phpunit/phpunit/phpunit.xml src/tests
 script: phpunit --coverage-clover build/logs/clover.xml --configuration phpunit.xml --bootstrap vendor/autoload.php src/tests
