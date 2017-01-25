@@ -176,7 +176,6 @@ class EventListener extends BaseListener
      */
     public function verifyOrigin()
     {
-        // TODO: Implement verifyOrigin() method.
     }
 
     /**
@@ -188,6 +187,5 @@ class EventListener extends BaseListener
      */
     public function isThisBot()
     {
-        // TODO: Implement isThisBot() method.
     }
 }
