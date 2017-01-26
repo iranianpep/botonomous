@@ -37,9 +37,8 @@ class SessionHandlerTest extends \PHPUnit_Framework_TestCase
     public function testGet()
     {
         $sessionHandler = new SessionHandler();
-        $result = $sessionHandler->get('unknownKey');
 
-        $this->assertEquals(null, $result);
+        $this->assertEquals(null, $sessionHandler->get('unknownKey'));
     }
 
     /**

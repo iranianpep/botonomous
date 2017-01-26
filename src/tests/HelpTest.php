@@ -14,8 +14,7 @@ class HelpTest extends \PHPUnit_Framework_TestCase
      */
     public function testIndex()
     {
-        $index = (new Help($this->getSlackbot()))->index();
-        $this->assertFalse(empty($index));
+        $this->assertFalse(empty((new Help($this->getSlackbot()))->index()));
     }
 
     /**
@@ -26,9 +25,7 @@ class HelpTest extends \PHPUnit_Framework_TestCase
         $slackbot = $this->getSlackbot();
         $slackbot->setCommands(['dummy']);
 
-        $index = (new Help($slackbot))->index();
-
-        $this->assertTrue(empty($index));
+        $this->assertTrue(empty((new Help($slackbot))->index()));
     }
 
     /**
@@ -46,7 +43,7 @@ class HelpTest extends \PHPUnit_Framework_TestCase
         $botUsername = '@'.$config->get('botUsername');
         $request = [
             'token' => $config->get('outgoingWebhookToken'),
-            'text'  => $botUsername.' /ping',
+            'text'  => $botUsername.' /help',
         ];
 
         $slackbot = new Slackbot();

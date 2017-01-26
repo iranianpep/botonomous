@@ -1,8 +1,10 @@
 <?php
 
-namespace Slackbot;
+namespace Slackbot\Tests;
 
 /** @noinspection PhpUndefinedClassInspection */
+use Slackbot\Command;
+
 /** @noinspection PhpUndefinedClassInspection */
 class CommandTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,15 +12,11 @@ class CommandTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAction()
     {
-        $command = new Command(self::PING_KEY);
-
-        $this->assertEquals(Command::DEFAULT_ACTION, $command->getAction());
+        $this->assertEquals(Command::DEFAULT_ACTION, (new Command(self::PING_KEY))->getAction());
     }
 
     public function testGetKey()
     {
-        $command = new Command(self::PING_KEY);
-
-        $this->assertEquals(self::PING_KEY, $command->getKey());
+        $this->assertEquals(self::PING_KEY, (new Command(self::PING_KEY))->getKey());
     }
 }

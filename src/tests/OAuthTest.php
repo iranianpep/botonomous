@@ -1,12 +1,13 @@
 <?php
 
-namespace Slackbot;
+namespace Slackbot\Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Slackbot\client\ApiClient;
+use Slackbot\OAuth;
 
 /**
  * Class OAuthTest.

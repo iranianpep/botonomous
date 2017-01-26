@@ -132,9 +132,10 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
         ];
 
         foreach ($inputOutputs as $inputOutput) {
-            $toRemove = $inputOutput['input']['toRemove'];
-            $subject = $inputOutput['input']['subject'];
-            $result = $utility->removeStringFromString($toRemove, $subject);
+            $result = $utility->removeStringFromString(
+                $inputOutput['input']['toRemove'],
+                $inputOutput['input']['subject']
+            );
             $this->assertEquals($inputOutput['output'], $result);
         }
     }
@@ -158,8 +159,10 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
         ];
 
         foreach ($inputOutputs as $inputOutput) {
-            $result = $utility->snakeCaseToCamelCase($inputOutput['input']);
-            $this->assertEquals($inputOutput['output'], $result);
+            $this->assertEquals(
+                $inputOutput['output'],
+                $utility->snakeCaseToCamelCase($inputOutput['input'])
+            );
         }
     }
 
@@ -194,8 +197,10 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
         ];
 
         foreach ($inputOutputs as $inputOutput) {
-            $result = $utility->findInString($inputOutput['toFind'], $inputOutput['string']);
-            $this->assertEquals($inputOutput['output'], $result);
+            $this->assertEquals(
+                $inputOutput['output'],
+                $utility->findInString($inputOutput['toFind'], $inputOutput['string'])
+            );
         }
     }
 }

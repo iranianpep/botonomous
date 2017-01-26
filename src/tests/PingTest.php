@@ -20,9 +20,8 @@ class PingTest extends \PHPUnit_Framework_TestCase
     {
         $slackbot = $this->getSlackbot();
         $ping = new Ping($slackbot);
-        $pongResponse = $ping->pong();
 
-        $this->assertEquals('ping', $pongResponse);
+        $this->assertEquals('ping', $ping->pong());
     }
 
     /**
@@ -32,9 +31,8 @@ class PingTest extends \PHPUnit_Framework_TestCase
     {
         $slackbot = $this->getSlackbot();
         $ping = new Ping($slackbot);
-        $getResult = $ping->getSlackbot();
 
-        $this->assertEquals($slackbot, $getResult);
+        $this->assertEquals($slackbot, $ping->getSlackbot());
     }
 
     /**

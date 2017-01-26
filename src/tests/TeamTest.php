@@ -44,17 +44,19 @@ class TeamTest extends \PHPUnit_Framework_TestCase
     public function testGetEmailDomain()
     {
         $team = new Team();
-        $team->setEmailDomain('test');
+        $email = 'test';
+        $team->setEmailDomain($email);
 
-        $this->assertEquals('test', $team->getEmailDomain());
+        $this->assertEquals($email, $team->getEmailDomain());
     }
 
     public function testGetDomain()
     {
         $team = new Team();
-        $team->setDomain('test');
+        $domain = 'test';
+        $team->setDomain($domain);
 
-        $this->assertEquals('test', $team->getDomain());
+        $this->assertEquals($domain, $team->getDomain());
     }
 
     public function testIsIconDefault()

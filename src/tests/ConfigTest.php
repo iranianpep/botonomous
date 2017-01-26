@@ -16,9 +16,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
      */
     public function testGet()
     {
-        $config = new Config();
-
-        $this->assertEquals('testValue', $config->get('testKey'));
+        $this->assertEquals('testValue', (new Config())->get('testKey'));
     }
 
     /**
@@ -26,9 +24,10 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetWithReplace()
     {
-        $config = new Config();
-
-        $this->assertEquals('testValue replaced', $config->get('testKeyReplace', ['replaceIt' => 'replaced']));
+        $this->assertEquals(
+            'testValue replaced',
+            (new Config())->get('testKeyReplace', ['replaceIt' => 'replaced'])
+        );
     }
 
     /**
@@ -36,10 +35,8 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetExceptException()
     {
-        $config = new Config();
-
         try {
-            $config->get('dummyKey');
+            (new Config())->get('dummyKey');
         } catch (\Exception $e) {
             $this->assertEquals('Key: \'dummyKey\' does not exist in configs', $e->getMessage());
         }
