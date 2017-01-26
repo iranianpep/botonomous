@@ -8,13 +8,6 @@ engines:
       enabled: true
   phpmd:
       enabled: true
-      checks:
-            Design/TooManyPublicMethods:
-              enabled: false
-            CouplingBetweenObjects:
-              enabled: true
-            ExcessiveClassComplexity:
-              enabled: true
       config:
         rulesets: "phpmd.xml"
   duplication:
