@@ -17,8 +17,6 @@ if ($composerAutoloadExists === true) {
      * Start the engine
      */
     try {
-        //(new \Slackbot\Slackbot($_POST))->listenToSlack();
-        //(new \Slackbot\Slackbot())->getListener()->listen();
         (new \Slackbot\Slackbot())->run();
     } catch (Exception $e) {
         echo $e->getMessage();

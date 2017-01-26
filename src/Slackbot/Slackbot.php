@@ -111,9 +111,7 @@ class Slackbot
         }
 
         $response = $this->respond($this->getRequest('text'));
-        //$response = $this->respond($this->getListener()->getRequest('text'));
         $this->send($this->getRequest('channel_name'), $response);
-        //$this->send($this->getListener()->getRequest('channel'), $response);
     }
 
     /**
