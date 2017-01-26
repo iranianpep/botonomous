@@ -7,7 +7,7 @@
 
     <rule ref="rulesets/design.xml/CouplingBetweenObjects">
         <properties>
-            <property name="minimum" value="10" />
+            <property name="minimum" value="20" />
         </properties>
     </rule>
 
