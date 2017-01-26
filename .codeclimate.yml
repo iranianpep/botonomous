@@ -13,13 +13,10 @@ engines:
               enabled: false
             CouplingBetweenObjects:
               enabled: true
-              minimum: 20
             ExcessiveClassComplexity:
               enabled: true
-              maximum: 80
       config:
-        CouplingBetweenObjects: 20,
-        ExcessiveClassComplexity: 80
+        rulesets: "phpmd.xml"
   duplication:
     enabled: true
     config:
