@@ -2,9 +2,9 @@
 
 namespace Slackbot\Tests;
 
-use Slackbot\Config;
+require_once 'PhpunitHelper.php';
+
 use Slackbot\plugin\help\Help;
-use Slackbot\Slackbot;
 
 /** @noinspection PhpUndefinedClassInspection */
 class HelpTest extends \PHPUnit_Framework_TestCase
@@ -14,7 +14,8 @@ class HelpTest extends \PHPUnit_Framework_TestCase
      */
     public function testIndex()
     {
-        $this->assertFalse(empty((new Help($this->getSlackbot()))->index()));
+        $index = (new Help((new PhpunitHelper())->getSlackbot()))->index();
+        $this->assertFalse(empty($index));
     }
 
     /**
@@ -22,38 +23,11 @@ class HelpTest extends \PHPUnit_Framework_TestCase
      */
     public function testIndexInvalidCommands()
     {
-        $slackbot = $this->getSlackbot();
+        $slackbot = (new PhpunitHelper())->getSlackbot();
         $slackbot->setCommands(['dummy']);
 
-        $this->assertTrue(empty((new Help($slackbot))->index()));
-    }
+        $index = (new Help($slackbot))->index();
 
-    /**
-     * @throws \Exception
-     *
-     * @return \Slackbot\Slackbot
-     */
-    private function getSlackbot()
-    {
-        $config = new Config();
-
-        /**
-         * Form the request.
-         */
-        $botUsername = '@'.$config->get('botUsername');
-        $request = [
-            'token' => $config->get('outgoingWebhookToken'),
-            'text'  => $botUsername.' /help',
-        ];
-
-        $slackbot = new Slackbot();
-
-        // get listener
-        $listener = $slackbot->getListener();
-
-        // set request
-        $listener->setRequest($request);
-
-        return $slackbot;
+        $this->assertTrue(empty($index));
     }
 }
