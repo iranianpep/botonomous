@@ -2,8 +2,6 @@
 
 namespace Slackbot\Tests;
 
-require_once 'PhpunitHelper.php';
-
 use Slackbot\plugin\ping\Ping;
 
 /**
@@ -13,6 +11,12 @@ use Slackbot\plugin\ping\Ping;
 /** @noinspection PhpUndefinedClassInspection */
 class PingTest extends \PHPUnit_Framework_TestCase
 {
+    public function __construct()
+    {
+        require_once 'PhpunitHelper.php';
+        parent::__construct();
+    }
+
     /**
      * Test pong.
      */

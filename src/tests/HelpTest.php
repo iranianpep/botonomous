@@ -2,13 +2,17 @@
 
 namespace Slackbot\Tests;
 
-require_once 'PhpunitHelper.php';
-
 use Slackbot\plugin\help\Help;
 
 /** @noinspection PhpUndefinedClassInspection */
 class HelpTest extends \PHPUnit_Framework_TestCase
 {
+    public function __construct()
+    {
+        require_once 'PhpunitHelper.php';
+        parent::__construct();
+    }
+
     /**
      * test index.
      */
