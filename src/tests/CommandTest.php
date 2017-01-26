@@ -2,7 +2,7 @@
 
 namespace Slackbot\Tests;
 
-/** @noinspection PhpUndefinedClassInspection */
+/* @noinspection PhpUndefinedClassInspection */
 use Slackbot\Command;
 
 /** @noinspection PhpUndefinedClassInspection */
