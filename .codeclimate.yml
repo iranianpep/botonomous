@@ -11,8 +11,12 @@ engines:
       checks:
             Design/TooManyPublicMethods:
               enabled: false
-            CouplingBetweenObjects: 20
-            ExcessiveClassComplexity: 80
+            CouplingBetweenObjects:
+              enabled: true
+              minimum: 20
+            ExcessiveClassComplexity:
+              enabled: true
+              maximum: 80
   duplication:
     enabled: true
     config:
