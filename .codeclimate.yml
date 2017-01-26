@@ -9,7 +9,7 @@ engines:
   phpmd:
       enabled: true
       config:
-        rulesets: "cleancode,controversial,design,unusedcode,codesize,naming,phpmd.xml"
+        rulesets: "phpmd.xml"
   duplication:
     enabled: true
     config:
