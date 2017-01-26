@@ -14,11 +14,11 @@ engines:
             CouplingBetweenObjects:
               enabled: true
               config:
-                minimum: 20
+                minimum: "20"
             ExcessiveClassComplexity:
               enabled: true
               config:
-                maximum: 80
+                maximum: "80"
   duplication:
     enabled: true
     config:
