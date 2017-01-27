@@ -15,8 +15,8 @@
 A PHP framework to create Slackbots faaaaaaaaster!
 
 ## Requirements
-- PHP 5.5+ (also compatible with HHVM)
-- Slack channel
+- PHP 5.5+ (including PHP 7.0+)
+- Slack team
 
 ## Getting started
 Using composer:
@@ -72,10 +72,10 @@ class Ping extends AbstractPlugin
 | testKeyReplace | string | This is used only for testing and to make sure that Config class works fine. value: `testValue {replaceIt}` |
 | baseUrl | string | Base URL for listener. value: `http://localhost:8888` |
 | defaultTimeZone | string | default value: `Australia/Melbourne` |
-| apiToken | string | Your API key |
+| apiToken | string | Your API key which can be found at Custom Integrations -> Bots -> Edit configuration |
 | channelName | string | default value: `#general` |
 | botUsername | string | Bot username |
-| outgoingWebhookToken | string | Slack outgoing webhook token |
+| outgoingWebhookToken | string | Slack outgoing webhook token which can be found at Custom Integrations -> Outgoing WebHooks -> Edit configuration |
 | chatLogging | boolean | If is true, all the conversations are logged in a text file |
 | tmpFolderName | string | Temporary folder for the log file |
 | chatLoggingFileName | string | Log file name |
@@ -87,33 +87,6 @@ class Ping extends AbstractPlugin
 | unknownCommandMessage | string | Message in case the command in the message is unknown |
 | confirmReceivedMessage | string | Message in case a message is received by the bot |
 | listenerType | string | Type of the listener for Slack requests. Possible values are `webhook` or `event` |
-
-## Using Python nltk
-If you need to use Python NLTK instead of PHP nlp-tools for the natural processing, these are the steps to install Python NLTK:
-
-1. Install Python
-    ```
-    brew install python
-    ```
-
-2. Install nltk
-    ```
-    curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python
-    sudo easy_install pip
-    sudo pip install -U nltk
-    ```
-
-3. Install nltk data
-    Start Python and run the following
-    ```
-    >>> import nltk
-    >>> nltk.download('all')
-    ```
-
-4. In case there is a need to update nltk use this:
-    ```
-    sudo -H pip install nltk --upgrade --ignore-installed six
-    ```
 
 ## Buy me half of a coffee if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)

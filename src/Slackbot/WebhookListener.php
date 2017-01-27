@@ -18,11 +18,12 @@ class WebhookListener extends BaseListener
     public function extractRequest()
     {
         $postRequest = filter_input_array(INPUT_POST);
+
         if (empty($postRequest)) {
             return;
         }
 
-        return json_decode($postRequest, true);
+        return $postRequest;
     }
 
     /**
