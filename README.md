@@ -86,6 +86,7 @@ class Ping extends AbstractPlugin
 | noCommandMessage | string | Message in case there is no command found in the message |
 | unknownCommandMessage | string | Message in case the command in the message is unknown |
 | confirmReceivedMessage | string | Message in case a message is received by the bot |
+| listenerType | string | Type of the listener for Slack requests. Possible values are `webhook` or `event` |
 
 ## Using Python nltk
 If you need to use Python NLTK instead of PHP nlp-tools for the natural processing, these are the steps to install Python NLTK:
