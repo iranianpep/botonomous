@@ -63,17 +63,6 @@ class Slackbot
          * Start listening
          */
         $this->getListener()->listen();
-        $request = $this->getListener()->getRequest();
-
-        // remove the trigger_word from beginning of the message
-        if (!empty($request['trigger_word'])) {
-            $request['text'] = $this->getMessageUtility()->removeTriggerWord(
-                $request['trigger_word'],
-                $request['text']
-            );
-
-            $this->getListener()->setRequest($request);
-        }
 
         // verify request
         try {
@@ -85,6 +74,9 @@ class Slackbot
         } catch (\Exception $e) {
             throw $e;
         }
+
+        // pre process the request
+        $this->preProcessRequest();
 
         // set the current command at this point
         $message = $this->getRequest('text');
@@ -105,6 +97,24 @@ class Slackbot
         }
 
         $this->send($channel, $this->respond($message));
+    }
+
+    /**
+     * Pre-process the request.
+     */
+    private function preProcessRequest()
+    {
+        $request = $this->getListener()->getRequest();
+
+        // remove the trigger_word from beginning of the message
+        if (!empty($request['trigger_word'])) {
+            $request['text'] = $this->getMessageUtility()->removeTriggerWord(
+                $request['trigger_word'],
+                $request['text']
+            );
+
+            $this->getListener()->setRequest($request);
+        }
     }
 
     /**
