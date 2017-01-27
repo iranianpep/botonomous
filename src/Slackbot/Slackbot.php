@@ -75,6 +75,7 @@ class Slackbot
             $this->getListener()->setRequest($request);
         }
 
+        // verify request
         try {
             $verificationResult = $this->verifyRequest();
 
@@ -86,21 +87,24 @@ class Slackbot
         }
 
         // set the current command at this point
-        $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($this->getRequest('text')));
+        $message = $this->getRequest('text');
+        $channel = $this->getRequest('channel_name');
+
+        $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($message));
 
         if (empty($this->getRequest('debug'))) {
             $this->getLoggerUtility()->logRaw($this->getFormattingUtility()->newLine());
-            $this->getLoggerUtility()->logChat(__METHOD__, $this->getRequest('text'));
+            $this->getLoggerUtility()->logChat(__METHOD__, $message);
         }
 
+        // send confirm message
         $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
 
         if (!empty($confirmMessage)) {
-            $this->send($this->getRequest('channel_name'), $confirmMessage);
+            $this->send($channel, $confirmMessage);
         }
 
-        $response = $this->respond($this->getRequest('text'));
-        $this->send($this->getRequest('channel_name'), $response);
+        $this->send($channel, $this->respond($message));
     }
 
     /**
