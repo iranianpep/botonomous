@@ -13,7 +13,6 @@ use Slackbot\utility\MessageUtility;
  */
 class Slackbot
 {
-    private $request;
     private $commands;
     private $lastError;
     private $currentCommand;
@@ -46,37 +45,6 @@ class Slackbot
     }
 
     /**
-     * @param $request
-     *
-     * @throws \Exception
-     */
-    public function setRequest($request)
-    {
-        // remove the trigger_word from beginning of the message
-        if (!empty($request['trigger_word'])) {
-            $request['text'] = $this->getMessageUtility()->removeTriggerWord(
-                $request['trigger_word'],
-                $request['text']
-            );
-        }
-
-        $this->request = $request;
-
-        try {
-            $verificationResult = $this->verifyRequest();
-
-            if ($verificationResult['success'] !== true) {
-                throw new \Exception($verificationResult['message']);
-            }
-        } catch (\Exception $e) {
-            throw $e;
-        }
-
-        // set the current command at this point
-        $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($this->getRequest('text')));
-    }
-
-    /**
      * @param null $key
      *
      * @return mixed
@@ -97,7 +65,28 @@ class Slackbot
         $this->getListener()->listen();
         $request = $this->getListener()->getRequest();
 
-        $this->setRequest($request);
+        // remove the trigger_word from beginning of the message
+        if (!empty($request['trigger_word'])) {
+            $request['text'] = $this->getMessageUtility()->removeTriggerWord(
+                $request['trigger_word'],
+                $request['text']
+            );
+
+            $this->getListener()->setRequest($request);
+        }
+
+        try {
+            $verificationResult = $this->verifyRequest();
+
+            if ($verificationResult['success'] !== true) {
+                throw new \Exception($verificationResult['message']);
+            }
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        // set the current command at this point
+        $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($this->getRequest('text')));
 
         if (empty($this->getRequest('debug'))) {
             $this->getLoggerUtility()->logRaw($this->getFormattingUtility()->newLine());
@@ -127,7 +116,7 @@ class Slackbot
     public function send($channel, $response)
     {
         // @codeCoverageIgnoreStart
-        if ($this->getListener()->isThisBot() == true) {
+        if ($this->getListener()->isThisBot() !== false) {
             return false;
         }
         // @codeCoverageIgnoreEnd
@@ -279,9 +268,7 @@ class Slackbot
             ];
         }
 
-        $isThisBot = $this->getListener()->isThisBot();
-
-        if ($isThisBot == true) {
+        if ($this->getListener()->isThisBot() !== false) {
             return [
                 'success' => false,
                 'message' => 'Request comes from the bot',
