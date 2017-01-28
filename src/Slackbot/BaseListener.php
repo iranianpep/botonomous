@@ -31,8 +31,6 @@ abstract class BaseListener
         if (is_array($this->request) && array_key_exists($key, $this->request)) {
             return $this->request[$key];
         }
-
-        return;
     }
 
     /**
