@@ -26,12 +26,16 @@ composer require slackbot/slackbot
 
 Start listening to Slack messages:
 ```
-(new \Slackbot\Slackbot($_POST))->listenToSlack();
+try {
+    (new \Slackbot\Slackbot())->run();
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
 ```
 
 Send a message to Slack (make sure response is set to slack in the config):
 ```
-$slackbot->send('Hello Slack!');
+$slackbot->send('general', 'Hello Slack!');
 ```
 
 Also every functionality needs to be handled by a command e.g. `/help` which belongs to a plugin e.g. `Help` plugin. In other words, a plugin can have one or more commands.
