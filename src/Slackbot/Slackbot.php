@@ -64,7 +64,7 @@ class Slackbot
          */
         $this->getListener()->listen();
 
-        /**
+        /*
          * 2. verify the request
          */
         try {
@@ -77,18 +77,18 @@ class Slackbot
             throw $e;
         }
 
-        /**
+        /*
          * 3. pre process the request
          */
         $this->preProcessRequest();
 
         /**
-         * 4. set the current command
+         * 4. set the current command.
          */
         $message = $this->getRequest('text');
         $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($message));
 
-        /**
+        /*
          * 5. log the message
          */
         if (empty($this->getRequest('debug'))) {
@@ -97,7 +97,7 @@ class Slackbot
         }
 
         /**
-         * 6. send confirmation message if is enabled
+         * 6. send confirmation message if is enabled.
          */
         $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
 
@@ -106,7 +106,7 @@ class Slackbot
             $this->send($channel, $confirmMessage);
         }
 
-        /**
+        /*
          * 7. And send the response to the channel
          */
         $this->send($channel, $this->respond($message));
