@@ -467,8 +467,11 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         }
 
         try {
-            /** @noinspection PhpUnusedLocalVariableInspection */
             $accessToken = $this->getAccessToken($code, true, $state);
+
+            if (empty($accessToken)) {
+                throw new \Exception('Access token is not provided');
+            }
 
             // do whatever you want with the access token
         } catch (\Exception $e) {
