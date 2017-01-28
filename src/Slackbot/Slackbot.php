@@ -60,11 +60,13 @@ class Slackbot
     public function run()
     {
         /*
-         * Start listening
+         * 1. Start listening
          */
         $this->getListener()->listen();
 
-        // verify request
+        /**
+         * 2. verify the request
+         */
         try {
             $verificationResult = $this->verifyRequest();
 
@@ -75,27 +77,38 @@ class Slackbot
             throw $e;
         }
 
-        // pre process the request
+        /**
+         * 3. pre process the request
+         */
         $this->preProcessRequest();
 
-        // set the current command at this point
+        /**
+         * 4. set the current command
+         */
         $message = $this->getRequest('text');
-        $channel = $this->getRequest('channel_name');
-
         $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($message));
 
+        /**
+         * 5. log the message
+         */
         if (empty($this->getRequest('debug'))) {
             $this->getLoggerUtility()->logRaw($this->getFormattingUtility()->newLine());
             $this->getLoggerUtility()->logChat(__METHOD__, $message);
         }
 
-        // send confirm message
+        /**
+         * 6. send confirmation message if is enabled
+         */
         $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
 
+        $channel = $this->getRequest('channel_name');
         if (!empty($confirmMessage)) {
             $this->send($channel, $confirmMessage);
         }
 
+        /**
+         * 7. And send the response to the channel
+         */
         $this->send($channel, $this->respond($message));
     }
 
