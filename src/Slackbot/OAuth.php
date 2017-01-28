@@ -467,6 +467,9 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         }
 
         try {
+            /**
+             * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+             */
             $accessToken = $this->getAccessToken($code, true, $state);
 
             // do whatever you want with the access token

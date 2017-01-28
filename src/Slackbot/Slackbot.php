@@ -61,9 +61,10 @@ class Slackbot
     public function run()
     {
         // Get action
+        $getRequest = filter_input_array(INPUT_GET);
         $action = '';
-        if (isset($_GET['action'])) {
-            $action = strtolower($_GET['action']);
+        if (isset($getRequest['action'])) {
+            $action = strtolower($getRequest['action']);
         }
 
         switch ($action) {
