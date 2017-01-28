@@ -454,20 +454,22 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
      */
     public function doOauth($code = null, $state = null)
     {
+        $getRequest = filter_input_array(INPUT_GET);
+
         // get code from GET request
-        $code = '';
-        if ($code === null && isset($_GET['code'])) {
-            $code = $_GET['code'];
+        if ($code === null && isset($getRequest['code'])) {
+            $code = $getRequest['code'];
         }
 
         // get state from GET request
-        $state = '';
-        if ($state === null && isset($_GET['state'])) {
-            $state = $_GET['state'];
+        if ($state === null && isset($getRequest['state'])) {
+            $state = $getRequest['state'];
         }
 
         try {
             $accessToken = $this->getAccessToken($code, true, $state);
+
+            // do whatever you want with the access token
         } catch (\Exception $e) {
             throw $e;
         }
