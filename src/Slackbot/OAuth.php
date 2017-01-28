@@ -147,9 +147,7 @@ class OAuth
      */
     public function verifyState($state)
     {
-        $storedState = $this->getSessionHandler()->get(self::SESSION_STATE_KEY);
-
-        if ($state === $storedState) {
+        if ($state === $this->getSessionHandler()->get(self::SESSION_STATE_KEY)) {
             return true;
         }
 
@@ -206,15 +204,28 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     }
 
     /**
-     * @param $code
-     *
-     * @throws \Exception
+     * @param      $code
+     * @param bool $verifyState State is checked against the value in the session
+     * @param null $state
      *
      * @return mixed
+     * @throws \Exception
      */
-    public function getAccessToken($code)
+    public function getAccessToken($code, $verifyState = true, $state = null)
     {
         if (!isset($this->accessToken)) {
+            if ($verifyState === true) {
+                if (empty($state)) {
+                    throw new \Exception("State is not provided");
+                }
+
+                $verificationResult = $this->verifyState($state);
+
+                if ($verificationResult !== true) {
+                    throw new \Exception("State: {$state} is not valid");
+                }
+            }
+
             try {
                 $response = $this->requestAccessToken($code);
             } catch (\Exception $e) {
@@ -432,5 +443,32 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     public function setConfig(Config $config)
     {
         $this->config = $config;
+    }
+
+    /**
+     * @param null $code
+     * @param null $state
+     *
+     * @throws \Exception
+     */
+    public function doOauth($code = null, $state = null)
+    {
+        // get code from GET request
+        $code = '';
+        if ($code === null && isset($_GET['code'])) {
+            $code = $_GET['code'];
+        }
+
+        // get state from GET request
+        $state = '';
+        if ($state === null && isset($_GET['state'])) {
+            $state = $_GET['state'];
+        }
+
+        try {
+            $accessToken = $this->getAccessToken($code, true, $state);
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 }

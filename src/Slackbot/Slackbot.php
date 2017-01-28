@@ -26,6 +26,7 @@ class Slackbot
     private $commandContainer;
     private $formattingUtility;
     private $loggerUtility;
+    private $oauth;
 
     /**
      * Slackbot constructor.
@@ -59,57 +60,70 @@ class Slackbot
      */
     public function run()
     {
-        /*
-         * 1. Start listening
-         */
-        $this->getListener()->listen();
-
-        /*
-         * 2. verify the request
-         */
-        try {
-            $verificationResult = $this->verifyRequest();
-
-            if ($verificationResult['success'] !== true) {
-                throw new \Exception($verificationResult['message']);
-            }
-        } catch (\Exception $e) {
-            throw $e;
+        // Get action
+        $action = '';
+        if (isset($_GET['action'])) {
+            $action = strtolower($_GET['action']);
         }
 
-        /*
-         * 3. pre process the request
-         */
-        $this->preProcessRequest();
+        switch ($action) {
+            case 'oauth':
+                $this->getOauth()->doOauth();
+                break;
+            default:
+                /*
+                 * 1. Start listening
+                 */
+                $this->getListener()->listen();
 
-        /**
-         * 4. set the current command.
-         */
-        $message = $this->getRequest('text');
-        $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($message));
+                /*
+                 * 2. verify the request
+                 */
+                try {
+                    $verificationResult = $this->verifyRequest();
 
-        /*
-         * 5. log the message
-         */
-        if (empty($this->getRequest('debug'))) {
-            $this->getLoggerUtility()->logRaw($this->getFormattingUtility()->newLine());
-            $this->getLoggerUtility()->logChat(__METHOD__, $message);
+                    if ($verificationResult['success'] !== true) {
+                        throw new \Exception($verificationResult['message']);
+                    }
+                } catch (\Exception $e) {
+                    throw $e;
+                }
+
+                /*
+                 * 3. pre process the request
+                 */
+                $this->preProcessRequest();
+
+                /**
+                 * 4. set the current command.
+                 */
+                $message = $this->getRequest('text');
+                $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($message));
+
+                /*
+                 * 5. log the message
+                 */
+                if (empty($this->getRequest('debug'))) {
+                    $this->getLoggerUtility()->logRaw($this->getFormattingUtility()->newLine());
+                    $this->getLoggerUtility()->logChat(__METHOD__, $message);
+                }
+
+                /**
+                 * 6. send confirmation message if is enabled.
+                 */
+                $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
+
+                $channel = $this->getRequest('channel_name');
+                if (!empty($confirmMessage)) {
+                    $this->send($channel, $confirmMessage);
+                }
+
+                /*
+                 * 7. And send the response to the channel
+                 */
+                $this->send($channel, $this->respond($message));
+                break;
         }
-
-        /**
-         * 6. send confirmation message if is enabled.
-         */
-        $confirmMessage = $this->getConfig()->get('confirmReceivedMessage');
-
-        $channel = $this->getRequest('channel_name');
-        if (!empty($confirmMessage)) {
-            $this->send($channel, $confirmMessage);
-        }
-
-        /*
-         * 7. And send the response to the channel
-         */
-        $this->send($channel, $this->respond($message));
     }
 
     /**
@@ -480,5 +494,25 @@ class Slackbot
     public function setLoggerUtility(LoggerUtility $loggerUtility)
     {
         $this->loggerUtility = $loggerUtility;
+    }
+
+    /**
+     * @return OAuth
+     */
+    public function getOauth()
+    {
+        if (!isset($this->oauth)) {
+            $this->setOauth(new OAuth());
+        }
+
+        return $this->oauth;
+    }
+
+    /**
+     * @param OAuth $oauth
+     */
+    public function setOauth(OAuth $oauth)
+    {
+        $this->oauth = $oauth;
     }
 }
