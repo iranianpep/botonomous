@@ -37,12 +37,12 @@ class Config extends AbstractConfig
         List the available commands using /help",
         // leave it empty to disable it
         'confirmReceivedMessage' => 'I have received your message and am thinking about it! :thought_balloon:',
-        /**
+        /*
          * App credentials - This is required for Event listener
          * Can be found at https://api.slack.com/apps
          */
-        'clientId' => '',
+        'clientId'     => '',
         'clientSecret' => '',
-        'scopes' => []
+        'scopes'       => [],
     ];
 }
