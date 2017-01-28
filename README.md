@@ -91,6 +91,9 @@ class Ping extends AbstractPlugin
 | unknownCommandMessage | string | Message in case the command in the message is unknown |
 | confirmReceivedMessage | string | Message in case a message is received by the bot |
 | listenerType | string | Type of the listener for Slack requests. Possible values are `webhook` or `event` |
+| clientId | string | App credential: client id - This is required for Event listener and can be found at https://api.slack.com/apps |
+| clientSecret | string | App credential: client secret - This is required for Event listener and can be found at https://api.slack.com/apps |
+| scopes | string | App credential: permission scopes - This is required for Event listener and can be found at https://api.slack.com/apps |
 
 ## Buy me half of a coffee if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
