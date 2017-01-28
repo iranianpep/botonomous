@@ -112,7 +112,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
 
         $oAuth->setApiClient($apiClient);
 
-        $this->assertEquals('xoxp-XXXXXXXX-XXXXXXXX-XXXXX', $oAuth->getAccessToken('1234'));
+        $this->assertEquals('xoxp-XXXXXXXX-XXXXXXXX-XXXXX', $oAuth->getAccessToken('1234', false));
     }
 
     /**
