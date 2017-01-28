@@ -208,15 +208,16 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
      * @param bool $verifyState State is checked against the value in the session
      * @param null $state
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function getAccessToken($code, $verifyState = true, $state = null)
     {
         if (!isset($this->accessToken)) {
             if ($verifyState === true) {
                 if (empty($state)) {
-                    throw new \Exception("State is not provided");
+                    throw new \Exception('State is not provided');
                 }
 
                 $verificationResult = $this->verifyState($state);
