@@ -29,7 +29,6 @@ if ($composerAutoloadExists === true) {
                         $accessToken = $oAuth->getAccessToken($_GET['code']);
                     } catch (Exception $e) {
                         echo $e->getMessage();
-                        exit;
                     }
                 } else {
                     echo 'State is not valid';
