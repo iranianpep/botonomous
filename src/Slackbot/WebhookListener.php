@@ -4,6 +4,9 @@ namespace Slackbot;
 
 class WebhookListener extends BaseListener
 {
+    /**
+     * listen.
+     */
     public function listen()
     {
         $request = $this->extractRequest();
@@ -15,6 +18,9 @@ class WebhookListener extends BaseListener
         $this->setRequest($request);
     }
 
+    /**
+     * @return mixed|void
+     */
     public function extractRequest()
     {
         $postRequest = filter_input_array(INPUT_POST);

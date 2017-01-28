@@ -47,6 +47,8 @@ class OAuth
     private $botUserId;
     private $botAccessToken;
 
+    private $config;
+
     /**
      * OAuth constructor.
      *
@@ -54,7 +56,7 @@ class OAuth
      * @param       $clientSecret
      * @param array $scopes
      */
-    public function __construct($clientId, $clientSecret, array $scopes)
+    public function __construct($clientId = '', $clientSecret = '', array $scopes = [])
     {
         $this->setClientId($clientId);
         $this->setClientSecret($clientSecret);
@@ -66,6 +68,10 @@ class OAuth
      */
     public function getClientId()
     {
+        if (empty($this->clientId)) {
+            $this->setClientId($this->getConfig()->get('clientId'));
+        }
+
         return $this->clientId;
     }
 
@@ -82,13 +88,17 @@ class OAuth
      */
     public function getScopes()
     {
+        if (empty($this->scopes)) {
+            $this->setScopes($this->getConfig()->get('scopes'));
+        }
+
         return $this->scopes;
     }
 
     /**
      * @param array $scopes
      */
-    public function setScopes($scopes)
+    public function setScopes(array $scopes)
     {
         $this->scopes = $scopes;
     }
@@ -269,6 +279,10 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
      */
     public function getClientSecret()
     {
+        if (empty($this->clientSecret)) {
+            $this->setClientSecret($this->getConfig()->get('clientSecret'));
+        }
+
         return $this->clientSecret;
     }
 
@@ -398,5 +412,25 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         }
 
         return $this->sessionHandler;
+    }
+
+    /**
+     * @return Config
+     */
+    public function getConfig()
+    {
+        if (!isset($this->config)) {
+            $this->setConfig(new Config());
+        }
+
+        return $this->config;
+    }
+
+    /**
+     * @param Config $config
+     */
+    public function setConfig(Config $config)
+    {
+        $this->config = $config;
     }
 }
