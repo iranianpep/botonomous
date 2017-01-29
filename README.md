@@ -76,10 +76,10 @@ class Ping extends AbstractPlugin
 | testKeyReplace | string | This is used only for testing and to make sure that Config class works fine. value: `testValue {replaceIt}` |
 | baseUrl | string | Base URL for listener. value: `http://localhost:8888` |
 | defaultTimeZone | string | default value: `Australia/Melbourne` |
-| apiToken | string | Your API key which can be found at Custom Integrations -> Bots -> Edit configuration |
+| apiToken | string | Your API key which can be found at Custom Integrations -> Bots -> Edit configuration (https://codejetter.slack.com/apps/manage/custom-integrations). This is required for outgoing webhook listeners |
 | channelName | string | default value: `#general` |
 | botUsername | string | Bot username |
-| outgoingWebhookToken | string | Slack outgoing webhook token which can be found at Custom Integrations -> Outgoing WebHooks -> Edit configuration |
+| outgoingWebhookToken | string | Slack outgoing webhook token which can be found at Custom Integrations -> Outgoing WebHooks -> Edit configuration (https://codejetter.slack.com/apps/manage/custom-integrations). This is required for outgoing webhook listeners |
 | chatLogging | boolean | If is true, all the conversations are logged in a text file |
 | tmpFolderName | string | Temporary folder for the log file |
 | chatLoggingFileName | string | Log file name |
@@ -91,9 +91,9 @@ class Ping extends AbstractPlugin
 | unknownCommandMessage | string | Message in case the command in the message is unknown |
 | confirmReceivedMessage | string | Message in case a message is received by the bot |
 | listenerType | string | Type of the listener for Slack requests. Possible values are `webhook` or `event` |
-| clientId | string | App credential: client id - This is required for Event listener and can be found at https://api.slack.com/apps |
-| clientSecret | string | App credential: client secret - This is required for Event listener and can be found at https://api.slack.com/apps |
-| scopes | string | App credential: permission scopes - This is required for Event listener and can be found at https://api.slack.com/apps |
+| clientId | string | App credential: client id - This is required for Event listeners and can be found at https://api.slack.com/apps |
+| clientSecret | string | App credential: client secret - This is required for Event listeners and can be found at https://api.slack.com/apps |
+| scopes | string | App credential: permission scopes - This is required for Event listeners and can be found at https://api.slack.com/apps |
 
 ## Buy me half of a coffee if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
