@@ -50,6 +50,41 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
     /**
      * Test get event.
      */
+    public function testGetEvent()
+    {
+        $eventListener = new EventListener();
+
+        // mock request
+        $eventType = 'message';
+        $channel = 'C2147483705';
+        $user = 'U2147483697';
+        $text = 'Hello world';
+        $ts = '1355517523.000005';
+
+        $request = [
+            'type' => $eventType,
+            'channel' => $channel,
+            'user' => $user,
+            'text' => $text,
+            'ts' => $ts,
+        ];
+
+        $eventListener->setRequest($request);
+
+        $event = $eventListener->getEvent();
+        
+        $this->assertEquals($request, [
+            'type' => $event->getType(),
+            'channel' => $event->getChannel(),
+            'user' => $event->getUser(),
+            'text' => $event->getText(),
+            'ts' => $event->getTimestamp(),
+        ]);
+    }
+
+    /**
+     * Test get event.
+     */
     public function testGetAlreadySetEvent()
     {
         $eventType = 'message';
