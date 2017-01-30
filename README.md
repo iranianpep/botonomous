@@ -94,6 +94,8 @@ class Ping extends AbstractPlugin
 | clientId | string | App credential: client id - This is required for Event listeners and can be found at https://api.slack.com/apps |
 | clientSecret | string | App credential: client secret - This is required for Event listeners and can be found at https://api.slack.com/apps |
 | scopes | string | App credential: permission scopes - This is required for Event listeners and can be found at https://api.slack.com/apps |
+| verificationToken | string | For interactive messages and events, use this token to verify that requests are actually coming from Slack - This is required for Event listeners and can be found at https://api.slack.com/apps |
+| apiAppId | string | The unique identifier for the application. This is required for Event listeners and can be found at https://api.slack.com/apps and your app url |
 
 ## Buy me half of a coffee if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)

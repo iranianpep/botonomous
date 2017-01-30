@@ -176,6 +176,30 @@ class EventListener extends BaseListener
      */
     public function verifyOrigin()
     {
+        $request = $this->getRequest();
+
+        if (!isset($request['verificationToken']) || !isset($request['api_app_id'])) {
+            return false;
+        }
+
+        $expectedVerificationToken = $this->getConfig()->get('verificationToken');
+
+        if (empty($expectedVerificationToken)) {
+            throw new \Exception('Verification token must be provided');
+        }
+
+        $expectedApiAppId = $this->getConfig()->get('apiAppId');
+
+        if (empty($expectedApiAppId)) {
+            throw new \Exception('Api app id must be provided');
+        }
+
+        if ($expectedVerificationToken === $request['verificationToken'] &&
+            $expectedApiAppId === $request['apiAppId']) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
