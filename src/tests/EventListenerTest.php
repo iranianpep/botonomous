@@ -62,23 +62,23 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $ts = '1355517523.000005';
 
         $request = [
-            'type' => $eventType,
+            'type'    => $eventType,
             'channel' => $channel,
-            'user' => $user,
-            'text' => $text,
-            'ts' => $ts,
+            'user'    => $user,
+            'text'    => $text,
+            'ts'      => $ts,
         ];
 
         $eventListener->setRequest($request);
 
         $event = $eventListener->getEvent();
-        
+
         $this->assertEquals($request, [
-            'type' => $event->getType(),
+            'type'    => $event->getType(),
             'channel' => $event->getChannel(),
-            'user' => $event->getUser(),
-            'text' => $event->getText(),
-            'ts' => $event->getTimestamp(),
+            'user'    => $event->getUser(),
+            'text'    => $event->getText(),
+            'ts'      => $event->getTimestamp(),
         ]);
     }
 
