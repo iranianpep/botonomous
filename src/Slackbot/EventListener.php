@@ -182,9 +182,9 @@ class EventListener extends BaseListener
             return false;
         }
 
-        $expectedVerificationToken = $this->getConfig()->get('verificationToken');
+        $verificationToken = $this->getConfig()->get('verificationToken');
 
-        if (empty($expectedVerificationToken)) {
+        if (empty($verificationToken)) {
             throw new \Exception('Verification token must be provided');
         }
 
@@ -194,7 +194,7 @@ class EventListener extends BaseListener
             throw new \Exception('Api app id must be provided');
         }
 
-        if ($expectedVerificationToken === $request['verificationToken'] &&
+        if ($verificationToken === $request['verificationToken'] &&
             $expectedApiAppId === $request['apiAppId']) {
             return true;
         }
