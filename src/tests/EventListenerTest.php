@@ -60,13 +60,15 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $user = 'U2147483697';
         $text = 'Hello world';
         $timeStamp = '1355517523.000005';
+        $eventTimeStamp = '1355517523.000005';
 
         $request = [
-            'type'    => $eventType,
-            'channel' => $channel,
-            'user'    => $user,
-            'text'    => $text,
-            'ts'      => $timeStamp,
+            'type'     => $eventType,
+            'channel'  => $channel,
+            'user'     => $user,
+            'text'     => $text,
+            'ts'       => $timeStamp,
+            'event_ts' => $eventTimeStamp
         ];
 
         $eventListener->setRequest($request);
@@ -74,11 +76,12 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $event = $eventListener->getEvent();
 
         $this->assertEquals($request, [
-            'type'    => $event->getType(),
-            'channel' => $event->getChannel(),
-            'user'    => $event->getUser(),
-            'text'    => $event->getText(),
-            'ts'      => $event->getTimestamp(),
+            'type'     => $event->getType(),
+            'channel'  => $event->getChannel(),
+            'user'     => $event->getUser(),
+            'text'     => $event->getText(),
+            'ts'       => $event->getTimestamp(),
+            'event_ts' => $event->getEventTimestamp()
         ]);
     }
 
