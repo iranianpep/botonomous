@@ -13,7 +13,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
     public function testGetEventEmptyEventType()
     {
         $eventListener = new EventListener();
-       
+
         // mock request
         $request = [];
 
@@ -37,7 +37,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         // mock request
         $eventType = 'message';
         $request = [
-            'type' => $eventType
+            'type' => $eventType,
         ];
 
         $eventListener->setRequest($request);
@@ -60,14 +60,14 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
 
         // mock request
         $newRequest = [
-            'type' => 'reaction_added'
+            'type' => 'reaction_added',
         ];
 
         $eventListener->setRequest($newRequest);
 
         $event = $eventListener->getEvent();
 
-        /**
+        /*
          * Since the event is already set, the second one is not considered / loaded
          * That's why event type is the same as the first one
          */
