@@ -44,11 +44,11 @@ class Config extends AbstractConfig
         'clientId'     => '',
         'clientSecret' => '',
         'scopes'       => [],
-        /**
+        /*
          * For interactive messages and events,
          * use this token to verify that requests are actually coming from Slack
          */
         'verificationToken' => '',
-        'apiAppId' => ''
+        'apiAppId'          => '',
     ];
 }
