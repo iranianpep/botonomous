@@ -68,7 +68,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
             'user'     => $user,
             'text'     => $text,
             'ts'       => $timeStamp,
-            'event_ts' => $eventTimeStamp
+            'event_ts' => $eventTimeStamp,
         ];
 
         $eventListener->setRequest($request);
@@ -81,7 +81,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
             'user'     => $event->getUser(),
             'text'     => $event->getText(),
             'ts'       => $event->getTimestamp(),
-            'event_ts' => $event->getEventTimestamp()
+            'event_ts' => $event->getEventTimestamp(),
         ]);
     }
 
