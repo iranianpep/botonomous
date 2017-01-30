@@ -59,14 +59,14 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $channel = 'C2147483705';
         $user = 'U2147483697';
         $text = 'Hello world';
-        $ts = '1355517523.000005';
+        $timeStamp = '1355517523.000005';
 
         $request = [
             'type' => $eventType,
             'channel' => $channel,
             'user' => $user,
             'text' => $text,
-            'ts' => $ts,
+            'ts' => $timeStamp,
         ];
 
         $eventListener->setRequest($request);
