@@ -152,4 +152,57 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
             'message' => 'O La la!',
         ], $eventListener->verifyOrigin());
     }
+
+    /**
+     * Test verifyOrigin.
+     *
+     * @throws \Exception
+     */
+    public function testVerifyOriginTokenException()
+    {
+        $config = new Config();
+        $config->set('listenerType', 'event');
+        $eventListener = new EventListener();
+        $eventListener->setConfig($config);
+        $config->set('verificationToken', '');
+
+        $eventListener->setRequest([
+            'token'      => '12345',
+            'api_app_id' => '12345',
+        ]);
+
+        $this->setExpectedException(
+            '\Exception',
+            'Verification token must be provided'
+        );
+
+        $this->assertEquals([], $eventListener->verifyOrigin());
+    }
+
+    /**
+     * Test verifyOrigin.
+     *
+     * @throws \Exception
+     */
+    public function testVerifyOriginAppIdException()
+    {
+        $config = new Config();
+        $config->set('listenerType', 'event');
+        $eventListener = new EventListener();
+        $config->set('apiAppId', '');
+        $config->set('verificationToken', '12345');
+        $eventListener->setConfig($config);
+
+        $eventListener->setRequest([
+            'token'      => '12345',
+            'api_app_id' => '12345',
+        ]);
+
+        $this->setExpectedException(
+            '\Exception',
+            'Api app id must be provided'
+        );
+
+        $this->assertEquals([], $eventListener->verifyOrigin());
+    }
 }
