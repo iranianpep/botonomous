@@ -178,8 +178,11 @@ class EventListener extends BaseListener
     {
         $request = $this->getRequest();
 
-        if (!isset($request['verificationToken']) || !isset($request['api_app_id'])) {
-            return false;
+        if (!isset($request['token']) || !isset($request['api_app_id'])) {
+            return [
+                'success' => false,
+                'message' => 'Token or api_app_id is not provided'
+            ];
         }
 
         $verificationToken = $this->getConfig()->get('verificationToken');
@@ -194,12 +197,18 @@ class EventListener extends BaseListener
             throw new \Exception('Api app id must be provided');
         }
 
-        if ($verificationToken === $request['verificationToken'] &&
-            $expectedApiAppId === $request['apiAppId']) {
-            return true;
+        if ($verificationToken === $request['token'] &&
+            $expectedApiAppId === $request['api_app_id']) {
+            return [
+                'success' => true,
+                'message' => 'O La la!'
+            ];
         }
 
-        return false;
+        return [
+            'success' => false,
+            'message' => 'Token or api_app_id mismatch'
+        ];
     }
 
     /**

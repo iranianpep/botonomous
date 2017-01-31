@@ -17,9 +17,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testRun()
+    public function testRunWebhookListener()
     {
         $config = new Config();
+        $config->set('listenerType', 'webhook');
 
         /**
          * Form the request.
@@ -402,9 +403,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testSend()
+    public function testSendWebhookListener()
     {
         $config = new Config();
+        $config->set('listenerType', 'webhook');
 
         /**
          * Form the request.
@@ -436,9 +438,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testSendByBot()
+    public function testSendByBotWebhookListener()
     {
         $config = new Config();
+        $config->set('listenerType', 'webhook');
 
         /**
          * Form the request.
