@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use Slackbot\Config;
 use Slackbot\Event;
 use Slackbot\EventListener;
 
@@ -110,5 +111,45 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
          * That's why event type is the same as the first one
          */
         $this->assertEquals($eventType, $event->getType());
+    }
+
+    /**
+     * Test verifyOrigin.
+     *
+     * @throws \Exception
+     */
+    public function testVerifyOrigin()
+    {
+        $config = new Config();
+        $config->set('listenerType', 'event');
+        $eventListener = new EventListener();
+        $eventListener->setConfig($config);
+
+        $eventListener->setRequest([]);
+
+        $this->assertEquals([
+            'success' => false,
+            'message' => 'Token or api_app_id is not provided'
+        ], $eventListener->verifyOrigin());
+
+        $eventListener->setRequest([
+            'token' => '12345',
+            'api_app_id' => '12345'
+        ]);
+
+        $this->assertEquals([
+            'success' => false,
+            'message' => 'Token or api_app_id mismatch'
+        ], $eventListener->verifyOrigin());
+
+        $eventListener->setRequest([
+            'token' => (new Config())->get('verificationToken'),
+            'api_app_id' => (new Config())->get('apiAppId')
+        ]);
+
+        $this->assertEquals([
+            'success' => true,
+            'message' => 'O La la!'
+        ], $eventListener->verifyOrigin());
     }
 }

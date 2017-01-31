@@ -41,14 +41,14 @@ class Config extends AbstractConfig
          * App credentials - This is required for Event listener
          * Can be found at https://api.slack.com/apps
          */
-        'clientId'     => '',
-        'clientSecret' => '',
-        'scopes'       => [],
+        'clientId'     => 'YOUR_APP_CLIENT_ID',
+        'clientSecret' => 'YOUR_APP_SECRET',
+        'scopes'       => ['bot'],
         /*
          * For interactive messages and events,
          * use this token to verify that requests are actually coming from Slack
          */
-        'verificationToken' => '',
-        'apiAppId'          => '',
+        'verificationToken' => 'YOUR_APP_VERIFICATION_TOKEN',
+        'apiAppId'          => 'YOUR_API_ID',
     ];
 }
