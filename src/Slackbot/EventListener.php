@@ -181,7 +181,7 @@ class EventListener extends BaseListener
         if (!isset($request['token']) || !isset($request['api_app_id'])) {
             return [
                 'success' => false,
-                'message' => 'Token or api_app_id is not provided'
+                'message' => 'Token or api_app_id is not provided',
             ];
         }
 
@@ -201,13 +201,13 @@ class EventListener extends BaseListener
             $expectedApiAppId === $request['api_app_id']) {
             return [
                 'success' => true,
-                'message' => 'O La la!'
+                'message' => 'O La la!',
             ];
         }
 
         return [
             'success' => false,
-            'message' => 'Token or api_app_id mismatch'
+            'message' => 'Token or api_app_id mismatch',
         ];
     }
 
