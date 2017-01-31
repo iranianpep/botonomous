@@ -7,6 +7,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Slackbot\client\ApiClient;
+use Slackbot\Config;
 use Slackbot\OAuth;
 
 /**
@@ -131,5 +132,39 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         $result = $oauth->verifyState($dummyState);
 
         $this->assertTrue($result);
+    }
+
+    /**
+     * Test getClientId.
+     *
+     * @throws \Exception
+     */
+    public function testGetClientId()
+    {
+        $oauth = new OAuth();
+        $clientId = $oauth->getClientId();
+
+        $this->assertEquals((new Config())->get('clientId'), $clientId);
+
+        $oauth->setClientId('12345');
+
+        $this->assertEquals('12345', $oauth->getClientId());
+    }
+
+    /**
+     * Test getScopes.
+     *
+     * @throws \Exception
+     */
+    public function testGetScopes()
+    {
+        $oauth = new OAuth();
+        $scopes = $oauth->getScopes();
+
+        $this->assertEquals((new Config())->get('scopes'), $scopes);
+
+        $oauth->setScopes(['bot']);
+
+        $this->assertEquals(['bot'], $oauth->getScopes());
     }
 }
