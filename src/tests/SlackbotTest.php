@@ -17,52 +17,6 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testRunWebhookListener()
-    {
-        $config = new Config();
-        $config->set('listenerType', 'webhook');
-
-        /**
-         * Form the request.
-         */
-        $request = [
-            'token'     => $config->get('outgoingWebhookToken'),
-            'text'      => '/ping',
-            'user_id'   => 'dummyId',
-            'user_name' => $config->get('botUsername'),
-        ];
-
-        $config->set('response', 'json');
-        $config->set('chatLogging', false);
-
-        $slackbot = new Slackbot();
-
-        // get listener
-        $listener = $slackbot->getListener();
-
-        // set request
-        $listener->setRequest($request);
-        $slackbot->setListener($listener);
-
-        $slackbot->setConfig($config);
-
-        $confirmMessage = $slackbot->getConfig()->get('confirmReceivedMessage');
-
-        $response = '';
-        if (!empty($confirmMessage)) {
-            $response .= '{"text":"'.$confirmMessage.'","channel":"#general"}';
-        }
-
-        $response .= '{"text":"pong","channel":"#general"}';
-
-        $this->expectOutputString($response);
-
-        $slackbot->run();
-    }
-
-    /**
-     * @throws \Exception
-     */
     public function testRespond()
     {
         $config = new Config();
@@ -398,73 +352,5 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $slackbot->getCommandByMessage('dummy message without command');
 
         $this->assertEquals($config->get('noCommandMessage'), $slackbot->getLastError());
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function testSendWebhookListener()
-    {
-        $config = new Config();
-        $config->set('listenerType', 'webhook');
-
-        /**
-         * Form the request.
-         */
-        $request = [
-            'token'     => $config->get('outgoingWebhookToken'),
-            'debug'     => true,
-            'user_id'   => 'dummyId',
-            'user_name' => 'dummyUsername',
-        ];
-
-        $config->set('response', 'json');
-
-        $slackbot = new Slackbot();
-
-        // get listener
-        $listener = $slackbot->getListener();
-
-        // set request
-        $listener->setRequest($request);
-
-        $slackbot->setConfig($config);
-
-        $this->expectOutputString('{"text":"test response","channel":"#general"}');
-
-        $slackbot->send('general', 'test response');
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function testSendByBotWebhookListener()
-    {
-        $config = new Config();
-        $config->set('listenerType', 'webhook');
-
-        /**
-         * Form the request.
-         */
-        $request = [
-            'token'   => $config->get('outgoingWebhookToken'),
-            'user_id' => 'USLACKBOT',
-        ];
-
-        $config->set('response', 'json');
-
-        try {
-            $slackbot = new Slackbot();
-
-            // get listener
-            $listener = $slackbot->getListener();
-
-            // set request
-            $listener->setRequest($request);
-
-            $slackbot->setConfig($config);
-        } catch (\Exception $e) {
-            $this->assertEquals('Request is not coming from Slack', $e->getMessage());
-        }
     }
 }
