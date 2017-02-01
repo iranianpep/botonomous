@@ -37,15 +37,48 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
     public function testExtractCommandName()
     {
         $utility = new MessageUtility();
-        $command = $utility->extractCommandName('/help dummy @test /help de');
+        $config = new Config();
+        $commandPrefix = $config->get('commandPrefix');
+
+        $command = $utility->extractCommandName("{$commandPrefix}help dummy @test {$commandPrefix}help de");
 
         $this->assertEquals('help', $command);
 
-        $command = $utility->extractCommandName(' /help dummy @test /help de');
+        $command = $utility->extractCommandName(" {$commandPrefix}help dummy @test {$commandPrefix}help de");
 
         $this->assertEquals('help', $command);
 
-        $command = $utility->extractCommandName(' dummy /help dummy @test /help dummy');
+        $command = $utility->extractCommandName(" dummy {$commandPrefix}help dummy @test {$commandPrefix}help dummy");
+
+        $this->assertEquals(null, $command);
+
+        $config->set('commandPrefix', '');
+        $commandPrefix = $config->get('commandPrefix');
+
+        $command = $utility->extractCommandName("{$commandPrefix}help dummy @test {$commandPrefix}help de");
+
+        $this->assertEquals('help', $command);
+
+        $command = $utility->extractCommandName(" dummy {$commandPrefix}help dummy @test {$commandPrefix}help dummy");
+
+        $this->assertEquals('dummy', $command);
+
+        $command = $utility->extractCommandName(" {$commandPrefix}help dummy @test {$commandPrefix}help de");
+
+        $this->assertEquals('help', $command);
+
+        $config->set('commandPrefix', '@');
+        $commandPrefix = $config->get('commandPrefix');
+
+        $command = $utility->extractCommandName("{$commandPrefix}help dummy @test {$commandPrefix}help de");
+
+        $this->assertEquals('help', $command);
+
+        $command = $utility->extractCommandName(" {$commandPrefix}help dummy @test {$commandPrefix}help de");
+
+        $this->assertEquals('help', $command);
+
+        $command = $utility->extractCommandName(" dummy {$commandPrefix}help dummy @test {$commandPrefix}help dummy");
 
         $this->assertEquals(null, $command);
     }
@@ -56,8 +89,10 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
     public function testExtractCommandDetails()
     {
         $utility = new MessageUtility();
-        $botUsername = (new Config())->get('botUsername');
-        $commandObject = $utility->extractCommandDetails("@{$botUsername} /ping");
+        $config = new Config();
+        $botUsername = $config->get('botUsername');
+        $commandPrefix = $config->get('commandPrefix');
+        $commandObject = $utility->extractCommandDetails("@{$botUsername} {$commandPrefix}ping");
 
         $expected = new Command('ping');
         $expected->setPlugin('Ping');
@@ -72,7 +107,7 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
     public function testRemoveTriggerWord()
     {
         $utility = new MessageUtility();
-        $result = $utility->removeTriggerWord('google_bot:', 'google_bot: do this google_bot');
+        $result = $utility->removeTriggerWord('google_bot: do this google_bot', 'google_bot:');
 
         $this->assertEquals('do this google_bot', $result);
     }

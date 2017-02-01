@@ -87,13 +87,14 @@ class Ping extends AbstractPlugin
 | response | string | Response type. Possible values are `slack` or `json` |
 | rootNamespace | string | Root namespace |
 | defaultCommand | string | Default command if there is no command has been specified in the message |
+| commandPrefix | string | Command prefix which is / by default |
 | noCommandMessage | string | Message in case there is no command found in the message |
 | unknownCommandMessage | string | Message in case the command in the message is unknown |
 | confirmReceivedMessage | string | Message in case a message is received by the bot |
 | listenerType | string | Type of the listener for Slack requests. Possible values are `webhook` or `event` |
 | clientId | string | App credential: client id - This is required for Event listeners and can be found at https://api.slack.com/apps |
 | clientSecret | string | App credential: client secret - This is required for Event listeners and can be found at https://api.slack.com/apps |
-| scopes | string | App credential: permission scopes - This is required for Event listeners and can be found at https://api.slack.com/apps |
+| scopes | array | App credential: permission scopes - This is required for Event listeners and can be found at https://api.slack.com/apps |
 | verificationToken | string | For interactive messages and events, use this token to verify that requests are actually coming from Slack - This is required for Event listeners and can be found at https://api.slack.com/apps |
 | apiAppId | string | The unique identifier for the application. This is required for Event listeners and can be found at https://api.slack.com/apps and your app url |
 

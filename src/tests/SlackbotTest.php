@@ -20,6 +20,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     public function testRespond()
     {
         $config = new Config();
+        $commandPrefix = $config->get('commandPrefix');
 
         /**
          * Form the request.
@@ -27,7 +28,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $botUsername = '@'.$config->get('botUsername');
         $request = [
             'token' => $config->get('outgoingWebhookToken'),
-            'text'  => $botUsername.' /ping',
+            'text'  => "{$botUsername} {$commandPrefix}ping",
         ];
 
         $slackbot = new Slackbot();
@@ -47,37 +48,37 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $inputsOutputs = [
             [
                 'i' => [
-                    'message' => "$botUsername /ping",
+                    'message' => "$botUsername {$commandPrefix}ping",
                 ],
                 'o' => 'pong',
             ],
             [
                 'i' => [
-                    'message' => "$botUsername /pong",
+                    'message' => "$botUsername {$commandPrefix}pong",
                 ],
                 'o' => 'ping',
             ],
             [
                 'i' => [
-                    'message' => '/ping',
+                    'message' => "{$commandPrefix}ping",
                 ],
                 'o' => 'pong',
             ],
             [
                 'i' => [
-                    'message' => '/pong',
+                    'message' => "{$commandPrefix}pong",
                 ],
                 'o' => 'ping',
             ],
             [
                 'i' => [
-                    'message' => '/pong',
+                    'message' => "{$commandPrefix}pong",
                 ],
                 'o' => 'ping',
             ],
             [
                 'i' => [
-                    'message' => '/unknownCommand',
+                    'message' => "{$commandPrefix}unknownCommand",
                 ],
                 'o' => $config->get('unknownCommandMessage', ['command' => 'unknownCommand']),
             ],
@@ -89,7 +90,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'i' => [
-                    'message' => 'dummy /ping',
+                    'message' => "dummy {$commandPrefix}ping",
                 ],
                 'o' => $this->outputOnNoCommand($message),
             ],
@@ -269,6 +270,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     public function testRespondExceptException()
     {
         $config = new Config();
+        $commandPrefix = $config->get('commandPrefix');
 
         /**
          * Form the request.
@@ -276,7 +278,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $botUsername = '@'.$config->get('botUsername');
         $request = [
             'token' => $config->get('outgoingWebhookToken'),
-            'text'  => $botUsername.' /commandWithoutFunctionForTest',
+            'text'  => "{$botUsername} {$commandPrefix}commandWithoutFunctionForTest",
         ];
 
         $this->setExpectedException(
@@ -307,8 +309,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         /**
          * Form the request.
          */
+        $config = new Config();
+        $commandPrefix = $config->get('commandPrefix');
         $request = [
-            'token' => (new Config())->get('outgoingWebhookToken'),
+            'token' => $config->get('outgoingWebhookToken'),
         ];
 
         $slackbot = new Slackbot();
@@ -319,7 +323,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         // set request
         $listener->setRequest($request);
 
-        $result = $slackbot->getCommandByMessage('/ping message');
+        $result = $slackbot->getCommandByMessage("{$commandPrefix}ping message");
 
         $this->assertEquals('index', $result->getAction());
         $this->assertEquals('Ping', $result->getPlugin());

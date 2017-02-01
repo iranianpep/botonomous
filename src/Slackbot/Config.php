@@ -28,6 +28,8 @@ class Config extends AbstractConfig
         'rootNamespace' => 'Slackbot',
         // this is used if there is no command has been specified in the message
         'defaultCommand' => 'help',
+        'commandPrefix' => '/',
+        'webhookTriggerWord' => 'bot:',
         /*
          * Generic messages
          */

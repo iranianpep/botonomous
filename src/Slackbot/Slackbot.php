@@ -137,8 +137,8 @@ class Slackbot
         // remove the trigger_word from beginning of the message
         if (!empty($request['trigger_word'])) {
             $request['text'] = $this->getMessageUtility()->removeTriggerWord(
-                $request['trigger_word'],
-                $request['text']
+                $request['text'],
+                $request['trigger_word']
             );
 
             $this->getListener()->setRequest($request);

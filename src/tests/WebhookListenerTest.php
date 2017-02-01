@@ -15,13 +15,14 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
     {
         $config = new Config();
         $config->set('listenerType', 'webhook');
+        $commandPrefix = $config->get('commandPrefix');
 
         /**
          * Form the request.
          */
         $request = [
             'token'     => $config->get('outgoingWebhookToken'),
-            'text'      => '/ping',
+            'text'      => "{$commandPrefix}ping",
             'user_id'   => 'dummyId',
             'user_name' => $config->get('botUsername'),
         ];

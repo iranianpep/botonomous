@@ -3,12 +3,15 @@
 namespace Slackbot\utility;
 
 use Slackbot\CommandContainer;
+use Slackbot\Config;
 
 /**
  * Class MessageUtility.
  */
 class MessageUtility extends AbstractUtility
 {
+    private $config;
+    
     /**
      * Remove the mentioned bot username from the message.
      *
@@ -20,9 +23,7 @@ class MessageUtility extends AbstractUtility
      */
     public function removeMentionedBotUsername($message)
     {
-        $config = $this->getConfig();
-
-        $botUsername = $config->get('botUsername');
+        $botUsername = $this->getConfig()->get('botUsername');
         $mentionedBotUsername = "@{$botUsername}";
 
         return str_replace($mentionedBotUsername, '', $message);
@@ -43,11 +44,15 @@ class MessageUtility extends AbstractUtility
         /**
          * Command must start with / and at the beginning of the sentence.
          */
-        $pattern = '/^(\/\w{1,})/';
+        $commandPrefix = $this->getConfig()->get('commandPrefix');
+        $commandPrefix = preg_quote($commandPrefix, '/');
+
+        $pattern = '/^('.$commandPrefix.'\w{1,})/';
+
         preg_match($pattern, ltrim($message), $groups);
 
-        // If command is found, remove / from the beginning of the command
-        return isset($groups[1]) ? ltrim($groups[1], '/') : null;
+        // If command is found, remove command prefix from the beginning of the command
+        return isset($groups[1]) ? ltrim($groups[1], $commandPrefix) : null;
     }
 
     /**
@@ -72,10 +77,30 @@ class MessageUtility extends AbstractUtility
      *
      * @return string
      */
-    public function removeTriggerWord($triggerWord, $message)
+    public function removeTriggerWord($message, $triggerWord)
     {
         $count = 1;
 
         return ltrim(str_replace($triggerWord, '', $message, $count));
+    }
+
+    /**
+     * @return Config
+     */
+    public function getConfig()
+    {
+        if (!isset($this->config)) {
+            $this->setConfig((new Config()));
+        }
+        
+        return $this->config;
+    }
+
+    /**
+     * @param Config $config
+     */
+    public function setConfig(Config $config)
+    {
+        $this->config = $config;
     }
 }

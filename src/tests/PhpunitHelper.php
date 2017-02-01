@@ -10,6 +10,7 @@ class PhpunitHelper
     public function getSlackbot()
     {
         $config = new Config();
+        $commandPrefix = $config->get('commandPrefix');
 
         /**
          * Form the request.
@@ -17,7 +18,7 @@ class PhpunitHelper
         $botUsername = '@'.$config->get('botUsername');
         $request = [
             'token' => $config->get('outgoingWebhookToken'),
-            'text'  => $botUsername.' /ping',
+            'text'  => "{$botUsername} {$commandPrefix}ping",
         ];
 
         $slackbot = new Slackbot();
