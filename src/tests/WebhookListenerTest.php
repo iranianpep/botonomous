@@ -139,7 +139,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([
             'success' => false,
-            'message' => 'Token is missing'
+            'message' => 'Token is missing',
         ], $result);
 
         $request = ['token' => '12345'];
