@@ -51,7 +51,7 @@ class WebhookListener extends BaseListener
         $expectedToken = $this->getConfig()->get('outgoingWebhookToken');
 
         if (empty($expectedToken)) {
-            throw new \Exception('Token must be provided');
+            throw new \Exception('Token must be set in the config');
         }
 
         if ($token === $expectedToken) {

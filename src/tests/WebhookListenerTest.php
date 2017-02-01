@@ -4,6 +4,7 @@ namespace Slackbot\Tests;
 
 use Slackbot\Config;
 use Slackbot\Slackbot;
+use Slackbot\WebhookListener;
 
 /** @noinspection PhpUndefinedClassInspection */
 class WebhookListenerTest extends \PHPUnit_Framework_TestCase
@@ -121,5 +122,85 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
         $this->expectOutputString('{"text":"test response","channel":"#general"}');
 
         $slackbot->send('general', 'test response');
+    }
+
+    /**
+     * Test verifyOrigin.
+     *
+     * @throws \Exception
+     */
+    public function testVerifyOrigin()
+    {
+        $request = [];
+        $webhookListener = new WebhookListener();
+        $webhookListener->setRequest($request);
+
+        $result = $webhookListener->verifyOrigin();
+
+        $this->assertEquals([
+            'success' => false,
+            'message' => 'Token is missing'
+        ], $result);
+
+        $request = ['token' => '12345'];
+        $webhookListener->setRequest($request);
+
+        $config = new Config();
+
+        $config->set('outgoingWebhookToken', '54321');
+
+        $result = $webhookListener->verifyOrigin();
+
+        $this->assertEquals([
+            'success' => false,
+            'message' => 'Token is not valid',
+        ], $result);
+
+        $config->set('outgoingWebhookToken', '12345');
+
+        $result = $webhookListener->verifyOrigin();
+
+        $this->assertEquals([
+            'success' => true,
+            'message' => 'Awesome!',
+        ], $result);
+
+        $config->set('outgoingWebhookToken', '');
+
+        $webhookListener->setConfig($config);
+
+        $this->setExpectedException('Exception', 'Token must be set in the config');
+
+        $webhookListener->verifyOrigin();
+    }
+
+    /**
+     * Test isThisBot.
+     *
+     * @throws \Exception
+     */
+    public function testIsThisBotMissingBotId()
+    {
+        $webhookListener = new WebhookListener();
+
+        $this->setExpectedException('Exception', 'Bot user id must be provided');
+
+        $webhookListener->isThisBot();
+    }
+
+    /**
+     * Test isThisBot.
+     *
+     * @throws \Exception
+     */
+    public function testIsThisBotMissingBotName()
+    {
+        $request = ['user_id' => '12345'];
+        $webhookListener = new WebhookListener();
+        $webhookListener->setRequest($request);
+
+        $this->setExpectedException('Exception', 'Bot user name must be provided');
+
+        $webhookListener->isThisBot();
     }
 }
