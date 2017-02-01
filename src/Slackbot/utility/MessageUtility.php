@@ -11,7 +11,7 @@ use Slackbot\Config;
 class MessageUtility extends AbstractUtility
 {
     private $config;
-    
+
     /**
      * Remove the mentioned bot username from the message.
      *
@@ -92,7 +92,7 @@ class MessageUtility extends AbstractUtility
         if (!isset($this->config)) {
             $this->setConfig((new Config()));
         }
-        
+
         return $this->config;
     }
 
