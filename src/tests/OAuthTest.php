@@ -70,6 +70,24 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     }
 
     /**
+     * Test getAccessToken.
+     */
+    public function testGetAccessTokenMissingState()
+    {
+        $accessToken = 'xoxp-XXXXXXXX-XXXXXXXX-XXXXX';
+
+        $clientId = '4b39e9-752c4';
+        $clientSecret = '123456';
+        $scope = ['bot', 'users:read'];
+
+        $oAuth = new OAuth($clientId, $clientSecret, $scope);
+
+        $this->setExpectedException('Exception', 'State is not provided');
+
+        $this->assertEquals($accessToken, $oAuth->getAccessToken(''));
+    }
+
+    /**
      * Test getAccessToken which includes getAccessToken.
      */
     public function testRequestAccessToken()
