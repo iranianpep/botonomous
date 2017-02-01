@@ -22,6 +22,11 @@ class EventListener extends BaseListener
     {
     }
 
+    /**
+     * listen.
+     *
+     * @return mixed|void
+     */
     public function listen()
     {
         $request = $this->extractRequest();
@@ -32,6 +37,8 @@ class EventListener extends BaseListener
 
         $this->processRequest();
         $this->setRequest($request);
+
+        return $request;
     }
 
     public function extractRequest()

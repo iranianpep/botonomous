@@ -205,4 +205,22 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $eventListener->verifyOrigin());
     }
+
+    /**
+     * Test listen.
+     */
+    public function testListenEmpty()
+    {
+        $eventListener = new EventListener();
+        $this->assertEmpty($eventListener->listen());
+    }
+
+    /**
+     * Test extractListen.
+     */
+    public function testExtractRequest()
+    {
+        $eventListener = new EventListener();
+        $this->assertEmpty($eventListener->extractRequest());
+    }
 }
