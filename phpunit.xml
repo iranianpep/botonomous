@@ -12,7 +12,10 @@
 
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
-      <directory suffix=".php">src/tests</directory>
+      <directory suffix=".php">src</directory>
+      <exclude>
+        <file>src/tests</file>
+      </exclude>
     </whitelist>
   </filter>
 
