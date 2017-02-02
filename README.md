@@ -79,7 +79,7 @@ class Ping extends AbstractPlugin
 | apiToken | string | Your API key which can be found at Custom Integrations -> Bots -> Edit configuration (https://codejetter.slack.com/apps/manage/custom-integrations). This is required for outgoing webhook listeners |
 | channelName | string | default value: `#general` |
 | botUsername | string | Bot username |
-| outgoingWebhookToken | string | Slack outgoing webhook token which can be found at Custom Integrations -> Outgoing WebHooks -> Edit configuration (https://codejetter.slack.com/apps/manage/custom-integrations). This is required for outgoing webhook listeners |
+| verificationToken | string | Slack verification token which can be found at Custom Integrations settings. This is required for outgoing webhook listeners. This also can be used for slash commands as well |
 | chatLogging | boolean | If is true, all the conversations are logged in a text file |
 | tmpFolderName | string | Temporary folder for the log file |
 | chatLoggingFileName | string | Log file name |

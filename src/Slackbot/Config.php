@@ -16,7 +16,7 @@ class Config extends AbstractConfig
         'apiToken'             => 'YOUR_API_TOKEN',
         'channelName'          => 'general',
         'botUsername'          => 'YOUR_BOT_USERNAME',
-        'outgoingWebhookToken' => 'YOUR_OUTGOING_WEBHOOK_TOKEN',
+        'verificationToken' => 'YOUR_OUTGOING_WEBHOOK_TOKEN',
         'chatLogging'          => true,
         'tmpFolderName'        => 'tmp',
         'chatLoggingFileName'  => 'chat_log',

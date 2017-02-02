@@ -4,6 +4,8 @@ namespace Slackbot;
 
 class WebhookListener extends BaseListener
 {
+    const VERIFICATION_TOKEN = 'verificationToken';
+
     /**
      * listen.
      */
@@ -48,7 +50,7 @@ class WebhookListener extends BaseListener
             ];
         }
 
-        $expectedToken = $this->getConfig()->get('outgoingWebhookToken');
+        $expectedToken = $this->getConfig()->get(self::VERIFICATION_TOKEN);
 
         if (empty($expectedToken)) {
             throw new \Exception('Token must be set in the config');

@@ -9,6 +9,8 @@ use Slackbot\WebhookListener;
 /** @noinspection PhpUndefinedClassInspection */
 class WebhookListenerTest extends \PHPUnit_Framework_TestCase
 {
+    const VERIFICATION_TOKEN = 'verificationToken';
+
     /**
      * @throws \Exception
      */
@@ -22,7 +24,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token'     => $config->get('outgoingWebhookToken'),
+            'token'     => $config->get(self::VERIFICATION_TOKEN),
             'text'      => "{$commandPrefix}ping",
             'user_id'   => 'dummyId',
             'user_name' => $config->get('botUsername'),
@@ -68,7 +70,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token'   => $config->get('outgoingWebhookToken'),
+            'token'   => $config->get(self::VERIFICATION_TOKEN),
             'user_id' => 'USLACKBOT',
         ];
 
@@ -101,7 +103,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token'     => $config->get('outgoingWebhookToken'),
+            'token'     => $config->get(self::VERIFICATION_TOKEN),
             'debug'     => true,
             'user_id'   => 'dummyId',
             'user_name' => 'dummyUsername',
@@ -147,7 +149,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
 
         $config = new Config();
 
-        $config->set('outgoingWebhookToken', '54321');
+        $config->set(self::VERIFICATION_TOKEN, '54321');
 
         $result = $webhookListener->verifyOrigin();
 
@@ -156,7 +158,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
             'message' => 'Token is not valid',
         ], $result);
 
-        $config->set('outgoingWebhookToken', '12345');
+        $config->set(self::VERIFICATION_TOKEN, '12345');
 
         $result = $webhookListener->verifyOrigin();
 
@@ -165,7 +167,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
             'message' => 'Awesome!',
         ], $result);
 
-        $config->set('outgoingWebhookToken', '');
+        $config->set(self::VERIFICATION_TOKEN, '');
 
         $webhookListener->setConfig($config);
 
