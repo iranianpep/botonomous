@@ -2,6 +2,8 @@
 
 namespace Slackbot;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
 use Slackbot\client\ApiClient;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\utility\FormattingUtility;
@@ -177,6 +179,22 @@ class Slackbot
 
         if ($debug === true) {
             echo json_encode($data);
+        } elseif ($responseType === 'slashCommand') {
+            $client = new Client();
+
+            $args = [
+                'text' => $response,
+                'response_type' => 'in_channel'
+            ];
+
+            $request = new Request(
+                'POST',
+                $this->getRequest('response_url'),
+                ['Content-Type' => 'application/json'],
+                json_encode($args)
+            );
+
+            $response = $client->send($request);
         } elseif ($responseType === 'slack') {
             $this->getLoggerUtility()->logChat(__METHOD__, $response);
             (new ApiClient())->chatPostMessage($data);

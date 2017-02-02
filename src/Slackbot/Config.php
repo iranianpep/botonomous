@@ -23,7 +23,7 @@ class Config extends AbstractConfig
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',
         // possible values are: webhook, event
         'listenerType'         => 'webhook',
-        // possible values are: slack, json
+        // possible values are: slack, json, slashCommand
         'response'      => 'slack',
         'rootNamespace' => 'Slackbot',
         // this is used if there is no command has been specified in the message
