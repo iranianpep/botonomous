@@ -27,7 +27,8 @@ class WebhookListener extends BaseListener
     {
         ob_start();
         echo('{"response_type": "in_channel", "text": ""}');
-        header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
+        $serverProtocol = filter_input(INPUT_SERVER, 'SERVER_PROTOCOL', FILTER_SANITIZE_STRING);
+        header($serverProtocol . " 200 OK");
         header("Content-Type: application/json");
         header('Content-Length: '.ob_get_length());
         ob_end_flush();
