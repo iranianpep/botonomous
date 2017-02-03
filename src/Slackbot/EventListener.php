@@ -43,7 +43,7 @@ class EventListener extends BaseListener
 
     public function extractRequest()
     {
-        $requestBody = file_get_contents('php://input');
+        $requestBody = $this->getRequestUtility()->getContent();
 
         if (empty($requestBody)) {
             return;

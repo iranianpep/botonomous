@@ -3,6 +3,7 @@
 namespace Slackbot;
 
 use Slackbot\client\ApiClient;
+use Slackbot\utility\RequestUtility;
 use Slackbot\utility\SecurityUtility;
 
 /**
@@ -21,6 +22,7 @@ class OAuth
     private $teamId;
     private $apiClient;
     private $sessionHandler;
+    private $requestUtility;
 
     /**
      * @var string configuration_url will be the URL that you can point your user to if they'd like to edit
@@ -454,7 +456,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
      */
     public function doOauth($code = null, $state = null)
     {
-        $getRequest = filter_input_array(INPUT_GET);
+        $getRequest = $this->getRequestUtility()->getGet();
 
         // get code from GET request
         if ($code === null && isset($getRequest['code'])) {
@@ -477,5 +479,25 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    /**
+     * @return RequestUtility
+     */
+    public function getRequestUtility()
+    {
+        if (!isset($this->requestUtility)) {
+            $this->setRequestUtility((new RequestUtility()));
+        }
+
+        return $this->requestUtility;
+    }
+
+    /**
+     * @param RequestUtility $requestUtility
+     */
+    public function setRequestUtility(RequestUtility $requestUtility)
+    {
+        $this->requestUtility = $requestUtility;
     }
 }

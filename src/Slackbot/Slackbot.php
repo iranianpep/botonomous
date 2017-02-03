@@ -9,6 +9,7 @@ use Slackbot\plugin\AbstractPlugin;
 use Slackbot\utility\FormattingUtility;
 use Slackbot\utility\LoggerUtility;
 use Slackbot\utility\MessageUtility;
+use Slackbot\utility\RequestUtility;
 
 /**
  * Class Slackbot.
@@ -29,6 +30,7 @@ class Slackbot
     private $formattingUtility;
     private $loggerUtility;
     private $oauth;
+    private $requestUtility;
 
     /**
      * Slackbot constructor.
@@ -63,7 +65,7 @@ class Slackbot
     public function run()
     {
         // Get action
-        $getRequest = filter_input_array(INPUT_GET);
+        $getRequest = $this->getRequestUtility()->getGet();
         $action = '';
         if (isset($getRequest['action'])) {
             $action = strtolower($getRequest['action']);
@@ -532,5 +534,25 @@ class Slackbot
     public function setOauth(OAuth $oauth)
     {
         $this->oauth = $oauth;
+    }
+
+    /**
+     * @return RequestUtility
+     */
+    public function getRequestUtility()
+    {
+        if (!isset($this->requestUtility)) {
+            $this->setRequestUtility((new RequestUtility()));
+        }
+
+        return $this->requestUtility;
+    }
+
+    /**
+     * @param RequestUtility $requestUtility
+     */
+    public function setRequestUtility(RequestUtility $requestUtility)
+    {
+        $this->requestUtility = $requestUtility;
     }
 }

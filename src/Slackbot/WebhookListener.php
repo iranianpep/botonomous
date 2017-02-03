@@ -26,9 +26,11 @@ class WebhookListener extends BaseListener
     private function respondOK()
     {
         ob_start();
-        echo '{"response_type": "in_channel", "text": ""}';
-        $serverProtocol = filter_input(INPUT_SERVER, 'SERVER_PROTOCOL', FILTER_SANITIZE_STRING);
-        header($serverProtocol.' 200 OK');
+        echo json_encode([
+            'response_type' => 'in_channel',
+            'text' => ''
+        ]);
+        header($this->getRequestUtility()->getServerProtocol().' 200 OK');
         header('Content-Type: application/json');
         header('Content-Length: '.ob_get_length());
         ob_end_flush();
@@ -41,7 +43,7 @@ class WebhookListener extends BaseListener
      */
     public function extractRequest()
     {
-        $postRequest = filter_input_array(INPUT_POST);
+        $postRequest = $this->getRequestUtility()->getPost();
 
         if (empty($postRequest)) {
             return;
