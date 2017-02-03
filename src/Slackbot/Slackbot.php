@@ -184,8 +184,8 @@ class Slackbot
             (new ApiClient())->chatPostMessage($data);
         } elseif ($responseType === 'slashCommand') {
             $args = [
-                'text' => $response,
-                'response_type' => 'in_channel'
+                'text'          => $response,
+                'response_type' => 'in_channel',
             ];
 
             /** @noinspection PhpUndefinedClassInspection */
