@@ -104,7 +104,7 @@ abstract class BaseListener
     }
 
     /**
-     * respond OK
+     * respond OK.
      */
     protected function respondOK()
     {
