@@ -16,14 +16,13 @@ class Config extends AbstractConfig
         'apiToken'             => 'YOUR_API_TOKEN',
         'channelName'          => 'general',
         'botUsername'          => 'YOUR_BOT_USERNAME',
-        'verificationToken' => 'YOUR_OUTGOING_WEBHOOK_TOKEN',
         'chatLogging'          => true,
         'tmpFolderName'        => 'tmp',
         'chatLoggingFileName'  => 'chat_log',
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',
         // possible values are: webhook, event
         'listenerType'         => 'webhook',
-        // possible values are: slack, json
+        // possible values are: slack, json, slashCommand
         'response'      => 'slack',
         'rootNamespace' => 'Slackbot',
         // this is used if there is no command has been specified in the message

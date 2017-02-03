@@ -2,6 +2,8 @@
 
 namespace Slackbot;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
 use Slackbot\client\ApiClient;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\utility\FormattingUtility;
@@ -180,6 +182,21 @@ class Slackbot
         } elseif ($responseType === 'slack') {
             $this->getLoggerUtility()->logChat(__METHOD__, $response);
             (new ApiClient())->chatPostMessage($data);
+        } elseif ($responseType === 'slashCommand') {
+            $args = [
+                'text' => $response,
+                'response_type' => 'in_channel'
+            ];
+
+            /** @noinspection PhpUndefinedClassInspection */
+            $request = new Request(
+                'POST',
+                $this->getRequest('response_url'),
+                ['Content-Type' => 'application/json'],
+                json_encode($args)
+            );
+
+            (new Client())->send($request);
         } elseif ($responseType === 'json') {
             $this->getLoggerUtility()->logChat(__METHOD__, $response);
             // headers_sent is used to avoid issue in the test
