@@ -28,7 +28,7 @@ class WebhookListener extends BaseListener
         ob_start();
         echo json_encode([
             'response_type' => 'in_channel',
-            'text' => ''
+            'text'          => '',
         ]);
         header($this->getRequestUtility()->getServerProtocol().' 200 OK');
         header('Content-Type: application/json');

@@ -3,8 +3,7 @@
 namespace Slackbot\utility;
 
 /**
- * Class RequestUtility
- * @package Slackbot\utility
+ * Class RequestUtility.
  */
 class RequestUtility
 {
