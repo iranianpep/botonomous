@@ -7,6 +7,7 @@ use Slackbot\Config;
 use Slackbot\OAuth;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\Slackbot;
+use Slackbot\utility\RequestUtility;
 
 /**
  * Class SlackbotTest.
@@ -16,6 +17,31 @@ use Slackbot\Slackbot;
 class SlackbotTest extends \PHPUnit_Framework_TestCase
 {
     const VERIFICATION_TOKEN = 'verificationToken';
+
+    /**
+     * Test run.
+     */
+    public function testRunEmptyState()
+    {
+        $requestUtility = new RequestUtility();
+        $requestUtility->setGet(
+            [
+                'action' => 'oauth'
+            ]
+        );
+
+        $slackbot = new Slackbot();
+
+        $oauth = new OAuth();
+        $oauth->setRequestUtility($requestUtility);
+
+        $slackbot->setOauth($oauth);
+        $slackbot->setRequestUtility($requestUtility);
+
+        $this->setExpectedException('Exception', 'State is not provided');
+
+        $slackbot->run();
+    }
 
     /**
      * @throws \Exception
@@ -397,9 +423,11 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
     public function testGetOauth()
     {
         $oauth = new OAuth();
-        $oauth->setClientId('12345');
-
         $slackbot = new Slackbot();
+
+        $this->assertEquals(new OAuth(), $slackbot->getOauth());
+
+        $oauth->setClientId('12345');
         $slackbot->setOauth($oauth);
 
         $this->assertEquals('12345', $slackbot->getOauth()->getClientId());
@@ -427,4 +455,24 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $slackbot = new Slackbot($config);
         $this->assertEquals('testValue', $slackbot->getConfig()->get('testKey'));
     }
+
+    /**
+     * Test run.
+     */
+//    public function testRunEmptyState()
+//    {
+//        $requestUtility = new RequestUtility();
+//        $requestUtility->setGet(
+//            ['action' => 'oauth']
+//        );
+//
+//        $slackbot = new Slackbot();
+//        $slackbot->setRequestUtility($requestUtility);
+//
+//        $this->setExpectedException('Exception', 'State is not provided');
+//
+//        $slackbot->run();
+//    }
+
+
 }

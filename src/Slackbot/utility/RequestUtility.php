@@ -9,6 +9,7 @@ class RequestUtility
 {
     private $content;
     private $post;
+    private $get;
 
     /**
      * @return string
@@ -55,7 +56,19 @@ class RequestUtility
      */
     public function getGet()
     {
+        if (isset($this->get)) {
+            return $this->get;
+        }
+
         return filter_input_array(INPUT_GET);
+    }
+
+    /**
+     * @param array $get
+     */
+    public function setGet(array $get)
+    {
+        $this->get = $get;
     }
 
     /**
