@@ -70,6 +70,18 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     }
 
     /**
+     * Test getAccessTokenEmptyCode.
+     */
+    public function testGetAccessTokenEmptyCode()
+    {
+        $oauth = new OAuth();
+
+        $this->setExpectedException('Exception', 'Code must be provided to get the access token');
+
+        $oauth->getAccessToken('', false);
+    }
+
+    /**
      * Test getAccessToken.
      */
     public function testGetAccessTokenMissingState()
