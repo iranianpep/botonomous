@@ -3,7 +3,6 @@
 namespace Slackbot\Tests;
 
 use Slackbot\Config;
-use Slackbot\EventListener;
 use Slackbot\Slackbot;
 use Slackbot\utility\RequestUtility;
 use Slackbot\WebhookListener;
