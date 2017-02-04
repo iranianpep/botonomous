@@ -8,10 +8,9 @@ class RequestUtilityTest extends \PHPUnit_Framework_TestCase
     {
         $requestUtility = new RequestUtility();
 
-        if (!isset($_SERVER['SERVER_PROTOCOL'])) {
-            $_SERVER['SERVER_PROTOCOL'] = null;
-        }
-
-        $this->assertEquals($_SERVER['SERVER_PROTOCOL'], $requestUtility->getServerProtocol());
+        $this->assertEquals(
+            filter_input(INPUT_SERVER, 'SERVER_PROTOCOL', FILTER_SANITIZE_STRING),
+            $requestUtility->getServerProtocol()
+        );
     }
 }
