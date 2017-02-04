@@ -250,4 +250,30 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($eventListener->getEvent()->getType(), 'message');
     }
+
+    /**
+     * Test processRequest.
+     */
+    public function testProcessRequestWithChallenge()
+    {
+        $eventListener = new EventListener();
+
+        // mock request
+        $requestUtility = new RequestUtility();
+
+        $challenge = "3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P";
+        $request = [
+            "token" => "Jhj5dZrVaK7ZwHHjRyZWjbDl",
+            "challenge" => $challenge,
+            "type" => "url_verification"
+        ];
+
+        $requestUtility->setContent(json_encode($request));
+
+        $eventListener->setRequestUtility($requestUtility);
+
+        $this->expectOutputString($challenge);
+
+        $eventListener->processRequest();
+    }
 }

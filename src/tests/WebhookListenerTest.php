@@ -3,7 +3,9 @@
 namespace Slackbot\Tests;
 
 use Slackbot\Config;
+use Slackbot\EventListener;
 use Slackbot\Slackbot;
+use Slackbot\utility\RequestUtility;
 use Slackbot\WebhookListener;
 
 /** @noinspection PhpUndefinedClassInspection */
@@ -204,5 +206,21 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('Exception', 'Bot user name must be provided');
 
         $webhookListener->isThisBot();
+    }
+
+    /**
+     * Test extractRequest.
+     */
+    public function testExtractRequest()
+    {
+        $requestUtility = new RequestUtility();
+
+        $post = ['test' => 'test'];
+        $requestUtility->setPost($post);
+
+        $listener = new WebhookListener();
+        $listener->setRequestUtility($requestUtility);
+
+        $this->assertEquals($post, $listener->extractRequest());
     }
 }

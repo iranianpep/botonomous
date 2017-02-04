@@ -8,6 +8,7 @@ namespace Slackbot\utility;
 class RequestUtility
 {
     private $content;
+    private $post;
 
     /**
      * @return string
@@ -34,7 +35,19 @@ class RequestUtility
      */
     public function getPost()
     {
+        if (isset($this->post)) {
+            return $this->post;
+        }
+
         return filter_input_array(INPUT_POST);
+    }
+
+    /**
+     * @param array $post
+     */
+    public function setPost(array $post)
+    {
+        $this->post = $post;
     }
 
     /**
