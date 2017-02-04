@@ -18,17 +18,17 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $requestUtility = new RequestUtility();
 
         $request = [
-            'token' => 'XXYYZZ',
-            'team_id' => 'TXXXXXXXX',
+            'token'      => 'XXYYZZ',
+            'team_id'    => 'TXXXXXXXX',
             'api_app_id' => 'AXXXXXXXXX',
-            'event' => [
-                'type' => 'message',
-                'channel' => 'test',
-                'text' => 'test',
-                'ts' => '1234567890',
+            'event'      => [
+                'type'     => 'message',
+                'channel'  => 'test',
+                'text'     => 'test',
+                'ts'       => '1234567890',
                 'event_ts' => '1234567890.123456',
-                'user' => 'UXXXXXXX1'
-            ]
+                'user'     => 'UXXXXXXX1',
+            ],
         ];
 
         $requestUtility->setContent(json_encode($request));
@@ -44,13 +44,13 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $requestUtility = new RequestUtility();
 
         $request = [
-            'token' => 'XXYYZZ',
-            'team_id' => 'TXXXXXXXX',
+            'token'      => 'XXYYZZ',
+            'team_id'    => 'TXXXXXXXX',
             'api_app_id' => 'AXXXXXXXXX',
-            'event' => [
+            'event'      => [
                 'event_ts' => '1234567890.123456',
-                'user' => 'UXXXXXXX1'
-            ]
+                'user'     => 'UXXXXXXX1',
+            ],
         ];
 
         $requestUtility->setContent(json_encode($request));
@@ -90,12 +90,12 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $event = $eventListener->getEvent();
 
         $expected = [
-            'type' => 'message',
-            'channel' => 'test',
-            'text' => 'test',
-            'ts' => '1234567890',
+            'type'     => 'message',
+            'channel'  => 'test',
+            'text'     => 'test',
+            'ts'       => '1234567890',
             'event_ts' => '1234567890.123456',
-            'user' => 'UXXXXXXX1'
+            'user'     => 'UXXXXXXX1',
         ];
 
         $this->assertEquals($expected, [
