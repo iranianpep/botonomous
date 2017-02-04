@@ -373,7 +373,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          */
         $request = [
             'token' => $config->get(self::VERIFICATION_TOKEN),
-            'text' => ''
+            'text'  => '',
         ];
 
         $slackbot = new Slackbot();
