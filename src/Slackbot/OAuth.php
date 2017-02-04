@@ -5,6 +5,7 @@ namespace Slackbot;
 use Slackbot\client\ApiClient;
 use Slackbot\utility\RequestUtility;
 use Slackbot\utility\SecurityUtility;
+use Slackbot\utility\SessionUtility;
 
 /**
  * Class OAuth.
@@ -21,7 +22,7 @@ class OAuth
     private $state;
     private $teamId;
     private $apiClient;
-    private $sessionHandler;
+    private $sessionUtility;
     private $requestUtility;
 
     /**
@@ -138,7 +139,7 @@ class OAuth
      */
     public function setState($state)
     {
-        $this->getSessionHandler()->set(self::SESSION_STATE_KEY, $state);
+        $this->getSessionUtility()->set(self::SESSION_STATE_KEY, $state);
         $this->state = $state;
     }
 
@@ -149,7 +150,7 @@ class OAuth
      */
     public function verifyState($state)
     {
-        if ($state === $this->getSessionHandler()->get(self::SESSION_STATE_KEY)) {
+        if ($state === $this->getSessionUtility()->get(self::SESSION_STATE_KEY)) {
             return true;
         }
 
@@ -409,23 +410,23 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     }
 
     /**
-     * @param SessionHandler $sessionHandler
+     * @param SessionUtility $sessionUtility
      */
-    public function setSessionHandler(SessionHandler $sessionHandler)
+    public function setSessionUtility(SessionUtility $sessionUtility)
     {
-        $this->sessionHandler = $sessionHandler;
+        $this->sessionUtility = $sessionUtility;
     }
 
     /**
-     * @return SessionHandler
+     * @return SessionUtility
      */
-    public function getSessionHandler()
+    public function getSessionUtility()
     {
-        if (!isset($this->sessionHandler)) {
-            $this->setSessionHandler(new SessionHandler());
+        if (!isset($this->sessionUtility)) {
+            $this->setSessionUtility(new SessionUtility());
         }
 
-        return $this->sessionHandler;
+        return $this->sessionUtility;
     }
 
     /**
