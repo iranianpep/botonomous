@@ -238,4 +238,16 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEmpty((new EventListener())->extractRequest());
     }
+
+    /**
+     * Test processRequest.
+     */
+    public function testProcessRequest()
+    {
+        $eventListener = new EventListener();
+        $eventListener->setRequestUtility($this->getSampleRequestUtility());
+        $eventListener->processRequest();
+
+        $this->assertEquals($eventListener->getEvent()->getType(), 'message');
+    }
 }
