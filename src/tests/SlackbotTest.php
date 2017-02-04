@@ -26,7 +26,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $requestUtility = new RequestUtility();
         $requestUtility->setGet(
             [
-                'action' => 'oauth'
+                'action' => 'oauth',
             ]
         );
 
@@ -456,7 +456,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('testValue', $slackbot->getConfig()->get('testKey'));
     }
 
-    /**
+    /*
      * Test run.
      */
 //    public function testRunEmptyState()
@@ -473,6 +473,4 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 //
 //        $slackbot->run();
 //    }
-
-
 }
