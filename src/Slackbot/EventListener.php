@@ -145,6 +145,12 @@ class EventListener extends BaseListener
     {
         $request = $this->getRequest();
 
+        if (!isset($request['event'])) {
+            return;
+        }
+
+        $request = $request['event'];
+
         if (!isset($request['type'])) {
             throw new \Exception('Event type must be specified');
         }

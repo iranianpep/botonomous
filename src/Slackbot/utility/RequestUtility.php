@@ -7,12 +7,26 @@ namespace Slackbot\utility;
  */
 class RequestUtility
 {
+    private $content;
+
     /**
      * @return string
      */
     public function getContent()
     {
+        if (isset($this->content)) {
+            return $this->content;
+        }
+
         return file_get_contents('php://input');
+    }
+
+    /**
+     * @param $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
     }
 
     /**

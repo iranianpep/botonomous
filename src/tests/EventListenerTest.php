@@ -5,23 +5,61 @@ namespace Slackbot\Tests;
 use Slackbot\Config;
 use Slackbot\Event;
 use Slackbot\EventListener;
+use Slackbot\utility\RequestUtility;
 
 class EventListenerTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @return RequestUtility
+     */
+    private function getSampleRequestUtility()
+    {
+        // mock request
+        $requestUtility = new RequestUtility();
+
+        $request = [
+            'token' => 'XXYYZZ',
+            'team_id' => 'TXXXXXXXX',
+            'api_app_id' => 'AXXXXXXXXX',
+            'event' => [
+                'type' => 'message',
+                'channel' => 'test',
+                'text' => 'test',
+                'ts' => '1234567890',
+                'event_ts' => '1234567890.123456',
+                'user' => 'UXXXXXXX1'
+            ]
+        ];
+
+        $requestUtility->setContent(json_encode($request));
+
+        return $requestUtility;
+    }
+
     /**
      * Test get event.
      */
     public function testGetEventEmptyEventType()
     {
+        $requestUtility = new RequestUtility();
+
+        $request = [
+            'token' => 'XXYYZZ',
+            'team_id' => 'TXXXXXXXX',
+            'api_app_id' => 'AXXXXXXXXX',
+            'event' => [
+                'event_ts' => '1234567890.123456',
+                'user' => 'UXXXXXXX1'
+            ]
+        ];
+
+        $requestUtility->setContent(json_encode($request));
+
         $eventListener = new EventListener();
-
-        // mock request
-        $request = [];
-
-        $eventListener->setRequest($request);
+        $eventListener->setRequestUtility($requestUtility);
 
         $this->setExpectedException(
-            '\Exception',
+            'Exception',
             'Event type must be specified'
         );
 
@@ -34,18 +72,11 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
     public function testGetEventType()
     {
         $eventListener = new EventListener();
-
-        // mock request
-        $eventType = 'message';
-        $request = [
-            'type' => $eventType,
-        ];
-
-        $eventListener->setRequest($request);
+        $eventListener->setRequestUtility($this->getSampleRequestUtility());
 
         $event = $eventListener->getEvent();
 
-        $this->assertEquals($eventType, $event->getType());
+        $this->assertEquals('message', $event->getType());
     }
 
     /**
@@ -54,29 +85,20 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
     public function testGetEvent()
     {
         $eventListener = new EventListener();
-
-        // mock request
-        $eventType = 'message';
-        $channel = 'C2147483705';
-        $user = 'U2147483697';
-        $text = 'Hello world';
-        $timeStamp = '1355517523.000005';
-        $eventTimeStamp = '1355517523.000005';
-
-        $request = [
-            'type'     => $eventType,
-            'channel'  => $channel,
-            'user'     => $user,
-            'text'     => $text,
-            'ts'       => $timeStamp,
-            'event_ts' => $eventTimeStamp,
-        ];
-
-        $eventListener->setRequest($request);
+        $eventListener->setRequestUtility($this->getSampleRequestUtility());
 
         $event = $eventListener->getEvent();
 
-        $this->assertEquals($request, [
+        $expected = [
+            'type' => 'message',
+            'channel' => 'test',
+            'text' => 'test',
+            'ts' => '1234567890',
+            'event_ts' => '1234567890.123456',
+            'user' => 'UXXXXXXX1'
+        ];
+
+        $this->assertEquals($expected, [
             'type'     => $event->getType(),
             'channel'  => $event->getChannel(),
             'user'     => $event->getUser(),
@@ -97,12 +119,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $eventListener = new EventListener();
         $eventListener->setEvent($existingEvent);
 
-        // mock request
-        $newRequest = [
-            'type' => 'reaction_added',
-        ];
-
-        $eventListener->setRequest($newRequest);
+        $eventListener->setRequestUtility($this->getSampleRequestUtility());
 
         $event = $eventListener->getEvent();
 
@@ -211,8 +228,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testListenEmpty()
     {
-        $eventListener = new EventListener();
-        $this->assertEmpty($eventListener->listen());
+        $this->assertEmpty((new EventListener())->listen());
     }
 
     /**
@@ -220,7 +236,6 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testExtractRequest()
     {
-        $eventListener = new EventListener();
-        $this->assertEmpty($eventListener->extractRequest());
+        $this->assertEmpty((new EventListener())->extractRequest());
     }
 }
