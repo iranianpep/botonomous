@@ -4,6 +4,7 @@ namespace Slackbot\Tests;
 
 use Slackbot\CommandContainer;
 use Slackbot\Config;
+use Slackbot\OAuth;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\Slackbot;
 
@@ -358,5 +359,72 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $slackbot->getCommandByMessage('dummy message without command');
 
         $this->assertEquals($config->get('noCommandMessage'), $slackbot->getLastError());
+    }
+
+    /**
+     * Test getCommandByMessage.
+     */
+    public function testGetCommandByMessageEmptyMessage()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request.
+         */
+        $request = [
+            'token' => $config->get(self::VERIFICATION_TOKEN),
+            'text' => ''
+        ];
+
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
+        $result = $slackbot->getCommandByMessage();
+
+        $this->assertEquals('Message is empty', $slackbot->getLastError());
+
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Test getOauth.
+     */
+    public function testGetOauth()
+    {
+        $oauth = new OAuth();
+        $oauth->setClientId('12345');
+
+        $slackbot = new Slackbot();
+        $slackbot->setOauth($oauth);
+
+        $this->assertEquals('12345', $slackbot->getOauth()->getClientId());
+    }
+
+    /**
+     * Test getCurrentCommand.
+     */
+    public function testGetCurrentCommand()
+    {
+        $slackbot = new Slackbot();
+        $slackbot->setCurrentCommand('help');
+
+        $this->assertEquals('help', $slackbot->getCurrentCommand());
+    }
+
+    /**
+     * Test setConfig in constructor.
+     */
+    public function testConstructorSetConfig()
+    {
+        $config = new Config();
+        $config->set('testKey', 'testValue');
+
+        $slackbot = new Slackbot($config);
+        $this->assertEquals('testValue', $slackbot->getConfig()->get('testKey'));
     }
 }
