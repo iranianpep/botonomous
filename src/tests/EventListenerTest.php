@@ -261,11 +261,11 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         // mock request
         $requestUtility = new RequestUtility();
 
-        $challenge = "3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P";
+        $challenge = '3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P';
         $request = [
-            "token" => "Jhj5dZrVaK7ZwHHjRyZWjbDl",
-            "challenge" => $challenge,
-            "type" => "url_verification"
+            'token'     => 'Jhj5dZrVaK7ZwHHjRyZWjbDl',
+            'challenge' => $challenge,
+            'type'      => 'url_verification',
         ];
 
         $requestUtility->setContent(json_encode($request));
