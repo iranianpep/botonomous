@@ -23,12 +23,13 @@
 
     <rule ref="rulesets/design.xml/CouplingBetweenObjects">
         <properties>
-            <property name="minimum" value="20" />
+            <property name="minimum" value="25" />
         </properties>
     </rule>
 
     <rule ref="rulesets/codesize.xml">
         <exclude name="TooManyPublicMethods"/>
+        <exclude name="TooManyFields"/>
         <exclude name="ExcessiveClassComplexity"/>
     </rule>
 
@@ -37,6 +38,13 @@
             <property name="maxmethods" value="25" />
         </properties>
     </rule>
+
+    <rule ref="rulesets/codesize.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="20" />
+        </properties>
+    </rule>
+
     <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity">
         <properties>
             <property name="maximum" value="70" />

@@ -4,6 +4,8 @@ namespace Slackbot;
 
 class WebhookListener extends BaseListener
 {
+    const VERIFICATION_TOKEN = 'verificationToken';
+
     /**
      * listen.
      */
@@ -15,6 +17,9 @@ class WebhookListener extends BaseListener
             return;
         }
 
+        // This is needed for Slash commands, otherwise timeout error is displayed
+        $this->respondOK();
+
         $this->setRequest($request);
     }
 
@@ -23,7 +28,7 @@ class WebhookListener extends BaseListener
      */
     public function extractRequest()
     {
-        $postRequest = filter_input_array(INPUT_POST);
+        $postRequest = $this->getRequestUtility()->getPost();
 
         if (empty($postRequest)) {
             return;
@@ -48,7 +53,7 @@ class WebhookListener extends BaseListener
             ];
         }
 
-        $expectedToken = $this->getConfig()->get('outgoingWebhookToken');
+        $expectedToken = $this->getConfig()->get(self::VERIFICATION_TOKEN);
 
         if (empty($expectedToken)) {
             throw new \Exception('Token must be set in the config');

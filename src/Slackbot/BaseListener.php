@@ -2,10 +2,13 @@
 
 namespace Slackbot;
 
+use Slackbot\utility\RequestUtility;
+
 abstract class BaseListener
 {
     private $config;
     private $request;
+    private $requestUtility;
 
     abstract public function listen();
 
@@ -79,4 +82,41 @@ abstract class BaseListener
      * @return array
      */
     abstract public function isThisBot();
+
+    /**
+     * @return RequestUtility
+     */
+    public function getRequestUtility()
+    {
+        if (!isset($this->requestUtility)) {
+            $this->setRequestUtility((new RequestUtility()));
+        }
+
+        return $this->requestUtility;
+    }
+
+    /**
+     * @param RequestUtility $requestUtility
+     */
+    public function setRequestUtility(RequestUtility $requestUtility)
+    {
+        $this->requestUtility = $requestUtility;
+    }
+
+    /**
+     * respond OK.
+     */
+    protected function respondOK()
+    {
+        ob_start();
+//        echo json_encode([
+//            'text'          => '',
+//        ]);
+        header($this->getRequestUtility()->getServerProtocol().' 200 OK');
+        header('Content-Type: application/json');
+        header('Content-Length: '.ob_get_length());
+        ob_end_flush();
+        ob_flush();
+        flush();
+    }
 }

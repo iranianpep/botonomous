@@ -1,17 +1,17 @@
 <?php
 
-namespace Slackbot;
+namespace Slackbot\utility;
 
 /**
- * Class SessionHandler.
+ * Class SessionUtility.
  *
  * @SuppressWarnings(PHPMD.Superglobals)
  * $_SESSION is wrapped in two functions and every session manipulation should use this call
  */
-class SessionHandler
+class SessionUtility
 {
     /**
-     * SessionHandler constructor.
+     * SessionUtility constructor.
      */
     public function __construct()
     {

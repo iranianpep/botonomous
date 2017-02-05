@@ -9,6 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use Slackbot\client\ApiClient;
 use Slackbot\Config;
 use Slackbot\OAuth;
+use Slackbot\utility\RequestUtility;
 
 /**
  * Class OAuthTest.
@@ -67,6 +68,18 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         $oAuth->setAccessToken($accessToken);
 
         $this->assertEquals($accessToken, $oAuth->getAccessToken('1234'));
+    }
+
+    /**
+     * Test getAccessTokenEmptyCode.
+     */
+    public function testGetAccessTokenEmptyCode()
+    {
+        $oauth = new OAuth();
+
+        $this->setExpectedException('Exception', 'Code must be provided to get the access token');
+
+        $oauth->getAccessToken('', false);
     }
 
     /**
@@ -184,5 +197,102 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         $oauth->setScopes(['bot']);
 
         $this->assertEquals(['bot'], $oauth->getScopes());
+    }
+
+    /**
+     * Test getRedirectUri.
+     */
+    public function testGetRedirectUri()
+    {
+        $oauth = new OAuth();
+        $oauth->setRedirectUri('http://test.com');
+
+        $this->assertEquals('http://test.com', $oauth->getRedirectUri());
+    }
+
+    /**
+     * Test getTeamId.
+     */
+    public function testGetTeamId()
+    {
+        $oauth = new OAuth();
+        $oauth->setTeamId('12345');
+
+        $this->assertEquals('12345', $oauth->getTeamId());
+    }
+
+    /**
+     * Test getBotUserId.
+     */
+    public function testGetBotUserId()
+    {
+        $oauth = new OAuth();
+        $oauth->setBotUserId('12345');
+
+        $this->assertEquals('12345', $oauth->getBotUserId());
+    }
+
+    /**
+     * Test getBotAccessToken.
+     */
+    public function testGetBotAccessToken()
+    {
+        $oauth = new OAuth();
+        $oauth->setBotAccessToken('12345');
+
+        $this->assertEquals('12345', $oauth->getBotAccessToken());
+    }
+
+    /**
+     * Test getChannel.
+     */
+    public function testGetChannel()
+    {
+        $oauth = new OAuth();
+        $oauth->setChannel('general');
+
+        $this->assertEquals('general', $oauth->getChannel());
+    }
+
+    /**
+     * Test getTeamName.
+     */
+    public function testGetTeamName()
+    {
+        $oauth = new OAuth();
+        $oauth->setTeamName('test');
+
+        $this->assertEquals('test', $oauth->getTeamName());
+    }
+
+    /**
+     * Test getConfigurationUrl.
+     */
+    public function testGetConfigurationUrl()
+    {
+        $oauth = new OAuth();
+        $oauth->setConfigurationUrl('http://test.com');
+
+        $this->assertEquals('http://test.com', $oauth->getConfigurationUrl());
+    }
+
+    /**
+     * Test getApiClient.
+     */
+    public function testGetApiClient()
+    {
+        $oauth = new OAuth();
+
+        $this->assertEquals(new ApiClient(), $oauth->getApiClient());
+    }
+
+    /**
+     * Test getRequestUtility.
+     */
+    public function testGetRequestUtility()
+    {
+        $oauth = new OAuth();
+
+        $this->assertEquals(new RequestUtility(), $oauth->getRequestUtility());
     }
 }

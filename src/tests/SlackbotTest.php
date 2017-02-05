@@ -4,8 +4,10 @@ namespace Slackbot\Tests;
 
 use Slackbot\CommandContainer;
 use Slackbot\Config;
+use Slackbot\OAuth;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\Slackbot;
+use Slackbot\utility\RequestUtility;
 
 /**
  * Class SlackbotTest.
@@ -14,6 +16,33 @@ use Slackbot\Slackbot;
 /** @noinspection PhpUndefinedClassInspection */
 class SlackbotTest extends \PHPUnit_Framework_TestCase
 {
+    const VERIFICATION_TOKEN = 'verificationToken';
+
+    /**
+     * Test run.
+     */
+    public function testRunEmptyState()
+    {
+        $requestUtility = new RequestUtility();
+        $requestUtility->setGet(
+            [
+                'action' => 'oauth',
+            ]
+        );
+
+        $slackbot = new Slackbot();
+
+        $oauth = new OAuth();
+        $oauth->setRequestUtility($requestUtility);
+
+        $slackbot->setOauth($oauth);
+        $slackbot->setRequestUtility($requestUtility);
+
+        $this->setExpectedException('Exception', 'State is not provided');
+
+        $slackbot->run();
+    }
+
     /**
      * @throws \Exception
      */
@@ -27,7 +56,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          */
         $botUsername = '@'.$config->get('botUsername');
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
+            'token' => $config->get(self::VERIFICATION_TOKEN),
             'text'  => "{$botUsername} {$commandPrefix}ping",
         ];
 
@@ -128,7 +157,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
+            'token' => $config->get(self::VERIFICATION_TOKEN),
         ];
 
         $slackbot = new Slackbot();
@@ -141,7 +170,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($request, $slackbot->getRequest());
 
-        $this->assertEquals($config->get('outgoingWebhookToken'), $slackbot->getRequest('token'));
+        $this->assertEquals($config->get(self::VERIFICATION_TOKEN), $slackbot->getRequest('token'));
     }
 
     /**
@@ -155,7 +184,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
+            'token' => $config->get(self::VERIFICATION_TOKEN),
         ];
 
         $slackbot = new Slackbot();
@@ -180,7 +209,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
+            'token' => $config->get(self::VERIFICATION_TOKEN),
         ];
 
         $slackbot = new Slackbot();
@@ -210,7 +239,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
+            'token' => $config->get(self::VERIFICATION_TOKEN),
             'text'  => $message,
         ];
 
@@ -237,7 +266,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
         $defaultCommand = $config->get('defaultCommand');
 
-        $token = $config->get('outgoingWebhookToken');
+        $token = $config->get(self::VERIFICATION_TOKEN);
 
         $slackbot = new Slackbot();
 
@@ -277,7 +306,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          */
         $botUsername = '@'.$config->get('botUsername');
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
+            'token' => $config->get(self::VERIFICATION_TOKEN),
             'text'  => "{$botUsername} {$commandPrefix}commandWithoutFunctionForTest",
         ];
 
@@ -312,7 +341,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $config = new Config();
         $commandPrefix = $config->get('commandPrefix');
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
+            'token' => $config->get(self::VERIFICATION_TOKEN),
         ];
 
         $slackbot = new Slackbot();
@@ -340,7 +369,7 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
+            'token' => $config->get(self::VERIFICATION_TOKEN),
         ];
 
         $config->set('defaultCommand', '');
@@ -357,4 +386,91 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($config->get('noCommandMessage'), $slackbot->getLastError());
     }
+
+    /**
+     * Test getCommandByMessage.
+     */
+    public function testGetCommandByMessageEmptyMessage()
+    {
+        $config = new Config();
+
+        /**
+         * Form the request.
+         */
+        $request = [
+            'token' => $config->get(self::VERIFICATION_TOKEN),
+            'text'  => '',
+        ];
+
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
+        $result = $slackbot->getCommandByMessage();
+
+        $this->assertEquals('Message is empty', $slackbot->getLastError());
+
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Test getOauth.
+     */
+    public function testGetOauth()
+    {
+        $oauth = new OAuth();
+        $slackbot = new Slackbot();
+
+        $this->assertEquals(new OAuth(), $slackbot->getOauth());
+
+        $oauth->setClientId('12345');
+        $slackbot->setOauth($oauth);
+
+        $this->assertEquals('12345', $slackbot->getOauth()->getClientId());
+    }
+
+    /**
+     * Test getCurrentCommand.
+     */
+    public function testGetCurrentCommand()
+    {
+        $slackbot = new Slackbot();
+        $slackbot->setCurrentCommand('help');
+
+        $this->assertEquals('help', $slackbot->getCurrentCommand());
+    }
+
+    /**
+     * Test setConfig in constructor.
+     */
+    public function testConstructorSetConfig()
+    {
+        $config = new Config();
+        $config->set('testKey', 'testValue');
+
+        $slackbot = new Slackbot($config);
+        $this->assertEquals('testValue', $slackbot->getConfig()->get('testKey'));
+    }
+
+    /*
+     * Test run.
+     */
+//    public function testRunEmptyState()
+//    {
+//        $requestUtility = new RequestUtility();
+//        $requestUtility->setGet(
+//            ['action' => 'oauth']
+//        );
+//
+//        $slackbot = new Slackbot();
+//        $slackbot->setRequestUtility($requestUtility);
+//
+//        $this->setExpectedException('Exception', 'State is not provided');
+//
+//        $slackbot->run();
+//    }
 }

@@ -7,6 +7,8 @@ use Slackbot\Slackbot;
 
 class PhpunitHelper
 {
+    const VERIFICATION_TOKEN = 'verificationToken';
+
     public function getSlackbot()
     {
         $config = new Config();
@@ -17,7 +19,7 @@ class PhpunitHelper
          */
         $botUsername = '@'.$config->get('botUsername');
         $request = [
-            'token' => $config->get('outgoingWebhookToken'),
+            'token' => $config->get(self::VERIFICATION_TOKEN),
             'text'  => "{$botUsername} {$commandPrefix}ping",
         ];
 

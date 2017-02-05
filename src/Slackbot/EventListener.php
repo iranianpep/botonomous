@@ -35,6 +35,9 @@ class EventListener extends BaseListener
             return;
         }
 
+        // Slack recommends responding to events with a HTTP 200 OK ASAP
+        $this->respondOK();
+
         $this->processRequest();
         $this->setRequest($request);
 
@@ -43,7 +46,7 @@ class EventListener extends BaseListener
 
     public function extractRequest()
     {
-        $requestBody = file_get_contents('php://input');
+        $requestBody = $this->getRequestUtility()->getContent();
 
         if (empty($requestBody)) {
             return;
@@ -54,10 +57,6 @@ class EventListener extends BaseListener
 
     public function processRequest()
     {
-        // Slack recommends responding to events with a HTTP 200 OK ASAP
-        header('HTTP/1.1 200 OK');
-        header('Content-type:application/x-www-form-urlencoded');
-
         $request = $this->getRequest();
 
         // in case URL verification handshake is required
@@ -145,6 +144,12 @@ class EventListener extends BaseListener
     private function loadEvent()
     {
         $request = $this->getRequest();
+
+        if (!isset($request['event'])) {
+            return;
+        }
+
+        $request = $request['event'];
 
         if (!isset($request['type'])) {
             throw new \Exception('Event type must be specified');
