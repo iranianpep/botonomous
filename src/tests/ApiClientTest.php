@@ -26,6 +26,22 @@ use Slackbot\Team;
 class ApiClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * Test getArguments.
+     */
+    public function testGetArguments()
+    {
+        $client = new ApiClient();
+
+        $args = [
+            'testKey' => 'testValue',
+        ];
+
+        $client->setArguments($args);
+
+        $this->assertEquals($args, $client->getArguments());
+    }
+
+    /**
      * Test usersList.
      */
     public function testUsersList()
@@ -236,6 +252,8 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             [['id' => 'D39PQF1C4']],
             $this->getApiClient('{"ok":true,"ims":[{"id":"D39PQF1C4"}]}')->imList()
         );
+
+        $this->assertEmpty($this->getApiClient('{"ok":true}')->imList());
     }
 
     /**
@@ -275,6 +293,9 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Test filterArguments.
+     */
     public function testFilterArguments()
     {
         $apiClient = new ApiClient();

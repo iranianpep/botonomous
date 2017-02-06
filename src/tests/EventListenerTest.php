@@ -28,6 +28,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
                 'ts'       => '1234567890',
                 'event_ts' => '1234567890.123456',
                 'user'     => 'UXXXXXXX1',
+                'testKey'  => 'testValue',
             ],
         ];
 
@@ -106,6 +107,28 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
             'ts'       => $event->getTimestamp(),
             'event_ts' => $event->getEventTimestamp(),
         ]);
+    }
+
+    /**
+     * Test get event.
+     */
+    public function testGetEmptyEvent()
+    {
+        // mock request
+        $requestUtility = new RequestUtility();
+
+        $request = [
+            'token'      => 'XXYYZZ',
+            'team_id'    => 'TXXXXXXXX',
+            'api_app_id' => 'AXXXXXXXXX',
+        ];
+
+        $requestUtility->setContent(json_encode($request));
+
+        $eventListener = new EventListener();
+        $eventListener->setRequestUtility($requestUtility);
+
+        $this->assertEmpty($eventListener->getEvent());
     }
 
     /**
@@ -275,5 +298,47 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $this->expectOutputString($challenge);
 
         $eventListener->processRequest();
+    }
+
+    /**
+     * Test getToken.
+     */
+    public function testGetToken()
+    {
+        $eventListener = new EventListener();
+        $eventListener->setToken('12345');
+
+        $this->assertEquals('12345', $eventListener->getToken());
+    }
+
+    /**
+     * Test getTeamId.
+     */
+    public function testGetTeamId()
+    {
+        $eventListener = new EventListener();
+        $eventListener->setTeamId('12345');
+
+        $this->assertEquals('12345', $eventListener->getTeamId());
+    }
+
+    /**
+     * Test getApiAppId.
+     */
+    public function testGetApiAppId()
+    {
+        $eventListener = new EventListener();
+        $eventListener->setApiAppId('12345');
+
+        $this->assertEquals('12345', $eventListener->getApiAppId());
+    }
+
+    /**
+     * Test isThisBot.
+     */
+    public function testIsThisBot()
+    {
+        $eventListener = new EventListener();
+        $this->assertEmpty($eventListener->isThisBot());
     }
 }
