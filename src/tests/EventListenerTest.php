@@ -28,7 +28,7 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
                 'ts'       => '1234567890',
                 'event_ts' => '1234567890.123456',
                 'user'     => 'UXXXXXXX1',
-                'testKey'  => 'testValue'
+                'testKey'  => 'testValue',
             ],
         ];
 
