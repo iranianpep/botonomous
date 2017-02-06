@@ -26,14 +26,14 @@ use Slackbot\Team;
 class ApiClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test getArguments
+     * Test getArguments.
      */
     public function testGetArguments()
     {
         $client = new ApiClient();
 
         $args = [
-            'testKey' => 'testValue'
+            'testKey' => 'testValue',
         ];
 
         $client->setArguments($args);
@@ -294,7 +294,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test filterArguments
+     * Test filterArguments.
      */
     public function testFilterArguments()
     {
