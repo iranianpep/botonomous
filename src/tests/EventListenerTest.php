@@ -276,4 +276,37 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
 
         $eventListener->processRequest();
     }
+
+    /**
+     * Test getToken.
+     */
+    public function testGetToken()
+    {
+        $eventListener = new EventListener();
+        $eventListener->setToken('12345');
+
+        $this->assertEquals('12345', $eventListener->getToken());
+    }
+
+    /**
+     * Test getTeamId.
+     */
+    public function testGetTeamId()
+    {
+        $eventListener = new EventListener();
+        $eventListener->setTeamId('12345');
+
+        $this->assertEquals('12345', $eventListener->getTeamId());
+    }
+
+    /**
+     * Test getApiAppId.
+     */
+    public function testGetApiAppId()
+    {
+        $eventListener = new EventListener();
+        $eventListener->setApiAppId('12345');
+
+        $this->assertEquals('12345', $eventListener->getApiAppId());
+    }
 }
