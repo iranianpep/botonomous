@@ -52,7 +52,7 @@ class CommandContainerTest extends \PHPUnit_Framework_TestCase
         $commandObjects = $commands->getAllAsObject();
 
         /* @noinspection PhpUndefinedMethodInspection */
-        $this->assertEquals($commands['ping']->getPlugin(), 'Ping');
+        $this->assertEquals($commandObjects['ping']->getPlugin(), 'Ping');
     }
 
     /**
