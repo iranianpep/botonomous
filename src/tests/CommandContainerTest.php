@@ -39,6 +39,25 @@ class CommandContainerTest extends \PHPUnit_Framework_TestCase
     /**
      * Test getAll.
      */
+    public function testGetAllAsObjectUnknownSetter()
+    {
+        $commands = new CommandContainer();
+        $allCommands = $commands->getAll();
+
+        // set unknown attribute / property
+        $allCommands['ping']['testKey'] = 'testValue';
+
+        $commands->setAll($allCommands);
+
+        $commandObjects = $commands->getAllAsObject();
+
+        /* @noinspection PhpUndefinedMethodInspection */
+        $this->assertEquals($commands['ping']->getPlugin(), 'Ping');
+    }
+
+    /**
+     * Test getAll.
+     */
     public function testGetAllAsObjectEmpty()
     {
         $commands = new CommandContainer();
