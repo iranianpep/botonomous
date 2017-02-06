@@ -27,6 +27,8 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $requestUtility->setGet(
             [
                 'action' => 'oauth',
+                'trigger_word' => 'mybot:',
+                'text' => 'mybot: test'
             ]
         );
 
