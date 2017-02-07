@@ -109,9 +109,9 @@ abstract class BaseListener
     protected function respondOK()
     {
         ob_start();
-//        echo json_encode([
-//            'text'          => '',
-//        ]);
+        echo json_encode([
+            'text'          => ''
+        ]);
         header($this->getRequestUtility()->getServerProtocol().' 200 OK');
         header('Content-Type: application/json');
         header('Content-Length: '.ob_get_length());
