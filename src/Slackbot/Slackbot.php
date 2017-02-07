@@ -116,10 +116,10 @@ class Slackbot
                 /**
                  * 6. send confirmation message if is enabled.
                  */
-                $user = $this->getRequest('user_name');
+                $userId = $this->getRequest('user_id');
                 
-                if (!empty($user)) {
-                    $user = "{$user} ";
+                if (!empty($userId)) {
+                    $user = "<@{$userId}> ";
                 } else {
                     $user = '';
                 }
