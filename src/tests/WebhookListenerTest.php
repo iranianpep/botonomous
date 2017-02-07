@@ -46,7 +46,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
         $slackbot->setConfig($config);
 
         $confirmMessage = $slackbot->getConfig()->get('confirmReceivedMessage', [
-            'user' => '<@dummyId> '
+            'user' => '<@dummyId> ',
         ]);
 
         $response = '';
