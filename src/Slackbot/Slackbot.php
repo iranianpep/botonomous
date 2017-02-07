@@ -113,7 +113,7 @@ class Slackbot
                     $this->getLoggerUtility()->logChat(__METHOD__, $message);
                 }
 
-                /**
+                /*
                  * 6. send confirmation message if is enabled.
                  */
                 $this->sendConfirmation();
