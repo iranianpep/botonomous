@@ -24,6 +24,16 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test getClientSecret.
+     */
+    public function testGetClientSecret()
+    {
+        $oauth = new OAuth();
+        $oauth->setConfig(new Config());
+        $this->assertEquals((new Config())->get('clientSecret'), $oauth->getClientSecret());
+    }
+
+    /**
      * Test OAuth.
      */
     public function testOAuth()
