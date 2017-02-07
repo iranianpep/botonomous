@@ -130,6 +130,41 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @throws \Exception
+     */
+    public function testSendResponseSlashCommand()
+    {
+        $config = new Config();
+        $config->set('listenerType', 'webhook');
+
+        /**
+         * Form the request.
+         */
+        $request = [
+            'token'     => $config->get(self::VERIFICATION_TOKEN),
+            'debug'     => true,
+            'user_id'   => 'dummyId',
+            'user_name' => 'dummyUsername',
+        ];
+
+        $config->set('response', 'slashCommand');
+
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
+        $slackbot->setConfig($config);
+
+        $this->expectOutputString('{"text":"test response","channel":"#general"}');
+
+        $slackbot->send('general', 'test response');
+    }
+
+    /**
      * Test verifyOrigin.
      *
      * @throws \Exception
