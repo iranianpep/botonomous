@@ -185,8 +185,8 @@ class Slackbot
             $client = new Client();
 
             $args = [
-                'text' => $response,
-                'response_type' => 'in_channel'
+                'text'          => $response,
+                'response_type' => 'in_channel',
             ];
 
             $request = new Request(
