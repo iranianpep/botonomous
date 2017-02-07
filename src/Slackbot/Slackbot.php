@@ -99,7 +99,7 @@ class Slackbot
                  */
                 $this->preProcessRequest();
 
-                /**
+                /*
                  * 4. set the current command.
                  */
                 $message = $this->getRequest('text');

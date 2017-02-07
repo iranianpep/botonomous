@@ -91,6 +91,23 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     }
 
     /**
+     * Test getAccessToken.
+     */
+    public function testGetAccessTokenWithState()
+    {
+        $accessToken = 'xoxp-XXXXXXXX-XXXXXXXX-XXXXX';
+
+        $clientId = '4b39e9-752c4';
+        $clientSecret = '123456';
+        $scope = ['bot', 'users:read'];
+
+        $oAuth = new OAuth($clientId, $clientSecret, $scope);
+        $oAuth->setAccessToken($accessToken);
+
+        $this->assertEquals($accessToken, $oAuth->getAccessToken('1234', true, '1234'));
+    }
+
+    /**
      * Test getAccessTokenEmptyCode.
      */
     public function testGetAccessTokenEmptyCode()
