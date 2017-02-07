@@ -110,7 +110,7 @@ abstract class BaseListener
     {
         ob_start();
         echo json_encode([
-            'text'          => ''
+            'text'          => '',
         ]);
         header($this->getRequestUtility()->getServerProtocol().' 200 OK');
         header('Content-Type: application/json');
