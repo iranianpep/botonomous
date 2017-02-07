@@ -196,7 +196,7 @@ class Slackbot
                 json_encode($args)
             );
 
-            $response = $client->send($request);
+            $client->send($request);
         } elseif ($responseType === 'slack') {
             $this->getLoggerUtility()->logChat(__METHOD__, $response);
             (new ApiClient())->chatPostMessage($data);
