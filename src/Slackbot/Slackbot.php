@@ -116,26 +116,34 @@ class Slackbot
                 /**
                  * 6. send confirmation message if is enabled.
                  */
-                $userId = $this->getRequest('user_id');
-
-                if (!empty($userId)) {
-                    $user = "<@{$userId}> ";
-                } else {
-                    $user = '';
-                }
-
-                $confirmMessage = $this->getConfig()->get('confirmReceivedMessage', ['user' => $user]);
-
-                $channel = $this->getRequest('channel_name');
-                if (!empty($confirmMessage)) {
-                    $this->send($channel, $confirmMessage);
-                }
+                $this->sendConfirmation();
 
                 /*
                  * 7. And send the response to the channel
                  */
+                $channel = $this->getRequest('channel_name');
                 $this->send($channel, $this->respond($message));
                 break;
+        }
+    }
+
+    /**
+     * Send confirmation.
+     */
+    private function sendConfirmation()
+    {
+        $userId = $this->getRequest('user_id');
+
+        $user = '';
+        if (!empty($userId)) {
+            $user = $this->getMessageUtility()->linkToUser($userId).' ';
+        }
+
+        $confirmMessage = $this->getConfig()->get('confirmReceivedMessage', ['user' => $user]);
+
+        $channel = $this->getRequest('channel_name');
+        if (!empty($confirmMessage)) {
+            $this->send($channel, $confirmMessage);
         }
     }
 

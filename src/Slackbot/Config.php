@@ -36,7 +36,8 @@ class Config extends AbstractConfig
         'unknownCommandMessage' => "Sorry. I do not know anything about your command: '/{command}'.
         List the available commands using /help",
         // leave it empty to disable it
-        'confirmReceivedMessage' => ":point_right: {user}I've received your message and am thinking about that ... :thought_balloon:",
+        'confirmReceivedMessage' =>
+            ":point_right: {user}I've received your message and am thinking about that ... :thought_balloon:",
         /*
          * App credentials - This is required for Event listener
          * Can be found at https://api.slack.com/apps

@@ -111,4 +111,25 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('do this google_bot', $result);
     }
+
+    /**
+     * test linkToUser.
+     */
+    public function testLinkToUser()
+    {
+        $utility = new MessageUtility();
+
+        $this->assertEquals('<@U024BE7LH>', $utility->linkToUser('U024BE7LH'));
+
+        $this->assertEquals('<@U024BE7LH|bob>', $utility->linkToUser('U024BE7LH', 'bob'));
+
+        $this->assertEquals('<@U024BE7LH>', $utility->linkToUser('U024BE7LH', ''));
+
+        $this->setExpectedException(
+            'Exception',
+            'User id is not provided'
+        );
+
+        $this->assertEquals('<@U024BE7LH>', $utility->linkToUser(''));
+    }
 }

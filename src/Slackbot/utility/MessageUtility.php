@@ -85,6 +85,25 @@ class MessageUtility extends AbstractUtility
     }
 
     /**
+     * @param        $userId
+     * @param string $userName
+     *
+     * @return string
+     */
+    public function linkToUser($userId, $userName = '')
+    {
+        if (empty($userId)) {
+            throw new \Exception('User id is not provided');
+        }
+
+        if (!empty($userName)) {
+            $userName = "|{$userName}";
+        }
+
+        return "<@{$userId}{$userName}>";
+    }
+
+    /**
      * @return Config
      */
     public function getConfig()
