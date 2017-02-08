@@ -35,9 +35,6 @@ class EventListener extends BaseListener
             return;
         }
 
-        // Slack recommends responding to events with a HTTP 200 OK ASAP
-        $this->respondOK();
-
         $this->processRequest();
         $this->setRequest($request);
 
@@ -228,9 +225,16 @@ class EventListener extends BaseListener
      *
      * @throws \Exception
      *
-     * @return array
+     * @return bool
      */
     public function isThisBot()
     {
+        $subType = $this->getRequest('subtype');
+
+        if ($subType === 'bot_message') {
+            return true;
+        }
+
+        return false;
     }
 }

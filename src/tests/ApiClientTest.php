@@ -159,7 +159,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
         $expected = [
             'token'    => $config->get('apiToken'),
             'username' => $config->get('botUsername'),
-            'as_user'  => false,
+            'as_user'  => $config->get('asUser'),
             'icon_url' => $config->get('iconURL'),
         ];
 

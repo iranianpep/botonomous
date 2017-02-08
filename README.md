@@ -84,6 +84,7 @@ class Ping extends AbstractPlugin
 | tmpFolderName | string | Temporary folder for the log file |
 | chatLoggingFileName | string | Log file name |
 | iconURL | string | Bot image URL |
+| asUser | boolean | Specify if messages are sent as user or not |
 | response | string | Response type. Possible values are `slack`, `json` or `slashCommand` |
 | rootNamespace | string | Root namespace |
 | defaultCommand | string | Default command if there is no command has been specified in the message |

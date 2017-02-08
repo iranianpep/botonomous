@@ -20,6 +20,7 @@ class Config extends AbstractConfig
         'tmpFolderName'        => 'tmp',
         'chatLoggingFileName'  => 'chat_log',
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',
+        'asUser'               => true,
         // possible values are: webhook, event
         'listenerType'         => 'webhook',
         // possible values are: slack, json, slashCommand

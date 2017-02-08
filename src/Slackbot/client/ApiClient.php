@@ -134,7 +134,7 @@ class ApiClient
         return [
             'token'    => $config->get('apiToken'),
             'username' => $config->get('botUsername'),
-            'as_user'  => false,
+            'as_user'  => $config->get('asUser'),
             'icon_url' => $config->get('iconURL'),
         ];
     }
