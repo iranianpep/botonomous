@@ -10,6 +10,7 @@ use Slackbot\client\ApiClient;
 use Slackbot\Config;
 use Slackbot\OAuth;
 use Slackbot\utility\RequestUtility;
+use Slackbot\utility\SessionUtility;
 
 /**
  * Class OAuthTest.
@@ -21,6 +22,28 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+    }
+
+    public function testDoOauth()
+    {
+        $oauth = new OAuth();
+
+        $requestUtility = new RequestUtility();
+        $requestUtility->setGet([
+            'code' => '12345',
+            'state' => '54321',
+        ]);
+
+        $oauth->setRequestUtility($requestUtility);
+
+        $sessionUtility = new SessionUtility();
+        $sessionUtility->set('state', '54321');
+
+        $oauth->setSessionUtility($sessionUtility);
+
+        $this->setExpectedException('Exception', 'invalid_client_id');
+
+        $oauth->doOauth();
     }
 
     /**
