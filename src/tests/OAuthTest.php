@@ -33,7 +33,7 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
 
         $requestUtility = new RequestUtility();
         $requestUtility->setGet([
-            'code' => '12345',
+            'code'  => '12345',
             'state' => '54321',
         ]);
 
