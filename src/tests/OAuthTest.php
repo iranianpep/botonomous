@@ -24,6 +24,9 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * Test doOauth.
+     */
     public function testDoOauth()
     {
         $oauth = new OAuth();
@@ -42,6 +45,28 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
         $oauth->setSessionUtility($sessionUtility);
 
         $this->setExpectedException('Exception', 'invalid_client_id');
+
+        $oauth->doOauth();
+    }
+
+    /**
+     * Test doOauth.
+     */
+    public function testDoOauthEmptyAccess()
+    {
+        $oauth = new OAuth();
+
+        $requestUtility = new RequestUtility();
+        $requestUtility->setGet([
+            'code' => '12345',
+            'state' => '54321',
+        ]);
+
+        $oauth->setRequestUtility($requestUtility);
+
+        $oauth->setAccessToken('');
+
+        $this->setExpectedException('Exception', 'Access token is not provided');
 
         $oauth->doOauth();
     }
