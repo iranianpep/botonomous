@@ -52,6 +52,31 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
     /**
      * Test doOauth.
      */
+    public function testDoOauthInvalidState()
+    {
+        $oauth = new OAuth();
+
+        $requestUtility = new RequestUtility();
+        $requestUtility->setGet([
+            'code'  => '12345',
+            'state' => '54321',
+        ]);
+
+        $oauth->setRequestUtility($requestUtility);
+
+        $sessionUtility = new SessionUtility();
+        $sessionUtility->set('state', '12345');
+
+        $oauth->setSessionUtility($sessionUtility);
+
+        $this->setExpectedException('Exception', 'State: 54321 is not valid');
+
+        $oauth->doOauth();
+    }
+
+    /**
+     * Test doOauth.
+     */
     public function testDoOauthEmptyAccess()
     {
         $oauth = new OAuth();
