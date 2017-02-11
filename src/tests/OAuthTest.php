@@ -11,6 +11,10 @@ use Slackbot\Config;
 use Slackbot\OAuth;
 use Slackbot\utility\RequestUtility;
 use Slackbot\utility\SessionUtility;
+use /* @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Exception\RequestException;
+use /* @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Psr7\Request;
 
 /**
  * Class OAuthTest.
@@ -255,6 +259,34 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         $oAuth->setApiClient($apiClient);
 
         $this->assertEquals('xoxp-XXXXXXXX-XXXXXXXX-XXXXX', $oAuth->getAccessToken('1234', false));
+    }
+
+    /**
+     * Test getAccessToken which includes getAccessToken.
+     */
+    public function testRequestAccessTokenException()
+    {
+        $oAuth = new OAuth();
+
+        $apiClient = new ApiClient();
+
+        /** @noinspection PhpUndefinedClassInspection */
+        $mock = new MockHandler([
+            new RequestException('Error Communicating with Server', new Request('Post', $apiClient::BASE_URL.'test')),
+        ]);
+
+        /** @noinspection PhpUndefinedClassInspection */
+        $handler = new HandlerStack($mock);
+        /** @noinspection PhpUndefinedClassInspection */
+        $client = new Client(['handler' => $handler]);
+
+        $apiClient->setClient($client);
+
+        $oAuth->setApiClient($apiClient);
+
+        $this->setExpectedException('Exception', 'Error Communicating with Server');
+
+        $oAuth->getAccessToken('1234', false);
     }
 
     /**
