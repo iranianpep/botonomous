@@ -3,18 +3,18 @@
 namespace Slackbot\Tests;
 
 use GuzzleHttp\Client;
+use /* @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use /* @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Slackbot\client\ApiClient;
 use Slackbot\Config;
 use Slackbot\OAuth;
 use Slackbot\utility\RequestUtility;
 use Slackbot\utility\SessionUtility;
-use /* @noinspection PhpUndefinedClassInspection */
-    GuzzleHttp\Exception\RequestException;
-use /* @noinspection PhpUndefinedClassInspection */
-    GuzzleHttp\Psr7\Request;
 
 /**
  * Class OAuthTest.
