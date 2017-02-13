@@ -83,9 +83,9 @@ class StringUtility extends AbstractUtility
             $exceptionsString = "(?<!{$exceptions})";
         }
 
-        $wildCardBetweenTwoStrings = '/'.$string1.'(?:\s+\w+'.$exceptionsString.'){0,2}\s+'.$string2.'\b/';
+        $pattern = '/'.$string1.'(?:\s+\w+'.$exceptionsString.'){0,2}\s+'.$string2.'\b/';
 
-        if (preg_match($wildCardBetweenTwoStrings, $subject)) {
+        if (preg_match($pattern, $subject)) {
             return true;
         }
 
