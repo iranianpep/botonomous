@@ -111,11 +111,11 @@ abstract class BaseListener
         ob_start();
         header($this->getRequestUtility()->getServerProtocol().' 200 OK');
         // Disable compression (in case content length is compressed).
-        header("Content-Encoding: none");
+        header('Content-Encoding: none');
         header('Content-Length: '.ob_get_length());
 
         // Close the connection.
-        header("Connection: close");
+        header('Connection: close');
 
         ob_end_flush();
         ob_flush();
