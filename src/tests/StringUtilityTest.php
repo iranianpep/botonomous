@@ -203,4 +203,69 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
             );
         }
     }
+
+    /**
+     * Test isString1FollowedByString2.
+     */
+    public function testIsString1FollowedByString2()
+    {
+        $utility = new StringUtility();
+
+        $inputOutputs = [
+            [
+                'subject' => 'This is email',
+                's1' => 'is',
+                's2' => 'email',
+                'exceptions' => [],
+                'output' => true,
+            ],
+            [
+                'subject' => 'This is email',
+                's1' => 'This',
+                's2' => 'email',
+                'exceptions' => ['is'],
+                'output' => false,
+            ],
+            [
+                'subject' => 'This is email',
+                's1' => 'This',
+                's2' => 'email',
+                'exceptions' => [],
+                'output' => true,
+            ],
+            [
+                'subject' => 'This is email and first name',
+                's1' => 'is',
+                's2' => 'first name',
+                'exceptions' => ['email'],
+                'output' => false,
+            ],
+            [
+                'subject' => 'This is email and first name',
+                's1' => 'is',
+                's2' => 'email',
+                'exceptions' => ['email'],
+                'output' => true,
+            ],
+            [
+                'subject' => 'This is email and first name',
+                's1' => 'email',
+                's2' => 'is',
+                'exceptions' => ['email'],
+                'output' => false,
+            ],
+        ];
+
+        foreach ($inputOutputs as $inputOutput) {
+            $this->assertEquals(
+                $inputOutput['output'],
+                $utility->isString1FollowedByString2(
+                    $inputOutput['subject'],
+                    $inputOutput['s1'],
+                    $inputOutput['s2'],
+                    $inputOutput['exceptions']
+                )
+            );
+        }
+    }
 }

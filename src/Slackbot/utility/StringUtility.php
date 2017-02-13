@@ -64,4 +64,30 @@ class StringUtility extends AbstractUtility
     {
         return str_replace(' ', '', ucwords(str_replace('_', ' ', $string)));
     }
+
+    /**
+     * Check subject to see whether $string1 is followed by $string2
+     *
+     * @param $subject
+     * @param $string1
+     * @param $string2
+     * @param array $exceptions
+     * @return bool
+     */
+    public function isString1FollowedByString2($subject, $string1, $string2, $exceptions = [])
+    {
+        $exceptionsString = '';
+        if (!empty($exceptions)) {
+            $exceptions = implode('|', $exceptions);
+            $exceptionsString = "(?<!{$exceptions})";
+        }
+        
+        $wildCardBetweenTwoStrings = '/'.$string1.'(?:\s+\w+'.$exceptionsString.'){0,2}\s+'.$string2.'\b/';
+
+        if (preg_match($wildCardBetweenTwoStrings, $subject)) {
+            return true;
+        }
+
+        return false;
+    }
 }
