@@ -108,17 +108,26 @@ abstract class BaseListener
      */
     protected function respondOK()
     {
-        ob_start();
-        header($this->getRequestUtility()->getServerProtocol().' 200 OK');
-        // Disable compression (in case content length is compressed).
-        header("Content-Encoding: none");
-        header('Content-Length: '.ob_get_length());
+//        ignore_user_abort(true);
+//
+//        ob_start();
+//        header($this->getRequestUtility()->getServerProtocol().' 200 OK');
+//        // Disable compression (in case content length is compressed).
+//        header("Content-Encoding: none");
+//        header('Content-Length: '.ob_get_length());
+//
+//        // Close the connection.
+//        header("Connection: close");
+//
+//        ob_end_flush();
+//        ob_flush();
+//        flush();
 
-        // Close the connection.
-        header("Connection: close");
-
-        ob_end_flush();
-        ob_flush();
-        flush();
+        /**
+         * http://stackoverflow.com/a/38918192
+         * This works in Nginx comparing to the above
+         */
+        session_write_close();
+        fastcgi_finish_request();
     }
 }
