@@ -31,7 +31,7 @@ class WebhookListener extends BaseListener
         $postRequest = $this->getRequestUtility()->getPost();
 
         if (empty($postRequest)) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 

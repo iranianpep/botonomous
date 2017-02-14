@@ -35,8 +35,7 @@ abstract class BaseListener
             return $this->request[$key];
         }
 
-        /** @noinspection PhpInconsistentReturnPointsInspection */
-        return;
+        /* @noinspection PhpInconsistentReturnPointsInspection */
     }
 
     /**
