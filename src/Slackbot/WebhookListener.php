@@ -24,13 +24,14 @@ class WebhookListener extends BaseListener
     }
 
     /**
-     * @return mixed|void
+     * @return mixed
      */
     public function extractRequest()
     {
         $postRequest = $this->getRequestUtility()->getPost();
 
         if (empty($postRequest)) {
+            /** @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 

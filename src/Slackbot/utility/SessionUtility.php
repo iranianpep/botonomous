@@ -57,6 +57,7 @@ class SessionUtility
         $session = $this->getSession();
 
         if (!isset($session[$key])) {
+            /** @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 

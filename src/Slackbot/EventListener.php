@@ -25,13 +25,14 @@ class EventListener extends BaseListener
     /**
      * listen.
      *
-     * @return mixed|void
+     * @return mixed
      */
     public function listen()
     {
         $request = $this->extractRequest();
 
         if (empty($request)) {
+            /** @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
@@ -46,6 +47,7 @@ class EventListener extends BaseListener
         $requestBody = $this->getRequestUtility()->getContent();
 
         if (empty($requestBody)) {
+            /** @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
