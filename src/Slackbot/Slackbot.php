@@ -2,9 +2,9 @@
 
 namespace Slackbot;
 
-use /** @noinspection PhpUndefinedClassInspection */
+use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
-use /** @noinspection PhpUndefinedClassInspection */
+use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
 use Slackbot\client\ApiClient;
 use Slackbot\plugin\AbstractPlugin;
@@ -218,7 +218,7 @@ class Slackbot extends AbstractBot
                 json_encode($args)
             );
 
-            /** @noinspection PhpUndefinedClassInspection */
+            /* @noinspection PhpUndefinedClassInspection */
             (new Client())->send($request);
         } elseif ($responseType === 'json') {
             $this->getLoggerUtility()->logChat(__METHOD__, $response);

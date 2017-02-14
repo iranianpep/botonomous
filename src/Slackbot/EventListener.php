@@ -32,7 +32,7 @@ class EventListener extends BaseListener
         $request = $this->extractRequest();
 
         if (empty($request)) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
@@ -47,7 +47,7 @@ class EventListener extends BaseListener
         $requestBody = $this->getRequestUtility()->getContent();
 
         if (empty($requestBody)) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
