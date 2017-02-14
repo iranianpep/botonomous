@@ -34,6 +34,8 @@ abstract class BaseListener
         if (is_array($this->request) && array_key_exists($key, $this->request)) {
             return $this->request[$key];
         }
+
+        /* @noinspection PhpInconsistentReturnPointsInspection */
     }
 
     /**
@@ -108,17 +110,29 @@ abstract class BaseListener
      */
     protected function respondOK()
     {
-        ob_start();
-        header($this->getRequestUtility()->getServerProtocol().' 200 OK');
-        // Disable compression (in case content length is compressed).
-        header('Content-Encoding: none');
-        header('Content-Length: '.ob_get_length());
+        // check if fastcgi_finish_request is callable
+        if (is_callable('fastcgi_finish_request')) {
+            /*
+             * http://stackoverflow.com/a/38918192
+             * This works in Nginx but the next approach not
+             */
+            session_write_close();
+            fastcgi_finish_request();
+        } else {
+            ignore_user_abort(true);
 
-        // Close the connection.
-        header('Connection: close');
+            ob_start();
+            header($this->getRequestUtility()->getServerProtocol().' 200 OK');
+            // Disable compression (in case content length is compressed).
+            header('Content-Encoding: none');
+            header('Content-Length: '.ob_get_length());
 
-        ob_end_flush();
-        ob_flush();
-        flush();
+            // Close the connection.
+            header('Connection: close');
+
+            ob_end_flush();
+            ob_flush();
+            flush();
+        }
     }
 }
