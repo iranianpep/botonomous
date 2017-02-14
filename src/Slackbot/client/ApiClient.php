@@ -186,7 +186,7 @@ class ApiClient
         $teamInfo = $this->teamInfo();
 
         if (empty($teamInfo)) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
@@ -317,7 +317,7 @@ class ApiClient
     {
         if ($method !== null) {
             if (!isset($this->arguments[$method])) {
-                /** @noinspection PhpInconsistentReturnPointsInspection */
+                /* @noinspection PhpInconsistentReturnPointsInspection */
                 return;
             }
 

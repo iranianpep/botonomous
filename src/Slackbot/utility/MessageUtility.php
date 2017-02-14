@@ -88,8 +88,9 @@ class MessageUtility extends AbstractUtility
      * @param        $userId
      * @param string $userName
      *
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function linkToUser($userId, $userName = '')
     {
