@@ -108,7 +108,7 @@ abstract class BaseListener
      */
     protected function respondOK()
     {
-//        ignore_user_abort(true);
+        //        ignore_user_abort(true);
 //
 //        ob_start();
 //        header($this->getRequestUtility()->getServerProtocol().' 200 OK');
@@ -123,7 +123,7 @@ abstract class BaseListener
 //        ob_flush();
 //        flush();
 
-        /**
+        /*
          * http://stackoverflow.com/a/38918192
          * This works in Nginx comparing to the above
          */
