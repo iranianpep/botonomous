@@ -118,6 +118,7 @@ abstract class BaseListener
              */
             session_write_close();
             fastcgi_finish_request();
+
             return;
         }
 
