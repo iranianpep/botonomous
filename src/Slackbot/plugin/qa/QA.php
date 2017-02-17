@@ -19,7 +19,7 @@ class QA extends AbstractPlugin
 
         $stringUtility = new StringUtility();
         foreach ($questions as $question => $questionInfo) {
-            if ($stringUtility->findInString($question, $this->getSlackbot()->getListener()->getRequest('text'))) {
+            if ($stringUtility->findInString($question, $this->getSlackbot()->getRequest('text'))) {
                 // found - return random answer
                 $answers = $questionInfo['answers'];
 

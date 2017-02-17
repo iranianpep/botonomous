@@ -28,7 +28,7 @@ class QATest extends \PHPUnit_Framework_TestCase
 
         $answer = (new QA($slackbot))->index();
 
-        $qa = (new Dictionary())->get('question-answer');
-        $this->assertContains($answer, $qa[$question]['answers']);
+        $questionAnswer = (new Dictionary())->get('question-answer');
+        $this->assertContains($answer, $questionAnswer[$question]['answers']);
     }
 }
