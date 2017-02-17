@@ -2,6 +2,7 @@
 
 namespace Slackbot\plugin;
 
+use Slackbot\Dictionary;
 use Slackbot\Slackbot;
 
 /**
@@ -11,6 +12,11 @@ abstract class AbstractPlugin implements PluginInterface
 {
     protected $slackbot;
 
+    /**
+     * Dependencies
+     */
+    protected $dictionary;
+    
     /**
      * AbstractPlugin constructor.
      *
@@ -39,5 +45,25 @@ abstract class AbstractPlugin implements PluginInterface
     public function setSlackbot($slackbot)
     {
         $this->slackbot = $slackbot;
+    }
+
+    /**
+     * @return Dictionary
+     */
+    public function getDictionary()
+    {
+        if (!isset($this->dictionary)) {
+            $this->setDictionary((new Dictionary()));
+        }
+        
+        return $this->dictionary;
+    }
+
+    /**
+     * @param Dictionary $dictionary
+     */
+    public function setDictionary(Dictionary $dictionary)
+    {
+        $this->dictionary = $dictionary;
     }
 }

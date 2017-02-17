@@ -9,7 +9,7 @@ class PhpunitHelper
 {
     const VERIFICATION_TOKEN = 'verificationToken';
 
-    public function getSlackbot()
+    public function getSlackbot($command = 'ping', $text = '')
     {
         $config = new Config();
         $commandPrefix = $config->get('commandPrefix');
@@ -20,7 +20,7 @@ class PhpunitHelper
         $botUsername = '@'.$config->get('botUsername');
         $request = [
             'token' => $config->get(self::VERIFICATION_TOKEN),
-            'text'  => "{$botUsername} {$commandPrefix}ping",
+            'text'  => "{$botUsername} {$commandPrefix}{$command}{$text}",
         ];
 
         $slackbot = new Slackbot();
