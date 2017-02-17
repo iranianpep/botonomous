@@ -13,10 +13,10 @@ abstract class AbstractPlugin implements PluginInterface
     protected $slackbot;
 
     /**
-     * Dependencies
+     * Dependencies.
      */
     protected $dictionary;
-    
+
     /**
      * AbstractPlugin constructor.
      *
@@ -55,7 +55,7 @@ abstract class AbstractPlugin implements PluginInterface
         if (!isset($this->dictionary)) {
             $this->setDictionary((new Dictionary()));
         }
-        
+
         return $this->dictionary;
     }
 

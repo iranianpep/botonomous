@@ -22,6 +22,7 @@ class QA extends AbstractPlugin
             if ($stringUtility->findInString($question, $this->getSlackbot()->getListener()->getRequest('text'))) {
                 // found - return random answer
                 $answers = $questionInfo['answers'];
+
                 return $answers[array_rand($answers)];
             }
         }
