@@ -33,5 +33,9 @@ class CommandContainer extends AbstractCommandContainer
             'plugin'      => 'Help',
             'description' => 'List all the available commands',
         ],
+        'qa' => [
+            'plugin'      => 'QA',
+            'description' => 'Answer questions',
+        ],
     ];
 }
