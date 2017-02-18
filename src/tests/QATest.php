@@ -19,7 +19,7 @@ class QATest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test pong.
+     * Test index.
      */
     public function testIndex()
     {
@@ -30,5 +30,32 @@ class QATest extends \PHPUnit_Framework_TestCase
 
         $questionAnswer = (new Dictionary())->get('question-answer');
         $this->assertContains($answer, $questionAnswer[$question]['answers']);
+    }
+
+    /**
+     * Test index.
+     */
+    public function testIndexEmptyQuestions()
+    {
+        $question = 'test';
+        $slackbot = (new PhpunitHelper())->getSlackbot('qa', " {$question}");
+
+        $qaPlugin = new QA($slackbot);
+        $qaPlugin->setQuestions([]);
+
+        $this->assertEmpty($qaPlugin->index());
+    }
+
+    /**
+     * Test index.
+     */
+    public function testIndexNotFoundQuestion()
+    {
+        $question = 'dummy';
+        $slackbot = (new PhpunitHelper())->getSlackbot('qa', " {$question}");
+
+        $answer = (new QA($slackbot))->index();
+
+        $this->assertEmpty($answer);
     }
 }
