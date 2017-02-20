@@ -25,10 +25,11 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
          * Form the request.
          */
         $request = [
-            'token'     => $config->get(self::VERIFICATION_TOKEN),
-            'text'      => "{$commandPrefix}ping",
-            'user_id'   => 'dummyId',
-            'user_name' => $config->get('botUsername'),
+            'token'        => $config->get(self::VERIFICATION_TOKEN),
+            'text'         => "mybot: {$commandPrefix}ping",
+            'user_id'      => 'dummyId',
+            'user_name'    => $config->get('botUsername'),
+            'trigger_word' => 'mybot:'
         ];
 
         $config->set('response', 'json');
