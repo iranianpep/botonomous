@@ -340,5 +340,23 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
     {
         $eventListener = new EventListener();
         $this->assertEmpty($eventListener->isThisBot());
+
+        // mock request
+        $requestUtility = new RequestUtility();
+
+        $request = [
+            'token'      => 'XXYYZZ',
+            'team_id'    => 'TXXXXXXXX',
+            'api_app_id' => 'AXXXXXXXXX',
+            'event'      => [
+                'type'     => 'message',
+            ],
+            'subtype'  => 'bot_message',
+        ];
+
+        $requestUtility->setContent(json_encode($request));
+        $eventListener->setRequestUtility($requestUtility);
+
+        $this->assertTrue($eventListener->isThisBot());
     }
 }
