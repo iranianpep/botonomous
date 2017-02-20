@@ -307,4 +307,28 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             'dummyKey' => 'dummyValue',
         ]);
     }
+
+    /**
+     * Test rtmStart.
+     *
+     * @throws \Exception
+     */
+    public function testRtmStart()
+    {
+        $config = new Config();
+
+        $args = [
+            'token'    => $config->get('apiToken'),
+        ];
+
+        $apiClient = new ApiClient();
+        $result = $apiClient->rtmStart($args);
+
+        $expected = [
+            'ok'    => false,
+            'error' => 'invalid_auth'
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
 }
