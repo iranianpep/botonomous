@@ -326,7 +326,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'ok'    => false,
-            'error' => 'invalid_auth'
+            'error' => 'invalid_auth',
         ];
 
         $this->assertEquals($expected, $result);

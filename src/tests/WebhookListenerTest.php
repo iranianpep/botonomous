@@ -29,7 +29,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
             'text'         => "mybot: {$commandPrefix}ping",
             'user_id'      => 'dummyId',
             'user_name'    => $config->get('botUsername'),
-            'trigger_word' => 'mybot:'
+            'trigger_word' => 'mybot:',
         ];
 
         $config->set('response', 'json');
