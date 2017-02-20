@@ -90,7 +90,8 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $teamObject,
-            $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334","name":"test","dummyProperty":"dummyValue"}}')->teamInfoAsObject()
+            $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334","name":"test","dummyProperty":"dummyValue"}}')
+                ->teamInfoAsObject()
         );
     }
 
