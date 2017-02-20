@@ -86,10 +86,11 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $teamObject = new Team();
         $teamObject->setSlackId('T0LCJF334');
+        $teamObject->setName('test');
 
         $this->assertEquals(
             $teamObject,
-            $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334"}}')->teamInfoAsObject()
+            $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334","name":"test","dummyProperty":"dummyValue"}}')->teamInfoAsObject()
         );
     }
 
