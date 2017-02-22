@@ -10,6 +10,7 @@ class Event
     private $timestamp;
     private $eventTimestamp;
     private $channel;
+    private $botId;
 
     public function __construct($type)
     {
@@ -110,5 +111,21 @@ class Event
     public function setChannel($channel)
     {
         $this->channel = $channel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBotId()
+    {
+        return $this->botId;
+    }
+
+    /**
+     * @param string $botId
+     */
+    public function setBotId($botId)
+    {
+        $this->botId = $botId;
     }
 }

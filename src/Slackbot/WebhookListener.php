@@ -17,6 +17,10 @@ class WebhookListener extends BaseListener
             return;
         }
 
+        if ($this->isThisBot() !== false) {
+            return;
+        }
+
         // This is needed for Slash commands, otherwise timeout error is displayed
         $this->respondOK();
 

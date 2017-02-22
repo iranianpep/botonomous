@@ -39,6 +39,10 @@ class EventListener extends BaseListener
         $this->processRequest();
         $this->setRequest($request);
 
+        if ($this->isThisBot() !== false) {
+            return;
+        }
+
         return $request;
     }
 
@@ -232,8 +236,9 @@ class EventListener extends BaseListener
     public function isThisBot()
     {
         $subType = $this->getRequest('subtype');
+        $botId = $this->getEvent()->getBotId();
 
-        if ($subType === 'bot_message') {
+        if ($subType === 'bot_message' || !empty($botId)) {
             return true;
         }
 
