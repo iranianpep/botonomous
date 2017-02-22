@@ -86,10 +86,12 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $teamObject = new Team();
         $teamObject->setSlackId('T0LCJF334');
+        $teamObject->setName('test');
 
         $this->assertEquals(
             $teamObject,
-            $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334"}}')->teamInfoAsObject()
+            $this->getApiClient('{"ok":true,"team":{"id":"T0LCJF334","name":"test","dummyProperty":"dummyValue"}}')
+                ->teamInfoAsObject()
         );
     }
 
@@ -304,5 +306,29 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             'token'    => '123',
             'dummyKey' => 'dummyValue',
         ]);
+    }
+
+    /**
+     * Test rtmStart.
+     *
+     * @throws \Exception
+     */
+    public function testRtmStart()
+    {
+        $config = new Config();
+
+        $args = [
+            'token'    => $config->get('apiToken'),
+        ];
+
+        $apiClient = new ApiClient();
+        $result = $apiClient->rtmStart($args);
+
+        $expected = [
+            'ok'    => false,
+            'error' => 'invalid_auth',
+        ];
+
+        $this->assertEquals($expected, $result);
     }
 }

@@ -202,6 +202,12 @@ class ApiClient
             }
 
             $method = 'set'.$stringUtility->snakeCaseToCamelCase($key);
+
+            // check setter exists
+            if (!method_exists($teamObject, $method)) {
+                continue;
+            }
+
             $teamObject->$method($value);
         }
 

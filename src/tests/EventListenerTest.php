@@ -249,6 +249,17 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
     /**
      * Test listen.
      */
+    public function testListen()
+    {
+        $eventListener = new EventListener();
+        $eventListener->setRequestUtility($this->getSampleRequestUtility());
+
+        $this->assertEquals($eventListener->getRequest(), $eventListener->listen());
+    }
+
+    /**
+     * Test listen.
+     */
     public function testListenEmpty()
     {
         $this->assertEmpty((new EventListener())->listen());
@@ -340,5 +351,23 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
     {
         $eventListener = new EventListener();
         $this->assertEmpty($eventListener->isThisBot());
+
+        // mock request
+        $requestUtility = new RequestUtility();
+
+        $request = [
+            'token'      => 'XXYYZZ',
+            'team_id'    => 'TXXXXXXXX',
+            'api_app_id' => 'AXXXXXXXXX',
+            'event'      => [
+                'type'     => 'message',
+            ],
+            'subtype'  => 'bot_message',
+        ];
+
+        $requestUtility->setContent(json_encode($request));
+        $eventListener->setRequestUtility($requestUtility);
+
+        $this->assertTrue($eventListener->isThisBot());
     }
 }
