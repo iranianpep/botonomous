@@ -183,39 +183,19 @@ class Slackbot extends AbstractBot
 
         if ($debug === true) {
             echo json_encode($data);
-        } elseif ($responseType === 'slashCommand') {
-            /** @noinspection PhpUndefinedClassInspection */
-            $client = new Client();
-
-            $args = [
-                'text'          => $response,
-                'response_type' => 'in_channel',
-            ];
-
-            /** @noinspection PhpUndefinedClassInspection */
-            $request = new Request(
-                'POST',
-                $this->getRequest('response_url'),
-                ['Content-Type' => 'application/json'],
-                json_encode($args)
-            );
-
-            $client->send($request);
         } elseif ($responseType === 'slack') {
             $this->getLoggerUtility()->logChat(__METHOD__, $response);
             (new ApiClient())->chatPostMessage($data);
         } elseif ($responseType === 'slashCommand') {
-            $args = [
-                'text'          => $response,
-                'response_type' => 'in_channel',
-            ];
-
             /** @noinspection PhpUndefinedClassInspection */
             $request = new Request(
                 'POST',
                 $this->getRequest('response_url'),
                 ['Content-Type' => 'application/json'],
-                json_encode($args)
+                json_encode([
+                    'text'          => $response,
+                    'response_type' => 'in_channel',
+                ])
             );
 
             /* @noinspection PhpUndefinedClassInspection */
