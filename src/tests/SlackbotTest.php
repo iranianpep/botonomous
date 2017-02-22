@@ -113,24 +113,6 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
                 ],
                 'o' => $config->get('unknownCommandMessage', ['command' => 'unknownCommand']),
             ],
-            [
-                'i' => [
-                    'message' => 'dummy message without any command',
-                ],
-                'o' => $this->outputOnNoCommand($message),
-            ],
-            [
-                'i' => [
-                    'message' => "dummy {$commandPrefix}ping",
-                ],
-                'o' => $this->outputOnNoCommand($message),
-            ],
-            [
-                'i' => [
-                    'message' => 'dummy dummy dummy dummy',
-                ],
-                'o' => $this->outputOnNoCommand($message),
-            ],
         ];
 
         foreach ($inputsOutputs as $inputOutput) {
