@@ -97,6 +97,26 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test listenBot.
+     */
+    public function testListenBot()
+    {
+        $listener = new WebhookListener();
+        $config = new Config();
+        $config->set('respondOk', false);
+        $listener->setConfig($config);
+
+        $content['user_id'] = 'B123';
+        $content = json_encode($content);
+
+        $requestUtility = new RequestUtility();
+        $requestUtility->setContent($content);
+        $listener->setRequestUtility($requestUtility);
+
+        $this->assertEmpty($listener->listen());
+    }
+
+    /**
      * @throws \Exception
      */
     public function testSend()

@@ -25,6 +25,9 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($eventListener->getRequest(), $eventListener->listen());
     }
 
+    /**
+     * Test listenBot.
+     */
     public function testListenBot()
     {
         $eventListener = new EventListener();

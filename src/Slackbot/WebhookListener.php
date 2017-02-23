@@ -7,7 +7,7 @@ class WebhookListener extends BaseListener
     const VERIFICATION_TOKEN = 'verificationToken';
 
     /**
-     * listen.
+     * @return mixed|void
      */
     public function listen()
     {
@@ -20,11 +20,14 @@ class WebhookListener extends BaseListener
             return;
         }
 
+
+        $this->setRequest($request);
+
         if ($this->isThisBot() !== false) {
             return;
         }
 
-        $this->setRequest($request);
+        return $request;
     }
 
     /**
