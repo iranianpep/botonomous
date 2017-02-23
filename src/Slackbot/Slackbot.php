@@ -88,7 +88,7 @@ class Slackbot extends AbstractBot
                 /*
                  * 4. set the current command.
                  */
-                $message = $this->getRequest('text');
+                $message = $this->getMessage();
                 $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($message));
 
                 /*
@@ -261,7 +261,7 @@ class Slackbot extends AbstractBot
     {
         // If message is not set, get it from the current request
         if ($message === null) {
-            $message = $this->getRequest('text');
+            $message = $this->getMessage();
         }
 
         if (empty($message)) {
@@ -393,5 +393,25 @@ class Slackbot extends AbstractBot
     public function setCurrentCommand($currentCommand)
     {
         $this->currentCommand = $currentCommand;
+    }
+
+    /**
+     * Return message based on the listener
+     * If listener is event and event text is empty, fall back to request text
+     *
+     * @return mixed|string
+     */
+    public function getMessage()
+    {
+        $listener = $this->getListener();
+        if ($listener instanceof EventListener && $listener->getEvent() instanceof Event) {
+            $message = $listener->getEvent()->getText();
+
+            if (!empty($message)) {
+                return $message;
+            }
+        }
+
+        return $listener->getRequest('text');
     }
 }
