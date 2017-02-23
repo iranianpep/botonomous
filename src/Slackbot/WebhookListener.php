@@ -20,7 +20,6 @@ class WebhookListener extends BaseListener
             return;
         }
 
-
         $this->setRequest($request);
 
         if ($this->isThisBot() !== false) {
