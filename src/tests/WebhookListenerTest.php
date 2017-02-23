@@ -13,6 +13,42 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
     const VERIFICATION_TOKEN = 'verificationToken';
 
     /**
+     * Test listen.
+     */
+    public function testListen()
+    {
+        $listener = new WebhookListener();
+        $config = new Config();
+        $config->set('respondOk', false);
+        $listener->setConfig($config);
+
+        $requestUtility = new RequestUtility();
+        $post = ['user_id' => 'B123'];
+        $requestUtility->setPost($post);
+        $listener->setRequestUtility($requestUtility);
+
+        $this->assertEquals($post, $listener->listen());
+    }
+
+    /**
+     * Test listenBot.
+     */
+    public function testListenBot()
+    {
+        $listener = new WebhookListener();
+        $config = new Config();
+        $config->set('respondOk', false);
+        $listener->setConfig($config);
+
+        $requestUtility = new RequestUtility();
+        $post = ['user_id' => 'USLACKBOT'];
+        $requestUtility->setPost($post);
+        $listener->setRequestUtility($requestUtility);
+
+        $this->assertEmpty($listener->listen());
+    }
+
+    /**
      * @throws \Exception
      */
     public function testRun()
@@ -94,26 +130,6 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
         } catch (\Exception $e) {
             $this->assertEquals('Request is not coming from Slack', $e->getMessage());
         }
-    }
-
-    /**
-     * Test listenBot.
-     */
-    public function testListenBot()
-    {
-        $listener = new WebhookListener();
-        $config = new Config();
-        $config->set('respondOk', false);
-        $listener->setConfig($config);
-
-        $content['user_id'] = 'B123';
-        $content = json_encode($content);
-
-        $requestUtility = new RequestUtility();
-        $requestUtility->setContent($content);
-        $listener->setRequestUtility($requestUtility);
-
-        $this->assertEmpty($listener->listen());
     }
 
     /**
