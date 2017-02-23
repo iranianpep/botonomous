@@ -252,6 +252,9 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
     public function testListen()
     {
         $eventListener = new EventListener();
+        $config = new Config();
+        $config->set('respondOk', false);
+        $eventListener->setConfig($config);
         $eventListener->setRequestUtility($this->getSampleRequestUtility());
 
         $this->assertEquals($eventListener->getRequest(), $eventListener->listen());

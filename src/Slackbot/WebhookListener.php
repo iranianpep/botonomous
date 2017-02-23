@@ -11,6 +11,9 @@ class WebhookListener extends BaseListener
      */
     public function listen()
     {
+        // This is needed for Slash commands, otherwise timeout error is displayed
+        $this->respondOK();
+
         $request = $this->extractRequest();
 
         if (empty($request)) {
@@ -20,9 +23,6 @@ class WebhookListener extends BaseListener
         if ($this->isThisBot() !== false) {
             return;
         }
-
-        // This is needed for Slash commands, otherwise timeout error is displayed
-        $this->respondOK();
 
         $this->setRequest($request);
     }

@@ -29,6 +29,9 @@ class EventListener extends BaseListener
      */
     public function listen()
     {
+        // This is needed for Slash commands, otherwise timeout error is displayed
+        $this->respondOK();
+
         $request = $this->extractRequest();
 
         if (empty($request)) {

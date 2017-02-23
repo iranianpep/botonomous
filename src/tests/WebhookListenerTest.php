@@ -19,6 +19,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
     {
         $config = new Config();
         $config->set('listenerType', 'webhook');
+        $config->set('respondOk', false);
         $commandPrefix = $config->get('commandPrefix');
 
         /**

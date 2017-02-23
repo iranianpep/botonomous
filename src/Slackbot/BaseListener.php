@@ -110,6 +110,10 @@ abstract class BaseListener
      */
     protected function respondOK()
     {
+        if ($this->getConfig()->get('respondOk') !== true) {
+            return false;
+        }
+
         // check if fastcgi_finish_request is callable
         if (is_callable('fastcgi_finish_request')) {
             /*
