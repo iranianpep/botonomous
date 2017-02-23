@@ -217,36 +217,6 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test isThisBot.
-     *
-     * @throws \Exception
-     */
-    public function testIsThisBotMissingBotId()
-    {
-        $webhookListener = new WebhookListener();
-
-        $this->setExpectedException('Exception', 'Bot user id must be provided');
-
-        $webhookListener->isThisBot();
-    }
-
-    /**
-     * Test isThisBot.
-     *
-     * @throws \Exception
-     */
-    public function testIsThisBotMissingBotName()
-    {
-        $request = ['user_id' => '12345'];
-        $webhookListener = new WebhookListener();
-        $webhookListener->setRequest($request);
-
-        $this->setExpectedException('Exception', 'Bot user name must be provided');
-
-        $webhookListener->isThisBot();
-    }
-
-    /**
      * Test extractRequest.
      */
     public function testExtractRequest()
