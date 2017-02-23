@@ -2,7 +2,6 @@
 
 namespace Slackbot\Tests;
 
-use Slackbot\Dictionary;
 use Slackbot\Event;
 
 /**
