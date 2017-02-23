@@ -453,6 +453,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
      * @param null $code
      * @param null $state
      *
+     * @return bool
      * @throws \Exception
      */
     public function doOauth($code = null, $state = null)
@@ -480,6 +481,8 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         } catch (\Exception $e) {
             throw $e;
         }
+
+        return true;
     }
 
     /**
