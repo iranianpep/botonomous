@@ -10,6 +10,42 @@ use Slackbot\utility\RequestUtility;
 class EventListenerTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * Test listen.
+     */
+    public function testListen()
+    {
+        $eventListener = new EventListener();
+        $config = new Config();
+        $config->set('respondOk', false);
+        $eventListener->setConfig($config);
+
+        $requestUtility = $this->getSampleRequestUtility();
+        $eventListener->setRequestUtility($requestUtility);
+
+        $this->assertEquals($eventListener->getRequest(), $eventListener->listen());
+    }
+
+    public function testListenBot()
+    {
+        $eventListener = new EventListener();
+        $config = new Config();
+        $config->set('respondOk', false);
+        $eventListener->setConfig($config);
+
+        $requestUtility = $this->getSampleRequestUtility();
+        $content = $requestUtility->getContent();
+
+        $content = json_decode($content, true);
+        $content['event']['bot_id'] = 'B123';
+        $content = json_encode($content);
+
+        $requestUtility->setContent($content);
+        $eventListener->setRequestUtility($requestUtility);
+
+        $this->assertEmpty($eventListener->listen());
+    }
+
+    /**
      * @return RequestUtility
      */
     private function getSampleRequestUtility()
@@ -244,20 +280,6 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals([], $eventListener->verifyOrigin());
-    }
-
-    /**
-     * Test listen.
-     */
-    public function testListen()
-    {
-        $eventListener = new EventListener();
-        $config = new Config();
-        $config->set('respondOk', false);
-        $eventListener->setConfig($config);
-        $eventListener->setRequestUtility($this->getSampleRequestUtility());
-
-        $this->assertEquals($eventListener->getRequest(), $eventListener->listen());
     }
 
     /**

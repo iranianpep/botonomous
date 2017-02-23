@@ -74,8 +74,6 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('pong', $response);
 
-        $message = '';
-
         $inputsOutputs = [
             [
                 'i' => [
