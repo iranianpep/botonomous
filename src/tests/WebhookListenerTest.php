@@ -17,17 +17,9 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testListen()
     {
-        $listener = new WebhookListener();
-        $config = new Config();
-        $config->set('respondOk', false);
-        $listener->setConfig($config);
-
-        $requestUtility = new RequestUtility();
         $post = ['user_id' => 'B123'];
-        $requestUtility->setPost($post);
-        $listener->setRequestUtility($requestUtility);
 
-        $this->assertEquals($post, $listener->listen());
+        $this->assertEquals($post, $this->getListener($post)->listen());
     }
 
     /**
@@ -35,17 +27,26 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
      */
     public function testListenBot()
     {
+        $this->assertEmpty($this->getListener(['user_id' => 'USLACKBOT'])->listen());
+    }
+
+    /**
+     * @param $post
+     *
+     * @return WebhookListener
+     */
+    private function getListener($post)
+    {
         $listener = new WebhookListener();
         $config = new Config();
         $config->set('respondOk', false);
         $listener->setConfig($config);
 
         $requestUtility = new RequestUtility();
-        $post = ['user_id' => 'USLACKBOT'];
         $requestUtility->setPost($post);
         $listener->setRequestUtility($requestUtility);
 
-        $this->assertEmpty($listener->listen());
+        return $listener;
     }
 
     /**
