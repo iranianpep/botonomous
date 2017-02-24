@@ -63,8 +63,9 @@ class LoggerUtility extends AbstractUtility
     /**
      * @param $text
      *
-     * @return int
      * @throws \Exception
+     *
+     * @return int
      */
     private function write($text)
     {
