@@ -49,8 +49,7 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
         $oauth->setSessionUtility($sessionUtility);
 
         $this->setExpectedException('Exception', 'invalid_client_id');
-
-        $oauth->doOauth();
+        $this->assertTrue($oauth->doOauth());
     }
 
     /**
