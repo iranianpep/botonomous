@@ -397,7 +397,7 @@ class Slackbot extends AbstractBot
 
     /**
      * Return message based on the listener
-     * If listener is event and event text is empty, fall back to request text
+     * If listener is event and event text is empty, fall back to request text.
      *
      * @return mixed|string
      */
