@@ -178,7 +178,7 @@ class Slackbot extends AbstractBot
 
         $data = [
             'text'    => $response,
-            'channel' => '#'.$channel,
+            'channel' => $channel,
         ];
 
         if ($debug === true) {

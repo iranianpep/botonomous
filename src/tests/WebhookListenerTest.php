@@ -180,7 +180,7 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
 
         $this->expectOutputString('{"text":"test response","channel":"#general"}');
 
-        $slackbot->send('general', 'test response');
+        $slackbot->send('#general', 'test response');
     }
 
     /**
