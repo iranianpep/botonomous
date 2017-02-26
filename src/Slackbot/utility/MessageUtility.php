@@ -24,9 +24,8 @@ class MessageUtility extends AbstractUtility
     public function removeMentionedBot($message)
     {
         $botUserId = $this->getConfig()->get('botUserId');
-        $mentionedBotUserId = "<@{$botUserId}>";
 
-        return preg_replace('/<@(\w+)>/', '', $message, 1);
+        return preg_replace("/<@{$botUserId}>/", '', $message, 1);
     }
 
     /**
