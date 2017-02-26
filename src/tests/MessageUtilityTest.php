@@ -40,7 +40,7 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
 
         $removed = $utility->removeMentionedBot("Test <@{$botUserId}>");
 
-        $this->assertEquals($removed, "Test ");
+        $this->assertEquals($removed, 'Test ');
     }
 
     /**
