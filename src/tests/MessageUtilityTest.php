@@ -16,19 +16,31 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testRemoveMentionedBotUsername()
+    public function testRemoveMentionedBot()
     {
         $config = new Config();
         $utility = new MessageUtility($config);
 
-        $botUsername = $config->get('botUsername');
-        $removed = $utility->removeMentionedBotUsername("@{$botUsername} /help");
+        $botUserId = $config->get('botUserId');
+        $removed = $utility->removeMentionedBot("<@{$botUserId}> /help");
 
         $this->assertEquals($removed, ' /help');
 
-        $removed = $utility->removeMentionedBotUsername(' /help');
+        $removed = $utility->removeMentionedBot(' /help');
 
         $this->assertEquals($removed, ' /help');
+
+        $removed = $utility->removeMentionedBot("<@{$botUserId}> /help <@{$botUserId}>");
+
+        $this->assertEquals($removed, " /help <@{$botUserId}>");
+
+        $removed = $utility->removeMentionedBot("<@{$botUserId}> <@{$botUserId}>");
+
+        $this->assertEquals($removed, " <@{$botUserId}>");
+
+        $removed = $utility->removeMentionedBot("Test <@{$botUserId}>");
+
+        $this->assertEquals($removed, "Test ");
     }
 
     /**
@@ -90,9 +102,9 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
     {
         $utility = new MessageUtility();
         $config = new Config();
-        $botUsername = $config->get('botUsername');
+        $botUserId = $config->get('botUserId');
         $commandPrefix = $config->get('commandPrefix');
-        $commandObject = $utility->extractCommandDetails("@{$botUsername} {$commandPrefix}ping");
+        $commandObject = $utility->extractCommandDetails("<@{$botUserId}> {$commandPrefix}ping");
 
         $expected = new Command('ping');
         $expected->setPlugin('Ping');

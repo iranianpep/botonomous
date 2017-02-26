@@ -15,6 +15,7 @@ class Config extends AbstractConfig
         'defaultTimeZone'      => 'Australia/Melbourne',
         'apiToken'             => 'YOUR_API_TOKEN',
         'channelName'          => '#general',
+        'botUserId'            => 'YOUR_BOT_USER_ID',
         'botUsername'          => 'YOUR_BOT_USERNAME',
         'chatLogging'          => true,
         'tmpFolderName'        => 'tmp',

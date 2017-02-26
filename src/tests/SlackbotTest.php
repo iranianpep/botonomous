@@ -58,10 +58,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         /**
          * Form the request.
          */
-        $botUsername = '@'.$config->get('botUsername');
+        $botUserId = '<@'.$config->get('botUserId').'>';
         $request = [
             'token' => $config->get(self::VERIFICATION_TOKEN),
-            'text'  => "{$botUsername} {$commandPrefix}ping",
+            'text'  => "{$botUserId} {$commandPrefix}ping",
         ];
 
         $slackbot = new Slackbot();
@@ -79,13 +79,13 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $inputsOutputs = [
             [
                 'i' => [
-                    'message' => "$botUsername {$commandPrefix}ping",
+                    'message' => "$botUserId {$commandPrefix}ping",
                 ],
                 'o' => 'pong',
             ],
             [
                 'i' => [
-                    'message' => "$botUsername {$commandPrefix}pong",
+                    'message' => "$botUserId {$commandPrefix}pong",
                 ],
                 'o' => 'ping',
             ],
@@ -288,10 +288,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         /**
          * Form the request.
          */
-        $botUsername = '@'.$config->get('botUsername');
+        $botUserId = '<@'.$config->get('botUserId').'>';
         $request = [
             'token' => $config->get(self::VERIFICATION_TOKEN),
-            'text'  => "{$botUsername} {$commandPrefix}commandWithoutFunctionForTest",
+            'text'  => "{$botUserId} {$commandPrefix}commandWithoutFunctionForTest",
         ];
 
         $this->setExpectedException(

@@ -1,6 +1,8 @@
 <?php
 
-namespace Slackbot\utility;
+namespace Slackbot\Tests;
+
+use Slackbot\utility\RequestUtility;
 
 class RequestUtilityTest extends \PHPUnit_Framework_TestCase
 {
