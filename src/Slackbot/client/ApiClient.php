@@ -78,6 +78,12 @@ class ApiClient
     ];
 
     private $client;
+    private $token;
+
+    public function __construct($token = null)
+    {
+        $this->setToken($token);
+    }
 
     /**
      * API CURL Call with post method.
@@ -132,7 +138,7 @@ class ApiClient
         $config = new Config();
 
         return [
-            'token'    => $config->get('apiToken'),
+            'token'    => $this->getToken(),
             'username' => $config->get('botUsername'),
             'as_user'  => $config->get('asUser'),
             'icon_url' => $config->get('iconURL'),
@@ -362,5 +368,26 @@ class ApiClient
         $extractedArguments = array_merge($arguments['required'], $arguments['optional']);
 
         return (new ArrayUtility())->filterArray($args, $extractedArguments);
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        // fall back to config
+        if (empty($this->token)) {
+            $this->setToken((new Config())->get('apiToken'));
+        }
+
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
     }
 }
