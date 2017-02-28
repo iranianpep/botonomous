@@ -70,33 +70,35 @@ class Ping extends AbstractPlugin
 ```
 
 ## Configurations
-|   Name    | Type | Description |
-|:----------|:-----|:------------|
-| testKey | string | This is only used for testing and to make sure that Config class works fine. value: `testValue` |
-| testKeyReplace | string | This is used only for testing and to make sure that Config class works fine. value: `testValue {replaceIt}` |
-| baseUrl | string | Base URL for listener. value: `http://localhost:8888` |
-| defaultTimeZone | string | default value: `Australia/Melbourne` |
-| apiToken | string | Your API key which can be found at Custom Integrations -> Bots -> Edit configuration (https://codejetter.slack.com/apps/manage/custom-integrations). This is required for outgoing webhook listeners |
-| channelName | string | default value: `general` |
-| botUsername | string | Bot username |
-| verificationToken | string | Slack verification token which can be found at Custom Integrations settings. This is required for outgoing webhook and event listeners. This also can be used for slash commands as well. For Event listeners and can be found at https://api.slack.com/apps |
-| chatLogging | boolean | If is true, all the conversations are logged in a text file |
-| tmpFolderName | string | Temporary folder for the log file |
-| chatLoggingFileName | string | Log file name |
-| iconURL | string | Bot image URL |
-| asUser | boolean | Specify if messages are sent as user or not |
-| response | string | Response type. Possible values are `slack`, `json` or `slashCommand` |
-| rootNamespace | string | Root namespace |
-| defaultCommand | string | Default command if there is no command has been specified in the message |
-| commandPrefix | string | Command prefix which is `/` by default |
-| noCommandMessage | string | Message in case there is no command found in the message |
-| unknownCommandMessage | string | Message in case the command in the message is unknown |
-| confirmReceivedMessage | string | Message in case a message is received by the bot |
-| listenerType | string | Type of the listener for Slack requests. Possible values are `webhook` or `event` |
-| clientId | string | App credential: client id - This is required for Event listeners and can be found at https://api.slack.com/apps |
-| clientSecret | string | App credential: client secret - This is required for Event listeners and can be found at https://api.slack.com/apps |
-| scopes | array | App credential: permission scopes - This is required for Event listeners and can be found at https://api.slack.com/apps |
-| apiAppId | string | The unique identifier for the application. This is required for Event listeners and can be found at https://api.slack.com/apps and your app url |
+|   Name    | Type | Required | Description |
+|:----------|:-----|:---------|:------------|
+| testKey | string | No. Only required for testing | Only for testing and to make sure `Config` class works as expected. Default value: `testValue` |
+| testKeyReplace | No. Only required for testing | string | Only for testing and to make sure `Config` class works as expected. Default value: `testValue {replaceIt}` |
+| baseUrl | string | Yes | Base URL for the listener. value: `http://localhost:8888` |
+| defaultTimeZone | string | Yes | Time zone of the framework. Default value: `Australia/Melbourne` |
+| apiToken | string | Yes | Your API key which can be found at Custom Integrations -> Bots -> Edit configuration (https://codejetter.slack.com/apps/manage/custom-integrations). This is required for outgoing webhook listeners |
+| channelName | string | No | Default channel name. Default value: `#general` |
+| botUserId | string | No | Bot id |
+| botUsername | string | No | Bot username |
+| verificationToken | string | Yes |Slack verification token which can be found at Custom Integrations settings. This is required for outgoing webhook and event listeners. This also can be used for slash commands as well. For Event listeners and can be found at https://api.slack.com/apps |
+| chatLogging | boolean | Yes | If `true`, all the conversations are logged in a simple text file |
+| tmpFolderName | string | Yes | Temporary folder for the log file |
+| chatLoggingFileName | Yes | string | Log file name |
+| iconURL | string | Yes | Bot image URL |
+| asUser | boolean | Yes | Whether the bot responds as a user or not |
+| response | string | Yes | Response type. Possible values: `slack`, `json`, `slashCommand` |
+| rootNamespace | string | Yes | Root namespace |
+| defaultCommand | string | Yes | Default command if no command has been specified in the message |
+| commandPrefix | string | Yes | Command prefix. Default value: `/` |
+| noCommandMessage | string | Yes | Message in case no command found in the message |
+| unknownCommandMessage | string | Yes | Message in case the command in the message is unknown |
+| confirmReceivedMessage | string | Yes | Message in case a message is received by the bot |
+| listenerType | string | Yes | Type of the listener for Slack requests. Possible values: `webhook`, `event` |
+| clientId | string | Yes | App credential: client id - This is required for Event listeners and can be found at https://api.slack.com/apps |
+| clientSecret | string | Yes | App credential: client secret - This is required for Event listeners and can be found at https://api.slack.com/apps |
+| scopes | array | Yes | App credential: permission scopes - This is required for Event listeners and can be found at https://api.slack.com/apps |
+| apiAppId | string | Yes | The unique identifier for the application. This is required for Event listeners and can be found at https://api.slack.com/apps and your app url |
+| respondOk | boolean | Yes | Whether the bot responds with `200 OK` on receiving a request from Slack or not. Must be `true` all the time except for testing |
 
 ## Buy me half of a coffee if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
