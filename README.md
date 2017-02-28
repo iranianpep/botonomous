@@ -87,7 +87,6 @@ class Ping extends AbstractPlugin
 | iconURL | string | Yes | Bot image URL |
 | asUser | boolean | Yes | Whether the bot responds as a user or not |
 | response | string | Yes | Response type. Possible values: `slack`, `json`, `slashCommand` |
-| rootNamespace | string | Yes | Root namespace |
 | defaultCommand | string | Yes | Default command if no command has been specified in the message |
 | commandPrefix | string | Yes | Command prefix. Default value: `/` |
 | noCommandMessage | string | Yes | Message in case no command found in the message |

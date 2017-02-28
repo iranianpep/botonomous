@@ -26,7 +26,6 @@ class Config extends AbstractConfig
         'listenerType'         => 'webhook',
         // possible values are: slack, json, slashCommand
         'response'      => 'slack',
-        'rootNamespace' => 'Slackbot',
         // this is used if there is no command has been specified in the message
         'defaultCommand'     => 'help',
         'commandPrefix'      => '/',
