@@ -239,27 +239,15 @@ class EventListener extends BaseListener
     public function isThisBot()
     {
         $subType = $this->getRequest('subtype');
-<<<<<<< HEAD
-        if ($subType === 'bot_message' || !empty($botId)) {
-=======
+
         if ($subType === 'bot_message') {
->>>>>>> 1973ac6df66064567a953585e05797bf89f4f11a
             return true;
         }
 
         $event = $this->getEvent();
-<<<<<<< HEAD
+
         if ($event instanceof Event && !empty($event->getBotId())) {
             return true;
-=======
-
-        if ($event instanceof Event) {
-            $botId = $event->getBotId();
-
-            if (!empty($botId)) {
-                return true;
-            }
->>>>>>> 1973ac6df66064567a953585e05797bf89f4f11a
         }
 
         return false;
