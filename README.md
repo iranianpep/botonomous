@@ -75,7 +75,7 @@ class Ping extends AbstractPlugin
 | testKey | string | No. Only required for testing | Only for testing and to make sure `Config` class works as expected. Default value: `testValue` |
 | testKeyReplace | No. Only required for testing | string | Only for testing and to make sure `Config` class works as expected. Default value: `testValue {replaceIt}` |
 | baseUrl | string | Yes | Base URL for the listener. value: `http://localhost:8888` |
-| defaultTimeZone | string | Yes | Time zone of the framework. Default value: `Australia/Melbourne` |
+| timezone | string | Yes | Time zone of the framework. Default value: `Australia/Melbourne` |
 | apiToken | string | Yes | Your API key which can be found at Custom Integrations -> Bots -> Edit configuration (https://codejetter.slack.com/apps/manage/custom-integrations). This is required for outgoing webhook listeners |
 | channel | string | No | Default channel if no channel is specified in `send` function. Default value: `#general` |
 | botUserId | string | No | Bot id |

@@ -12,7 +12,7 @@ class Config extends AbstractConfig
         'testKey'              => 'testValue',
         'testKeyReplace'       => 'testValue {replaceIt}',
         'baseUrl'              => 'http://localhost:8888',
-        'defaultTimeZone'      => 'Australia/Melbourne',
+        'timezone'             => 'Australia/Melbourne',
         'apiToken'             => 'YOUR_API_TOKEN',
         'channel'              => '#general',
         'botUserId'            => 'YOUR_BOT_USER_ID',
