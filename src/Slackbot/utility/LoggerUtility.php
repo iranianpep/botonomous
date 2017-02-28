@@ -65,22 +65,16 @@ class LoggerUtility extends AbstractUtility
      *
      * @throws \Exception
      *
-     * @return bool
+     * @return int
      */
     private function write($text)
     {
         try {
-            $result = file_put_contents(
+            return file_put_contents(
                 $this->getLogFilePath(),
                 $text,
                 FILE_APPEND
             );
-
-            if ($result !== false) {
-                return true;
-            }
-
-            return false;
         } catch (\Exception $e) {
             throw new \Exception('Failed to write to the log file');
         }
@@ -96,7 +90,7 @@ class LoggerUtility extends AbstractUtility
     public function logRaw($message)
     {
         try {
-            if ($this->canLog() === true && $this->makeTmpDir() === true && $this->write($message) === true) {
+            if ($this->canLog() === true && $this->makeTmpDir() === true && $this->write($message) !== false) {
                 return true;
             }
 

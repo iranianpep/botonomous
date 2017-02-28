@@ -14,7 +14,8 @@ class Config extends AbstractConfig
         'baseUrl'              => 'http://localhost:8888',
         'defaultTimeZone'      => 'Australia/Melbourne',
         'apiToken'             => 'YOUR_API_TOKEN',
-        'channelName'          => 'general',
+        'channelName'          => '#general',
+        'botUserId'            => 'YOUR_BOT_USER_ID',
         'botUsername'          => 'YOUR_BOT_USERNAME',
         'chatLogging'          => true,
         'tmpFolderName'        => 'tmp',
@@ -51,5 +52,7 @@ class Config extends AbstractConfig
          */
         'verificationToken' => 'YOUR_APP_VERIFICATION_TOKEN',
         'apiAppId'          => 'YOUR_API_ID',
+        // This is mainly used for testing
+        'respondOk'         => true,
     ];
 }

@@ -7,24 +7,26 @@ class WebhookListener extends BaseListener
     const VERIFICATION_TOKEN = 'verificationToken';
 
     /**
-     * listen.
+     * @return mixed|void
      */
     public function listen()
     {
+        // This is needed for Slash commands, otherwise timeout error is displayed
+        $this->respondOK();
+
         $request = $this->extractRequest();
 
         if (empty($request)) {
             return;
         }
 
+        $this->setRequest($request);
+
         if ($this->isThisBot() !== false) {
             return;
         }
 
-        // This is needed for Slash commands, otherwise timeout error is displayed
-        $this->respondOK();
-
-        $this->setRequest($request);
+        return $request;
     }
 
     /**
@@ -85,16 +87,7 @@ class WebhookListener extends BaseListener
     public function isThisBot()
     {
         $userId = $this->getRequest('user_id');
-
-        if (empty($userId)) {
-            throw new \Exception('Bot user id must be provided');
-        }
-
         $username = $this->getRequest('user_name');
-
-        if (empty($username)) {
-            throw new \Exception('Bot user name must be provided');
-        }
 
         return ($userId == 'USLACKBOT' || $username == 'slackbot') ? true : false;
     }

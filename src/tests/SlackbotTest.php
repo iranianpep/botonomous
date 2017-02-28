@@ -4,10 +4,12 @@ namespace Slackbot\Tests;
 
 use Slackbot\CommandContainer;
 use Slackbot\Config;
+use Slackbot\EventListener;
 use Slackbot\OAuth;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\Slackbot;
 use Slackbot\utility\RequestUtility;
+use Slackbot\WebhookListener;
 
 /**
  * Class SlackbotTest.
@@ -56,10 +58,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         /**
          * Form the request.
          */
-        $botUsername = '@'.$config->get('botUsername');
+        $botUserId = '<@'.$config->get('botUserId').'>';
         $request = [
             'token' => $config->get(self::VERIFICATION_TOKEN),
-            'text'  => "{$botUsername} {$commandPrefix}ping",
+            'text'  => "{$botUserId} {$commandPrefix}ping",
         ];
 
         $slackbot = new Slackbot();
@@ -74,18 +76,16 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('pong', $response);
 
-        $message = '';
-
         $inputsOutputs = [
             [
                 'i' => [
-                    'message' => "$botUsername {$commandPrefix}ping",
+                    'message' => "$botUserId {$commandPrefix}ping",
                 ],
                 'o' => 'pong',
             ],
             [
                 'i' => [
-                    'message' => "$botUsername {$commandPrefix}pong",
+                    'message' => "$botUserId {$commandPrefix}pong",
                 ],
                 'o' => 'ping',
             ],
@@ -288,10 +288,10 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         /**
          * Form the request.
          */
-        $botUsername = '@'.$config->get('botUsername');
+        $botUserId = '<@'.$config->get('botUserId').'>';
         $request = [
             'token' => $config->get(self::VERIFICATION_TOKEN),
-            'text'  => "{$botUsername} {$commandPrefix}commandWithoutFunctionForTest",
+            'text'  => "{$botUserId} {$commandPrefix}commandWithoutFunctionForTest",
         ];
 
         $this->setExpectedException(
@@ -438,6 +438,42 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
 
         $slackbot = new Slackbot($config);
         $this->assertEquals('testValue', $slackbot->getConfig()->get('testKey'));
+    }
+
+    /**
+     * Test getMessageWebhookListener.
+     */
+    public function testGetMessageEventListener()
+    {
+        $slackbot = new Slackbot();
+        $listener = new EventListener();
+
+        $requestUtility = new RequestUtility();
+        $requestUtility->setContent('{"token":"Jdsfsdfvdfv","event":{"type":"message","text":"<@U3Qdfvdfv> test"}}');
+        $listener->setRequestUtility($requestUtility);
+
+        $slackbot->setListener($listener);
+
+        $this->assertEquals('<@U3Qdfvdfv> test', $slackbot->getMessage());
+    }
+
+    /**
+     * Test getMessageWebhookListener.
+     */
+    public function testGetMessageWebhookListener()
+    {
+        $slackbot = new Slackbot();
+        $listener = new WebhookListener();
+
+        $requestUtility = new RequestUtility();
+        $requestUtility->setPost(
+            ['text' => '<@U3Qdfvdfv> test']
+        );
+        $listener->setRequestUtility($requestUtility);
+
+        $slackbot->setListener($listener);
+
+        $this->assertEquals('<@U3Qdfvdfv> test', $slackbot->getMessage());
     }
 
     /*

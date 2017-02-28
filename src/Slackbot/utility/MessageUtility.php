@@ -21,12 +21,11 @@ class MessageUtility extends AbstractUtility
      *
      * @return mixed
      */
-    public function removeMentionedBotUsername($message)
+    public function removeMentionedBot($message)
     {
-        $botUsername = $this->getConfig()->get('botUsername');
-        $mentionedBotUsername = "@{$botUsername}";
+        $botUserId = $this->getConfig()->get('botUserId');
 
-        return str_replace($mentionedBotUsername, '', $message);
+        return preg_replace("/<@{$botUserId}>/", '', $message, 1);
     }
 
     /**
@@ -39,7 +38,7 @@ class MessageUtility extends AbstractUtility
     public function extractCommandName($message)
     {
         // remove the bot mention if it exists
-        $message = $this->removeMentionedBotUsername($message);
+        $message = $this->removeMentionedBot($message);
 
         /**
          * Command must start with / and at the beginning of the sentence.
