@@ -173,7 +173,7 @@ class Slackbot extends AbstractBot
         $debug = (bool) $this->getRequest('debug');
 
         if (empty($channel)) {
-            $channel = $this->getConfig()->get('channelName');
+            $channel = $this->getConfig()->get('channel');
         }
 
         $data = [

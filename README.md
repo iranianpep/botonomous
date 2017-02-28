@@ -77,7 +77,7 @@ class Ping extends AbstractPlugin
 | baseUrl | string | Yes | Base URL for the listener. value: `http://localhost:8888` |
 | defaultTimeZone | string | Yes | Time zone of the framework. Default value: `Australia/Melbourne` |
 | apiToken | string | Yes | Your API key which can be found at Custom Integrations -> Bots -> Edit configuration (https://codejetter.slack.com/apps/manage/custom-integrations). This is required for outgoing webhook listeners |
-| channelName | string | No | Default channel name. Default value: `#general` |
+| channel | string | No | Default channel if no channel is specified in `send` function. Default value: `#general` |
 | botUserId | string | No | Bot id |
 | botUsername | string | No | Bot username |
 | verificationToken | string | Yes |Slack verification token which can be found at Custom Integrations settings. This is required for outgoing webhook and event listeners. This also can be used for slash commands as well. For Event listeners and can be found at https://api.slack.com/apps |

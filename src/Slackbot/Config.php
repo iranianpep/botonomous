@@ -14,7 +14,7 @@ class Config extends AbstractConfig
         'baseUrl'              => 'http://localhost:8888',
         'defaultTimeZone'      => 'Australia/Melbourne',
         'apiToken'             => 'YOUR_API_TOKEN',
-        'channelName'          => '#general',
+        'channel'              => '#general',
         'botUserId'            => 'YOUR_BOT_USER_ID',
         'botUsername'          => 'YOUR_BOT_USERNAME',
         'chatLogging'          => true,
