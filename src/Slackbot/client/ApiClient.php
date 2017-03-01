@@ -244,9 +244,11 @@ class ApiClient
 
     /**
      * Return a user by Slack user id
-     *
+     * 
      * @param $args
      * @throws \Exception
+     *
+     * @return array
      */
     public function userInfo($args)
     {
