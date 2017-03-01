@@ -18,7 +18,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     {
         $config = new Config();
         $config->set('testKey', 'testValue');
-        
+
         $this->assertEquals('testValue', $config->get('testKey'));
     }
 
@@ -29,7 +29,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     {
         $config = new Config();
         $config->set('testKeyReplace', 'testValue {replaceIt}');
-        
+
         $this->assertEquals(
             'testValue replaced',
             $config->get('testKeyReplace', ['replaceIt' => 'replaced'])
