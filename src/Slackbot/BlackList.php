@@ -17,7 +17,6 @@ class BlackList
 
     public function isBlackListed()
     {
-        // currently isUsernameBlackListed is the only function, but later a new one might be added
         if ($this->isUsernameBlackListed() !== false) {
             return true;
         }
@@ -86,10 +85,10 @@ class BlackList
 
         if (empty($userInfo)) {
             /*
-             * Could not find the user in the team - This is weird!
-             * There might be some issue with Access token, but block the access
+             * Could not find the user in the team
+             * Probably there might be some issue with Access token and reading user info but block the access
              */
-            return true;
+            return false;
         }
 
         // user_name is set, load the blacklist to start checking
