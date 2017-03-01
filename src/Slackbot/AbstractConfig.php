@@ -42,8 +42,6 @@ abstract class AbstractConfig
      */
     public function set($key, $value)
     {
-        if (array_key_exists($key, static::$configs)) {
-            static::$configs[$key] = $value;
-        }
+        static::$configs[$key] = $value;
     }
 }
