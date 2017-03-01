@@ -50,7 +50,7 @@ class Config extends AbstractConfig
         'verificationToken' => 'YOUR_APP_VERIFICATION_TOKEN',
         'apiAppId'          => 'YOUR_API_ID',
         // This is mainly used for testing
-        'respondOk'         => true,
-        'enabledAccessControl' => false
+        'respondOk'            => true,
+        'enabledAccessControl' => false,
     ];
 }
