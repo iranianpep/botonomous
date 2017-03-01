@@ -85,6 +85,16 @@ class Slackbot extends AbstractBot
                  */
                 $this->preProcessRequest();
 
+                /**
+                 * 4. check the blacklist
+                 */
+                $blackList = new BlackList($this->getListener()->getRequest());
+                if ($blackList->isBlackListed() !== false) {
+                    // found in blacklist
+                    $this->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
+                    break;
+                }
+
                 /*
                  * 4. set the current command.
                  */
@@ -107,8 +117,7 @@ class Slackbot extends AbstractBot
                 /*
                  * 7. And send the response to the channel
                  */
-                $channel = $this->getRequest('channel_name');
-                $this->send($channel, $this->respond($message));
+                $this->send($this->getRequest('channel_name'), $this->respond($message));
                 break;
         }
     }

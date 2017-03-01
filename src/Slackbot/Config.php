@@ -35,6 +35,7 @@ class Config extends AbstractConfig
         List the available commands using /help",
         // leave it empty to disable it
         'confirmReceivedMessage' => ":point_right: {user}I've received your message and am thinking about that ...",
+        'blacklistedMessage' => "Sorry, we cannot process your message we detected it in the blacklist",
         /*
          * App credentials - This is required for Event listener
          * Can be found at https://api.slack.com/apps
