@@ -91,12 +91,12 @@ class BlackList
 
         /**
          * email normally does not exist in the request.
-         * Get it by user_id. For this users:read and users:read.email are needed
+         * Get it by user_id. For this users:read and users:read.email are needed.
          */
         $userInfo = $this->getApiClient()->userInfo(['user' => $request['user_id']]);
 
         if (empty($userInfo)) {
-            /**
+            /*
              * Could not find the user in the team - This is weird!
              * There might be some issue with Access token, but block the access
              */
