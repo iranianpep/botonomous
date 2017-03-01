@@ -11,18 +11,26 @@ class WhiteList extends AbstractAccessList
 
     public function isWhiteListed()
     {
-        if ($this->isUsernameWhiteListed() === true) {
-            return true;
+        $usernameCheck = true;
+        $userIdCheck = true;
+        $userEmailCheck = true;
+        
+        if ($this->isUsernameWhiteListed() === false) {
+            $usernameCheck = false;
         }
 
-        if ($this->isUserIdWhiteListed() === true) {
-            return true;
+        if ($this->isUserIdWhiteListed() === false) {
+            $userIdCheck = false;
         }
 
-        if ($this->isEmailWhiteListed() === true) {
-            return true;
+        if ($this->isEmailWhiteListed() === false) {
+            $userEmailCheck = false;
         }
 
+        if ($usernameCheck === true && $userIdCheck === true && $userEmailCheck === true) {
+            return true;
+        }
+        
         return false;
     }
 

@@ -20,11 +20,17 @@ abstract class AbstractAccessList
          * The list name is the called class name e.g. WhiteList in lowercase
          */
         $list = $this->getDictionary()->get('access-control');
-        $list = $list[strtolower(get_called_class())];
+
+        $relevantListKey = strtolower(get_called_class());
+        if (!isset($list[$relevantListKey])) {
+            return;
+        }
+        
+        $list = $list[$relevantListKey];
 
         // currently if list key is not set we do not check it
         if (!isset($list[$listKey])) {
-            return false;
+            return;
         }
 
         if (in_array($request[$requestKey], $list[$listKey])) {

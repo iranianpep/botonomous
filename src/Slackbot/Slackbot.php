@@ -98,8 +98,8 @@ class Slackbot extends AbstractBot
 
                     $whitelist = new WhiteList($this->getListener()->getRequest());
                     if ($whitelist->isWhiteListed() !== true) {
-                        // found in blacklist
-                        $this->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
+                        // not found in whitelist
+                        $this->send($this->getRequest('channel_name'), $this->getConfig()->get('whitelistedMessage'));
                         break;
                     }
                 }
