@@ -75,6 +75,12 @@ class ApiClient
                 'presence',
             ],
         ],
+        'users.info' => [
+            'required' => [
+                'token',
+                'user',
+            ]
+        ]
     ];
 
     private $client;
@@ -234,6 +240,23 @@ class ApiClient
         }
 
         return $result['members'];
+    }
+
+    /**
+     * Return a user by Slack user id
+     *
+     * @param $args
+     * @throws \Exception
+     */
+    public function userInfo($args)
+    {
+        $result = $this->apiCall('users.info', $args);
+
+        if (!isset($result['user'])) {
+            return;
+        }
+
+        return $result['user'];
     }
 
     /**
