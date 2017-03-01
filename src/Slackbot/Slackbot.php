@@ -85,7 +85,7 @@ class Slackbot extends AbstractBot
                  */
                 $this->preProcessRequest();
 
-                /**
+                /*
                  * 4. check the blacklist.
                  */
                 if ($this->getConfig()->get('enabledAccessControl') === true) {
