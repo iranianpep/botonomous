@@ -7,7 +7,7 @@ class WebhookListener extends BaseListener
     const VERIFICATION_TOKEN = 'verificationToken';
 
     /**
-     * @return mixed|void
+     * @return mixed
      */
     public function listen()
     {
