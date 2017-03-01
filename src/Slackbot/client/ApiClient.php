@@ -79,8 +79,8 @@ class ApiClient
             'required' => [
                 'token',
                 'user',
-            ]
-        ]
+            ],
+        ],
     ];
 
     private $client;
@@ -243,9 +243,10 @@ class ApiClient
     }
 
     /**
-     * Return a user by Slack user id
-     * 
+     * Return a user by Slack user id.
+     *
      * @param $args
+     *
      * @throws \Exception
      *
      * @return array
