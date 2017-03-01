@@ -86,7 +86,7 @@ class Slackbot extends AbstractBot
                 $this->preProcessRequest();
 
                 /**
-                 * 4. check the blacklist
+                 * 4. check the blacklist.
                  */
                 $blackList = new BlackList($this->getListener()->getRequest());
                 if ($blackList->isBlackListed() !== false) {

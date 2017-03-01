@@ -25,7 +25,7 @@ class BlackList
         if ($this->isUserIdBlackListed() !== false) {
             return true;
         }
-        
+
         return false;
     }
 
@@ -38,7 +38,7 @@ class BlackList
         if (!isset($request['user_name'])) {
             return false;
         }
-        
+
         // user_name is set, load the blacklist to start checking
         $blacklist = $this->getDictionary()->get('blacklist');
 
@@ -88,10 +88,10 @@ class BlackList
         if (!isset($request['user_id'])) {
             return false;
         }
-        
+
         // email normally does not exist in the request. Get it by user_id. For this users:read and users:read.email are needed
         $userInfo = $this->getApiClient()->userInfo(['user' => $request['user_id']]);
-        
+
         if (empty($userInfo)) {
             // Could not find the user in the team - This is weird! There might be some issue with Access token, but block the access
             return true;
@@ -104,7 +104,7 @@ class BlackList
         if (!isset($blacklist['userEmail'])) {
             return false;
         }
-        
+
         if (in_array($userInfo['profile']['email'], $blacklist['userEmail'])) {
             return true;
         }
@@ -136,7 +136,7 @@ class BlackList
         if (!isset($this->dictionary)) {
             $this->setDictionary(new Dictionary());
         }
-        
+
         return $this->dictionary;
     }
 
@@ -156,7 +156,7 @@ class BlackList
         if (!isset($this->apiClient)) {
             $this->setApiClient(new ApiClient());
         }
-        
+
         return $this->apiClient;
     }
 
