@@ -47,8 +47,7 @@ abstract class AbstractBot
     public function getListener()
     {
         if (!isset($this->listener)) {
-            $rootNamespace = $this->getConfig()->get('rootNamespace');
-            $listenerClass = $rootNamespace.'\\'.ucwords($this->getConfig()->get('listenerType')).'Listener';
+            $listenerClass = __NAMESPACE__.'\\'.ucwords($this->getConfig()->get('listenerType')).'Listener';
             $this->setListener(new $listenerClass());
         }
 

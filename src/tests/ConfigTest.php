@@ -16,7 +16,10 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
      */
     public function testGet()
     {
-        $this->assertEquals('testValue', (new Config())->get('testKey'));
+        $config = new Config();
+        $config->set('testKey', 'testValue');
+
+        $this->assertEquals('testValue', $config->get('testKey'));
     }
 
     /**
@@ -24,9 +27,12 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetWithReplace()
     {
+        $config = new Config();
+        $config->set('testKeyReplace', 'testValue {replaceIt}');
+
         $this->assertEquals(
             'testValue replaced',
-            (new Config())->get('testKeyReplace', ['replaceIt' => 'replaced'])
+            $config->get('testKeyReplace', ['replaceIt' => 'replaced'])
         );
     }
 

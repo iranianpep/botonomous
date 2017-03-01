@@ -32,7 +32,7 @@ class Slackbot extends AbstractBot
         }
 
         // set timezone
-        date_default_timezone_set($this->getConfig()->get('defaultTimeZone'));
+        date_default_timezone_set($this->getConfig()->get('timezone'));
     }
 
     /**
@@ -85,6 +85,16 @@ class Slackbot extends AbstractBot
                  */
                 $this->preProcessRequest();
 
+                /**
+                 * 4. check the blacklist.
+                 */
+                $blackList = new BlackList($this->getListener()->getRequest());
+                if ($blackList->isBlackListed() !== false) {
+                    // found in blacklist
+                    $this->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
+                    break;
+                }
+
                 /*
                  * 4. set the current command.
                  */
@@ -107,8 +117,7 @@ class Slackbot extends AbstractBot
                 /*
                  * 7. And send the response to the channel
                  */
-                $channel = $this->getRequest('channel_name');
-                $this->send($channel, $this->respond($message));
+                $this->send($this->getRequest('channel_name'), $this->respond($message));
                 break;
         }
     }
@@ -173,7 +182,7 @@ class Slackbot extends AbstractBot
         $debug = (bool) $this->getRequest('debug');
 
         if (empty($channel)) {
-            $channel = $this->getConfig()->get('channelName');
+            $channel = $this->getConfig()->get('channel');
         }
 
         $data = [

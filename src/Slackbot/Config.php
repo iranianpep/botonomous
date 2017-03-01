@@ -8,13 +8,10 @@ namespace Slackbot;
 class Config extends AbstractConfig
 {
     protected static $configs = [
-        // This is only used for testing config class
-        'testKey'              => 'testValue',
-        'testKeyReplace'       => 'testValue {replaceIt}',
         'baseUrl'              => 'http://localhost:8888',
-        'defaultTimeZone'      => 'Australia/Melbourne',
+        'timezone'             => 'Australia/Melbourne',
         'apiToken'             => 'YOUR_API_TOKEN',
-        'channelName'          => '#general',
+        'channel'              => '#general',
         'botUserId'            => 'YOUR_BOT_USER_ID',
         'botUsername'          => 'YOUR_BOT_USERNAME',
         'chatLogging'          => true,
@@ -26,7 +23,6 @@ class Config extends AbstractConfig
         'listenerType'         => 'webhook',
         // possible values are: slack, json, slashCommand
         'response'      => 'slack',
-        'rootNamespace' => 'Slackbot',
         // this is used if there is no command has been specified in the message
         'defaultCommand'     => 'help',
         'commandPrefix'      => '/',
@@ -39,6 +35,7 @@ class Config extends AbstractConfig
         List the available commands using /help",
         // leave it empty to disable it
         'confirmReceivedMessage' => ":point_right: {user}I've received your message and am thinking about that ...",
+        'blacklistedMessage'     => 'Sorry, we cannot process your message we detected it in the blacklist',
         /*
          * App credentials - This is required for Event listener
          * Can be found at https://api.slack.com/apps
