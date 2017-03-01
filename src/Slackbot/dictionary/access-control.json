@@ -1,0 +1,12 @@
+{
+  "whiteList": {
+    "username": [],
+    "userId": [],
+    "userEmail": []
+  },
+  "blackList": {
+    "username": [],
+    "userId": [],
+    "userEmail": []
+  }
+}

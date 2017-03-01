@@ -95,6 +95,13 @@ class Slackbot extends AbstractBot
                         $this->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
                         break;
                     }
+
+                    $whitelist = new WhiteList($this->getListener()->getRequest());
+                    if ($whitelist->isWhiteListed() !== true) {
+                        // found in blacklist
+                        $this->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
+                        break;
+                    }
                 }
 
                 /*
