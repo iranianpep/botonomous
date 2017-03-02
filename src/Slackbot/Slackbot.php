@@ -172,7 +172,7 @@ class Slackbot extends AbstractBot
      *
      * @return bool
      */
-    public function send($channel, $response)
+    public function send($channel, $response, $attachments = null)
     {
         // @codeCoverageIgnoreStart
         if ($this->getListener()->isThisBot() !== false) {
@@ -191,6 +191,10 @@ class Slackbot extends AbstractBot
             'text'    => $response,
             'channel' => $channel,
         ];
+
+        if ($attachments !== null) {
+            $data['attachments'] = $attachments;
+        }
 
         if ($debug === true) {
             echo json_encode($data);
