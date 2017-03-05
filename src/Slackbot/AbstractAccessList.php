@@ -7,7 +7,7 @@ use Slackbot\client\ApiClient;
 abstract class AbstractAccessList
 {
     /**
-     * Dependencies
+     * Dependencies.
      */
     private $request;
     private $dictionary;
