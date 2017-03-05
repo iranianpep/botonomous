@@ -2,41 +2,49 @@
 
 namespace Slackbot;
 
-class BlackList extends AbstractAccessList
+class WhiteList extends AbstractAccessList
 {
     public function __construct($request)
     {
         $this->setRequest($request);
     }
 
-    public function isBlackListed()
+    public function isWhiteListed()
     {
-        if ($this->isUsernameBlackListed() !== false) {
-            return true;
+        $usernameCheck = true;
+        $userIdCheck = true;
+        $userEmailCheck = true;
+        
+        if ($this->isUsernameWhiteListed() === false) {
+            $usernameCheck = false;
         }
 
-        if ($this->isUserIdBlackListed() !== false) {
-            return true;
+        if ($this->isUserIdWhiteListed() === false) {
+            $userIdCheck = false;
         }
 
-        if ($this->isEmailBlackListed() !== false) {
-            return true;
+        if ($this->isEmailWhiteListed() === false) {
+            $userEmailCheck = false;
         }
 
+        if ($usernameCheck === true && $userIdCheck === true && $userEmailCheck === true) {
+            return true;
+        }
+        
         return false;
     }
 
-    public function isUsernameBlackListed()
+    public function isUsernameWhiteListed()
     {
         return $this->findInListByRequestKey('user_name', 'username');
     }
 
-    public function isUserIdBlackListed()
+    public function isUserIdWhiteListed()
     {
         return $this->findInListByRequestKey('user_id', 'userId');
     }
 
-    public function isEmailBlackListed()
+    public function isEmailWhiteListed()
     {
         // user_name is set, load the blacklist to start checking
         $list = $this->getDictionary()->get('access-control');
@@ -44,7 +52,7 @@ class BlackList extends AbstractAccessList
 
         // currently if list is not set we do not check it
         if (!isset($list['userEmail'])) {
-            return false;
+            return true;
         }
 
         // get user info

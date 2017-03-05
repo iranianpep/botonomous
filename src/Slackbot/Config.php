@@ -35,7 +35,8 @@ class Config extends AbstractConfig
         List the available commands using /help",
         // leave it empty to disable it
         'confirmReceivedMessage' => ":point_right: {user}I've received your message and am thinking about that ...",
-        'blacklistedMessage'     => 'Sorry, we cannot process your message we detected it in the blacklist',
+        'blacklistedMessage'     => 'Sorry, we cannot process your message as we detected it in the blacklist',
+        'whitelistedMessage'     => 'Sorry, we cannot process your message as we could not find it in whitelist',
         /*
          * App credentials - This is required for Event listener
          * Can be found at https://api.slack.com/apps
@@ -50,7 +51,7 @@ class Config extends AbstractConfig
         'verificationToken' => 'YOUR_APP_VERIFICATION_TOKEN',
         'apiAppId'          => 'YOUR_API_ID',
         // This is mainly used for testing
-        'respondOk'         => true,
-        'enabledAccessControl' => false
+        'respondOk'            => true,
+        'enabledAccessControl' => false,
     ];
 }
