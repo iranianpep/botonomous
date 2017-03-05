@@ -6,9 +6,28 @@ use Slackbot\client\ApiClient;
 
 abstract class AbstractAccessList
 {
+    /**
+     * Dependencies
+     */
     private $request;
     private $dictionary;
     private $apiClient;
+
+    protected function getAccessControlList()
+    {
+        return $this->getDictionary()->get('access-control');
+    }
+
+    protected function getSubAccessControlList($sublistKey)
+    {
+        $list = $this->getAccessControlList();
+
+        if (!isset($list[$sublistKey])) {
+            return;
+        }
+
+        return $list[$sublistKey];
+    }
 
     protected function findInListByRequestKey($requestKey, $listKey)
     {
@@ -19,14 +38,11 @@ abstract class AbstractAccessList
          * load the relevant list to start checking
          * The list name is the called class name e.g. WhiteList in lowercase
          */
-        $list = $this->getDictionary()->get('access-control');
+        $list = $this->getSubAccessControlList(strtolower(get_called_class()));
 
-        $relevantListKey = strtolower(get_called_class());
-        if (!isset($list[$relevantListKey])) {
+        if ($list === null) {
             return;
         }
-        
-        $list = $list[$relevantListKey];
 
         // currently if list key is not set we do not check it
         if (!isset($list[$listKey])) {
