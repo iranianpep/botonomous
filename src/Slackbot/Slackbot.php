@@ -193,7 +193,7 @@ class Slackbot extends AbstractBot
         ];
 
         if ($attachments !== null) {
-            $data['attachments'] = $attachments;
+            $data['attachments'] = json_encode($attachments);
         }
 
         if ($debug === true) {
