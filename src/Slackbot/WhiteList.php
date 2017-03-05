@@ -14,7 +14,7 @@ class WhiteList extends AbstractAccessList
         $usernameCheck = true;
         $userIdCheck = true;
         $userEmailCheck = true;
-        
+
         if ($this->isUsernameWhiteListed() === false) {
             $usernameCheck = false;
         }
@@ -30,7 +30,7 @@ class WhiteList extends AbstractAccessList
         if ($usernameCheck === true && $userIdCheck === true && $userEmailCheck === true) {
             return true;
         }
-        
+
         return false;
     }
 

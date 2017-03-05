@@ -17,7 +17,7 @@ abstract class AbstractAccessList
 
         /**
          * load the relevant list to start checking
-         * The list name is the called class name e.g. WhiteList in lowercase
+         * The list name is the called class name e.g. WhiteList in lowercase.
          */
         $list = $this->getDictionary()->get('access-control');
 
@@ -25,7 +25,7 @@ abstract class AbstractAccessList
         if (!isset($list[$relevantListKey])) {
             return;
         }
-        
+
         $list = $list[$relevantListKey];
 
         // currently if list key is not set we do not check it
@@ -39,7 +39,7 @@ abstract class AbstractAccessList
 
         return false;
     }
-    
+
     /**
      * @return mixed
      */
@@ -95,7 +95,7 @@ abstract class AbstractAccessList
     {
         $this->apiClient = $apiClient;
     }
-    
+
     public function getSlackUserInfo()
     {
         // get user id in the request
@@ -119,7 +119,7 @@ abstract class AbstractAccessList
              */
             return false;
         }
-        
+
         return $userInfo;
     }
 }
