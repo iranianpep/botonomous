@@ -9,7 +9,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     {
         $request = [
             'user_name' => 'dummyUserName',
-            'user_id' => 'dummyUserId'
+            'user_id'   => 'dummyUserId',
         ];
 
         $whitelist = new WhiteList($request);
@@ -27,7 +27,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         // set the dummy request
         $request = [
             'user_name' => 'dummyUserName',
-            'user_id' => 'dummyUserId'
+            'user_id'   => 'dummyUserId',
         ];
 
         $whitelist = new WhiteList($request);
@@ -37,9 +37,9 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         $dictionaryData = [
             'access-control' => [
                 'whitelist' => [
-                    'username' => []
+                    'username' => [],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -54,11 +54,11 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'whitelist' => [
                     'username' => [],
-                    'userId' => [
-                        'dummyUserId'
-                    ]
+                    'userId'   => [
+                        'dummyUserId',
+                    ],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -70,9 +70,9 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'whitelist' => [
                     'username' => [],
-                    'userId' => []
+                    'userId'   => [],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -84,11 +84,11 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'whitelist' => [
                     'username' => [],
-                    'userId' => [
-                        'blahblah'
-                    ]
+                    'userId'   => [
+                        'blahblah',
+                    ],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
