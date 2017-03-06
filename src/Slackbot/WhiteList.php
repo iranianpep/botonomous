@@ -36,18 +36,19 @@ class WhiteList extends AbstractAccessList
 
     public function isUsernameWhiteListed()
     {
-        return $this->findInListByRequestKey('user_name', 'username');
+
+        return $this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username');
     }
 
     public function isUserIdWhiteListed()
     {
-        return $this->findInListByRequestKey('user_id', 'userId');
+        return $this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId');
     }
 
     public function isEmailWhiteListed()
     {
         // user_name is set, load the blacklist to start checking
-        $list = $this->getSubAccessControlList(strtolower(__CLASS__));
+        $list = $this->getSubAccessControlList($this->getShortClassName());
 
         // currently if list is not set we do not check it
         if (!isset($list['userEmail'])) {

@@ -3,6 +3,7 @@
 namespace Slackbot;
 
 use Slackbot\client\ApiClient;
+use Slackbot\utility\ClassUtility;
 
 abstract class AbstractAccessList
 {
@@ -12,6 +13,7 @@ abstract class AbstractAccessList
     private $request;
     private $dictionary;
     private $apiClient;
+    private $classUtility;
 
     protected function getAccessControlList()
     {
@@ -29,7 +31,7 @@ abstract class AbstractAccessList
         return $list[$sublistKey];
     }
 
-    protected function findInListByRequestKey($requestKey, $listKey)
+    protected function findInListByRequestKey($requestKey, $listKey, $subListKey)
     {
         // get request
         $request = $this->getRequest();
@@ -38,22 +40,27 @@ abstract class AbstractAccessList
          * load the relevant list to start checking
          * The list name is the called class name e.g. WhiteList in lowercase.
          */
-        $list = $this->getSubAccessControlList(strtolower(get_called_class()));
+        $list = $this->getSubAccessControlList($listKey);
 
         if ($list === null) {
             return;
         }
 
         // currently if list key is not set we do not check it
-        if (!isset($list[$listKey])) {
+        if (!isset($list[$subListKey])) {
             return;
         }
 
-        if (in_array($request[$requestKey], $list[$listKey])) {
+        if (in_array($request[$requestKey], $list[$subListKey])) {
             return true;
         }
 
         return false;
+    }
+
+    protected function getShortClassName()
+    {
+        return $this->getClassUtility()->extractClassNameFromFullName(strtolower(get_called_class()));
     }
 
     /**
@@ -137,5 +144,25 @@ abstract class AbstractAccessList
         }
 
         return $userInfo;
+    }
+
+    /**
+     * @return ClassUtility
+     */
+    public function getClassUtility()
+    {
+        if (!isset($this->classUtility)) {
+            $this->setClassUtility(new ClassUtility());
+        }
+
+        return $this->classUtility;
+    }
+
+    /**
+     * @param ClassUtility $classUtility
+     */
+    public function setClassUtility(ClassUtility $classUtility)
+    {
+        $this->classUtility = $classUtility;
     }
 }
