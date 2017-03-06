@@ -8,6 +8,7 @@ class ClassUtility
     {
         // get last part of the namespace
         $classParts = explode('\\', $fullName);
+
         return end($classParts);
     }
 }
