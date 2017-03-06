@@ -8,7 +8,7 @@ use Slackbot\utility\ClassUtility;
 abstract class AbstractAccessList
 {
     /**
-     * Dependencies
+     * Dependencies.
      */
     private $request;
     private $dictionary;
