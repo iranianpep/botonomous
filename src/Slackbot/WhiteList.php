@@ -36,7 +36,6 @@ class WhiteList extends AbstractAccessList
 
     public function isUsernameWhiteListed()
     {
-
         return $this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username');
     }
 
