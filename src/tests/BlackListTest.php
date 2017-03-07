@@ -16,7 +16,6 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
     {
         $blacklist = $this->getBlackList();
 
-        // load the dictionary with dummy data
         $dictionary = new Dictionary();
         $dictionaryData = [
             'access-control' => [
@@ -79,7 +78,6 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
     {
         $blacklist = $this->getBlackList();
 
-        // load the dictionary with dummy data
         $dictionary = new Dictionary();
         $dictionaryData = [
             'access-control' => [

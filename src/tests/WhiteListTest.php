@@ -28,7 +28,6 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     {
         $whitelist = $this->getWhiteList();
 
-        // load the dictionary with dummy data
         $dictionary = new Dictionary();
         $dictionaryData = [
             'access-control' => [
@@ -91,7 +90,6 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     {
         $whitelist = $this->getWhiteList();
 
-        // load the dictionary with dummy data
         $dictionary = new Dictionary();
         $dictionaryData = [
             'access-control' => [
