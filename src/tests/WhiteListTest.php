@@ -28,62 +28,72 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     {
         $whitelist = $this->getWhiteList();
 
+        $inputsOutputs = [
+            [
+                'input' => [
+                    'access-control' => [
+                        'whitelist' => [
+                            'userId' => [],
+                        ],
+                    ],
+                ],
+                'output' => null,
+            ],
+            [
+                'input' => [
+                    'access-control' => [
+                        'whitelist' => [
+                            'userId' => [],
+                        ],
+                    ],
+                ],
+                'output' => null
+            ],
+            [
+                'input' => (new PhpunitHelper())->getDictionaryData('whitelist'),
+                'output' => true
+            ],
+            [
+                'input' => [
+                    'access-control' => [
+                        'whitelist' => [
+                            'username' => [
+                                'blahblah',
+                            ],
+                            'userId' => [
+                                'blahblah',
+                            ],
+                        ],
+                    ],
+                ],
+                'output' => false
+            ],
+            [
+                'input' => [
+                    'access-control' => [
+                        'whitelist' => [
+                            'username' => [
+                                'blahblah',
+                            ],
+                            'userId' => [
+                                'blahblah',
+                            ],
+                        ],
+                    ],
+                ],
+                'output' => false
+            ]
+        ];
+
         $dictionary = new Dictionary();
-        $dictionaryData = [
-            'access-control' => [
-                'whitelist' => [
-                    'userId' => [],
-                ],
-            ],
-        ];
+        foreach ($inputsOutputs as $inputOutput) {
+            $dictionary->setData($inputOutput['input']);
 
-        $dictionary->setData($dictionaryData);
+            // set the dictionary
+            $whitelist->setDictionary($dictionary);
 
-        // set the dictionary
-        $whitelist->setDictionary($dictionary);
-
-        // since user id is not specified the result is NULL
-        $this->assertEmpty($whitelist->isUsernameWhiteListed());
-
-        $helper = new PhpunitHelper();
-        $dictionaryData = $helper->getDictionaryData('whitelist');
-
-        $dictionary->setData($dictionaryData);
-
-        // user id is not empty
-        $this->assertTrue($whitelist->isUsernameWhiteListed());
-
-        $dictionaryData = [
-            'access-control' => [
-                'whitelist' => [
-                    'username' => [],
-                    'userId'   => [],
-                ],
-            ],
-        ];
-
-        $dictionary->setData($dictionaryData);
-
-        // user id is set but is empty
-        $this->assertFalse($whitelist->isUsernameWhiteListed());
-
-        $dictionaryData = [
-            'access-control' => [
-                'whitelist' => [
-                    'username' => [
-                        'blahblah',
-                    ],
-                    'userId' => [
-                        'blahblah',
-                    ],
-                ],
-            ],
-        ];
-
-        $dictionary->setData($dictionaryData);
-
-        // user id is set but with a different user id
-        $this->assertFalse($whitelist->isUsernameWhiteListed());
+            $this->assertEquals($inputOutput['output'], $whitelist->isUsernameWhiteListed());
+        }
     }
 
     public function testIsUserIdWhiteListed()
