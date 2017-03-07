@@ -133,9 +133,41 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testIsEmailBlackListed()
+    {
+        $client = (new PhpunitHelper())->getUserInfoClient();
+
+        $blacklist = $this->getBlackList();
+        $blacklist->setApiClient($client);
+
+        $this->assertEquals(false, $blacklist->isEmailBlackListed());
+
+        $client = (new PhpunitHelper())->getUserInfoClient();
+        $blacklist->setApiClient($client);
+
+        $dictionary = new Dictionary();
+        $dictionary->setData([
+            'access-control' => [
+                'blacklist' => [
+                    'userEmail' => [
+                        'bobby@slack.com',
+                    ],
+                ],
+            ],
+        ]);
+
+        $blacklist->setDictionary($dictionary);
+
+        $blacklist->setRequest([
+            'user_id' => 'U023BECGF',
+        ]);
+
+        $this->assertEquals(true, $blacklist->isEmailBlackListed());
+    }
+
     public function testIsBlackListed()
     {
-        $whitelist = $this->getBlackList();
-        $this->assertEquals(false, $whitelist->isBlackListed());
+        $blacklist = $this->getBlackList();
+        $this->assertEquals(false, $blacklist->isBlackListed());
     }
 }
