@@ -40,13 +40,13 @@ class PhpunitHelper
             'access-control' => [
                 $listKey => [
                     'username' => [
-                        'dummyUserName'
+                        'dummyUserName',
                     ],
                     'userId' => [
-                        'dummyUserId'
-                    ]
+                        'dummyUserId',
+                    ],
                 ],
-            ]
+            ],
         ];
     }
 
