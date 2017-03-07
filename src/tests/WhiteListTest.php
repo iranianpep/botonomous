@@ -30,8 +30,9 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         $whitelist = $this->getWhiteList();
 
         $apiClient = new ApiClient();
-        $whitelist->setApiClient($apiClient);
+        $this->assertEquals($apiClient, $whitelist->getApiClient());
 
+        // call it again
         $this->assertEquals($apiClient, $whitelist->getApiClient());
     }
 
@@ -214,5 +215,19 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertEquals(true, $whitelist->isEmailWhiteListed());
+    }
+
+    public function testGetSlackUserInfoEmptyRequest()
+    {
+        $whitelist = $this->getWhiteList();
+        $whitelist->setRequest([]);
+
+        $this->assertEmpty($whitelist->getSlackUserInfo());
+    }
+
+    public function testGetSlackUserInfoNotFound()
+    {
+        $whitelist = $this->getWhiteList();
+        $this->assertFalse($whitelist->getSlackUserInfo());
     }
 }
