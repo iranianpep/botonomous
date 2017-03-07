@@ -216,15 +216,19 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, $blacklist->isBlackListed());
     }
 
+<<<<<<< HEAD
     public function testIsBlackListedUserId()
+=======
+    public function testIsBlackListed()
+>>>>>>> a22e7d09ee1c127c8ffda1d75c7b9cc31d428e1d
     {
         $client = (new PhpunitHelper())->getUserInfoClient();
         $blacklist = $this->getBlackList();
         $blacklist->setApiClient($client);
 
         $blacklist->setRequest([
-            'user_id' => 'U023BECGF',
-            'user_name' => 'bobby'
+            'user_id'   => 'U023BECGF',
+            'user_name' => 'bobby',
         ]);
 
         $dictionary = new Dictionary();
@@ -252,7 +256,22 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
             ],
         ]);
 
+<<<<<<< HEAD
         $blacklist = $this->getBlackList();
+=======
+        $blacklist->setDictionary($dictionary);
+
+        $this->assertEquals(true, $blacklist->isBlackListed());
+
+        $dictionary->setData([
+            'access-control' => [
+                'blacklist' => [
+                    'userEmail' => ['bobby@slack.com'],
+                ],
+            ],
+        ]);
+
+>>>>>>> a22e7d09ee1c127c8ffda1d75c7b9cc31d428e1d
         $blacklist->setDictionary($dictionary);
 
         $this->assertEquals(true, $blacklist->isBlackListed());
