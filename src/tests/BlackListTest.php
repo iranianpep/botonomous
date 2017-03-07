@@ -191,8 +191,32 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(false, $blacklist->isEmailBlackListed());
     }
 
+    public function testIsBlackListedUserEmail()
+    {
+        $client = (new PhpunitHelper())->getUserInfoClient();
+        $blacklist = $this->getBlackList();
+        $blacklist->setApiClient($client);
 
-    public function testIsBlackListed()
+        $blacklist->setRequest([
+            'user_id' => 'U023BECGF',
+            'user_name' => 'bobby'
+        ]);
+
+        $dictionary = new Dictionary();
+        $dictionary->setData([
+            'access-control' => [
+                'blacklist' => [
+                    'userEmail' => ['bobby@slack.com'],
+                ],
+            ],
+        ]);
+
+        $blacklist->setDictionary($dictionary);
+
+        $this->assertEquals(true, $blacklist->isBlackListed());
+    }
+
+    public function testIsBlackListedUserId()
     {
         $client = (new PhpunitHelper())->getUserInfoClient();
         $blacklist = $this->getBlackList();
@@ -215,7 +239,11 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         $blacklist->setDictionary($dictionary);
 
         $this->assertEquals(true, $blacklist->isBlackListed());
+    }
 
+    public function testIsBlackListedUsername()
+    {
+        $dictionary = new Dictionary();
         $dictionary->setData([
             'access-control' => [
                 'blacklist' => [
@@ -224,18 +252,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
             ],
         ]);
 
-        $blacklist->setDictionary($dictionary);
-
-        $this->assertEquals(true, $blacklist->isBlackListed());
-
-        $dictionary->setData([
-            'access-control' => [
-                'blacklist' => [
-                    'userEmail' => ['bobby@slack.com']
-                ],
-            ],
-        ]);
-
+        $blacklist = $this->getBlackList();
         $blacklist->setDictionary($dictionary);
 
         $this->assertEquals(true, $blacklist->isBlackListed());
