@@ -9,7 +9,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
 {
     public function testIsUsernameBlackListed()
     {
-        $blacklist = new BlackList((new PhpunitHelper())->getRequest());
+        $blacklist = (new PhpunitHelper())->getBlackList();
 
         // load the dictionary with dummy data
         $dictionary = new Dictionary();
@@ -72,7 +72,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
 
     public function testIsUserIdBlackListed()
     {
-        $blacklist = new BlackList((new PhpunitHelper())->getRequest());
+        $blacklist = (new PhpunitHelper())->getBlackList();
 
         // load the dictionary with dummy data
         $dictionary = new Dictionary();

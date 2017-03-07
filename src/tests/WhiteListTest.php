@@ -9,7 +9,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetRequest()
     {
-        $whitelist = new WhiteList((new PhpunitHelper())->getRequest());
+        $whitelist = (new PhpunitHelper())->getWhiteList();
 
         $this->assertEquals((new PhpunitHelper())->getRequest(), $whitelist->getRequest());
 
@@ -21,7 +21,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
 
     public function testIsUsernameWhiteListed()
     {
-        $whitelist = new WhiteList((new PhpunitHelper())->getRequest());
+        $whitelist = (new PhpunitHelper())->getWhiteList();
 
         // load the dictionary with dummy data
         $dictionary = new Dictionary();
@@ -84,7 +84,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
 
     public function testIsUserIdWhiteListed()
     {
-        $whitelist = new WhiteList((new PhpunitHelper())->getRequest());
+        $whitelist = (new PhpunitHelper())->getWhiteList();
 
         // load the dictionary with dummy data
         $dictionary = new Dictionary();

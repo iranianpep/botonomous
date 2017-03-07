@@ -2,8 +2,10 @@
 
 namespace Slackbot\Tests;
 
+use Slackbot\BlackList;
 use Slackbot\Config;
 use Slackbot\Slackbot;
+use Slackbot\WhiteList;
 
 class PhpunitHelper
 {
@@ -56,5 +58,15 @@ class PhpunitHelper
             'user_name' => 'dummyUserName',
             'user_id'   => 'dummyUserId',
         ];
+    }
+
+    public function getWhiteList()
+    {
+        return new WhiteList($this->getRequest());
+    }
+
+    public function getBlackList()
+    {
+        return new BlackList($this->getRequest());
     }
 }
