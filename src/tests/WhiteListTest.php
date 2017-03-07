@@ -2,7 +2,7 @@
 
 namespace Slackbot;
 
-use Slackbot\Tests\PhpunitHelper;
+use Slackbot\tests\PhpunitHelper;
 
 /** @noinspection PhpUndefinedClassInspection */
 class WhiteListTest extends \PHPUnit_Framework_TestCase
@@ -88,69 +88,78 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
 
     public function testIsUserIdWhiteListed()
     {
+        $inputsOutputs = [
+            [
+                'input' => [
+                    'access-control' => [
+                        'whitelist' => [
+                            'username' => [],
+                        ],
+                    ],
+                ],
+                'output' => null,
+            ],
+            [
+                'input'=> [
+                    'access-control' => [
+                        'whitelist' => [
+                            'username' => [],
+                            'userId'   => [
+                                'dummyUserId',
+                            ],
+                        ],
+                    ],
+                ],
+                'output' => true
+            ],
+            [
+                'input'=> [
+                    'access-control' => [
+                        'whitelist' => [
+                            'username' => [],
+                            'userId'   => [
+                                'dummyUserId',
+                            ],
+                        ],
+                    ],
+                ],
+                'output' => true
+            ],
+            [
+                'input'=> [
+                    'access-control' => [
+                        'whitelist' => [
+                            'username' => [],
+                            'userId'   => [],
+                        ],
+                    ],
+                ],
+                'output' => false
+            ],
+            [
+                'input'=> [
+                    'access-control' => [
+                        'whitelist' => [
+                            'username' => [],
+                            'userId'   => [
+                                'blahblah',
+                            ],
+                        ],
+                    ],
+                ],
+                'output' => false
+            ]
+        ];
+
         $whitelist = $this->getWhiteList();
-
         $dictionary = new Dictionary();
-        $dictionaryData = [
-            'access-control' => [
-                'whitelist' => [
-                    'username' => [],
-                ],
-            ],
-        ];
+        foreach ($inputsOutputs as $inputOutput) {
+            $dictionary->setData($inputOutput['input']);
 
-        $dictionary->setData($dictionaryData);
+            // set the dictionary
+            $whitelist->setDictionary($dictionary);
 
-        // set the dictionary
-        $whitelist->setDictionary($dictionary);
-
-        // since user id is not specified the result is NULL
-        $this->assertEmpty($whitelist->isUserIdWhiteListed());
-
-        $dictionaryData = [
-            'access-control' => [
-                'whitelist' => [
-                    'username' => [],
-                    'userId'   => [
-                        'dummyUserId',
-                    ],
-                ],
-            ],
-        ];
-
-        $dictionary->setData($dictionaryData);
-
-        // user id is not empty
-        $this->assertTrue($whitelist->isUserIdWhiteListed());
-
-        $dictionaryData = [
-            'access-control' => [
-                'whitelist' => [
-                    'username' => [],
-                    'userId'   => [],
-                ],
-            ],
-        ];
-
-        $dictionary->setData($dictionaryData);
-
-        // user id is set but is empty
-        $this->assertFalse($whitelist->isUserIdWhiteListed());
-
-        $dictionaryData = [
-            'access-control' => [
-                'whitelist' => [
-                    'username' => [],
-                    'userId'   => [
-                        'blahblah',
-                    ],
-                ],
-            ],
-        ];
-
-        $dictionary->setData($dictionaryData);
-
-        // user id is set but with a different user id
-        $this->assertFalse($whitelist->isUserIdWhiteListed());
+            $this->assertEquals($inputOutput['output'], $whitelist->isUserIdWhiteListed());
+        }
     }
 }
