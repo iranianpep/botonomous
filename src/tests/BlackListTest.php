@@ -21,7 +21,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
                 'blacklist' => [
                     'userId' => [],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -44,9 +44,9 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'blacklist' => [
                     'username' => [],
-                    'userId' => []
+                    'userId'   => [],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -58,13 +58,13 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'blacklist' => [
                     'username' => [
-                        'blahblah'
+                        'blahblah',
                     ],
                     'userId' => [
-                        'blahblah'
-                    ]
+                        'blahblah',
+                    ],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
