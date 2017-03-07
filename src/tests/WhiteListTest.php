@@ -195,7 +195,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function testIsEmailWhiteListed()
+    public function testIsEmailWhiteListedFalse()
     {
         $client = (new PhpunitHelper())->getUserInfoClient();
 
@@ -203,6 +203,11 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         $whitelist->setApiClient($client);
 
         $this->assertEquals(false, $whitelist->isEmailWhiteListed());
+    }
+
+    public function testIsEmailWhiteListed()
+    {
+        $whitelist = $this->getWhiteList();
 
         $client = (new PhpunitHelper())->getUserInfoClient();
         $whitelist->setApiClient($client);
@@ -242,6 +247,33 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testIsWhiteListed()
+    {
+        $client = (new PhpunitHelper())->getUserInfoClient();
+        $whitelist = $this->getWhiteList();
+        $whitelist->setApiClient($client);
+
+        $whitelist->setRequest([
+            'user_id' => 'U023BECGF',
+            'user_name' => 'bobby'
+        ]);
+
+        $dictionary = new Dictionary();
+        $dictionary->setData([
+            'access-control' => [
+                'whitelist' => [
+                    'userId' => ['U023BECGF'],
+                    'username' => ['bobby'],
+                    'userEmail' => ['bobby@slack.com']
+                ],
+            ],
+        ]);
+
+        $whitelist->setDictionary($dictionary);
+
+        $this->assertEquals(true, $whitelist->isWhiteListed());
+    }
+
+    public function testIsWhiteListedFalse()
     {
         $whitelist = $this->getWhiteList();
         $this->assertEquals(false, $whitelist->isWhiteListed());

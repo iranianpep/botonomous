@@ -133,7 +133,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function testIsEmailBlackListed()
+    public function testIsEmailBlackListedFalse()
     {
         $client = (new PhpunitHelper())->getUserInfoClient();
 
@@ -141,7 +141,11 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         $blacklist->setApiClient($client);
 
         $this->assertEquals(false, $blacklist->isEmailBlackListed());
+    }
 
+    public function testIsEmailBlackListed()
+    {
+        $blacklist = $this->getBlackList();
         $client = (new PhpunitHelper())->getUserInfoClient();
         $blacklist->setApiClient($client);
 
