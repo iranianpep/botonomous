@@ -191,7 +191,6 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(false, $blacklist->isEmailBlackListed());
     }
 
-
     public function testIsBlackListed()
     {
         $client = (new PhpunitHelper())->getUserInfoClient();
@@ -199,8 +198,8 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         $blacklist->setApiClient($client);
 
         $blacklist->setRequest([
-            'user_id' => 'U023BECGF',
-            'user_name' => 'bobby'
+            'user_id'   => 'U023BECGF',
+            'user_name' => 'bobby',
         ]);
 
         $dictionary = new Dictionary();
@@ -231,7 +230,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         $dictionary->setData([
             'access-control' => [
                 'blacklist' => [
-                    'userEmail' => ['bobby@slack.com']
+                    'userEmail' => ['bobby@slack.com'],
                 ],
             ],
         ]);
