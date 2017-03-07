@@ -253,17 +253,17 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         $whitelist->setApiClient($client);
 
         $whitelist->setRequest([
-            'user_id' => 'U023BECGF',
-            'user_name' => 'bobby'
+            'user_id'   => 'U023BECGF',
+            'user_name' => 'bobby',
         ]);
 
         $dictionary = new Dictionary();
         $dictionary->setData([
             'access-control' => [
                 'whitelist' => [
-                    'userId' => ['U023BECGF'],
-                    'username' => ['bobby'],
-                    'userEmail' => ['bobby@slack.com']
+                    'userId'    => ['U023BECGF'],
+                    'username'  => ['bobby'],
+                    'userEmail' => ['bobby@slack.com'],
                 ],
             ],
         ]);
