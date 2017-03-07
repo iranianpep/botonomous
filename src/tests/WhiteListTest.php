@@ -37,8 +37,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         $dictionaryData = [
             'access-control' => [
                 'whitelist' => [
-<<<<<<< HEAD
-                    'userId' => []
+                    'userId' => [],
                 ],
             ]
         ];
@@ -117,10 +116,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         $dictionaryData = [
             'access-control' => [
                 'whitelist' => [
-                    'username' => []
-=======
                     'username' => [],
->>>>>>> 14f970a33f610290373abfcd8e34e48fb0f64312
                 ],
             ],
         ];
