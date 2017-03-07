@@ -132,4 +132,10 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($inputOutput['output'], $blacklist->isUserIdBlackListed());
         }
     }
+
+    public function testIsBlackListed()
+    {
+        $whitelist = $this->getBlackList();
+        $this->assertEquals(false, $whitelist->isBlackListed());
+    }
 }

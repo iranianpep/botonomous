@@ -112,6 +112,16 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     {
         $inputsOutputs = [
             [
+                'input' => [],
+                'output' => null,
+            ],
+            [
+                'input' => [
+                    'access-control' => [],
+                ],
+                'output' => null,
+            ],
+            [
                 'input' => [
                     'access-control' => [
                         'whitelist' => [
@@ -229,5 +239,11 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     {
         $whitelist = $this->getWhiteList();
         $this->assertFalse($whitelist->getSlackUserInfo());
+    }
+
+    public function testIsWhiteListed()
+    {
+        $whitelist = $this->getWhiteList();
+        $this->assertEquals(false, $whitelist->isWhiteListed());
     }
 }
