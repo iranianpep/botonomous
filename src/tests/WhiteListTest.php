@@ -7,18 +7,11 @@ use Slackbot\Tests\PhpunitHelper;
 /** @noinspection PhpUndefinedClassInspection */
 class WhiteListTest extends \PHPUnit_Framework_TestCase
 {
-    private function getRequest()
-    {
-        return (new PhpunitHelper())->getRequest();
-    }
-
     public function testGetRequest()
     {
-        $request = $this->getRequest();
+        $whitelist = new WhiteList((new PhpunitHelper())->getRequest());
 
-        $whitelist = new WhiteList($request);
-
-        $this->assertEquals($request, $whitelist->getRequest());
+        $this->assertEquals((new PhpunitHelper())->getRequest(), $whitelist->getRequest());
 
         // overwrite the request
         $whitelist->setRequest([]);
@@ -28,10 +21,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
 
     public function testIsUsernameWhiteListed()
     {
-        // set the dummy request
-        $request = $this->getRequest();
-
-        $whitelist = new WhiteList($request);
+        $whitelist = new WhiteList((new PhpunitHelper())->getRequest());
 
         // load the dictionary with dummy data
         $dictionary = new Dictionary();
@@ -94,10 +84,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
 
     public function testIsUserIdWhiteListed()
     {
-        // set the dummy request
-        $request = $this->getRequest();
-
-        $whitelist = new WhiteList($request);
+        $whitelist = new WhiteList((new PhpunitHelper())->getRequest());
 
         // load the dictionary with dummy data
         $dictionary = new Dictionary();
