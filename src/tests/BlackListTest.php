@@ -26,7 +26,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
                 'output' => null,
             ],
             [
-                'input' => (new PhpunitHelper())->getDictionaryData('blacklist'),
+                'input'  => (new PhpunitHelper())->getDictionaryData('blacklist'),
                 'output' => true,
             ],
             [

@@ -47,26 +47,11 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
                         ],
                     ],
                 ],
-                'output' => null
+                'output' => null,
             ],
             [
-                'input' => (new PhpunitHelper())->getDictionaryData('whitelist'),
-                'output' => true
-            ],
-            [
-                'input' => [
-                    'access-control' => [
-                        'whitelist' => [
-                            'username' => [
-                                'blahblah',
-                            ],
-                            'userId' => [
-                                'blahblah',
-                            ],
-                        ],
-                    ],
-                ],
-                'output' => false
+                'input'  => (new PhpunitHelper())->getDictionaryData('whitelist'),
+                'output' => true,
             ],
             [
                 'input' => [
@@ -81,8 +66,23 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
                         ],
                     ],
                 ],
-                'output' => false
-            ]
+                'output' => false,
+            ],
+            [
+                'input' => [
+                    'access-control' => [
+                        'whitelist' => [
+                            'username' => [
+                                'blahblah',
+                            ],
+                            'userId' => [
+                                'blahblah',
+                            ],
+                        ],
+                    ],
+                ],
+                'output' => false,
+            ],
         ];
 
         $dictionary = new Dictionary();
@@ -120,7 +120,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
                         ],
                     ],
                 ],
-                'output' => true
+                'output' => true,
             ],
             [
                 'input'=> [
@@ -133,7 +133,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
                         ],
                     ],
                 ],
-                'output' => true
+                'output' => true,
             ],
             [
                 'input'=> [
@@ -144,7 +144,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
                         ],
                     ],
                 ],
-                'output' => false
+                'output' => false,
             ],
             [
                 'input'=> [
@@ -157,8 +157,8 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
                         ],
                     ],
                 ],
-                'output' => false
-            ]
+                'output' => false,
+            ],
         ];
 
         $whitelist = $this->getWhiteList();
