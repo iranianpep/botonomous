@@ -2,6 +2,7 @@
 
 namespace Slackbot;
 
+use Slackbot\client\ApiClient;
 use Slackbot\tests\PhpunitHelper;
 
 /** @noinspection PhpUndefinedClassInspection */
@@ -22,6 +23,16 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         $whitelist->setRequest([]);
 
         $this->assertEmpty($whitelist->getRequest());
+    }
+
+    public function testGetApiClient()
+    {
+        $whitelist = $this->getWhiteList();
+
+        $apiClient = new ApiClient();
+        $whitelist->setApiClient($apiClient);
+
+        $this->assertEquals($apiClient, $whitelist->getApiClient());
     }
 
     public function testIsUsernameWhiteListed()
@@ -171,5 +182,15 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
 
             $this->assertEquals($inputOutput['output'], $whitelist->isUserIdWhiteListed());
         }
+    }
+
+    public function testIsEmailWhiteListed()
+    {
+        $client = (new PhpunitHelper())->getUserInfoClient();
+
+        $whitelist = $this->getWhiteList();
+        $whitelist->setApiClient($client);
+
+        $this->assertEquals(false, $whitelist->isEmailWhiteListed());
     }
 }

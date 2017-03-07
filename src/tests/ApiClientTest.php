@@ -100,7 +100,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
      *
      * @return ApiClient
      */
-    private function getApiClient($content)
+    public function getApiClient($content)
     {
         $apiClient = new ApiClient();
 
