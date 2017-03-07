@@ -201,16 +201,16 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'whitelist' => [
                     'userEmail' => [
-                        'bobby@slack.com'
-                    ]
-                ]
-            ]
+                        'bobby@slack.com',
+                    ],
+                ],
+            ],
         ]);
 
         $whitelist->setDictionary($dictionary);
 
         $whitelist->setRequest([
-            'user_id' => 'U023BECGF'
+            'user_id' => 'U023BECGF',
         ]);
 
         $this->assertEquals(true, $whitelist->isEmailWhiteListed());
