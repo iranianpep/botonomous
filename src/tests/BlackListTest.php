@@ -7,9 +7,14 @@ use Slackbot\Tests\PhpunitHelper;
 /** @noinspection PhpUndefinedClassInspection */
 class BlackListTest extends \PHPUnit_Framework_TestCase
 {
+    private function getBlackList()
+    {
+        return (new PhpunitHelper())->getBlackList();
+    }
+
     public function testIsUsernameBlackListed()
     {
-        $blacklist = (new PhpunitHelper())->getBlackList();
+        $blacklist = $this->getBlackList();
 
         // load the dictionary with dummy data
         $dictionary = new Dictionary();
@@ -72,7 +77,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
 
     public function testIsUserIdBlackListed()
     {
-        $blacklist = (new PhpunitHelper())->getBlackList();
+        $blacklist = $this->getBlackList();
 
         // load the dictionary with dummy data
         $dictionary = new Dictionary();
