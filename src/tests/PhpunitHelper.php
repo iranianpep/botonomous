@@ -33,4 +33,28 @@ class PhpunitHelper
 
         return $slackbot;
     }
+
+    public function getDictionaryData($listKey)
+    {
+        return [
+            'access-control' => [
+                $listKey => [
+                    'username' => [
+                        'dummyUserName'
+                    ],
+                    'userId' => [
+                        'dummyUserId'
+                    ]
+                ],
+            ]
+        ];
+    }
+
+    public function getRequest()
+    {
+        return [
+            'user_name' => 'dummyUserName',
+            'user_id'   => 'dummyUserId',
+        ];
+    }
 }

@@ -2,15 +2,14 @@
 
 namespace Slackbot;
 
+use Slackbot\Tests\PhpunitHelper;
+
 /** @noinspection PhpUndefinedClassInspection */
 class WhiteListTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetRequest()
     {
-        $request = [
-            'user_name' => 'dummyUserName',
-            'user_id'   => 'dummyUserId',
-        ];
+        $request = (new PhpunitHelper())->getRequest();
 
         $whitelist = new WhiteList($request);
 
@@ -25,10 +24,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     public function testIsUsernameWhiteListed()
     {
         // set the dummy request
-        $request = [
-            'user_name' => 'dummyUserName',
-            'user_id'   => 'dummyUserId',
-        ];
+        $request = (new PhpunitHelper())->getRequest();
 
         $whitelist = new WhiteList($request);
 
@@ -50,18 +46,8 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         // since user id is not specified the result is NULL
         $this->assertEmpty($whitelist->isUsernameWhiteListed());
 
-        $dictionaryData = [
-            'access-control' => [
-                'whitelist' => [
-                    'username' => [
-                        'dummyUserName',
-                    ],
-                    'userId' => [
-                        'dummyUserId',
-                    ],
-                ],
-            ],
-        ];
+        $helper = new PhpunitHelper();
+        $dictionaryData = $helper->getDictionaryData('whitelist');
 
         $dictionary->setData($dictionaryData);
 
@@ -104,10 +90,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     public function testIsUserIdWhiteListed()
     {
         // set the dummy request
-        $request = [
-            'user_name' => 'dummyUserName',
-            'user_id'   => 'dummyUserId',
-        ];
+        $request = (new PhpunitHelper())->getRequest();
 
         $whitelist = new WhiteList($request);
 

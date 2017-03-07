@@ -2,16 +2,15 @@
 
 namespace Slackbot;
 
+use Slackbot\Tests\PhpunitHelper;
+
 /** @noinspection PhpUndefinedClassInspection */
 class BlackListTest extends \PHPUnit_Framework_TestCase
 {
     public function testIsUsernameBlackListed()
     {
         // set the dummy request
-        $request = [
-            'user_name' => 'dummyUserName',
-            'user_id'   => 'dummyUserId',
-        ];
+        $request = (new PhpunitHelper())->getRequest();
 
         $blacklist = new BlackList($request);
 
@@ -33,18 +32,8 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         // since user id is not specified the result is NULL
         $this->assertEmpty($blacklist->isUsernameBlackListed());
 
-        $dictionaryData = [
-            'access-control' => [
-                'blacklist' => [
-                    'username' => [
-                        'dummyUserName'
-                    ],
-                    'userId' => [
-                        'dummyUserId'
-                    ]
-                ],
-            ]
-        ];
+        $helper = new PhpunitHelper();
+        $dictionaryData = $helper->getDictionaryData('blacklist');
 
         $dictionary->setData($dictionaryData);
 
@@ -87,10 +76,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
     public function testIsUserIdBlackListed()
     {
         // set the dummy request
-        $request = [
-            'user_name' => 'dummyUserName',
-            'user_id' => 'dummyUserId'
-        ];
+        $request = (new PhpunitHelper())->getRequest();
 
         $blacklist = new BlackList($request);
 
