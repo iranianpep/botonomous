@@ -246,4 +246,26 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         $whitelist = $this->getWhiteList();
         $this->assertEquals(false, $whitelist->isWhiteListed());
     }
+
+    public function testIsEmailWhiteListedEmptyEmailList()
+    {
+        $client = (new PhpunitHelper())->getUserInfoClient();
+        $whitelist = $this->getWhiteList();
+        $whitelist->setApiClient($client);
+
+        $dictionary = new Dictionary();
+        $dictionary->setData([
+            'access-control' => [
+                'whitelist' => [],
+            ],
+        ]);
+
+        $whitelist->setDictionary($dictionary);
+
+        $whitelist->setRequest([
+            'user_id' => 'U023BECGF',
+        ]);
+
+        $this->assertEquals(true, $whitelist->isEmailWhiteListed());
+    }
 }
