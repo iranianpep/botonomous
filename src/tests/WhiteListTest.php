@@ -7,9 +7,14 @@ use Slackbot\Tests\PhpunitHelper;
 /** @noinspection PhpUndefinedClassInspection */
 class WhiteListTest extends \PHPUnit_Framework_TestCase
 {
+    private function getRequest()
+    {
+        return (new PhpunitHelper())->getRequest();
+    }
+
     public function testGetRequest()
     {
-        $request = (new PhpunitHelper())->getRequest();
+        $request = $this->getRequest();
 
         $whitelist = new WhiteList($request);
 
@@ -24,7 +29,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     public function testIsUsernameWhiteListed()
     {
         // set the dummy request
-        $request = (new PhpunitHelper())->getRequest();
+        $request = $this->getRequest();
 
         $whitelist = new WhiteList($request);
 
@@ -90,7 +95,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     public function testIsUserIdWhiteListed()
     {
         // set the dummy request
-        $request = (new PhpunitHelper())->getRequest();
+        $request = $this->getRequest();
 
         $whitelist = new WhiteList($request);
 
