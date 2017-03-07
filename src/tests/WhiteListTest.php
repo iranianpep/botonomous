@@ -39,7 +39,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
                 'whitelist' => [
                     'userId' => [],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -54,13 +54,13 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'whitelist' => [
                     'username' => [
-                        'dummyUserName'
+                        'dummyUserName',
                     ],
                     'userId' => [
-                        'dummyUserId'
-                    ]
+                        'dummyUserId',
+                    ],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -72,9 +72,9 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'whitelist' => [
                     'username' => [],
-                    'userId' => []
+                    'userId'   => [],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -86,13 +86,13 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'whitelist' => [
                     'username' => [
-                        'blahblah'
+                        'blahblah',
                     ],
                     'userId' => [
-                        'blahblah'
-                    ]
+                        'blahblah',
+                    ],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -106,7 +106,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         // set the dummy request
         $request = [
             'user_name' => 'dummyUserName',
-            'user_id' => 'dummyUserId'
+            'user_id'   => 'dummyUserId',
         ];
 
         $whitelist = new WhiteList($request);
