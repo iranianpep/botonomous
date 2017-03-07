@@ -7,6 +7,32 @@ use Slackbot\Tests\PhpunitHelper;
 /** @noinspection PhpUndefinedClassInspection */
 class BlackListTest extends \PHPUnit_Framework_TestCase
 {
+    public function testIsEmailBlackListed()
+    {
+        $blacklist = $this->getBlackList();
+        $client = (new PhpunitHelper())->getUserInfoClient();
+        $blacklist->setApiClient($client);
+
+        $dictionary = new Dictionary();
+        $dictionary->setData([
+            'access-control' => [
+                'blacklist' => [
+                    'userEmail' => [
+                        'bobby@slack.com',
+                    ],
+                ],
+            ],
+        ]);
+
+        $blacklist->setDictionary($dictionary);
+
+        $blacklist->setRequest([
+            'user_id' => 'U023BECGF',
+        ]);
+
+        $this->assertEquals(true, $blacklist->isEmailBlackListed());
+    }
+
     private function getBlackList()
     {
         return (new PhpunitHelper())->getBlackList();
@@ -141,32 +167,6 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         $blacklist->setApiClient($client);
 
         $this->assertEquals(false, $blacklist->isEmailBlackListed());
-    }
-
-    public function testIsEmailBlackListed()
-    {
-        $blacklist = $this->getBlackList();
-        $client = (new PhpunitHelper())->getUserInfoClient();
-        $blacklist->setApiClient($client);
-
-        $dictionary = new Dictionary();
-        $dictionary->setData([
-            'access-control' => [
-                'blacklist' => [
-                    'userEmail' => [
-                        'bobby@slack.com',
-                    ],
-                ],
-            ],
-        ]);
-
-        $blacklist->setDictionary($dictionary);
-
-        $blacklist->setRequest([
-            'user_id' => 'U023BECGF',
-        ]);
-
-        $this->assertEquals(true, $blacklist->isEmailBlackListed());
     }
 
     public function testIsEmailBlackListedEmptyEmailList()
