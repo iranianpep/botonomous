@@ -22,7 +22,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
                 'blacklist' => [
                     'userId' => [],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -37,13 +37,13 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'blacklist' => [
                     'username' => [
-                        'dummyUserName'
+                        'dummyUserName',
                     ],
                     'userId' => [
-                        'dummyUserId'
-                    ]
+                        'dummyUserId',
+                    ],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -55,9 +55,9 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'blacklist' => [
                     'username' => [],
-                    'userId' => []
+                    'userId'   => [],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -69,13 +69,13 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
             'access-control' => [
                 'blacklist' => [
                     'username' => [
-                        'blahblah'
+                        'blahblah',
                     ],
                     'userId' => [
-                        'blahblah'
-                    ]
+                        'blahblah',
+                    ],
                 ],
-            ]
+            ],
         ];
 
         $dictionary->setData($dictionaryData);
@@ -89,7 +89,7 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         // set the dummy request
         $request = [
             'user_name' => 'dummyUserName',
-            'user_id' => 'dummyUserId'
+            'user_id'   => 'dummyUserId',
         ];
 
         $blacklist = new BlackList($request);
