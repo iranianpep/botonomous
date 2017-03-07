@@ -112,7 +112,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
     {
         $inputsOutputs = [
             [
-                'input' => [],
+                'input'  => [],
                 'output' => null,
             ],
             [
