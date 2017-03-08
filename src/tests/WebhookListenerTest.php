@@ -100,6 +100,48 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
         $slackbot->run();
     }
 
+    public function testRunWithAccessControl()
+    {
+        $config = new Config();
+        $config->set('listenerType', 'webhook');
+        $config->set('respondOk', false);
+        $commandPrefix = $config->get('commandPrefix');
+
+        /**
+         * Form the request.
+         */
+        $request = [
+            'token'        => $config->get(self::VERIFICATION_TOKEN),
+            'text'         => "mybot: {$commandPrefix}ping",
+            'user_id'      => 'dummyId',
+            'user_name'    => $config->get('botUsername'),
+            'trigger_word' => 'mybot:',
+        ];
+
+        $config->set('response', 'json');
+        $config->set('chatLogging', false);
+
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
+        // set request
+        $listener->setRequest($request);
+        $slackbot->setListener($listener);
+
+        $config->set('enabledAccessControl', true);
+
+        $response = '{"text":"Sorry, we cannot process your message as we could not find it in whitelist","channel":"#general"}';
+
+        $this->expectOutputString($response);
+
+        $slackbot->run();
+    }
+
     /**
      * @throws \Exception
      */
