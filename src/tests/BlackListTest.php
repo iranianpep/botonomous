@@ -198,8 +198,8 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         $blacklist->setApiClient($client);
 
         $blacklist->setRequest([
-            'user_id' => 'U023BECGF',
-            'user_name' => 'bobby'
+            'user_id'   => 'U023BECGF',
+            'user_name' => 'bobby',
         ]);
 
         $dictionary = new Dictionary();
