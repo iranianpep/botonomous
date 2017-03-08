@@ -135,7 +135,9 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
 
         $config->set('enabledAccessControl', true);
 
-        $response = '{"text":"Sorry, we cannot process your message as we could not find it in whitelist","channel":"#general"}';
+        $sorryResponse = $config->get('whitelistedMessage');
+
+        $response = '{"text":"'.$sorryResponse.'","channel":"#general"}';
 
         $this->expectOutputString($response);
 
