@@ -61,6 +61,13 @@ class Slackbot extends AbstractBot
             case 'oauth':
                 $this->getOauth()->doOauth();
                 break;
+            case 'messageActions':
+                /*
+                 * Do whatever with the selected action:
+                 * $post = $this->getRequestUtility()->getPost();
+                 * $payloadContent = $post['payload'];
+                 */
+                break;
             default:
                 /*
                  * 1. Start listening
