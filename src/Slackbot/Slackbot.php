@@ -46,18 +46,25 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * @throws \Exception
+     * @return string
      */
-    public function run()
+    private function determineAction()
     {
-        // Get action
         $getRequest = $this->getRequestUtility()->getGet();
         $action = '';
         if (isset($getRequest['action'])) {
             $action = strtolower($getRequest['action']);
         }
 
-        switch ($action) {
+        return $action;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function run()
+    {
+        switch ($this->determineAction()) {
             case 'oauth':
                 $this->getOauth()->doOauth();
                 break;
