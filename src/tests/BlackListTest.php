@@ -3,7 +3,6 @@
 namespace Slackbot\Tests;
 
 use Slackbot\Dictionary;
-use Slackbot\Tests\PhpunitHelper;
 
 /** @noinspection PhpUndefinedClassInspection */
 class BlackListTest extends \PHPUnit_Framework_TestCase

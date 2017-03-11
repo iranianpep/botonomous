@@ -9,7 +9,6 @@ use /* @noinspection PhpUndefinedClassInspection */
 use Slackbot\Config;
 use Slackbot\Team;
 use Slackbot\utility\ArrayUtility;
-use Slackbot\utility\StringUtility;
 
 /**
  * Class ApiClient.
