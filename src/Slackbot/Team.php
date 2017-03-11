@@ -5,45 +5,11 @@ namespace Slackbot;
 /**
  * Class Team.
  */
-class Team
+class Team extends AbstractSlackEntity
 {
-    private $slackId;
-    private $name;
     private $domain;
     private $emailDomain;
     private $icon;
-
-    /**
-     * @return string
-     */
-    public function getSlackId()
-    {
-        return $this->slackId;
-    }
-
-    /**
-     * @param string $slackId
-     */
-    public function setSlackId($slackId)
-    {
-        $this->slackId = $slackId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
 
     /**
      * @return string

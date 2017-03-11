@@ -5,6 +5,6 @@ namespace Slackbot;
 /**
  * Class Channel.
  */
-class Channel
+class Channel extends AbstractSlackEntity
 {
 }

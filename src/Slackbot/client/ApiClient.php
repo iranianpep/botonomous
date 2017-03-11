@@ -203,27 +203,7 @@ class ApiClient
         }
 
         // return as object
-        $teamObject = new Team();
-        $stringUtility = new StringUtility();
-
-        foreach ($teamInfo as $key => $value) {
-            // For id, we cannot use 'set'.$stringUtility->snakeCaseToCamelCase($key) since it's named slackId
-            if ($key === 'id') {
-                $teamObject->setSlackId($value);
-                continue;
-            }
-
-            $method = 'set'.$stringUtility->snakeCaseToCamelCase($key);
-
-            // check setter exists
-            if (!method_exists($teamObject, $method)) {
-                continue;
-            }
-
-            $teamObject->$method($value);
-        }
-
-        return $teamObject;
+        return (new Team())->load($teamInfo);
     }
 
     /**

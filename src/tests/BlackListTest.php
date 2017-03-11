@@ -1,7 +1,8 @@
 <?php
 
-namespace Slackbot;
+namespace Slackbot\Tests;
 
+use Slackbot\Dictionary;
 use Slackbot\Tests\PhpunitHelper;
 
 /** @noinspection PhpUndefinedClassInspection */

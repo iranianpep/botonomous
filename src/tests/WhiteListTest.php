@@ -1,9 +1,9 @@
 <?php
 
-namespace Slackbot;
+namespace Slackbot\Tests;
 
 use Slackbot\client\ApiClient;
-use Slackbot\tests\PhpunitHelper;
+use Slackbot\Dictionary;
 
 /** @noinspection PhpUndefinedClassInspection */
 class WhiteListTest extends \PHPUnit_Framework_TestCase

@@ -1,6 +1,8 @@
 <?php
 
-namespace Slackbot\utility;
+namespace Slackbot\Tests;
+
+use Slackbot\utility\ClassUtility;
 
 class ClassUtilityTest extends \PHPUnit_Framework_TestCase
 {
