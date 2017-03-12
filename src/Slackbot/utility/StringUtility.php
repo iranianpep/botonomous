@@ -100,6 +100,6 @@ class StringUtility extends AbstractUtility
             return true;
         }
 
-        return (substr($haystack, -$length) === $needle);
+        return substr($haystack, -$length) === $needle;
     }
 }

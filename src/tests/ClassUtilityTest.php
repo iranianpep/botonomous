@@ -29,8 +29,8 @@ class ClassUtilityTest extends \PHPUnit_Framework_TestCase
 
         $channel = new Channel();
         $info = [
-            'id' => self::DUMMY_ID,
-            'name' => self::DUMMY_NAME
+            'id'   => self::DUMMY_ID,
+            'name' => self::DUMMY_NAME,
         ];
 
         $channel = $utility->loadAttributes($channel, $info);
@@ -43,8 +43,8 @@ class ClassUtilityTest extends \PHPUnit_Framework_TestCase
             'bot_id' => self::DUMMY_ID,
             // should be ignore
             'non_existent_attr' => 'dummy_value',
-            'ts' => '1355517523.000005',
-            'event_ts' => '1355517523.000005',
+            'ts'                => '1355517523.000005',
+            'event_ts'          => '1355517523.000005',
         ];
 
         $event = $utility->loadAttributes($event, $info);

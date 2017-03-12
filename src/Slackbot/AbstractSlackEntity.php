@@ -3,10 +3,7 @@
 namespace Slackbot;
 
 /**
- * Class AbstractSlackEntity
- * @package Slackbot
- *
- * More specific class comparing to AbstractBaseSlack to group classes e.g. Team, Channel, User, ...
+ * Class AbstractSlackEntity.
  */
 abstract class AbstractSlackEntity extends AbstractBaseSlack
 {

@@ -2,8 +2,6 @@
 
 namespace Slackbot;
 
-use Slackbot\utility\StringUtility;
-
 class MessageAction extends AbstractBaseSlack
 {
     private $actions;
@@ -226,10 +224,10 @@ class MessageAction extends AbstractBaseSlack
         $actions = [];
         foreach ($info['actions'] as $actionInfo) {
             // load action
-            $actions[]  = (new Action())->load($actionInfo);
+            $actions[] = (new Action())->load($actionInfo);
         }
         $this->setActions($actions);
-        /**
+        /*
          * Finish adding actions
          */
 
