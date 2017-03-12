@@ -73,6 +73,7 @@ class MessageAction extends AbstractBaseSlack
     {
         if ($team instanceof Team) {
             $this->team = $team;
+
             return;
         }
 
@@ -95,6 +96,7 @@ class MessageAction extends AbstractBaseSlack
     {
         if ($channel instanceof Channel) {
             $this->channel = $channel;
+
             return;
         }
 
@@ -117,6 +119,7 @@ class MessageAction extends AbstractBaseSlack
     {
         if ($user instanceof User) {
             $this->user = $user;
+
             return;
         }
 
