@@ -2,7 +2,7 @@
 
 namespace Slackbot;
 
-class Event
+class Event extends AbstractBaseSlack
 {
     private $type;
     private $user;

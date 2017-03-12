@@ -2,9 +2,13 @@
 
 namespace Slackbot;
 
-use Slackbot\utility\StringUtility;
-
-abstract class AbstractSlackEntity
+/**
+ * Class AbstractSlackEntity
+ * @package Slackbot
+ *
+ * More specific class comparing to AbstractBaseSlack to group classes e.g. Team, Channel, User, ...
+ */
+abstract class AbstractSlackEntity extends AbstractBaseSlack
 {
     protected $slackId;
     protected $name;
@@ -39,28 +43,5 @@ abstract class AbstractSlackEntity
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    public function load($info)
-    {
-        $stringUtility = new StringUtility();
-        foreach ($info as $key => $value) {
-            // For id, we cannot use 'set'.$stringUtility->snakeCaseToCamelCase($key) since it's named slackId
-            if ($key === 'id') {
-                $this->setSlackId($value);
-                continue;
-            }
-
-            $method = 'set'.$stringUtility->snakeCaseToCamelCase($key);
-
-            // ignore if setter function does not exist
-            if (!method_exists($this, $method)) {
-                continue;
-            }
-
-            $this->$method($value);
-        }
-
-        return $this;
     }
 }

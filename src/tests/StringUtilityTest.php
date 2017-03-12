@@ -156,6 +156,10 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
                 'input'  => 'id',
                 'output' => 'Id',
             ],
+            [
+                'input'  => 'message_timestamp',
+                'output' => 'MessageTimestamp',
+            ],
         ];
 
         foreach ($inputOutputs as $inputOutput) {
