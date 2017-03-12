@@ -59,6 +59,18 @@ class Slackbot extends AbstractBot
         return $action;
     }
 
+    private function handleMessageActions()
+    {
+        $post = $this->getRequestUtility()->getPost();
+
+        // ignore if payload is not set
+        if (!isset($post['payload'])) {
+            return;
+        }
+
+        (new MessageAction())->load($post['payload']);
+    }
+
     /**
      * @throws \Exception
      */
@@ -69,17 +81,7 @@ class Slackbot extends AbstractBot
                 $this->getOauth()->doOauth();
                 break;
             case 'messageActions':
-                /*
-                 * Do whatever with the selected action:
-                 */
-                $post = $this->getRequestUtility()->getPost();
-
-                // ignore if payload is not set
-                if (!isset($post['payload'])) {
-                    break;
-                }
-
-                (new MessageAction())->load($post['payload']);
+                $this->handleMessageActions();
                 break;
             default:
                 /*
