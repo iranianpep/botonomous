@@ -92,11 +92,17 @@ class StringUtility extends AbstractUtility
         return false;
     }
 
+    /**
+     * @param $haystack
+     * @param $needle
+     *
+     * @return bool
+     */
     public function endsWith($haystack, $needle)
     {
         $length = strlen($needle);
 
-        if ($length == 0) {
+        if ($length === 0) {
             return true;
         }
 

@@ -17,4 +17,12 @@ class ActionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Springfield, MA, USA', $action->getValue());
         $this->assertEmpty($action->getText());
     }
+
+    public function testGetText()
+    {
+        $action = new Action();
+        $action->setText('blah blah');
+
+        $this->assertEquals('blah blah', $action->getText());
+    }
 }
