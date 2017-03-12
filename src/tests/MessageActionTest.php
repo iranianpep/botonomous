@@ -51,12 +51,12 @@ class MessageActionTest extends \PHPUnit_Framework_TestCase
                                                 ],
                                         ],
                                     'author_name' => 'Stanford S. Strickland',
-                                    'author_icon' => 'https://api.slack.comhttps://a.slack-edge.com/bfaba/img/api/homepage_custom_integrations-2x.png',
+                                    'author_icon' => 'https://a.slack-edge.com/homepage_custom_integrations-2x.png',
                                     'image_url'   => 'http://i.imgur.com/OJkaVOI.jpg?1',
                                 ],
                             1 => [
                                     'title' => 'Synopsis',
-                                    'text'  => 'After @episod pushed exciting changes to a devious new branch back in Issue 1, Slackbot notifies @don about an unexpected deploy...',
+                                    'text'  => 'After @episod pushed exciting changes ...',
                                 ],
                             2 => [
                                     'fallback'        => 'Would you recommend it to customers?',

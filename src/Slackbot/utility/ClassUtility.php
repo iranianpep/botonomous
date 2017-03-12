@@ -19,20 +19,8 @@ class ClassUtility
             $attributes = json_decode($attributes, true);
         }
 
-        $stringUtility = new StringUtility();
         foreach ($attributes as $attributeKey => $attributeValue) {
-            // For id, we cannot use 'set'.$stringUtility->snakeCaseToCamelCase($attributeKey) since it's named slackId
-            if ($attributeKey === 'id') {
-                $method = 'setSlackId';
-            } else {
-                // handle ts because there is setTimestamp instead of setTs
-                if ($attributeKey === 'ts' || $stringUtility->endsWith($attributeKey, '_ts')) {
-                    // replace the last ts with timestamp
-                    $attributeKey = preg_replace('/ts$/', 'timestamp', $attributeKey);
-                }
-
-                $method = 'set'.$stringUtility->snakeCaseToCamelCase($attributeKey);
-            }
+            $method = $this->getMethodByAttribute($attributeKey);
 
             // ignore if setter function does not exist
             if (!method_exists($object, $method)) {
@@ -43,5 +31,29 @@ class ClassUtility
         }
 
         return $object;
+    }
+
+    /**
+     * @param $attributeKey
+     *
+     * @return string
+     */
+    private function getMethodByAttribute($attributeKey)
+    {
+        // For id, we cannot use 'set'.$stringUtility->snakeCaseToCamelCase($attributeKey) since it's named slackId
+        if ($attributeKey === 'id') {
+            return 'setSlackId';
+        }
+
+        // handle ts because there is setTimestamp instead of setTs
+        $stringUtility = new StringUtility();
+        if ($attributeKey === 'ts' || $stringUtility->endsWith($attributeKey, '_ts')) {
+            // replace the last ts with timestamp
+            $attributeKey = preg_replace('/ts$/', 'timestamp', $attributeKey);
+        }
+
+        $method = 'set'.$stringUtility->snakeCaseToCamelCase($attributeKey);
+
+        return $method;
     }
 }

@@ -73,10 +73,11 @@ class MessageAction extends AbstractBaseSlack
     {
         if ($team instanceof Team) {
             $this->team = $team;
-        } else {
-            // if array or json is passed create the object
-            $this->team = (new Team())->load($team);
+            return;
         }
+
+        // if array or json is passed create the object
+        $this->team = (new Team())->load($team);
     }
 
     /**
@@ -94,10 +95,11 @@ class MessageAction extends AbstractBaseSlack
     {
         if ($channel instanceof Channel) {
             $this->channel = $channel;
-        } else {
-            // if array or json is passed create the object
-            $this->channel = (new Channel())->load($channel);
+            return;
         }
+
+        // if array or json is passed create the object
+        $this->channel = (new Channel())->load($channel);
     }
 
     /**
@@ -115,10 +117,11 @@ class MessageAction extends AbstractBaseSlack
     {
         if ($user instanceof User) {
             $this->user = $user;
-        } else {
-            // if array or json is passed create the object
-            $this->user = (new User())->load($user);
+            return;
         }
+
+        // if array or json is passed create the object
+        $this->user = (new User())->load($user);
     }
 
     /**
