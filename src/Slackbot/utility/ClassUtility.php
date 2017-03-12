@@ -2,6 +2,8 @@
 
 namespace Slackbot\utility;
 
+use Slackbot\AbstractBaseSlack;
+
 class ClassUtility
 {
     public function extractClassNameFromFullName($fullName)
@@ -12,7 +14,7 @@ class ClassUtility
         return end($classParts);
     }
 
-    public function loadAttributes($object, $attributes)
+    public function loadAttributes(AbstractBaseSlack $object, $attributes)
     {
         // if $attributes is not array convert it to array
         if (!is_array($attributes)) {
