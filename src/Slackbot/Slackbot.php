@@ -71,9 +71,15 @@ class Slackbot extends AbstractBot
             case 'messageActions':
                 /*
                  * Do whatever with the selected action:
-                 * $post = $this->getRequestUtility()->getPost();
-                 * $payloadContent = $post['payload'];
                  */
+                $post = $this->getRequestUtility()->getPost();
+
+                // ignore if payload is not set
+                if (!isset($post['payload'])) {
+                    break;
+                }
+
+                (new MessageAction())->load($post['payload']);
                 break;
             default:
                 /*
