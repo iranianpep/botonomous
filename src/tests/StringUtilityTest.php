@@ -280,39 +280,39 @@ class StringUtilityTest extends \PHPUnit_Framework_TestCase
         $inputOutputs = [
             [
                 'haystack' => 'test',
-                'needle' => 'test',
-                'output' => true
+                'needle'   => 'test',
+                'output'   => true,
             ],
             [
                 'haystack' => 'test1',
-                'needle' => 'test',
-                'output' => false
+                'needle'   => 'test',
+                'output'   => false,
             ],
             [
                 'haystack' => 'message_ts',
-                'needle' => '_ts',
-                'output' => true
+                'needle'   => '_ts',
+                'output'   => true,
             ],
             [
                 'haystack' => 'message_ts',
-                'needle' => '_ts ',
-                'output' => false
+                'needle'   => '_ts ',
+                'output'   => false,
             ],
             [
                 'haystack' => 'message_ts',
-                'needle' => '',
-                'output' => true
+                'needle'   => '',
+                'output'   => true,
             ],
             [
                 'haystack' => '',
-                'needle' => '',
-                'output' => true
+                'needle'   => '',
+                'output'   => true,
             ],
             [
                 'haystack' => '',
-                'needle' => 't',
-                'output' => false
-            ]
+                'needle'   => 't',
+                'output'   => false,
+            ],
         ];
 
         foreach ($inputOutputs as $inputOutput) {

@@ -87,7 +87,7 @@ class MessageActionTest extends \PHPUnit_Framework_TestCase
             'attachment_id'    => '1',
             'token'            => 'xAB3yVzGS4BQ3O9FACTa8Ho4',
             'original_message' => $originalMessage,
-            'response_url' => 'https://hooks.slack.com/actions/T47563693/6204672533/x7ZLaiVMoECAW50Gw1ZYAXEM',
+            'response_url'     => 'https://hooks.slack.com/actions/T47563693/6204672533/x7ZLaiVMoECAW50Gw1ZYAXEM',
         ];
 
         $messageAction = new MessageAction();
