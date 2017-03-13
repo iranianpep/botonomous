@@ -68,7 +68,7 @@ class Slackbot extends AbstractBot
             return;
         }
 
-        (new MessageAction())->load($post['payload']);
+        return (new MessageAction())->load($post['payload']);
     }
 
     /**
