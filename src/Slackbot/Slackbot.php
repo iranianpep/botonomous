@@ -59,6 +59,9 @@ class Slackbot extends AbstractBot
         return $action;
     }
 
+    /**
+     * @return MessageAction|void
+     */
     private function handleMessageActions()
     {
         $post = $this->getRequestUtility()->getPost();
