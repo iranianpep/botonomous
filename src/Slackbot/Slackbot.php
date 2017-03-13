@@ -73,6 +73,7 @@ class Slackbot extends AbstractBot
 
         // $post['payload'] contains JSON
         $payload = json_decode($post['payload'], true);
+
         return (new MessageAction())->load($payload);
     }
 
