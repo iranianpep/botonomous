@@ -83,7 +83,7 @@ class Slackbot extends AbstractBot
             case 'oauth':
                 $this->getOauth()->doOauth();
                 break;
-            case 'messageActions':
+            case 'message_actions':
                 $this->handleMessageActions();
                 break;
             default:
