@@ -102,3 +102,8 @@ class Ping extends AbstractPlugin
 
 ## Buy me half of a coffee if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/iranianpep/slackbot/badge.svg?style=beer-square)](https://beerpay.io/iranianpep/slackbot)  [![Beerpay](https://beerpay.io/iranianpep/slackbot/make-wish.svg?style=flat-square)](https://beerpay.io/iranianpep/slackbot?focus=wish)
