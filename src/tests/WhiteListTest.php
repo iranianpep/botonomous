@@ -49,36 +49,11 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
                         ],
                     ],
                 ],
-                'output' => null,
-            ],
-            [
-                'input' => [
-                    'access-control' => [
-                        'whitelist' => [
-                            'userId' => [],
-                        ],
-                    ],
-                ],
-                'output' => null,
+                'output' => false,
             ],
             [
                 'input'  => (new PhpunitHelper())->getDictionaryData('whitelist'),
                 'output' => true,
-            ],
-            [
-                'input' => [
-                    'access-control' => [
-                        'whitelist' => [
-                            'username' => [
-                                'blahblah',
-                            ],
-                            'userId' => [
-                                'blahblah',
-                            ],
-                        ],
-                    ],
-                ],
-                'output' => false,
             ],
             [
                 'input' => [
@@ -113,13 +88,13 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
         $inputsOutputs = [
             [
                 'input'  => [],
-                'output' => null,
+                'output' => false,
             ],
             [
                 'input' => [
                     'access-control' => [],
                 ],
-                'output' => null,
+                'output' => false,
             ],
             [
                 'input' => [
@@ -129,20 +104,7 @@ class WhiteListTest extends \PHPUnit_Framework_TestCase
                         ],
                     ],
                 ],
-                'output' => null,
-            ],
-            [
-                'input'=> [
-                    'access-control' => [
-                        'whitelist' => [
-                            'username' => [],
-                            'userId'   => [
-                                'dummyUserId',
-                            ],
-                        ],
-                    ],
-                ],
-                'output' => true,
+                'output' => false,
             ],
             [
                 'input'=> [

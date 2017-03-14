@@ -28,12 +28,20 @@ class BlackList extends AbstractAccessList
 
     public function isUsernameBlackListed()
     {
-        return $this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username');
+        if ($this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username') === true) {
+            return true;
+        }
+        
+        return false;
     }
 
     public function isUserIdBlackListed()
     {
-        return $this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId');
+        if ($this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId') === true) {
+            return true;
+        }
+        
+        return false;
     }
 
     public function isEmailBlackListed()
