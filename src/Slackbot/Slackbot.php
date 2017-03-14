@@ -471,18 +471,18 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * Determine if bot user id is mentioned in the message
+     * Determine if bot user id is mentioned in the message.
      *
      * @return bool
      */
     public function youTalkingToMe()
     {
         $message = $this->getMessage();
-        
+
         if (empty($message)) {
             return false;
         }
-        
+
         return $this->getMessageUtility()->isBotMentioned($message);
     }
 }
