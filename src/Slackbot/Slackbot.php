@@ -80,6 +80,66 @@ class Slackbot extends AbstractBot
     /**
      * @throws \Exception
      */
+    private function handleSendResponse()
+    {
+        // 1. Start listening
+        $this->getListener()->listen();
+
+        // 2. verify the request
+        try {
+            $verificationResult = $this->verifyRequest();
+
+            if ($verificationResult['success'] !== true) {
+                throw new \Exception($verificationResult['message']);
+            }
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        // 3. pre process the request
+        $this->preProcessRequest();
+
+        // 4. check access control
+        if ($this->getConfig()->get('enabledAccessControl') === true) {
+            $blackList = new BlackList($this->getListener()->getRequest());
+            if ($blackList->isBlackListed() !== false) {
+                // found in blacklist
+                $this->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
+                return;
+            }
+
+            $whitelist = new WhiteList($this->getListener()->getRequest());
+            if ($whitelist->isWhiteListed() !== true) {
+                // not found in whitelist
+                $this->send($this->getRequest('channel_name'), $this->getConfig()->get('whitelistedMessage'));
+                return;
+            }
+        }
+
+        // 5. set the current command
+        $message = $this->getMessage();
+        $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($message));
+
+        // 6. log the message
+        if (empty($this->getRequest('debug'))) {
+            $this->getLoggerUtility()->logRaw($this->getFormattingUtility()->newLine());
+            $this->getLoggerUtility()->logChat(__METHOD__, $message);
+        }
+
+        // 7. send confirmation message if is enabled
+        $this->sendConfirmation();
+
+        // 8. And send the response to the channel, only if the response is not empty
+        $response = $this->respond($message);
+
+        if (!empty($response)) {
+            $this->send($this->getRequest('channel_name'), $response);
+        }
+    }
+    
+    /**
+     * @throws \Exception
+     */
     public function run()
     {
         switch ($this->determineAction()) {
@@ -90,76 +150,7 @@ class Slackbot extends AbstractBot
                 $this->handleMessageActions();
                 break;
             default:
-                /*
-                 * 1. Start listening
-                 */
-                $this->getListener()->listen();
-
-                /*
-                 * 2. verify the request
-                 */
-                try {
-                    $verificationResult = $this->verifyRequest();
-
-                    if ($verificationResult['success'] !== true) {
-                        throw new \Exception($verificationResult['message']);
-                    }
-                } catch (\Exception $e) {
-                    throw $e;
-                }
-
-                /*
-                 * 3. pre process the request
-                 */
-                $this->preProcessRequest();
-
-                /*
-                 * 4. check the blacklist.
-                 */
-                if ($this->getConfig()->get('enabledAccessControl') === true) {
-                    $blackList = new BlackList($this->getListener()->getRequest());
-                    if ($blackList->isBlackListed() !== false) {
-                        // found in blacklist
-                        $this->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
-                        break;
-                    }
-
-                    $whitelist = new WhiteList($this->getListener()->getRequest());
-                    if ($whitelist->isWhiteListed() !== true) {
-                        // not found in whitelist
-                        $this->send($this->getRequest('channel_name'), $this->getConfig()->get('whitelistedMessage'));
-                        break;
-                    }
-                }
-
-                /*
-                 * 4. set the current command.
-                 */
-                $message = $this->getMessage();
-                $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($message));
-
-                /*
-                 * 5. log the message
-                 */
-                if (empty($this->getRequest('debug'))) {
-                    $this->getLoggerUtility()->logRaw($this->getFormattingUtility()->newLine());
-                    $this->getLoggerUtility()->logChat(__METHOD__, $message);
-                }
-
-                /*
-                 * 6. send confirmation message if is enabled.
-                 */
-                $this->sendConfirmation();
-
-                /*
-                 * 7. And send the response to the channel, only if the response is not empty
-                 */
-                $response = $this->respond($message);
-
-                if (!empty($response)) {
-                    $this->send($this->getRequest('channel_name'), $response);
-                }
-
+                $this->handleSendResponse();
                 break;
         }
     }
