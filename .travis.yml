@@ -19,7 +19,7 @@ addons:
 # Commands to be run before your environment runs
 before_script:
   - composer self-update
-  - composer install
+  - composer install --no-dev
 
 script: phpunit --bootstrap vendor/autoload.php --configuration vendor/phpunit/phpunit/phpunit.xml src/tests
 script: phpunit --coverage-clover build/logs/clover.xml --configuration phpunit.xml --bootstrap vendor/autoload.php src/tests
