@@ -15,6 +15,7 @@
     </rule>
 
     <rule ref="rulesets/cleancode.xml">
+        <exclude name="BooleanArgumentFlag"/>
     </rule>
 
     <rule ref="rulesets/design.xml">

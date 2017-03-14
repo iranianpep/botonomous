@@ -34,8 +34,8 @@ abstract class BaseListener
         if (is_array($this->request) && array_key_exists($key, $this->request)) {
             return $this->request[$key];
         }
-
-        /* @noinspection PhpInconsistentReturnPointsInspection */
+        
+        return null;
     }
 
     /**
@@ -123,6 +123,7 @@ abstract class BaseListener
             session_write_close();
             fastcgi_finish_request();
 
+            /** @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
@@ -140,5 +141,8 @@ abstract class BaseListener
         ob_end_flush();
         ob_flush();
         flush();
+
+        /** @noinspection PhpInconsistentReturnPointsInspection */
+        return;
     }
 }

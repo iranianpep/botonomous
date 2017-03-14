@@ -186,19 +186,16 @@ class OAuth
         $scope = implode(',', $this->getScopes());
         $clientId = $this->getClientId();
 
-        if (!empty($cssClass)) {
-            $cssClass = "class='{$cssClass}' ";
-        }
-
         $stateQueryString = '';
-
         if (!empty($this->getState())) {
             $state = $this->getState();
             $stateQueryString = "&state={$state}";
         }
 
-        $html = "<a href='{$authorizationUrl}?scope={$scope}&client_id={$clientId}{$stateQueryString}'>
-<img {$cssClass}alt='Add to Slack' height='{$height}' width='{$weight}'
+        $href = "{$authorizationUrl}?scope={$scope}&client_id={$clientId}{$stateQueryString}";
+        
+        $html = "<a href='{$href}'>
+<img alt='Add to Slack' class='{$cssClass}' height='{$height}' width='{$weight}'
 src='https://platform.slack-edge.com/img/add_to_slack.png'
 srcset='https://platform.slack-edge.com/img/add_to_slack.png 1x,
 https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";

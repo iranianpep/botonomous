@@ -43,6 +43,7 @@ class EventListener extends BaseListener
         $this->setRequest($request);
 
         if ($this->isThisBot() !== false) {
+            /** @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 

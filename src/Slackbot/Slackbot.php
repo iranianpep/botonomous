@@ -68,6 +68,7 @@ class Slackbot extends AbstractBot
 
         // ignore if payload is not set
         if (!isset($post['payload'])) {
+            /** @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
@@ -200,6 +201,7 @@ class Slackbot extends AbstractBot
      *
      * @param $channel
      * @param $response
+     * @param $attachments
      *
      * @throws \Exception
      *

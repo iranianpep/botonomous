@@ -132,7 +132,7 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
         }
 
         $expected = "<a href='{$authorizationUrl}?scope={$scopeString}&client_id={$clientId}{$stateQueryString}'>
-<img alt='Add to Slack' height='40' width='139'
+<img alt='Add to Slack' class='' height='40' width='139'
 src='https://platform.slack-edge.com/img/add_to_slack.png'
 srcset='https://platform.slack-edge.com/img/add_to_slack.png 1x,
 https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
@@ -142,7 +142,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         $addButton = $oAuth->generateAddButton('50', '50', 'testCssClass');
 
         $expected = "<a href='{$authorizationUrl}?scope={$scopeString}&client_id={$clientId}{$stateQueryString}'>
-<img class='testCssClass' alt='Add to Slack' height='50' width='50'
+<img alt='Add to Slack' class='testCssClass' height='50' width='50'
 src='https://platform.slack-edge.com/img/add_to_slack.png'
 srcset='https://platform.slack-edge.com/img/add_to_slack.png 1x,
 https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
