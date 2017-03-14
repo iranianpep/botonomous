@@ -29,11 +29,13 @@ class MessageUtility extends AbstractUtility
     }
 
     /**
-     * Check if the bot user id is mentioned in the message
+     * Check if the bot user id is mentioned in the message.
      *
      * @param $message
-     * @return bool
+     *
      * @throws \Exception
+     *
+     * @return bool
      */
     public function isBotMentioned($message)
     {
