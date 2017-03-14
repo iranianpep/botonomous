@@ -235,7 +235,7 @@ class ApiClient
         $result = $this->apiCall('users.info', $args);
 
         if (!isset($result['user'])) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 

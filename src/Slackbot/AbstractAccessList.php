@@ -25,7 +25,7 @@ abstract class AbstractAccessList
         $list = $this->getAccessControlList();
 
         if (!isset($list[$sublistKey])) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
@@ -44,13 +44,13 @@ abstract class AbstractAccessList
         $list = $this->getSubAccessControlList($listKey);
 
         if ($list === null) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
         // currently if list key is not set we do not check it
         if (!isset($list[$subListKey])) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
