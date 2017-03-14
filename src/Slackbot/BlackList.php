@@ -31,7 +31,7 @@ class BlackList extends AbstractAccessList
         if ($this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username') === true) {
             return true;
         }
-        
+
         return false;
     }
 
@@ -40,7 +40,7 @@ class BlackList extends AbstractAccessList
         if ($this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId') === true) {
             return true;
         }
-        
+
         return false;
     }
 
