@@ -14,6 +14,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/58c7b02f7a7954003c39d869/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58c7b02f7a7954003c39d869)
 [![Packagist](https://img.shields.io/packagist/dt/slackbot/slackbot.svg)](https://packagist.org/packages/slackbot/slackbot)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/slackbot/master/LICENSE)
+[![Beerpay](https://img.shields.io/beerpay/iranianpep/slackbot.svg)](https://beerpay.io/iranianpep/slackbot)
 
 A PHP framework to create Slackbots faaaaaaaaster!
 
