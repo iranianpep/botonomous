@@ -193,7 +193,7 @@ class OAuth
         }
 
         $href = "{$authorizationUrl}?scope={$scope}&client_id={$clientId}{$stateQueryString}";
-        
+
         $html = "<a href='{$href}'>
 <img alt='Add to Slack' class='{$cssClass}' height='{$height}' width='{$weight}'
 src='https://platform.slack-edge.com/img/add_to_slack.png'

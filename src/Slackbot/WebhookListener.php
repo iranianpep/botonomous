@@ -17,14 +17,14 @@ class WebhookListener extends BaseListener
         $request = $this->extractRequest();
 
         if (empty($request)) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
         $this->setRequest($request);
 
         if ($this->isThisBot() !== false) {
-            /** @noinspection PhpInconsistentReturnPointsInspection */
+            /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
