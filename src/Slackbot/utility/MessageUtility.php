@@ -43,11 +43,7 @@ class MessageUtility extends AbstractUtility
         $botUserId = $this->getConfig()->get('botUserId');
         $userLink = $this->linkToUser($botUserId);
 
-        if (preg_match("/{$userLink}/", $message)) {
-            return true;
-        }
-
-        return false;
+        return (new StringUtility())->findInString($userLink, $message, false);
     }
 
     /**
