@@ -257,6 +257,16 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
         $blacklist->setDictionary($dictionary);
 
         $this->assertEquals(false, $blacklist->isBlackListed());
+
+        $dictionary->setData([
+            'access-control' => [
+                'blacklist' => [
+                    'username' => ['dummyUserName'],
+                ],
+            ],
+        ]);
+
+        $this->assertEquals(true, $blacklist->isBlackListed());
     }
 
     public function testIsBlackListedFalse()
