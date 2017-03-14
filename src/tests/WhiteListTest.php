@@ -2,11 +2,12 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\client\ApiClient;
 use Slackbot\Dictionary;
 
 /** @noinspection PhpUndefinedClassInspection */
-class WhiteListTest extends \PHPUnit_Framework_TestCase
+class WhiteListTest extends TestCase
 {
     private function getWhiteList()
     {

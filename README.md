@@ -11,6 +11,7 @@
 [![StyleCI](https://styleci.io/repos/73189365/shield?branch=master)](https://styleci.io/repos/73189365)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0/mini.png)](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/039ffa789e6a4040b9b8d596ede07db4)](https://www.codacy.com/app/iranianpep/slackbot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=iranianpep/slackbot&amp;utm_campaign=Badge_Grade)
+[![Dependency Status](https://www.versioneye.com/user/projects/58c7b02f7a7954003c39d869/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58c7b02f7a7954003c39d869)
 
 A PHP framework to create Slackbots faaaaaaaaster!
 

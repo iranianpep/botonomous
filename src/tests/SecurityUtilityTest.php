@@ -2,9 +2,10 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\utility\SecurityUtility;
 
-class SecurityUtilityTest extends \PHPUnit_Framework_TestCase
+class SecurityUtilityTest extends TestCase
 {
     /**
      * Test generateToken.
@@ -33,10 +34,8 @@ class SecurityUtilityTest extends \PHPUnit_Framework_TestCase
         $securityUtility->setHashAlgorithm('sha256');
         $this->assertEquals('sha256', $securityUtility->getHashAlgorithm());
 
-        $this->setExpectedException(
-            'Exception',
-            'Hash algorithm is not valid'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Hash algorithm is not valid');
 
         $securityUtility->setHashAlgorithm('');
         $this->assertEquals($securityUtility::DEFAULT_HASH_ALGORITHM, $securityUtility->getHashAlgorithm());

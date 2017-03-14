@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\utility\FileUtility;
 
 /**
@@ -9,7 +10,7 @@ use Slackbot\utility\FileUtility;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class FileUtilityTest extends \PHPUnit_Framework_TestCase
+class FileUtilityTest extends TestCase
 {
     /**
      * @throws \Exception

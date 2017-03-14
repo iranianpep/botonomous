@@ -2,9 +2,10 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\utility\ArrayUtility;
 
-class ArrayUtilityTest extends \PHPUnit_Framework_TestCase
+class ArrayUtilityTest extends TestCase
 {
     /**
      * Test filterArray.

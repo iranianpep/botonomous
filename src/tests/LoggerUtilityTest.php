@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Config;
 use Slackbot\utility\LoggerUtility;
 
@@ -10,7 +11,7 @@ use Slackbot\utility\LoggerUtility;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
+class LoggerUtilityTest extends TestCase
 {
     const TEST_CHAT_LOG_FILE = 'test_chat_log';
     const TIMEZONE = 'Australia/Melbourne';
@@ -85,10 +86,8 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
         $utility = new LoggerUtility($config);
         $utility->setLogFilePath('dummy/file/path');
 
-        $this->setExpectedException(
-            '\Exception',
-            'Failed to write to the log file'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Failed to write to the log file');
 
         $utility->logRaw(self::TEST_RAW_MESSAGE);
         // @codeCoverageIgnoreStart
@@ -110,10 +109,8 @@ class LoggerUtilityTest extends \PHPUnit_Framework_TestCase
         $utility = new LoggerUtility($config);
         $utility->setLogFilePath('dummy/file/path');
 
-        $this->setExpectedException(
-            '\Exception',
-            'Failed to write to the log file'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Failed to write to the log file');
 
         $utility->logChat(__METHOD__, self::TEST_RAW_MESSAGE);
         // @codeCoverageIgnoreStart

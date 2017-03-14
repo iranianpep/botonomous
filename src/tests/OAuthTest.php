@@ -10,6 +10,7 @@ use GuzzleHttp\HandlerStack;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Slackbot\client\ApiClient;
 use Slackbot\Config;
 use Slackbot\OAuth;
@@ -19,7 +20,7 @@ use Slackbot\utility\SessionUtility;
 /**
  * Class OAuthTest.
  */
-class OAuthTest extends \PHPUnit_Framework_TestCase
+class OAuthTest extends TestCase
 {
     public function __construct()
     {
@@ -48,7 +49,8 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
 
         $oauth->setSessionUtility($sessionUtility);
 
-        $this->setExpectedException('Exception', 'invalid_client_id');
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('invalid_client_id');
 
         $oauth->doOauth();
     }
@@ -73,7 +75,8 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
 
         $oauth->setSessionUtility($sessionUtility);
 
-        $this->setExpectedException('Exception', 'State: 54321 is not valid');
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('State: 54321 is not valid');
 
         $oauth->doOauth();
     }
@@ -95,7 +98,8 @@ class OAuthTest extends \PHPUnit_Framework_TestCase
 
         $oauth->setAccessToken('');
 
-        $this->setExpectedException('Exception', 'Access token is not provided');
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Access token is not provided');
 
         $oauth->doOauth();
     }
@@ -191,7 +195,8 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     {
         $oauth = new OAuth();
 
-        $this->setExpectedException('Exception', 'Code must be provided to get the access token');
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Code must be provided to get the access token');
 
         $oauth->getAccessToken('', false);
     }
@@ -209,7 +214,8 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
 
         $oAuth = new OAuth($clientId, $clientSecret, $scope);
 
-        $this->setExpectedException('Exception', 'State is not provided');
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('State is not provided');
 
         $this->assertEquals($accessToken, $oAuth->getAccessToken(''));
     }
@@ -284,7 +290,8 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
 
         $oAuth->setApiClient($apiClient);
 
-        $this->setExpectedException('Exception', 'Error Communicating with Server');
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Error Communicating with Server');
 
         $oAuth->getAccessToken('1234', false);
     }

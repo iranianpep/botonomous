@@ -1,14 +1,15 @@
 <?php
 
-namespace Slackbo\Tests;
+namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Action;
 use Slackbot\Channel;
 use Slackbot\MessageAction;
 use Slackbot\Team;
 use Slackbot\User;
 
-class MessageActionTest extends \PHPUnit_Framework_TestCase
+class MessageActionTest extends TestCase
 {
     public function testLoad()
     {

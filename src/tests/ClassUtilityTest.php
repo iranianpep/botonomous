@@ -2,11 +2,12 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Channel;
 use Slackbot\Event;
 use Slackbot\utility\ClassUtility;
 
-class ClassUtilityTest extends \PHPUnit_Framework_TestCase
+class ClassUtilityTest extends TestCase
 {
     const DUMMY_ID = 'C0LCK9DH6';
     const DUMMY_NAME = 'general';

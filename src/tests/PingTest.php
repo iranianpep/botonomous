@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\plugin\ping\Ping;
 
 /**
@@ -9,7 +10,7 @@ use Slackbot\plugin\ping\Ping;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class PingTest extends \PHPUnit_Framework_TestCase
+class PingTest extends TestCase
 {
     public function __construct()
     {

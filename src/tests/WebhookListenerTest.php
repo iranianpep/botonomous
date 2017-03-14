@@ -2,13 +2,14 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Config;
 use Slackbot\Slackbot;
 use Slackbot\utility\RequestUtility;
 use Slackbot\WebhookListener;
 
 /** @noinspection PhpUndefinedClassInspection */
-class WebhookListenerTest extends \PHPUnit_Framework_TestCase
+class WebhookListenerTest extends TestCase
 {
     const VERIFICATION_TOKEN = 'verificationToken';
 
@@ -162,19 +163,20 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
 
         $config->set('response', 'json');
 
-        try {
-            $slackbot = new Slackbot();
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Request comes from the bot');
 
-            // get listener
-            $listener = $slackbot->getListener();
+        $slackbot = new Slackbot();
 
-            // set request
-            $listener->setRequest($request);
+        // get listener
+        $listener = $slackbot->getListener();
 
-            $slackbot->setConfig($config);
-        } catch (\Exception $e) {
-            $this->assertEquals('Request is not coming from Slack', $e->getMessage());
-        }
+        // set request
+        $listener->setRequest($request);
+
+        $slackbot->setConfig($config);
+
+        $slackbot->run();
     }
 
     /**
@@ -272,7 +274,8 @@ class WebhookListenerTest extends \PHPUnit_Framework_TestCase
 
         $webhookListener->setConfig($config);
 
-        $this->setExpectedException('Exception', 'Token must be set in the config');
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Token must be set in the config');
 
         $webhookListener->verifyOrigin();
     }

@@ -2,9 +2,10 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\User;
 
-class UserTest extends \PHPUnit_Framework_TestCase
+class UserTest extends TestCase
 {
     const USER_ID = 'C0LCK9DH6';
     const USER_NAME = 'general';

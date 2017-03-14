@@ -2,12 +2,13 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Config;
 use Slackbot\Event;
 use Slackbot\EventListener;
 use Slackbot\utility\RequestUtility;
 
-class EventListenerTest extends \PHPUnit_Framework_TestCase
+class EventListenerTest extends TestCase
 {
     /**
      * Test listen.
@@ -98,10 +99,8 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
         $eventListener = new EventListener();
         $eventListener->setRequestUtility($requestUtility);
 
-        $this->setExpectedException(
-            'Exception',
-            'Event type must be specified'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Event type must be specified');
 
         $eventListener->getEvent();
     }
@@ -250,10 +249,8 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
             'api_app_id' => '12345',
         ]);
 
-        $this->setExpectedException(
-            '\Exception',
-            'Verification token must be provided'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Verification token must be provided');
 
         $this->assertEquals([], $eventListener->verifyOrigin());
     }
@@ -277,10 +274,8 @@ class EventListenerTest extends \PHPUnit_Framework_TestCase
             'api_app_id' => '12345',
         ]);
 
-        $this->setExpectedException(
-            '\Exception',
-            'Api app id must be provided'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Api app id must be provided');
 
         $this->assertEquals([], $eventListener->verifyOrigin());
     }

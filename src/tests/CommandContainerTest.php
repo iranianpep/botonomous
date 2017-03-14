@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Command;
 use Slackbot\CommandContainer;
 
@@ -10,7 +11,7 @@ use Slackbot\CommandContainer;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class CommandContainerTest extends \PHPUnit_Framework_TestCase
+class CommandContainerTest extends TestCase
 {
     /**
      * Test get.

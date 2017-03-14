@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\utility\StringUtility;
 
 /**
@@ -9,7 +10,7 @@ use Slackbot\utility\StringUtility;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class StringUtilityTest extends \PHPUnit_Framework_TestCase
+class StringUtilityTest extends TestCase
 {
     /**
      * Convert json to array.

@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Dictionary;
 
 /**
@@ -9,7 +10,7 @@ use Slackbot\Dictionary;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class DictionaryTest extends \PHPUnit_Framework_TestCase
+class DictionaryTest extends TestCase
 {
     /**
      * Test get.

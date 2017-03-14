@@ -2,9 +2,10 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\utility\SessionUtility;
 
-class SessionUtilityTest extends \PHPUnit_Framework_TestCase
+class SessionUtilityTest extends TestCase
 {
     /**
      * SessionUtilityTest constructor.

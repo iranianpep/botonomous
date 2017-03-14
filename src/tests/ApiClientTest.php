@@ -14,6 +14,7 @@ use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Slackbot\client\ApiClient;
 use Slackbot\Config;
 use Slackbot\Team;
@@ -23,7 +24,7 @@ use Slackbot\Team;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class ApiClientTest extends \PHPUnit_Framework_TestCase
+class ApiClientTest extends TestCase
 {
     /**
      * Test getArguments.
@@ -138,10 +139,8 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 
         $apiClient->setClient($client);
 
-        $this->setExpectedException(
-            '\Exception',
-            'Failed to process response from the Slack API'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Failed to process response from the Slack API');
 
         // @codeCoverageIgnoreStart
         $apiClient->apiCall('test');
@@ -173,10 +172,8 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testApiCallInvalidAuth()
     {
-        $this->setExpectedException(
-            'Exception',
-            'channel must be provided for chat.postMessage'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('channel must be provided for chat.postMessage');
 
         (new ApiClient())->apiCall('chat.postMessage', []);
     }
@@ -200,10 +197,8 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 
         $apiClient->setClient($client);
 
-        $this->setExpectedException(
-            '\Exception',
-            'Failed to send data to the Slack API: Error Communicating with Server'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Failed to send data to the Slack API: Error Communicating with Server');
 
         // @codeCoverageIgnoreStart
         $apiClient->apiCall('test');
@@ -216,10 +211,8 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testChatPostMessage()
     {
-        $this->setExpectedException(
-            'Exception',
-            'channel must be provided for chat.postMessage'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('channel must be provided for chat.postMessage');
 
         (new ApiClient())->chatPostMessage([]);
     }
@@ -265,10 +258,8 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $apiClient = new ApiClient();
 
-        $this->setExpectedException(
-            '\Exception',
-            'client_id must be provided for oauth.access'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('client_id must be provided for oauth.access');
 
         $apiClient->oauthAccess([]);
     }
@@ -302,10 +293,12 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
     {
         $apiClient = new ApiClient();
 
-        $apiClient->filterArguments('users.list', [
+        $arguments = $apiClient->filterArguments('users.list', [
             'token'    => '123',
             'dummyKey' => 'dummyValue',
         ]);
+
+        $this->assertEquals(['token' => '123'], $arguments);
     }
 
     /**

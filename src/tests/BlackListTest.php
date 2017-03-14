@@ -2,10 +2,11 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Dictionary;
 
 /** @noinspection PhpUndefinedClassInspection */
-class BlackListTest extends \PHPUnit_Framework_TestCase
+class BlackListTest extends TestCase
 {
     public function testIsBlackListedUserEmail()
     {

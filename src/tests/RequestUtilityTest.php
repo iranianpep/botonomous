@@ -2,9 +2,10 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\utility\RequestUtility;
 
-class RequestUtilityTest extends \PHPUnit_Framework_TestCase
+class RequestUtilityTest extends TestCase
 {
     public function testGetServerProtocol()
     {

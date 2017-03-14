@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Config;
 
 /**
@@ -9,7 +10,7 @@ use Slackbot\Config;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends TestCase
 {
     /**
      * @throws \Exception

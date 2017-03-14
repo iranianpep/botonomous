@@ -2,10 +2,11 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\plugin\help\Help;
 
 /** @noinspection PhpUndefinedClassInspection */
-class HelpTest extends \PHPUnit_Framework_TestCase
+class HelpTest extends TestCase
 {
     public function __construct()
     {

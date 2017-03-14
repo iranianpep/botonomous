@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Command;
 use Slackbot\Config;
 use Slackbot\utility\MessageUtility;
@@ -11,7 +12,7 @@ use Slackbot\utility\MessageUtility;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class MessageUtilityTest extends \PHPUnit_Framework_TestCase
+class MessageUtilityTest extends TestCase
 {
     /**
      * @throws \Exception
@@ -137,10 +138,8 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('<@U024BE7LH>', $utility->linkToUser('U024BE7LH', ''));
 
-        $this->setExpectedException(
-            'Exception',
-            'User id is not provided'
-        );
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('User id is not provided');
 
         $this->assertEquals('<@U024BE7LH>', $utility->linkToUser(''));
     }

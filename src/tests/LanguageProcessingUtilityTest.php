@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\utility\LanguageProcessingUtility;
 
 /**
@@ -9,7 +10,7 @@ use Slackbot\utility\LanguageProcessingUtility;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class LanguageProcessingUtilityTest extends \PHPUnit_Framework_TestCase
+class LanguageProcessingUtilityTest extends TestCase
 {
     /**
      * Test stem.

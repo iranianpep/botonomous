@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Event;
 
 /**
@@ -9,7 +10,7 @@ use Slackbot\Event;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class EventTest extends \PHPUnit_Framework_TestCase
+class EventTest extends TestCase
 {
     public function testGetBotId()
     {

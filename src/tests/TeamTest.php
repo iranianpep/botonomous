@@ -5,10 +5,11 @@ namespace Slackbot\Tests;
 /*
  * Class TeamTest.
  */
+use PHPUnit\Framework\TestCase;
 use Slackbot\Team;
 
 /** @noinspection PhpUndefinedClassInspection */
-class TeamTest extends \PHPUnit_Framework_TestCase
+class TeamTest extends TestCase
 {
     public function testGetSlackId()
     {

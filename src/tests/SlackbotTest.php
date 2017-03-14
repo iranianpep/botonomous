@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\CommandContainer;
 use Slackbot\Config;
 use Slackbot\EventListener;
@@ -16,7 +17,7 @@ use Slackbot\WebhookListener;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class SlackbotTest extends \PHPUnit_Framework_TestCase
+class SlackbotTest extends TestCase
 {
     const VERIFICATION_TOKEN = 'verificationToken';
 
@@ -42,7 +43,8 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
         $slackbot->setOauth($oauth);
         $slackbot->setRequestUtility($requestUtility);
 
-        $this->setExpectedException('Exception', 'State is not provided');
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('State is not provided');
 
         $slackbot->run();
     }
@@ -294,8 +296,8 @@ class SlackbotTest extends \PHPUnit_Framework_TestCase
             'text'  => "{$botUserId} {$commandPrefix}commandWithoutFunctionForTest",
         ];
 
-        $this->setExpectedException(
-            '\Exception',
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage(
             'Action / function: \'commandWithoutFunctionForTest\' does not exist in \'Slackbot\plugin\ping\Ping\''
         );
 

@@ -2,6 +2,7 @@
 
 namespace Slackbot\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Slackbot\Dictionary;
 use Slackbot\plugin\qa\QA;
 
@@ -10,7 +11,7 @@ use Slackbot\plugin\qa\QA;
  */
 
 /** @noinspection PhpUndefinedClassInspection */
-class QATest extends \PHPUnit_Framework_TestCase
+class QATest extends TestCase
 {
     public function __construct()
     {
