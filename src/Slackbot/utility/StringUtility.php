@@ -41,12 +41,13 @@ class StringUtility extends AbstractUtility
      * @param $toFind
      * @param $subject
      * @param bool $wordBoundary If true $toFind is searched with word boundaries
+     *
      * @return bool
      */
     public function findInString($toFind, $subject, $wordBoundary = true)
     {
         $pattern = $wordBoundary === true ? "/\b{$toFind}\b/" : "/{$toFind}/";
-        
+
         if (preg_match($pattern, $subject)) {
             return true;
         }
