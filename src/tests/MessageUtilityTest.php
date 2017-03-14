@@ -144,4 +144,16 @@ class MessageUtilityTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('<@U024BE7LH>', $utility->linkToUser(''));
     }
+
+    public function testIsBotMentioned()
+    {
+        $config = new Config();
+        $utility = new MessageUtility($config);
+
+        $botUserId = $config->get('botUserId');
+
+        $this->assertEquals(true, $utility->isBotMentioned("<@{$botUserId}> /help"));
+        $this->assertEquals(true, $utility->isBotMentioned("How are you <@{$botUserId}>?"));
+        $this->assertEquals(false, $utility->isBotMentioned("/help"));
+    }
 }

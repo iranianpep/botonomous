@@ -24,8 +24,9 @@ class MessageUtility extends AbstractUtility
     public function removeMentionedBot($message)
     {
         $botUserId = $this->getConfig()->get('botUserId');
+        $userLink = $this->linkToUser($botUserId);
 
-        return preg_replace("/<@{$botUserId}>/", '', $message, 1);
+        return preg_replace("/{$userLink}/", '', $message, 1);
     }
 
     /**
@@ -40,8 +41,9 @@ class MessageUtility extends AbstractUtility
     public function isBotMentioned($message)
     {
         $botUserId = $this->getConfig()->get('botUserId');
+        $userLink = $this->linkToUser($botUserId);
 
-        if (preg_match("/<@{$botUserId}>/", $message)) {
+        if (preg_match("/{$userLink}/", $message)) {
             return true;
         }
 
