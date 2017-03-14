@@ -29,6 +29,24 @@ class MessageUtility extends AbstractUtility
     }
 
     /**
+     * Check if the bot user id is mentioned in the message
+     *
+     * @param $message
+     * @return bool
+     * @throws \Exception
+     */
+    public function isBotMentioned($message)
+    {
+        $botUserId = $this->getConfig()->get('botUserId');
+
+        if (preg_match("/<@{$botUserId}>/", $message)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Return command name in the message.
      *
      * @param $message

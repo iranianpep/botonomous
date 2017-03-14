@@ -152,9 +152,14 @@ class Slackbot extends AbstractBot
                 $this->sendConfirmation();
 
                 /*
-                 * 7. And send the response to the channel
+                 * 7. And send the response to the channel, only if the response is not empty
                  */
-                $this->send($this->getRequest('channel_name'), $this->respond($message));
+                $response = $this->respond($message);
+
+                if (!empty($response)) {
+                    $this->send($this->getRequest('channel_name'), $response);
+                }
+
                 break;
         }
     }
@@ -463,5 +468,21 @@ class Slackbot extends AbstractBot
         }
 
         return $listener->getRequest('text');
+    }
+
+    /**
+     * Determine if bot user id is mentioned in the message
+     *
+     * @return bool
+     */
+    public function youTalkingToMe()
+    {
+        $message = $this->getMessage();
+        
+        if (empty($message)) {
+            return false;
+        }
+        
+        return $this->getMessageUtility()->isBotMentioned($message);
     }
 }
