@@ -36,7 +36,8 @@ class BlackListTest extends \PHPUnit_Framework_TestCase
     {
         return (new PhpunitHelper())->getBlackList();
     }
-//    
+
+//
 //    public function testIsEmailBlackListed()
 //    {
 //        $blacklist = $this->getBlackList();
