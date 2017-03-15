@@ -101,10 +101,6 @@ class Ping extends AbstractPlugin
 | apiAppId | string | Yes | The unique identifier for the application. This is required for Event listeners and can be found at https://api.slack.com/apps and your app url |
 | respondOk | boolean | Yes | Whether the bot responds with `200 OK` on receiving a request from Slack or not. Must be `true` all the time except for testing |
 
-## Buy me half of a coffee if you like!
+## Buy me a coffee / beer if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
-
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
 [![Beerpay](https://beerpay.io/iranianpep/slackbot/badge.svg?style=beer-square)](https://beerpay.io/iranianpep/slackbot)  [![Beerpay](https://beerpay.io/iranianpep/slackbot/make-wish.svg?style=flat-square)](https://beerpay.io/iranianpep/slackbot?focus=wish)
