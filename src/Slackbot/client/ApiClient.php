@@ -190,7 +190,7 @@ class ApiClient
     }
 
     /**
-     * @return Team
+     * @return Team|mixed
      */
     public function teamInfoAsObject()
     {
@@ -228,7 +228,7 @@ class ApiClient
      *
      * @throws \Exception
      *
-     * @return array
+     * @return mixed
      */
     public function userInfo($args)
     {
@@ -329,7 +329,7 @@ class ApiClient
      *
      * @throws \Exception
      *
-     * @return array
+     * @return mixed
      */
     public function getArguments($method = null)
     {

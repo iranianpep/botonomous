@@ -25,6 +25,8 @@ abstract class AbstractAccessList
 
     /**
      * @param $sublistKey
+     *
+     * @return mixed
      */
     protected function getSubAccessControlList($sublistKey)
     {
@@ -43,7 +45,7 @@ abstract class AbstractAccessList
      * @param $listKey
      * @param $subListKey
      *
-     * @return bool|void
+     * @return bool|mixed
      */
     protected function findInListByRequestKey($requestKey, $listKey, $subListKey)
     {
