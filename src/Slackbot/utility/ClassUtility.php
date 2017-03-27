@@ -6,6 +6,11 @@ use Slackbot\AbstractBaseSlack;
 
 class ClassUtility
 {
+    /**
+     * @param $fullName
+     *
+     * @return mixed
+     */
     public function extractClassNameFromFullName($fullName)
     {
         // get last part of the namespace
@@ -14,6 +19,12 @@ class ClassUtility
         return end($classParts);
     }
 
+    /**
+     * @param AbstractBaseSlack $object
+     * @param                   $attributes
+     *
+     * @return AbstractBaseSlack
+     */
     public function loadAttributes(AbstractBaseSlack $object, $attributes)
     {
         // if $attributes is not array convert it to array

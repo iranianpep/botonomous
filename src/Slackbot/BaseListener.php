@@ -10,8 +10,14 @@ abstract class BaseListener
     private $request;
     private $requestUtility;
 
+    /**
+     * @return mixed
+     */
     abstract public function listen();
 
+    /**
+     * @return mixed
+     */
     abstract public function extractRequest();
 
     /**

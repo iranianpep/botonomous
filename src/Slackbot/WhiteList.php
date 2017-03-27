@@ -4,11 +4,19 @@ namespace Slackbot;
 
 class WhiteList extends AbstractAccessList
 {
+    /**
+     * WhiteList constructor.
+     *
+     * @param $request
+     */
     public function __construct($request)
     {
         $this->setRequest($request);
     }
 
+    /**
+     * @return bool
+     */
     public function isWhiteListed()
     {
         $usernameCheck = true;
@@ -34,6 +42,9 @@ class WhiteList extends AbstractAccessList
         return false;
     }
 
+    /**
+     * @return bool
+     */
     public function isUsernameWhiteListed()
     {
         if (empty($this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username'))) {
@@ -43,6 +54,9 @@ class WhiteList extends AbstractAccessList
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function isUserIdWhiteListed()
     {
         if (empty($this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId'))) {
@@ -52,6 +66,9 @@ class WhiteList extends AbstractAccessList
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function isEmailWhiteListed()
     {
         // user_name is set, load the blacklist to start checking

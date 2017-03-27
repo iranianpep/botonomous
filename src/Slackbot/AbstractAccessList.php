@@ -15,11 +15,17 @@ abstract class AbstractAccessList
     private $apiClient;
     private $classUtility;
 
+    /**
+     * @return mixed
+     */
     protected function getAccessControlList()
     {
         return $this->getDictionary()->get('access-control');
     }
 
+    /**
+     * @param $sublistKey
+     */
     protected function getSubAccessControlList($sublistKey)
     {
         $list = $this->getAccessControlList();
@@ -32,6 +38,13 @@ abstract class AbstractAccessList
         return $list[$sublistKey];
     }
 
+    /**
+     * @param $requestKey
+     * @param $listKey
+     * @param $subListKey
+     *
+     * @return bool|void
+     */
     protected function findInListByRequestKey($requestKey, $listKey, $subListKey)
     {
         // get request
@@ -61,6 +74,9 @@ abstract class AbstractAccessList
         return false;
     }
 
+    /**
+     * @return mixed
+     */
     protected function getShortClassName()
     {
         return $this->getClassUtility()->extractClassNameFromFullName(strtolower(get_called_class()));
@@ -122,6 +138,9 @@ abstract class AbstractAccessList
         $this->apiClient = $apiClient;
     }
 
+    /**
+     * @return array|bool
+     */
     public function getSlackUserInfo()
     {
         // get user id in the request

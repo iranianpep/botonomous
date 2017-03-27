@@ -60,7 +60,7 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * @return MessageAction|void
+     * @return MessageAction|mixed
      */
     private function handleMessageActions()
     {

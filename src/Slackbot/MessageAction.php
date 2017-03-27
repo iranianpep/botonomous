@@ -223,6 +223,11 @@ class MessageAction extends AbstractBaseSlack
         $this->responseUrl = $responseUrl;
     }
 
+    /**
+     * @param $info
+     *
+     * @return mixed
+     */
     public function load($info)
     {
         $thisObject = parent::load($info);
