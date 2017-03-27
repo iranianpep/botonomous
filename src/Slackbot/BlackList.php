@@ -60,7 +60,6 @@ class BlackList extends AbstractAccessList
 
     /**
      * @return bool
-     *
      * @return mixed
      */
     public function isEmailBlackListed()

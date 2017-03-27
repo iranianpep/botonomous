@@ -68,7 +68,6 @@ class WhiteList extends AbstractAccessList
 
     /**
      * @return bool
-     *
      * @return mixed
      */
     public function isEmailWhiteListed()
