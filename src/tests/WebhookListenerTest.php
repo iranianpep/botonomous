@@ -189,10 +189,10 @@ class WebhookListenerTest extends TestCase
             'access-control' => [
                 'blacklist' => [
                     'userId' => [
-                        'dummyId'
-                    ]
-                ]
-            ]
+                        'dummyId',
+                    ],
+                ],
+            ],
         ]);
 
         $blackList->setDictionary($dictionary);
