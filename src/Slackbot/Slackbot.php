@@ -101,22 +101,8 @@ class Slackbot extends AbstractBot
         $this->preProcessRequest();
 
         // 4. check access control
-        if ($this->getConfig()->get('enabledAccessControl') === true) {
-            $blackList = new BlackList($this->getListener()->getRequest());
-            if ($blackList->isBlackListed() !== false) {
-                // found in blacklist
-                $this->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
-
-                return;
-            }
-
-            $whitelist = new WhiteList($this->getListener()->getRequest());
-            if ($whitelist->isWhiteListed() !== true) {
-                // not found in whitelist
-                $this->send($this->getRequest('channel_name'), $this->getConfig()->get('whitelistedMessage'));
-
-                return;
-            }
+        if ($this->checkAccessControl() !== true) {
+            return;
         }
 
         // 5. set the current command
@@ -138,6 +124,35 @@ class Slackbot extends AbstractBot
         if (!empty($response)) {
             $this->send($this->getRequest('channel_name'), $response);
         }
+    }
+
+    /**
+     * @return bool
+     */
+    private function checkAccessControl()
+    {
+        // if enabledAccessControl is not set true ignore the check and return true
+        if ($this->getConfig()->get('enabledAccessControl') != true) {
+            return true;
+        }
+
+        $blackList = new BlackList($this->getListener()->getRequest());
+        if ($blackList->isBlackListed() !== false) {
+            // found in blacklist
+            $this->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
+
+            return false;
+        }
+
+        $whitelist = new WhiteList($this->getListener()->getRequest());
+        if ($whitelist->isWhiteListed() !== true) {
+            // not found in whitelist
+            $this->send($this->getRequest('channel_name'), $this->getConfig()->get('whitelistedMessage'));
+
+            return false;
+        }
+
+        return true;
     }
 
     /**
