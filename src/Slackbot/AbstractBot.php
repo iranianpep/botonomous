@@ -20,6 +20,8 @@ abstract class AbstractBot
     protected $loggerUtility;
     protected $oauth;
     protected $requestUtility;
+    protected $blackList;
+    protected $whiteList;
 
     /**
      * @return Config
@@ -180,5 +182,45 @@ abstract class AbstractBot
     public function setRequestUtility(RequestUtility $requestUtility)
     {
         $this->requestUtility = $requestUtility;
+    }
+
+    /**
+     * @return BlackList
+     */
+    public function getBlackList()
+    {
+        if (!isset($this->blackList)) {
+            $this->setBlackList(new BlackList($this->getListener()->getRequest()));
+        }
+
+        return $this->blackList;
+    }
+
+    /**
+     * @param BlackList $blackList
+     */
+    public function setBlackList(BlackList $blackList)
+    {
+        $this->blackList = $blackList;
+    }
+
+    /**
+     * @return WhiteList
+     */
+    public function getWhiteList()
+    {
+        if (!isset($this->whiteList)) {
+            $this->setWhiteList(new WhiteList($this->getListener()->getRequest()));
+        }
+
+        return $this->whiteList;
+    }
+
+    /**
+     * @param WhiteList $whiteList
+     */
+    public function setWhiteList(WhiteList $whiteList)
+    {
+        $this->whiteList = $whiteList;
     }
 }
