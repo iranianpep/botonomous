@@ -132,7 +132,7 @@ class Slackbot extends AbstractBot
     private function checkAccessControl()
     {
         // if enabledAccessControl is not set true ignore the check and return true
-        if ($this->getConfig()->get('enabledAccessControl') != true) {
+        if ($this->getConfig()->get('enabledAccessControl') !== true) {
             return true;
         }
 
