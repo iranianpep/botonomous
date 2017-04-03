@@ -7,8 +7,8 @@ use Slackbot\BlackList;
 use Slackbot\Config;
 use Slackbot\Dictionary;
 use Slackbot\Slackbot;
-use Slackbot\utility\RequestUtility;
 use Slackbot\SlashCommandListener;
+use Slackbot\utility\RequestUtility;
 
 /** @noinspection PhpUndefinedClassInspection */
 class SlashCommandListenerTest extends TestCase

@@ -9,8 +9,8 @@ use Slackbot\EventListener;
 use Slackbot\OAuth;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\Slackbot;
-use Slackbot\utility\RequestUtility;
 use Slackbot\SlashCommandListener;
+use Slackbot\utility\RequestUtility;
 
 /**
  * Class SlackbotTest.
