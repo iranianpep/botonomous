@@ -2,7 +2,7 @@
 
 namespace Slackbot;
 
-class WebhookListener extends BaseListener
+class SlashCommandListener extends BaseListener
 {
     const VERIFICATION_TOKEN = 'verificationToken';
 
@@ -11,7 +11,7 @@ class WebhookListener extends BaseListener
      */
     public function listen()
     {
-        // This is needed for Slash commands, otherwise timeout error is displayed
+        // This is needed otherwise timeout error is displayed
         $this->respondOK();
 
         $request = $this->extractRequest();

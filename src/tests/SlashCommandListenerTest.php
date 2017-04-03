@@ -8,10 +8,10 @@ use Slackbot\Config;
 use Slackbot\Dictionary;
 use Slackbot\Slackbot;
 use Slackbot\utility\RequestUtility;
-use Slackbot\WebhookListener;
+use Slackbot\SlashCommandListener;
 
 /** @noinspection PhpUndefinedClassInspection */
-class WebhookListenerTest extends TestCase
+class SlashCommandListenerTest extends TestCase
 {
     const VERIFICATION_TOKEN = 'verificationToken';
 
@@ -36,11 +36,11 @@ class WebhookListenerTest extends TestCase
     /**
      * @param $post
      *
-     * @return WebhookListener
+     * @return SlashCommandListener
      */
     private function getListener($post)
     {
-        $listener = new WebhookListener();
+        $listener = new SlashCommandListener();
         $config = new Config();
         $config->set('respondOk', false);
         $listener->setConfig($config);
@@ -58,7 +58,7 @@ class WebhookListenerTest extends TestCase
     public function testRun()
     {
         $config = new Config();
-        $config->set('listenerType', 'webhook');
+        $config->set('listenerType', 'slashCommand');
         $config->set('respondOk', false);
         $commandPrefix = $config->get('commandPrefix');
 
@@ -106,7 +106,7 @@ class WebhookListenerTest extends TestCase
     public function testRunWithAccessControl()
     {
         $config = new Config();
-        $config->set('listenerType', 'webhook');
+        $config->set('listenerType', 'slashCommand');
         $config->set('respondOk', false);
         $commandPrefix = $config->get('commandPrefix');
 
@@ -150,7 +150,7 @@ class WebhookListenerTest extends TestCase
     public function testRunWithBlackListedAccessControl()
     {
         $config = new Config();
-        $config->set('listenerType', 'webhook');
+        $config->set('listenerType', 'slashCommand');
         $config->set('respondOk', false);
         $commandPrefix = $config->get('commandPrefix');
 
@@ -214,7 +214,7 @@ class WebhookListenerTest extends TestCase
     public function testSendByBot()
     {
         $config = new Config();
-        $config->set('listenerType', 'webhook');
+        $config->set('listenerType', 'slashCommand');
 
         /**
          * Form the request.
@@ -264,7 +264,7 @@ class WebhookListenerTest extends TestCase
     private function sendByResponseType($response)
     {
         $config = new Config();
-        $config->set('listenerType', 'webhook');
+        $config->set('listenerType', 'slashCommand');
 
         /**
          * Form the request.
@@ -300,10 +300,10 @@ class WebhookListenerTest extends TestCase
     public function testVerifyOrigin()
     {
         $request = [];
-        $webhookListener = new WebhookListener();
-        $webhookListener->setRequest($request);
+        $slashCommandListener = new SlashCommandListener();
+        $slashCommandListener->setRequest($request);
 
-        $result = $webhookListener->verifyOrigin();
+        $result = $slashCommandListener->verifyOrigin();
 
         $this->assertEquals([
             'success' => false,
@@ -311,13 +311,13 @@ class WebhookListenerTest extends TestCase
         ], $result);
 
         $request = ['token' => '12345'];
-        $webhookListener->setRequest($request);
+        $slashCommandListener->setRequest($request);
 
         $config = new Config();
 
         $config->set(self::VERIFICATION_TOKEN, '54321');
 
-        $result = $webhookListener->verifyOrigin();
+        $result = $slashCommandListener->verifyOrigin();
 
         $this->assertEquals([
             'success' => false,
@@ -326,7 +326,7 @@ class WebhookListenerTest extends TestCase
 
         $config->set(self::VERIFICATION_TOKEN, '12345');
 
-        $result = $webhookListener->verifyOrigin();
+        $result = $slashCommandListener->verifyOrigin();
 
         $this->assertEquals([
             'success' => true,
@@ -335,12 +335,12 @@ class WebhookListenerTest extends TestCase
 
         $config->set(self::VERIFICATION_TOKEN, '');
 
-        $webhookListener->setConfig($config);
+        $slashCommandListener->setConfig($config);
 
         $this->expectException('\Exception');
         $this->expectExceptionMessage('Token must be set in the config');
 
-        $webhookListener->verifyOrigin();
+        $slashCommandListener->verifyOrigin();
     }
 
     /**
@@ -353,7 +353,7 @@ class WebhookListenerTest extends TestCase
         $post = ['test' => 'test'];
         $requestUtility->setPost($post);
 
-        $listener = new WebhookListener();
+        $listener = new SlashCommandListener();
         $listener->setRequestUtility($requestUtility);
 
         $this->assertEquals($post, $listener->extractRequest());

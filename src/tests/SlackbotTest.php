@@ -10,7 +10,7 @@ use Slackbot\OAuth;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\Slackbot;
 use Slackbot\utility\RequestUtility;
-use Slackbot\WebhookListener;
+use Slackbot\SlashCommandListener;
 
 /**
  * Class SlackbotTest.
@@ -443,7 +443,7 @@ class SlackbotTest extends TestCase
     }
 
     /**
-     * Test getMessageWebhookListener.
+     * Test testGetMessageEventListener.
      */
     public function testGetMessageEventListener()
     {
@@ -460,12 +460,12 @@ class SlackbotTest extends TestCase
     }
 
     /**
-     * Test getMessageWebhookListener.
+     * Test getMessageSlashCommandListener.
      */
-    public function testGetMessageWebhookListener()
+    public function testGetMessageSlashCommandListener()
     {
         $slackbot = new Slackbot();
-        $listener = new WebhookListener();
+        $listener = new SlashCommandListener();
 
         $requestUtility = new RequestUtility();
         $requestUtility->setPost(

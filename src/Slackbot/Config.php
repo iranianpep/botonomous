@@ -19,8 +19,8 @@ class Config extends AbstractConfig
         'chatLoggingFileName'  => 'chat_log',
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',
         'asUser'               => true,
-        // possible values are: webhook, event
-        'listenerType'         => 'webhook',
+        // possible values are: slashCommand, event
+        'listenerType'         => 'slashCommand',
         // possible values are: slack, json, slashCommand
         'response'      => 'slack',
         // this is used if there is no command has been specified in the message
