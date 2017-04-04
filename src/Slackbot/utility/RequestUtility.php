@@ -44,6 +44,21 @@ class RequestUtility
     }
 
     /**
+     * @return mixed
+     */
+    public function getPostedBody()
+    {
+        $body = $this->getContent();
+
+        if (empty($body)) {
+            /* @noinspection PhpInconsistentReturnPointsInspection */
+            return;
+        }
+
+        return json_decode($body, true);
+    }
+
+    /**
      * @param array $post
      */
     public function setPost(array $post)

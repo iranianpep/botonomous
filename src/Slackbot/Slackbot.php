@@ -50,13 +50,15 @@ class Slackbot extends AbstractBot
      */
     private function determineAction()
     {
-        $getRequest = $this->getRequestUtility()->getGet();
+        $utility = $this->getRequestUtility();
+        $getRequest = $utility->getGet();
 
-        if (isset($getRequest['action'])) {
+        if (!empty($getRequest['action'])) {
             return strtolower($getRequest['action']);
         }
 
-        $request = $this->getRequest();
+        $request = $utility->getPostedBody();
+
         if (isset($request['type']) && $request['type'] === 'url_verification') {
             return 'url_verification';
         }
@@ -185,7 +187,7 @@ class Slackbot extends AbstractBot
      */
     private function handleUrlVerification()
     {
-        $request = $this->getRequest();
+        $request = $this->getRequestUtility()->getPostedBody();
 
         if (empty($request['challenge'])) {
             throw new \Exception('Challenge is missing for URL verification');

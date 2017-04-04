@@ -52,14 +52,7 @@ class EventListener extends BaseListener
 
     public function extractRequest()
     {
-        $requestBody = $this->getRequestUtility()->getContent();
-
-        if (empty($requestBody)) {
-            /* @noinspection PhpInconsistentReturnPointsInspection */
-            return;
-        }
-
-        return json_decode($requestBody, true);
+        return $this->getRequestUtility()->getPostedBody();
     }
 
     public function processRequest()

@@ -484,7 +484,6 @@ class SlackbotTest extends TestCase
     public function testUrlVerificationAction()
     {
         $slackbot = new Slackbot();
-        $listener = new EventListener();
 
         // mock request
         $requestUtility = new RequestUtility();
@@ -498,11 +497,9 @@ class SlackbotTest extends TestCase
 
         $requestUtility->setContent(json_encode($request));
 
-        $listener->setRequestUtility($requestUtility);
+        $slackbot->setRequestUtility($requestUtility);
 
         $this->expectOutputString($challenge);
-
-        $slackbot->setListener($listener);
 
         $slackbot->run();
     }
