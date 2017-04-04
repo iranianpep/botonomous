@@ -60,8 +60,6 @@ class Slackbot extends AbstractBot
         if (isset($request['type']) && $request['type'] === 'url_verification') {
             return 'url_verification';
         }
-
-        return;
     }
 
     /**
@@ -180,8 +178,9 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     private function handleUrlVerification()
     {
