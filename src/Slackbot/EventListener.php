@@ -64,15 +64,6 @@ class EventListener extends BaseListener
 
     public function processRequest()
     {
-        $request = $this->getRequest();
-
-        // in case URL verification handshake is required
-        if (!empty($request['challenge'])) {
-            echo $request['challenge'];
-
-            return;
-        }
-
         // process the event
         $this->loadEvent();
     }

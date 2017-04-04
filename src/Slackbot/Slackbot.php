@@ -46,17 +46,22 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     private function determineAction()
     {
         $getRequest = $this->getRequestUtility()->getGet();
-        $action = '';
+
         if (isset($getRequest['action'])) {
-            $action = strtolower($getRequest['action']);
+            return strtolower($getRequest['action']);
         }
 
-        return $action;
+        $request = $this->getRequest();
+        if (isset($request['type']) && $request['type'] === 'url_verification') {
+            return 'url_verification';
+        }
+
+        return;
     }
 
     /**
@@ -165,10 +170,28 @@ class Slackbot extends AbstractBot
             case 'message_actions':
                 $this->handleMessageActions();
                 break;
+            case 'url_verification':
+                $this->handleUrlVerification();
+                break;
             default:
                 $this->handleSendResponse();
                 break;
         }
+    }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
+    private function handleUrlVerification()
+    {
+        $request = $this->getRequest();
+
+        if (empty($request['challenge'])) {
+            throw new \Exception('Challenge is missing for URL verification');
+        }
+
+        echo $request['challenge'];
     }
 
     /**

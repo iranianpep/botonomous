@@ -478,21 +478,32 @@ class SlackbotTest extends TestCase
         $this->assertEquals('<@U3Qdfvdfv> test', $slackbot->getMessage());
     }
 
-    /*
-     * Test run.
+    /**
+     * Test processRequest.
      */
-//    public function testRunEmptyState()
-//    {
-//        $requestUtility = new RequestUtility();
-//        $requestUtility->setGet(
-//            ['action' => 'oauth']
-//        );
-//
-//        $slackbot = new Slackbot();
-//        $slackbot->setRequestUtility($requestUtility);
-//
-//        $this->setExpectedException('Exception', 'State is not provided');
-//
-//        $slackbot->run();
-//    }
+    public function testUrlVerificationAction()
+    {
+        $slackbot = new Slackbot();
+        $listener = new EventListener();
+
+        // mock request
+        $requestUtility = new RequestUtility();
+
+        $challenge = '3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P';
+        $request = [
+            'token'     => 'Jhj5dZrVaK7ZwHHjRyZWjbDl',
+            'challenge' => $challenge,
+            'type'      => 'url_verification',
+        ];
+
+        $requestUtility->setContent(json_encode($request));
+
+        $listener->setRequestUtility($requestUtility);
+
+        $this->expectOutputString($challenge);
+
+        $slackbot->setListener($listener);
+
+        $slackbot->run();
+    }
 }
