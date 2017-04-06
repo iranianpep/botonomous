@@ -180,7 +180,7 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * handle OAuth
+     * handle OAuth.
      */
     private function handleOAuth()
     {
