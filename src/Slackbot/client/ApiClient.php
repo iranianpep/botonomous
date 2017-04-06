@@ -383,7 +383,7 @@ class ApiClient
     {
         // fall back to config
         if (empty($this->token)) {
-            $this->setToken((new Config())->get('apiToken'));
+            $this->setToken((new Config())->get('accessToken'));
         }
 
         return $this->token;

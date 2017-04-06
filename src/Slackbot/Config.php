@@ -10,7 +10,7 @@ class Config extends AbstractConfig
     protected static $configs = [
         'baseUrl'              => 'http://localhost:8888',
         'timezone'             => 'Australia/Melbourne',
-        'apiToken'             => 'YOUR_API_TOKEN',
+        'accessToken'          => 'YOUR_API_TOKEN',
         'channel'              => '#general',
         'botUserId'            => 'YOUR_BOT_USER_ID',
         'botUsername'          => 'YOUR_BOT_USERNAME',
