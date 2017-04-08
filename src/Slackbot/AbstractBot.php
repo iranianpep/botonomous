@@ -22,6 +22,7 @@ abstract class AbstractBot
     protected $requestUtility;
     protected $blackList;
     protected $whiteList;
+    protected $sender;
 
     /**
      * @return Config
@@ -222,5 +223,25 @@ abstract class AbstractBot
     public function setWhiteList(WhiteList $whiteList)
     {
         $this->whiteList = $whiteList;
+    }
+
+    /**
+     * @return Sender
+     */
+    public function getSender()
+    {
+        if (!isset($this->sender)) {
+            $this->setSender(new Sender($this));
+        }
+
+        return $this->sender;
+    }
+
+    /**
+     * @param Sender $sender
+     */
+    public function setSender(Sender $sender)
+    {
+        $this->sender = $sender;
     }
 }

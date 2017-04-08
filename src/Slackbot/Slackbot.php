@@ -2,11 +2,6 @@
 
 namespace Slackbot;
 
-use /* @noinspection PhpUndefinedClassInspection */
-    GuzzleHttp\Client;
-use /* @noinspection PhpUndefinedClassInspection */
-    GuzzleHttp\Psr7\Request;
-use Slackbot\client\ApiClient;
 use Slackbot\plugin\AbstractPlugin;
 
 /**
@@ -127,7 +122,7 @@ class Slackbot extends AbstractBot
         $response = $this->respond($message);
 
         if (!empty($response)) {
-            $this->send($this->getRequest('channel_name'), $response);
+            $this->getSender()->send($this->getRequest('channel_name'), $response);
         }
     }
 
@@ -143,14 +138,14 @@ class Slackbot extends AbstractBot
 
         if ($this->getBlackList()->isBlackListed() !== false) {
             // found in blacklist
-            $this->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
+            $this->getSender()->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
 
             return false;
         }
 
         if ($this->getWhiteList()->isWhiteListed() !== true) {
             // not found in whitelist
-            $this->send($this->getRequest('channel_name'), $this->getConfig()->get('whitelistedMessage'));
+            $this->getSender()->send($this->getRequest('channel_name'), $this->getConfig()->get('whitelistedMessage'));
 
             return false;
         }
@@ -219,7 +214,7 @@ class Slackbot extends AbstractBot
 
         $channel = $this->getRequest('channel_name');
         if (!empty($confirmMessage)) {
-            $this->send($channel, $confirmMessage);
+            $this->getSender()->send($channel, $confirmMessage);
         }
     }
 
@@ -241,71 +236,6 @@ class Slackbot extends AbstractBot
         }
     }
 
-    /**
-     * Final endpoint for the response.
-     *
-     * @param $channel
-     * @param $response
-     * @param $attachments
-     *
-     * @throws \Exception
-     *
-     * @return bool
-     */
-    public function send($channel, $response, $attachments = null)
-    {
-        // @codeCoverageIgnoreStart
-        if ($this->getListener()->isThisBot() !== false) {
-            return false;
-        }
-        // @codeCoverageIgnoreEnd
-
-        $responseType = $this->getConfig()->get('response');
-        $debug = (bool) $this->getRequest('debug');
-
-        if (empty($channel)) {
-            $channel = $this->getConfig()->get('channel');
-        }
-
-        $data = [
-            'text'    => $response,
-            'channel' => $channel,
-        ];
-
-        if ($attachments !== null) {
-            $data['attachments'] = json_encode($attachments);
-        }
-
-        if ($debug === true) {
-            echo json_encode($data);
-        } elseif ($responseType === 'slack') {
-            $this->getLoggerUtility()->logChat(__METHOD__, $response);
-            (new ApiClient())->chatPostMessage($data);
-        } elseif ($responseType === 'slashCommand') {
-            /** @noinspection PhpUndefinedClassInspection */
-            $request = new Request(
-                'POST',
-                $this->getRequest('response_url'),
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'text'          => $response,
-                    'response_type' => 'in_channel',
-                ])
-            );
-
-            /* @noinspection PhpUndefinedClassInspection */
-            (new Client())->send($request);
-        } elseif ($responseType === 'json') {
-            $this->getLoggerUtility()->logChat(__METHOD__, $response);
-            // headers_sent is used to avoid issue in the test
-            if (!headers_sent()) {
-                header('Content-type:application/json;charset=utf-8');
-            }
-            echo json_encode($data);
-        }
-
-        return true;
-    }
 
     /**
      * @param null $message
