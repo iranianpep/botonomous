@@ -236,7 +236,6 @@ class Slackbot extends AbstractBot
         }
     }
 
-
     /**
      * @param null $message
      *
