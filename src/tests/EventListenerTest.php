@@ -12,6 +12,7 @@ class EventListenerTest extends TestCase
 {
     /**
      * Test listen.
+     *
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
