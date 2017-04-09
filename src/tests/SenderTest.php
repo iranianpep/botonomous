@@ -37,9 +37,9 @@ class SenderTest extends TestCase
 
         $sender = new Sender($slackbot);
 
-        $sender->send('#general', 'test response', []);
+        $sender->send('#dummyChannel', 'test response', []);
 
-        $response = '{"text":"test response","channel":"#general","attachments":"[]"}';
+        $response = '{"text":"test response","channel":"#dummyChannel","attachments":"[]"}';
 
         $this->expectOutputString($response);
     }
@@ -69,9 +69,9 @@ class SenderTest extends TestCase
 
         $sender = new Sender($slackbot);
 
-        $sender->send('#general', 'test response');
+        $sender->send('#dummyChannel', 'test response');
 
-        $response = '{"text":"test response","channel":"#general"}';
+        $response = '{"text":"test response","channel":"#dummyChannel"}';
 
         $this->expectOutputString($response);
     }
@@ -101,7 +101,7 @@ class SenderTest extends TestCase
 
         $sender = new Sender($slackbot);
 
-        $sender->send('#general', 'test response');
+        $sender->send('#dummyChannel', 'test response');
 
         $response = '';
 

@@ -60,6 +60,7 @@ class SlashCommandListenerTest extends TestCase
         $config = new Config();
         $config->set('listenerType', 'slashCommand');
         $config->set('respondOk', false);
+        $config->set('channel', '#dummyChannel');
         $commandPrefix = $config->get('commandPrefix');
 
         /**
@@ -93,10 +94,10 @@ class SlashCommandListenerTest extends TestCase
 
         $response = '';
         if (!empty($confirmMessage)) {
-            $response .= '{"text":"'.$confirmMessage.'","channel":"#general"}';
+            $response .= '{"text":"'.$confirmMessage.'","channel":"#dummyChannel"}';
         }
 
-        $response .= '{"text":"pong","channel":"#general"}';
+        $response .= '{"text":"pong","channel":"#dummyChannel"}';
 
         $this->expectOutputString($response);
 
@@ -107,6 +108,7 @@ class SlashCommandListenerTest extends TestCase
     {
         $config = new Config();
         $config->set('listenerType', 'slashCommand');
+        $config->set('channel', '#dummyChannel');
         $config->set('respondOk', false);
         $commandPrefix = $config->get('commandPrefix');
 
@@ -140,7 +142,7 @@ class SlashCommandListenerTest extends TestCase
 
         $sorryResponse = $config->get('whitelistedMessage');
 
-        $response = '{"text":"'.$sorryResponse.'","channel":"#general"}';
+        $response = '{"text":"'.$sorryResponse.'","channel":"#dummyChannel"}';
 
         $this->expectOutputString($response);
 
@@ -151,6 +153,7 @@ class SlashCommandListenerTest extends TestCase
     {
         $config = new Config();
         $config->set('listenerType', 'slashCommand');
+        $config->set('channel', '#dummyChannel');
         $config->set('respondOk', false);
         $commandPrefix = $config->get('commandPrefix');
 
@@ -201,7 +204,7 @@ class SlashCommandListenerTest extends TestCase
 
         $sorryResponse = $config->get('blacklistedMessage');
 
-        $response = '{"text":"'.$sorryResponse.'","channel":"#general"}';
+        $response = '{"text":"'.$sorryResponse.'","channel":"#dummyChannel"}';
 
         $this->expectOutputString($response);
 
@@ -287,9 +290,9 @@ class SlashCommandListenerTest extends TestCase
         $config->set('response', $response);
         $slackbot->setConfig($config);
 
-        $this->expectOutputString('{"text":"test response","channel":"#general"}');
+        $this->expectOutputString('{"text":"test response","channel":"#dummyChannel"}');
 
-        $slackbot->getSender()->send('#general', 'test response');
+        $slackbot->getSender()->send('#dummyChannel', 'test response');
     }
 
     /**
