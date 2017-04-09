@@ -7,10 +7,13 @@ use /* @noinspection PhpUndefinedClassInspection */
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
 use Slackbot\client\ApiClient;
+use Slackbot\utility\LoggerUtility;
 
 class Sender
 {
     private $slackbot;
+    private $loggerUtility;
+    private $config;
 
     public function __construct($slackbot)
     {
@@ -52,11 +55,11 @@ class Sender
         }
         // @codeCoverageIgnoreEnd
 
-        $responseType = $this->getSlackbot()->getConfig()->get('response');
+        $responseType = $this->getConfig()->get('response');
         $debug = (bool) $this->getSlackbot()->getRequest('debug');
 
         if (empty($channel)) {
-            $channel = $this->getSlackbot()->getConfig()->get('channel');
+            $channel = $this->getConfig()->get('channel');
         }
 
         $data = [
@@ -71,7 +74,7 @@ class Sender
         if ($debug === true) {
             echo json_encode($data);
         } elseif ($responseType === 'slack') {
-            $this->getSlackbot()->getLoggerUtility()->logChat(__METHOD__, $response);
+            $this->getLoggerUtility()->logChat(__METHOD__, $response);
             (new ApiClient())->chatPostMessage($data);
         } elseif ($responseType === 'slashCommand') {
             /** @noinspection PhpUndefinedClassInspection */
@@ -88,7 +91,7 @@ class Sender
             /* @noinspection PhpUndefinedClassInspection */
             (new Client())->send($request);
         } elseif ($responseType === 'json') {
-            $this->getSlackbot()->getLoggerUtility()->logChat(__METHOD__, $response);
+            $this->getLoggerUtility()->logChat(__METHOD__, $response);
             // headers_sent is used to avoid issue in the test
             if (!headers_sent()) {
                 header('Content-type:application/json;charset=utf-8');
@@ -97,5 +100,45 @@ class Sender
         }
 
         return true;
+    }
+
+    /**
+     * @return LoggerUtility
+     */
+    public function getLoggerUtility()
+    {
+        if (!isset($this->loggerUtility)) {
+            $this->setLoggerUtility(new LoggerUtility());
+        }
+
+        return $this->loggerUtility;
+    }
+
+    /**
+     * @param LoggerUtility $loggerUtility
+     */
+    public function setLoggerUtility(LoggerUtility $loggerUtility)
+    {
+        $this->loggerUtility = $loggerUtility;
+    }
+
+    /**
+     * @return Config
+     */
+    public function getConfig()
+    {
+        if ($this->config === null) {
+            $this->config = (new Config());
+        }
+
+        return $this->config;
+    }
+
+    /**
+     * @param Config $config
+     */
+    public function setConfig(Config $config)
+    {
+        $this->config = $config;
     }
 }
