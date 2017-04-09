@@ -2,6 +2,8 @@
 
 namespace Slackbot\Tests;
 
+session_start();
+
 use GuzzleHttp\Client;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Exception\RequestException;
@@ -22,15 +24,6 @@ use Slackbot\utility\SessionUtility;
  */
 class OAuthTest extends TestCase
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-    }
-
     /**
      * Test doOauth.
      */
