@@ -2,8 +2,6 @@
 
 namespace Slackbot\Tests;
 
-session_start();
-
 use GuzzleHttp\Client;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Exception\RequestException;
@@ -26,6 +24,8 @@ class OAuthTest extends TestCase
 {
     /**
      * Test doOauth.
+     *
+     * @runInSeparateProcess
      */
     public function testDoOauth()
     {
