@@ -83,7 +83,7 @@ class SenderTest extends TestCase
         $slackbot = new Slackbot($config);
 
         /**
-         * Overwrite the slackbot
+         * Overwrite the slackbot.
          */
         $request = [
             'token'     => $config->get(self::VERIFICATION_TOKEN),
