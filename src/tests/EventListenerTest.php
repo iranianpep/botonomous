@@ -19,7 +19,6 @@ class EventListenerTest extends TestCase
     {
         $eventListener = new EventListener();
         $config = new Config();
-        $config->set('respondOk', false);
         $eventListener->setConfig($config);
 
         $requestUtility = $this->getSampleRequestUtility();
