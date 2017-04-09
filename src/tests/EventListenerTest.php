@@ -12,12 +12,12 @@ class EventListenerTest extends TestCase
 {
     /**
      * Test listen.
+     * @runInSeparateProcess
      */
     public function testListen()
     {
         $eventListener = new EventListener();
         $config = new Config();
-        $config->set('respondOk', false);
         $eventListener->setConfig($config);
 
         $requestUtility = $this->getSampleRequestUtility();

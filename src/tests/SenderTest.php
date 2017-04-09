@@ -38,9 +38,9 @@ class SenderTest extends TestCase
 
         $sender = new Sender($slackbot);
 
-        $sender->send('#general', 'test response');
+        $sender->send('#general', 'test response', []);
 
-        $response = '{"text":"test response","channel":"#general"}';
+        $response = '{"text":"test response","channel":"#general","attachments":"[]"}';
 
         $this->expectOutputString($response);
     }
@@ -73,6 +73,38 @@ class SenderTest extends TestCase
         $sender->send('#general', 'test response');
 
         $response = '{"text":"test response","channel":"#general"}';
+
+        $this->expectOutputString($response);
+    }
+
+    public function testSendSlackSlack()
+    {
+        $config = new Config();
+        $config->set('response', 'slack');
+        $slackbot = new Slackbot($config);
+
+        /**
+         * Overwrite the slackbot
+         */
+        $request = [
+            'token'     => $config->get(self::VERIFICATION_TOKEN),
+            'user_id'   => 'dummyId',
+            'user_name' => 'dummyUsername',
+        ];
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+
+        $slackbot->setConfig($config);
+
+        $sender = new Sender($slackbot);
+
+        $sender->send('#general', 'test response');
+
+        $response = '';
 
         $this->expectOutputString($response);
     }
