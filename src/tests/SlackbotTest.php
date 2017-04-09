@@ -61,10 +61,6 @@ class SlackbotTest extends TestCase
          * Form the request.
          */
         $botUserId = '<@'.$config->get('botUserId').'>';
-        $request = [
-            'token' => $config->get(self::VERIFICATION_TOKEN),
-            'text'  => "{$botUserId} {$commandPrefix}ping",
-        ];
 
         $slackbot = new Slackbot();
 
@@ -72,7 +68,7 @@ class SlackbotTest extends TestCase
         $listener = $slackbot->getListener();
 
         // set request
-        $listener->setRequest($request);
+        $listener->setRequest($this->getDummyRequest());
 
         $response = $slackbot->respond();
 
@@ -502,5 +498,38 @@ class SlackbotTest extends TestCase
         $this->expectOutputString($challenge);
 
         $slackbot->run();
+    }
+
+    public function testYouTalkingToMe()
+    {
+        $slackbot = new Slackbot();
+        $listener = $slackbot->getListener();
+
+        $listener->setRequest($this->getDummyRequest());
+
+        $this->assertEquals(true, $slackbot->youTalkingToMe());
+
+        $listener->setRequest($this->getDummyRequest('dummyBotId'));
+
+        $this->assertEquals(false, $slackbot->youTalkingToMe());
+    }
+
+    private function getDummyRequest($botUserId = null)
+    {
+        /**
+         * Form the request.
+         */
+        $config = new Config();
+
+        if ($botUserId === null) {
+            $botUserId = '<@'.$config->get('botUserId').'>';
+        }
+
+        $commandPrefix = $config->get('commandPrefix');
+
+        return [
+            'token' => $config->get(self::VERIFICATION_TOKEN),
+            'text'  => "{$botUserId} {$commandPrefix}ping",
+        ];
     }
 }
