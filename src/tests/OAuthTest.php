@@ -24,8 +24,6 @@ class OAuthTest extends TestCase
 {
     /**
      * Test doOauth.
-     *
-     * @runInSeparateProcess
      */
     public function testDoOauth()
     {
