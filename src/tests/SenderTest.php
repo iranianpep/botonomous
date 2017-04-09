@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Slackbot\Tests;
 
 use PHPUnit\Framework\TestCase;
@@ -18,7 +17,7 @@ class SenderTest extends TestCase
         $slackbot = new Slackbot($config);
 
         /**
-         * Overwrite the slackbot
+         * Overwrite the slackbot.
          */
         $request = [
             'token'     => $config->get(self::VERIFICATION_TOKEN),
@@ -52,7 +51,7 @@ class SenderTest extends TestCase
         $slackbot = new Slackbot($config);
 
         /**
-         * Overwrite the slackbot
+         * Overwrite the slackbot.
          */
         $request = [
             'token'     => $config->get(self::VERIFICATION_TOKEN),
@@ -113,7 +112,7 @@ class SenderTest extends TestCase
     {
         $config = new Config();
         $originalChannel = $config->get('channel');
-        $config->set('channel', $originalChannel . 'Changed');
+        $config->set('channel', $originalChannel.'Changed');
 
         $sender = new Sender((new Slackbot()));
         $sender->setConfig($config);
