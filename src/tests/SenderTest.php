@@ -11,9 +11,14 @@ class SenderTest extends TestCase
 {
     const VERIFICATION_TOKEN = 'verificationToken';
 
-    public function testSendDebug()
+    private function getSlackbot($debug = null, $responseType = null)
     {
         $config = new Config();
+
+        if ($responseType !== null) {
+            $config->set('response', $responseType);
+        }
+
         $slackbot = new Slackbot($config);
 
         /**
@@ -25,7 +30,9 @@ class SenderTest extends TestCase
             'user_name' => 'dummyUsername',
         ];
 
-        $request['debug'] = true;
+        if ($debug !== null) {
+            $request['debug'] = $debug;
+        }
 
         // get listener
         $listener = $slackbot->getListener();
@@ -35,7 +42,12 @@ class SenderTest extends TestCase
 
         $slackbot->setConfig($config);
 
-        $sender = new Sender($slackbot);
+        return $slackbot;
+    }
+
+    public function testSendDebug()
+    {
+        $sender = new Sender($this->getSlackbot(true));
 
         $sender->send('#dummyChannel', 'test response', []);
 
@@ -46,28 +58,7 @@ class SenderTest extends TestCase
 
     public function testSendSlackJson()
     {
-        $config = new Config();
-        $config->set('response', 'json');
-        $slackbot = new Slackbot($config);
-
-        /**
-         * Overwrite the slackbot.
-         */
-        $request = [
-            'token'     => $config->get(self::VERIFICATION_TOKEN),
-            'user_id'   => 'dummyId',
-            'user_name' => 'dummyUsername',
-        ];
-
-        // get listener
-        $listener = $slackbot->getListener();
-
-        // set request
-        $listener->setRequest($request);
-
-        $slackbot->setConfig($config);
-
-        $sender = new Sender($slackbot);
+        $sender = new Sender($this->getSlackbot(null, 'json'));
 
         $sender->send('#dummyChannel', 'test response');
 
@@ -78,28 +69,7 @@ class SenderTest extends TestCase
 
     public function testSendSlackSlack()
     {
-        $config = new Config();
-        $config->set('response', 'slack');
-        $slackbot = new Slackbot($config);
-
-        /**
-         * Overwrite the slackbot.
-         */
-        $request = [
-            'token'     => $config->get(self::VERIFICATION_TOKEN),
-            'user_id'   => 'dummyId',
-            'user_name' => 'dummyUsername',
-        ];
-
-        // get listener
-        $listener = $slackbot->getListener();
-
-        // set request
-        $listener->setRequest($request);
-
-        $slackbot->setConfig($config);
-
-        $sender = new Sender($slackbot);
+        $sender = new Sender($this->getSlackbot(null, 'slack'));
 
         $sender->send('#dummyChannel', 'test response');
 
