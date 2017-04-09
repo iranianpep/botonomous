@@ -12,6 +12,7 @@ class EventListenerTest extends TestCase
 {
     /**
      * Test listen.
+     *
      * @runInSeparateProcess
      */
     public function testListen()
