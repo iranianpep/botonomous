@@ -30,12 +30,14 @@ class EventListenerTest extends TestCase
 
     /**
      * Test listenBot.
+     *
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testListenBot()
     {
         $eventListener = new EventListener();
         $config = new Config();
-        $config->set('respondOk', false);
         $eventListener->setConfig($config);
 
         $requestUtility = $this->getSampleRequestUtility();
@@ -284,6 +286,9 @@ class EventListenerTest extends TestCase
 
     /**
      * Test listen.
+     *
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testListenEmpty()
     {

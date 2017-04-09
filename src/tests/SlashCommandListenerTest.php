@@ -17,6 +17,9 @@ class SlashCommandListenerTest extends TestCase
 
     /**
      * Test listen.
+     *
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testListen()
     {
@@ -27,6 +30,9 @@ class SlashCommandListenerTest extends TestCase
 
     /**
      * Test listenBot.
+     *
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testListenBot()
     {
@@ -42,7 +48,6 @@ class SlashCommandListenerTest extends TestCase
     {
         $listener = new SlashCommandListener();
         $config = new Config();
-        $config->set('respondOk', false);
         $listener->setConfig($config);
 
         $requestUtility = new RequestUtility();
@@ -54,12 +59,14 @@ class SlashCommandListenerTest extends TestCase
 
     /**
      * @throws \Exception
+     *
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testRun()
     {
         $config = new Config();
         $config->set('listenerType', 'slashCommand');
-        $config->set('respondOk', false);
         $config->set('channel', '#dummyChannel');
         $commandPrefix = $config->get('commandPrefix');
 
@@ -104,12 +111,15 @@ class SlashCommandListenerTest extends TestCase
         $slackbot->run();
     }
 
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function testRunWithAccessControl()
     {
         $config = new Config();
         $config->set('listenerType', 'slashCommand');
         $config->set('channel', '#dummyChannel');
-        $config->set('respondOk', false);
         $commandPrefix = $config->get('commandPrefix');
 
         /**
@@ -149,12 +159,15 @@ class SlashCommandListenerTest extends TestCase
         $slackbot->run();
     }
 
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function testRunWithBlackListedAccessControl()
     {
         $config = new Config();
         $config->set('listenerType', 'slashCommand');
         $config->set('channel', '#dummyChannel');
-        $config->set('respondOk', false);
         $commandPrefix = $config->get('commandPrefix');
 
         /**
@@ -213,6 +226,9 @@ class SlashCommandListenerTest extends TestCase
 
     /**
      * @throws \Exception
+     *
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testSendByBot()
     {
