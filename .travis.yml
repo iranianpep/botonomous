@@ -19,7 +19,7 @@ addons:
 
 before_install:
 - composer self-update
-- conposer --version
+- composer --version
 - |
   if [[ "$BLACKFIRE" = "on" ]]; then
       openssl aes-256-cbc -K $encrypted_6705e8958d73_key -iv $encrypted_6705e8958d73_iv -in .blackfire.travis.ini.enc -out ~/.blackfire.ini -d
