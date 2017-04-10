@@ -1,17 +1,22 @@
 language: php
+
 matrix:
   include:
   - php: 7.0
     env: BLACKFIRE=on
   - php: 7.1
     env: BLACKFIRE=on
+
 sudo: false
+
 cache:
 - "$HOME/.composer/cache/files"
 - ".phpunit"
+
 addons:
   code_climate:
     repo_token: 942f655463e0461a866a6f000b8d8ea267921a6010807045fa72f6da09c187f6
+
 before_install:
 - |
   if [[ "$BLACKFIRE" = "on" ]]; then
@@ -19,9 +24,11 @@ before_install:
       curl -L https://blackfire.io/api/v1/releases/agent/linux/amd64 | tar zxpf -
       chmod 755 agent && ./agent --config=~/.blackfire.ini --socket=unix:///tmp/blackfire.sock &
   fi
+
+install:
+    - travis_retry composer install
+
 before_script:
-- composer self-update
-- composer install
 - phpenv config-rm xdebug.ini || true
 - |
   if [[ "$BLACKFIRE" = "on" ]]; then
@@ -29,7 +36,9 @@ before_script:
       echo "extension=$(pwd)/$(ls blackfire-*.so | tr -d '[[:space:]]')" > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/blackfire.ini
       echo "blackfire.agent_socket=unix:///tmp/blackfire.sock" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/blackfire.ini
   fi
+
 script: phpunit --coverage-clover build/logs/clover.xml --configuration phpunit.xml
   --bootstrap vendor/autoload.php src/tests
+
 after_script:
 - vendor/bin/test-reporter
