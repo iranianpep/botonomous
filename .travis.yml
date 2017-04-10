@@ -2,11 +2,11 @@
 language: php
 
 # list any PHP version you want to test against
-php:
-  # using major version aliases
-  - '7.0'
-  - '7.1'
-  env: BLACKFIRE=on
+matrix:
+    include:
+        - php: 7.0
+        - php: 7.1
+          env: BLACKFIRE=on
 
 addons:
     code_climate:
