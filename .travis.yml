@@ -39,7 +39,6 @@ before_script:
       echo "blackfire.agent_socket=unix:///tmp/blackfire.sock" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/blackfire.ini
 
   fi
-- blackfire-agent -v
 
 script: phpunit --coverage-clover build/logs/clover.xml --configuration phpunit.xml
   --bootstrap vendor/autoload.php src/tests
