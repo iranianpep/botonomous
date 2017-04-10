@@ -8,6 +8,8 @@ matrix:
         - php: 7.1
           env: BLACKFIRE=on
 
+sudo: false
+
 addons:
     code_climate:
         repo_token: 942f655463e0461a866a6f000b8d8ea267921a6010807045fa72f6da09c187f6
@@ -20,10 +22,11 @@ before_install:
             chmod 755 agent && ./agent --config=~/.blackfire.ini --socket=unix:///tmp/blackfire.sock &
         fi
 
+install:
+    - travis_retry composer install
+
 # Commands to be run before your environment runs
 before_script:
-  - composer self-update
-  - composer install
   - phpenv config-rm xdebug.ini || true
   - |
       if [[ "$BLACKFIRE" = "on" ]]; then
