@@ -13,6 +13,10 @@ class Command
     private $action;
     private $class;
 
+    /**
+     * Command constructor.
+     * @param $key
+     */
     public function __construct($key)
     {
         $this->setKey($key);

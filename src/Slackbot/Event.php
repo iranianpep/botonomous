@@ -12,6 +12,10 @@ class Event extends AbstractBaseSlack
     private $channel;
     private $botId;
 
+    /**
+     * Event constructor.
+     * @param $type
+     */
     public function __construct($type)
     {
         $this->setType($type);

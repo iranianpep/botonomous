@@ -4,6 +4,10 @@ namespace Slackbot\utility;
 
 use Slackbot\AbstractBaseSlack;
 
+/**
+ * Class ClassUtility
+ * @package Slackbot\utility
+ */
 class ClassUtility
 {
     /**

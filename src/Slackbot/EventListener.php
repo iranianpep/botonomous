@@ -18,6 +18,9 @@ class EventListener extends BaseListener
         'event_ts' => 'eventTimestamp',
     ];
 
+    /**
+     * EventListener constructor.
+     */
     public function __construct()
     {
     }
@@ -50,14 +53,19 @@ class EventListener extends BaseListener
         return $request;
     }
 
+    /**
+     * @return mixed
+     */
     public function extractRequest()
     {
         return $this->getRequestUtility()->getPostedBody();
     }
 
+    /**
+     * process the event
+     */
     public function processRequest()
     {
-        // process the event
         $this->loadEvent();
     }
 

@@ -2,6 +2,10 @@
 
 namespace Slackbot\utility;
 
+/**
+ * Class SecurityUtility
+ * @package Slackbot\utility
+ */
 class SecurityUtility
 {
     const DEFAULT_HASH_ALGORITHM = 'sha1';

@@ -7,5 +7,8 @@ namespace Slackbot\plugin;
  */
 interface PluginInterface
 {
+    /**
+     * @return mixed
+     */
     public function index();
 }
