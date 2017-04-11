@@ -15,6 +15,7 @@ class Command
 
     /**
      * Command constructor.
+     *
      * @param $key
      */
     public function __construct($key)

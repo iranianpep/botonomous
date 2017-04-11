@@ -14,6 +14,7 @@ class Event extends AbstractBaseSlack
 
     /**
      * Event constructor.
+     *
      * @param $type
      */
     public function __construct($type)

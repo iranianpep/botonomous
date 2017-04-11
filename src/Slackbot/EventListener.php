@@ -62,7 +62,7 @@ class EventListener extends BaseListener
     }
 
     /**
-     * process the event
+     * process the event.
      */
     public function processRequest()
     {
