@@ -10,10 +10,10 @@ class Config extends AbstractConfig
     protected static $configs = [
         'baseUrl'              => 'http://localhost:8888',
         'timezone'             => 'Australia/Melbourne',
-        'accessToken'          => 'xoxb-164178835570-n652D5Trt0Ik9D7w3BYTF1hA',
+        'accessToken'          => 'YOUR_API_TOKEN',
         'channel'              => '#general',
-        'botUserId'            => 'U4U58QKGS',
-        'botUsername'          => 'test_app',
+        'botUserId'            => 'YOUR_BOT_USER_ID',
+        'botUsername'          => 'YOUR_BOT_USERNAME',
         'chatLogging'          => true,
         'tmpFolderName'        => 'tmp',
         'chatLoggingFileName'  => 'chat_log',
@@ -22,7 +22,7 @@ class Config extends AbstractConfig
         // possible values are: slashCommand, event
         'listenerType'         => 'slashCommand',
         // possible values are: slack, json, slashCommand
-        'response'      => 'slashCommand',
+        'response'      => 'slack',
         // this is used if there is no command has been specified in the message
         'defaultCommand'     => 'help',
         'commandPrefix'      => '/',
@@ -41,15 +41,15 @@ class Config extends AbstractConfig
          * App credentials - This is required for Event listener
          * Can be found at https://api.slack.com/apps
          */
-        'clientId'     => '168274793846.167633250276',
-        'clientSecret' => '1234567890',
+        'clientId'     => 'YOUR_APP_CLIENT_ID',
+        'clientSecret' => 'YOUR_APP_SECRET',
         'scopes'       => ['bot'],
         /*
          * For interactive messages and events,
          * use this token to verify that requests are actually coming from Slack
          */
-        'verificationToken'    => 'UByHpCps5wcFBmELqiP5UmLR',
-        'apiAppId'             => 'A4XJM7C84',
+        'verificationToken'    => 'YOUR_APP_VERIFICATION_TOKEN',
+        'apiAppId'             => 'YOUR_API_ID',
         'enabledAccessControl' => false,
     ];
 }
