@@ -17,6 +17,12 @@
 
 A PHP framework to create Slackbots faaaaaaaaster!
 
+### Events API
+![](https://ajaxlivesearch.com/img/slack-event.png)
+
+### Slash Command
+![](https://ajaxlivesearch.com/img/slack-slash.png)
+
 The documentation and installation guide can be found [here](https://github.com/iranianpep/slackbot/wiki).
 
 ## Buy me a coffee / beer if you like!
