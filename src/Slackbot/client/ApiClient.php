@@ -87,6 +87,7 @@ class ApiClient
 
     /**
      * ApiClient constructor.
+     *
      * @param null $token
      */
     public function __construct($token = null)

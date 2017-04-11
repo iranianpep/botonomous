@@ -3,8 +3,7 @@
 namespace Slackbot\utility;
 
 /**
- * Class ArrayUtility
- * @package Slackbot\utility
+ * Class ArrayUtility.
  */
 class ArrayUtility extends AbstractUtility
 {

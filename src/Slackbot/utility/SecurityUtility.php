@@ -3,8 +3,7 @@
 namespace Slackbot\utility;
 
 /**
- * Class SecurityUtility
- * @package Slackbot\utility
+ * Class SecurityUtility.
  */
 class SecurityUtility
 {
