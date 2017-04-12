@@ -15,7 +15,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/slackbot/master/LICENSE)
 [![Beerpay](https://img.shields.io/beerpay/iranianpep/slackbot.svg)](https://beerpay.io/iranianpep/slackbot)
 
-A PHP framework to create Slackbots faaaaaaaaster!
+A PHP framework to create Slackbots faaaaaaaaster! Either your bot uses Events API or Slash Commands it is supported by Slackbot Framework:
 
 ### Events API
 ![](https://ajaxlivesearch.com/img/slack-event.png)
