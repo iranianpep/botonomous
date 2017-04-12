@@ -5,6 +5,10 @@ namespace Slackbot\Tests;
 use PHPUnit\Framework\TestCase;
 use Slackbot\Action;
 
+/**
+ * Class ActionTest
+ * @package Slackbot\Tests
+ */
 class ActionTest extends TestCase
 {
     public function testLoad()
