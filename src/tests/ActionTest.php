@@ -6,8 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Slackbot\Action;
 
 /**
- * Class ActionTest
- * @package Slackbot\Tests
+ * Class ActionTest.
  */
 class ActionTest extends TestCase
 {
