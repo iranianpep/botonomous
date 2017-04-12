@@ -23,7 +23,11 @@ A PHP framework to create Slackbots faaaaaaaaster!
 ### Slash Command
 ![](https://ajaxlivesearch.com/img/slack-slash.png)
 
+## Getting Started
 The documentation and installation guide can be found [here](https://github.com/iranianpep/slackbot/wiki).
+
+## Reporting security issues
+To report any security vulnerabilities, please drop an email to ehsan.abb@gmail.com and do NOT report it on GitHub.
 
 ## Buy me a coffee / beer if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
