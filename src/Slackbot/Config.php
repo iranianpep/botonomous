@@ -45,7 +45,6 @@ class Config extends AbstractConfig
         'clientSecret' => 'YOUR_APP_SECRET',
         'scopes'       => ['bot'],
         /*
-         * For interactive messages and events,
          * use this token to verify that requests are actually coming from Slack
          */
         'verificationToken'    => 'YOUR_APP_VERIFICATION_TOKEN',
