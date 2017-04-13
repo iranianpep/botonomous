@@ -21,7 +21,7 @@ class Config extends AbstractConfig
         'asUser'               => true,
         // possible values are: slashCommand, event
         'listenerType'         => 'slashCommand',
-        // possible values are: slack, json, slashCommand
+        // response type - possible values are: slack, json, slashCommand
         'response'      => 'slack',
         // this is used if there is no command has been specified in the message
         'defaultCommand'     => 'help',
