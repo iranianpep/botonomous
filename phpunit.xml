@@ -9,9 +9,6 @@
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
       <directory suffix=".php">src/Slackbot/</directory>
-      <!--<exclude>-->
-        <!--<directory suffix=".php">tests/Slackbot/</directory>-->
-      <!--</exclude>-->
     </whitelist>
   </filter>
 
