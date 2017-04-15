@@ -8,6 +8,7 @@ class SessionUtilityTest extends TestCase
 {
     /**
      * Test set.
+     *
      * @runInSeparateProcess
      */
     public function testSet()
@@ -24,6 +25,7 @@ class SessionUtilityTest extends TestCase
 
     /**
      * Test get.
+     *
      * @runInSeparateProcess
      */
     public function testGet()
@@ -35,6 +37,7 @@ class SessionUtilityTest extends TestCase
 
     /**
      * Test getSession.
+     *
      * @runInSeparateProcess
      */
     public function testGetSession()
