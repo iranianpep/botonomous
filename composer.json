@@ -19,5 +19,8 @@
     "psr-4": {
       "Slackbot\\": ["src/Slackbot"]
     }
+  },
+  "autoload-dev": {
+    "psr-4": {"Slackbot\\": "tests/Slackbot"}
   }
 }
