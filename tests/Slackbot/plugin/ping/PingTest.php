@@ -12,12 +12,6 @@ use Slackbot\PhpunitHelper;
 /** @noinspection PhpUndefinedClassInspection */
 class PingTest extends TestCase
 {
-    public function __construct()
-    {
-        require_once dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'PhpunitHelper.php';
-        parent::__construct();
-    }
-
     /**
      * Test pong.
      */

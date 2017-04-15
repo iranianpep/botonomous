@@ -13,12 +13,6 @@ use Slackbot\PhpunitHelper;
 /** @noinspection PhpUndefinedClassInspection */
 class QATest extends TestCase
 {
-    public function __construct()
-    {
-        require_once dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'PhpunitHelper.php';
-        parent::__construct();
-    }
-
     /**
      * Test index.
      */
