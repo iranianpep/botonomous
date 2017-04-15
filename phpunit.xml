@@ -8,10 +8,10 @@
 
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
-      <!--<directory suffix=".php">tests</directory>-->
-      <exclude>
-        <directory suffix=".php">tests/Slackbot/</directory>
-      </exclude>
+      <directory suffix=".php">tests</directory>
+      <!--<exclude>-->
+        <!--<directory suffix=".php">tests/Slackbot/</directory>-->
+      <!--</exclude>-->
     </whitelist>
   </filter>
 
