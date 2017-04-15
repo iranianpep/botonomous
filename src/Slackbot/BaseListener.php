@@ -111,9 +111,6 @@ abstract class BaseListener
 
     /**
      * respondOK.
-     *
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
      */
     protected function respondOK()
     {

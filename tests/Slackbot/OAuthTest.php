@@ -110,6 +110,7 @@ class OAuthTest extends TestCase
     /**
      * Test OAuth.
      * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testOAuth()
     {
@@ -293,6 +294,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * Test verifyState.
      * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testVerifyState()
     {
