@@ -16,7 +16,7 @@ class FileUtilityTest extends TestCase
      */
     public function testJsonFileToArray()
     {
-        $dir = $this->getSlackbotDir().DIRECTORY_SEPARATOR.'dictionary'. DIRECTORY_SEPARATOR.'test.json';
+        $dir = $this->getSlackbotDir().DIRECTORY_SEPARATOR.'dictionary'.DIRECTORY_SEPARATOR.'test.json';
 
         $array = (new FileUtility())->jsonFileToArray($dir);
 

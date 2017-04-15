@@ -15,7 +15,6 @@ use /* @noinspection PhpUndefinedClassInspection */
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
-use Slackbot\client\ApiClient;
 use Slackbot\Config;
 use Slackbot\Team;
 
