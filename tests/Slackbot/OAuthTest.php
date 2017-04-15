@@ -22,6 +22,7 @@ class OAuthTest extends TestCase
 {
     /**
      * Test doOauth.
+     * @runInSeparateProcess
      */
     public function testDoOauth()
     {
@@ -48,6 +49,7 @@ class OAuthTest extends TestCase
 
     /**
      * Test doOauth.
+     * @runInSeparateProcess
      */
     public function testDoOauthInvalidState()
     {
@@ -107,6 +109,7 @@ class OAuthTest extends TestCase
 
     /**
      * Test OAuth.
+     * @runInSeparateProcess
      */
     public function testOAuth()
     {
@@ -289,6 +292,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
 
     /**
      * Test verifyState.
+     * @runInSeparateProcess
      */
     public function testVerifyState()
     {

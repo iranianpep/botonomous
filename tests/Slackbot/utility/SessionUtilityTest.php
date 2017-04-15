@@ -7,17 +7,8 @@ use PHPUnit\Framework\TestCase;
 class SessionUtilityTest extends TestCase
 {
     /**
-     * SessionUtilityTest constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        session_start();
-    }
-
-    /**
      * Test set.
+     * @runInSeparateProcess
      */
     public function testSet()
     {
@@ -33,6 +24,7 @@ class SessionUtilityTest extends TestCase
 
     /**
      * Test get.
+     * @runInSeparateProcess
      */
     public function testGet()
     {
@@ -43,6 +35,7 @@ class SessionUtilityTest extends TestCase
 
     /**
      * Test getSession.
+     * @runInSeparateProcess
      */
     public function testGetSession()
     {
