@@ -586,6 +586,10 @@ class SlackbotTest extends TestCase
         $messageAction->setActions($actions);
 
         $this->assertEquals($actions, $messageAction->getActions());
+
+        $utility->setPost([]);
+
+        $this->assertEmpty($slackbot->run());
     }
 
     private function getDummyRequest($botUserId = null, $text = null)
