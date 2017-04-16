@@ -160,13 +160,13 @@ class Slackbot extends AbstractBot
     {
         switch ($this->determineAction()) {
             case 'oauth':
-                $this->handleOAuth();
+                return $this->handleOAuth();
                 break;
             case 'message_actions':
-                $this->handleMessageActions();
+                return $this->handleMessageActions();
                 break;
             case 'url_verification':
-                $this->handleUrlVerification();
+                return $this->handleUrlVerification();
                 break;
             default:
                 $this->handleSendResponse();
@@ -179,7 +179,7 @@ class Slackbot extends AbstractBot
      */
     private function handleOAuth()
     {
-        $this->getOauth()->doOauth();
+        return $this->getOauth()->doOauth();
     }
 
     /**
