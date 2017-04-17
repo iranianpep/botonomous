@@ -31,7 +31,7 @@ You are more than welcome for any contributions to the Slackbot Framework. The r
 * The framework follows PSR-2 coding standard and the PSR-4 autoloading standard
 * Make sure all the existing PHPUnit tests are passed
 * For any new function write a test and keep the code coverage >= 98%
-* Keep Code Climate score at 4 and make sure Code Climate issues is 0
+* Keep Code Climate score at 4 and make sure there is no issue
 
 ## Reporting security issues
 To report any security vulnerabilities, please drop us an email at ehsan.abb@gmail.com and do NOT report it on GitHub.
