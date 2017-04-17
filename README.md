@@ -26,6 +26,13 @@ A PHP framework to create Slackbots faaaaaaaaster! Either your bot uses [Events 
 ## Getting Started
 The documentation and installation guide can be found [here](https://github.com/iranianpep/slackbot/wiki) or you can go straight to [Getting Started](https://github.com/iranianpep/slackbot/wiki/Getting-Started) section.
 
+## Contributing
+You are more than welcome for any contributions to the Slackbot Framework. The rules are:
+* The framework follows PSR-2 coding standard and the PSR-4 autoloading standard
+* Make sure all the existing PHPUnit tests are passed
+* For any new function write a test and keep the code coverage >= 98%
+* Keep Code Climate score at 4 and make sure Code Climate issues is 0
+
 ## Reporting security issues
 To report any security vulnerabilities, please drop us an email at ehsan.abb@gmail.com and do NOT report it on GitHub.
 
