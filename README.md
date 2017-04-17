@@ -24,10 +24,13 @@ A PHP framework to create Slackbots faaaaaaaaster! Either your bot uses [Events 
 ![](https://ajaxlivesearch.com/img/slack-slash.png)
 
 ## Getting Started
-The documentation and installation guide can be found [here](https://github.com/iranianpep/slackbot/wiki) or you can go straight to [Getting Started](https://github.com/iranianpep/slackbot/wiki/Getting-Started).
+The documentation and installation guide can be found [here](https://github.com/iranianpep/slackbot/wiki) or you can go straight to [Getting Started](https://github.com/iranianpep/slackbot/wiki/Getting-Started) section.
 
 ## Reporting security issues
-To report any security vulnerabilities, please drop me an email at ehsan.abb@gmail.com and do NOT report it on GitHub.
+To report any security vulnerabilities, please drop us an email at ehsan.abb@gmail.com and do NOT report it on GitHub.
+
+## Slack bots based on Slackbot!
+If you have created any awesome bot using Slackbot Framework let us know to list it here.
 
 ## Buy me a coffee / beer if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
