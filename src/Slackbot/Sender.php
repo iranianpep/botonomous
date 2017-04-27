@@ -15,6 +15,11 @@ class Sender
     private $loggerUtility;
     private $config;
 
+    /**
+     * Sender constructor.
+     *
+     * @param $slackbot
+     */
     public function __construct($slackbot)
     {
         $this->setSlackbot($slackbot);
