@@ -10,7 +10,7 @@
 [![Code consistency](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/slackbot/grade.svg)](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/slackbot)
 [![StyleCI](https://styleci.io/repos/73189365/shield?branch=master)](https://styleci.io/repos/73189365)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0/mini.png)](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/039ffa789e6a4040b9b8d596ede07db4)](https://www.codacy.com/app/iranianpep/slackbot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=iranianpep/slackbot&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/039ffa789e6a4040b9b8d596ede07db4)](https://www.codacy.com/app/iranianpep/slackbot)
 [![Packagist](https://img.shields.io/packagist/dt/slackbot/slackbot.svg)](https://packagist.org/packages/slackbot/slackbot)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/slackbot/master/LICENSE)
 [![Beerpay](https://img.shields.io/beerpay/iranianpep/slackbot.svg)](https://beerpay.io/iranianpep/slackbot)
@@ -28,11 +28,7 @@ A PHP framework to create Slackbots faaaaaaaaster! Either your bot uses [Events 
 The documentation and installation guide can be found [here](https://github.com/iranianpep/slackbot/wiki) or you can go straight to [Getting Started](https://github.com/iranianpep/slackbot/wiki/Getting-Started) section.
 
 ## Contributing
-You are more than welcome for any contributions to the Slackbot Framework. The rules are:
-* The framework follows PSR-2 coding standard and the PSR-4 autoloading standard
-* Make sure all the existing PHPUnit tests are passed
-* For any new function write a test and keep the code coverage >= 98%
-* Keep Code Climate score at 4 and make sure there is no issue
+Thank you for considering contributing to the Slackbot Framework! Please check out the [contributing guide](https://github.com/iranianpep/slackbot/blob/master/CONTRIBUTION.md) for guidelines about how to proceed.
 
 ## Reporting security issues
 To report any security vulnerabilities, please drop us an email at ehsan.abb@gmail.com and do NOT report it on GitHub.
