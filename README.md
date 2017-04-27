@@ -28,7 +28,7 @@ A PHP framework to create Slackbots faaaaaaaaster! Either your bot uses [Events 
 The documentation and installation guide can be found [here](https://github.com/iranianpep/slackbot/wiki) or you can go straight to [Getting Started](https://github.com/iranianpep/slackbot/wiki/Getting-Started) section.
 
 ## Contributing
-Thank you for considering contributing to the Slackbot Framework! Please check out the [contributing guide](https://github.com/iranianpep/slackbot/blob/master/CONTRIBUTION.md) for guidelines about how to proceed.
+Thank you for considering contributing to the Slackbot Framework! Please check out the [contributing guide](https://github.com/iranianpep/slackbot/blob/master/CONTRIBUTING.md) for guidelines about how to proceed.
 
 ## Reporting security issues
 To report any security vulnerabilities, please drop us an email at ehsan.abb@gmail.com and do NOT report it on GitHub.
