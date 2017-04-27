@@ -14,7 +14,7 @@
 [![Packagist](https://img.shields.io/packagist/dt/slackbot/slackbot.svg)](https://packagist.org/packages/slackbot/slackbot)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/slackbot/master/LICENSE)
 [![Beerpay](https://img.shields.io/beerpay/iranianpep/slackbot.svg)](https://beerpay.io/iranianpep/slackbot)
-[![Join Slackbot Framework channel](http://slackbot-framework.herokuapp.com/badge.svg)](http://slackbot-framework.herokuapp.com/)
+[![Join Slackbot Framework Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
 
 A PHP framework to create Slackbots faaaaaaaaster! Either your bot uses [Events API](https://api.slack.com/events-api) or [Slash Commands](https://api.slack.com/slash-commands) it is supported by Slackbot Framework:
 
