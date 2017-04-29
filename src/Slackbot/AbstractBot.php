@@ -6,6 +6,7 @@ use Slackbot\utility\FormattingUtility;
 use Slackbot\utility\LoggerUtility;
 use Slackbot\utility\MessageUtility;
 use Slackbot\utility\RequestUtility;
+use Slackbot\listener\AbstractBaseListener;
 
 abstract class AbstractBot
 {
@@ -50,16 +51,13 @@ abstract class AbstractBot
     public function getListener()
     {
         if (!isset($this->listener)) {
-            $listenerClass = __NAMESPACE__.'\\'.ucwords($this->getConfig()->get('listenerType')).'Listener';
+            $listenerClass = __NAMESPACE__.'\\listener\\'.ucwords($this->getConfig()->get('listenerType')).'Listener';
             $this->setListener(new $listenerClass());
         }
 
         return $this->listener;
     }
 
-    /**
-     * @param AbstractBaseListener $listener
-     */
     public function setListener(AbstractBaseListener $listener)
     {
         $this->listener = $listener;

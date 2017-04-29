@@ -1,8 +1,10 @@
 <?php
 
-namespace Slackbot;
+namespace Slackbot\listener;
 
 use PHPUnit\Framework\TestCase;
+use Slackbot\Config;
+use Slackbot\Event;
 use Slackbot\utility\RequestUtility;
 
 class EventListenerTest extends TestCase

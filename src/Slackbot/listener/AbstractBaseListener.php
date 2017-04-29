@@ -1,7 +1,8 @@
 <?php
 
-namespace Slackbot;
+namespace Slackbot\listener;
 
+use Slackbot\Config;
 use Slackbot\utility\RequestUtility;
 
 abstract class AbstractBaseListener

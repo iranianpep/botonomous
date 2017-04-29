@@ -1,6 +1,6 @@
 <?php
 
-namespace Slackbot;
+namespace Slackbot\listener;
 
 class SlashCommandListener extends AbstractBaseListener
 {

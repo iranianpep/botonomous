@@ -1,7 +1,8 @@
 <?php
 
-namespace Slackbot;
+namespace Slackbot\listener;
 
+use Slackbot\Event;
 use Slackbot\utility\StringUtility;
 
 /**

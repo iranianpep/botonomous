@@ -2,6 +2,7 @@
 
 namespace Slackbot;
 
+use Slackbot\listener\EventListener;
 use Slackbot\plugin\AbstractPlugin;
 
 /**

@@ -3,6 +3,8 @@
 namespace Slackbot;
 
 use PHPUnit\Framework\TestCase;
+use Slackbot\listener\EventListener;
+use Slackbot\listener\SlashCommandListener;
 use Slackbot\plugin\AbstractPlugin;
 use Slackbot\utility\RequestUtility;
 
