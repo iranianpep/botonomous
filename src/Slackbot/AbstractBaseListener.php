@@ -4,7 +4,7 @@ namespace Slackbot;
 
 use Slackbot\utility\RequestUtility;
 
-abstract class BaseListener
+abstract class AbstractBaseListener
 {
     private $config;
     private $request;

@@ -2,7 +2,7 @@
 
 namespace Slackbot;
 
-class SlashCommandListener extends BaseListener
+class SlashCommandListener extends AbstractBaseListener
 {
     const VERIFICATION_TOKEN = 'verificationToken';
 

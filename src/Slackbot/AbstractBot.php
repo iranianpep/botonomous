@@ -45,7 +45,7 @@ abstract class AbstractBot
     }
 
     /**
-     * @return BaseListener
+     * @return AbstractBaseListener
      */
     public function getListener()
     {
@@ -58,9 +58,9 @@ abstract class AbstractBot
     }
 
     /**
-     * @param BaseListener $listener
+     * @param AbstractBaseListener $listener
      */
-    public function setListener(BaseListener $listener)
+    public function setListener(AbstractBaseListener $listener)
     {
         $this->listener = $listener;
     }

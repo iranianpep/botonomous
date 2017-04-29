@@ -7,7 +7,7 @@ use Slackbot\utility\StringUtility;
 /**
  * Class EventListener.
  */
-class EventListener extends BaseListener
+class EventListener extends AbstractBaseListener
 {
     private $token;
     private $teamId;
