@@ -2,11 +2,11 @@
 
 namespace Slackbot;
 
+use Slackbot\listener\AbstractBaseListener;
 use Slackbot\utility\FormattingUtility;
 use Slackbot\utility\LoggerUtility;
 use Slackbot\utility\MessageUtility;
 use Slackbot\utility\RequestUtility;
-use Slackbot\listener\AbstractBaseListener;
 
 abstract class AbstractBot
 {
