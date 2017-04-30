@@ -86,7 +86,7 @@ abstract class AbstractBaseListener
      *
      * @throws \Exception
      *
-     * @return array
+     * @return bool
      */
     abstract public function isThisBot();
 
