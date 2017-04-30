@@ -18,9 +18,9 @@ class Sender
     /**
      * Sender constructor.
      *
-     * @param Slackbot $slackbot
+     * @param AbstractBot $slackbot
      */
-    public function __construct($slackbot)
+    public function __construct(AbstractBot $slackbot)
     {
         $this->setSlackbot($slackbot);
     }
@@ -34,9 +34,9 @@ class Sender
     }
 
     /**
-     * @param Slackbot $slackbot
+     * @param AbstractBot $slackbot
      */
-    public function setSlackbot(Slackbot $slackbot)
+    public function setSlackbot(AbstractBot $slackbot)
     {
         $this->slackbot = $slackbot;
     }

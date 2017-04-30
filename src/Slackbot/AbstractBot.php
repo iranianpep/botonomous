@@ -8,6 +8,10 @@ use Slackbot\utility\LoggerUtility;
 use Slackbot\utility\MessageUtility;
 use Slackbot\utility\RequestUtility;
 
+/**
+ * Class AbstractBot
+ * @package Slackbot
+ */
 abstract class AbstractBot
 {
     /**
