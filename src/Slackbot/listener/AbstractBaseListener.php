@@ -22,7 +22,7 @@ abstract class AbstractBaseListener
     abstract public function extractRequest();
 
     /**
-     * @param null $key
+     * @param null|string $key
      *
      * @return mixed
      */

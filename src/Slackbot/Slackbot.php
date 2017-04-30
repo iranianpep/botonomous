@@ -32,7 +32,7 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * @param null $key
+     * @param null|string $key
      *
      * @return mixed
      */
@@ -73,7 +73,7 @@ class Slackbot extends AbstractBot
             return;
         }
 
-        // $post['payload'] contains JSON
+        // posted payload is in JSON
         $payload = json_decode($post['payload'], true);
 
         return (new MessageAction())->load($payload);
@@ -162,16 +162,12 @@ class Slackbot extends AbstractBot
         switch ($this->determineAction()) {
             case 'oauth':
                 return $this->handleOAuth();
-                break;
             case 'message_actions':
                 return $this->handleMessageActions();
-                break;
             case 'url_verification':
                 return $this->handleUrlVerification();
-                break;
             default:
-                $this->handleSendResponse();
-                break;
+                return $this->handleSendResponse();
         }
     }
 

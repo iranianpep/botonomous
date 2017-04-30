@@ -11,8 +11,6 @@ abstract class AbstractCommandContainer
 
     /**
      * @param $key
-     *
-     * @return null
      */
     public function getAsObject($key)
     {

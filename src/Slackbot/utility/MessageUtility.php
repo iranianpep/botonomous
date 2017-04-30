@@ -3,15 +3,12 @@
 namespace Slackbot\utility;
 
 use Slackbot\CommandContainer;
-use Slackbot\Config;
 
 /**
  * Class MessageUtility.
  */
 class MessageUtility extends AbstractUtility
 {
-    private $config;
-
     /**
      * Remove the mentioned bot username from the message.
      *
@@ -120,25 +117,5 @@ class MessageUtility extends AbstractUtility
         }
 
         return "<@{$userId}{$userName}>";
-    }
-
-    /**
-     * @return Config
-     */
-    public function getConfig()
-    {
-        if (!isset($this->config)) {
-            $this->setConfig((new Config()));
-        }
-
-        return $this->config;
-    }
-
-    /**
-     * @param Config $config
-     */
-    public function setConfig(Config $config)
-    {
-        $this->config = $config;
     }
 }
