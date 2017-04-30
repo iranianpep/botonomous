@@ -32,7 +32,7 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * @param null $key
+     * @param string $key
      *
      * @return mixed
      */
@@ -61,7 +61,7 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * @return MessageAction|mixed
+     * @return null|AbstractBaseSlack
      */
     private function handleMessageActions()
     {
