@@ -19,7 +19,7 @@ class MessageUtility extends AbstractUtility
      *
      * @throws \Exception
      *
-     * @return mixed
+     * @return string
      */
     public function removeMentionedBot($message)
     {
