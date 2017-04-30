@@ -18,7 +18,7 @@ class Sender
     /**
      * Sender constructor.
      *
-     * @param $slackbot
+     * @param AbstractBot $slackbot
      */
     public function __construct($slackbot)
     {
