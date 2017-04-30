@@ -9,8 +9,7 @@ use Slackbot\utility\MessageUtility;
 use Slackbot\utility\RequestUtility;
 
 /**
- * Class AbstractBot
- * @package Slackbot
+ * Class AbstractBot.
  */
 abstract class AbstractBot
 {
