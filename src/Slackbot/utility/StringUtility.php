@@ -8,7 +8,7 @@ namespace Slackbot\utility;
 class StringUtility extends AbstractUtility
 {
     /**
-     * @param $json
+     * @param string $json
      *
      * @throws \Exception
      *
@@ -56,7 +56,7 @@ class StringUtility extends AbstractUtility
      *
      * @param $string
      *
-     * @return mixed
+     * @return string
      */
     public function snakeCaseToCamelCase($string)
     {
@@ -92,7 +92,7 @@ class StringUtility extends AbstractUtility
 
     /**
      * @param $haystack
-     * @param $needle
+     * @param string $needle
      *
      * @return bool
      */

@@ -12,7 +12,7 @@ class LoggerUtility extends AbstractUtility
     private $logFilePath;
 
     /**
-     * @param $function
+     * @param string $function
      * @param string $message
      *
      * @throws \Exception
@@ -81,7 +81,7 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @param $message
+     * @param string $message
      *
      * @throws \Exception
      *
@@ -111,7 +111,7 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @param $logFilePath
+     * @param string $logFilePath
      */
     public function setLogFilePath($logFilePath)
     {
@@ -135,7 +135,7 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * @param $function
-     * @param $message
+     * @param string $message
      *
      * @return string
      */
