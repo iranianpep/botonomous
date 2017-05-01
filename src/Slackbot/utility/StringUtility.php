@@ -83,11 +83,7 @@ class StringUtility extends AbstractUtility
 
         $pattern = '/'.$string1.'(?:\s+\w+'.$exceptionsString.'){0,2}\s+'.$string2.'\b/';
 
-        if (preg_match($pattern, $subject)) {
-            return true;
-        }
-
-        return false;
+        return preg_match($pattern, $subject) ? true : false;
     }
 
     /**

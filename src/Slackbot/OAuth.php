@@ -150,11 +150,7 @@ class OAuth
      */
     public function verifyState($state)
     {
-        if ($state === $this->getSessionUtility()->get(self::SESSION_STATE_KEY)) {
-            return true;
-        }
-
-        return false;
+        return $state === $this->getSessionUtility()->get(self::SESSION_STATE_KEY) ? true : false;
     }
 
     /**

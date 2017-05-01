@@ -30,8 +30,6 @@ checks:
             abstract_class_name: ^Abstract|Factory$
             utility_class_name: 'Utils?$'
             constant_name: '^[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*$'
-            method_name: '^(?:[a-z]|__)[a-zA-Z0-9]*$'
-            parameter_name: '^[a-z][a-zA-Z0-9]*$'
             interface_name: '^[A-Z][a-zA-Z0-9]*Interface$'
             type_name: '^[A-Z][a-zA-Z0-9]*$'
             exception_name: '^[A-Z][a-zA-Z0-9]*Exception$'
