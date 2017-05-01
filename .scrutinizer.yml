@@ -25,14 +25,6 @@ checks:
             maximum: '20'
         no_goto: true
         newline_at_end_of_file: true
-        naming_conventions:
-            local_variable: '^[a-z][a-zA-Z0-9]*$'
-            abstract_class_name: ^Abstract|Factory$
-            utility_class_name: 'Utils?$'
-            constant_name: '^[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*$'
-            interface_name: '^[A-Z][a-zA-Z0-9]*Interface$'
-            type_name: '^[A-Z][a-zA-Z0-9]*$'
-            exception_name: '^[A-Z][a-zA-Z0-9]*Exception$'
         avoid_fixme_comments: true
         avoid_multiple_statements_on_same_line: true
         avoid_perl_style_comments: true
