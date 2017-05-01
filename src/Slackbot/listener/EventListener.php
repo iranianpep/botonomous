@@ -141,7 +141,7 @@ class EventListener extends AbstractBaseListener
     /**
      * @throws \Exception
      *
-     * @return array
+     * @return array<string,boolean|string>
      */
     public function verifyOrigin()
     {
