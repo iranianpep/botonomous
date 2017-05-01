@@ -4,6 +4,19 @@ filter:
 checks:
     php:
         use_self_instead_of_fqcn: true
+        uppercase_constants: true
+        simplify_boolean_return: true
+        return_doc_comments: true
+        return_doc_comment_if_not_inferrable: true
+        remove_extra_empty_lines: true
+        properties_in_camelcaps: true
+        prefer_while_loop_over_for_loop: true
+        phpunit_assertions: true
+        parameters_in_camelcaps: true
+        parameter_doc_comments: true
+        param_doc_comment_if_not_inferrable: true
+        overriding_parameter: true
+        optional_parameters_at_the_end: true
 
 coding_style:
     php:
