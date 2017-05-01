@@ -35,11 +35,7 @@ class WhiteList extends AbstractAccessList
             $userEmailCheck = false;
         }
 
-        if ($usernameCheck === true && $userIdCheck === true && $userEmailCheck === true) {
-            return true;
-        }
-
-        return false;
+        return $usernameCheck === true && $userIdCheck === true && $userEmailCheck === true ? true : false;
     }
 
     /**
@@ -47,11 +43,7 @@ class WhiteList extends AbstractAccessList
      */
     public function isUsernameWhiteListed()
     {
-        if (empty($this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username'))) {
-            return false;
-        }
-
-        return true;
+        return empty($this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username')) ? false : true;
     }
 
     /**
@@ -59,11 +51,7 @@ class WhiteList extends AbstractAccessList
      */
     public function isUserIdWhiteListed()
     {
-        if (empty($this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId'))) {
-            return false;
-        }
-
-        return true;
+        return empty($this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId')) ? false : true;
     }
 
     /**

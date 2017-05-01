@@ -40,6 +40,7 @@ checks:
         avoid_multiple_statements_on_same_line: true
         avoid_perl_style_comments: true
         avoid_todo_comments: true
+        avoid_unnecessary_concatenation: true
         check_method_contracts:
             verify_interface_like_constraints: true
             verify_documented_constraints: true

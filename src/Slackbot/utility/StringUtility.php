@@ -48,11 +48,7 @@ class StringUtility extends AbstractUtility
     {
         $pattern = $wordBoundary === true ? "/\b{$toFind}\b/" : "/{$toFind}/";
 
-        if (preg_match($pattern, $subject)) {
-            return true;
-        }
-
-        return false;
+        return preg_match($pattern, $subject) ? true : false;
     }
 
     /**
