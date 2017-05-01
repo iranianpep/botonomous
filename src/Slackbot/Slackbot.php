@@ -334,7 +334,7 @@ class Slackbot extends AbstractBot
     /**
      * @throws \Exception
      *
-     * @return array
+     * @return array<string,boolean|string>
      */
     private function verifyRequest()
     {

@@ -66,10 +66,6 @@ class Team extends AbstractSlackEntity
     {
         $icon = $this->getIcon();
 
-        if (isset($icon['image_default']) && $icon['image_default'] === true) {
-            return true;
-        }
-
-        return false;
+        return isset($icon['image_default']) && $icon['image_default'] === true ? true : false;
     }
 }
