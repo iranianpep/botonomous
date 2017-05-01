@@ -10,10 +10,6 @@ checks:
         remove_extra_empty_lines: true
         prefer_while_loop_over_for_loop: true
         phpunit_assertions: true
-        parameter_doc_comments: true
-        param_doc_comment_if_not_inferrable: true
-        overriding_parameter: true
-        optional_parameters_at_the_end: true
 
 coding_style:
     php:
