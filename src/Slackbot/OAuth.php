@@ -415,7 +415,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     }
 
     /**
-     * @return SessionUtility
+     * @return SessionUtility|null
      */
     public function getSessionUtility()
     {

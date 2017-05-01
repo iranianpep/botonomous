@@ -3,8 +3,10 @@
 
 [![Latest Stable Version](https://poser.pugx.org/slackbot/slackbot/v/stable)](https://packagist.org/packages/slackbot/slackbot)
 [![Build Status](https://travis-ci.org/iranianpep/slackbot.svg?branch=master)](https://travis-ci.org/iranianpep/slackbot)
+[![Build Status](https://scrutinizer-ci.com/g/iranianpep/slackbot/badges/build.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/slackbot/build-status/master)
 [![Code Climate](https://codeclimate.com/github/iranianpep/slackbot/badges/gpa.svg)](https://codeclimate.com/github/iranianpep/slackbot)
 [![Test Coverage](https://codeclimate.com/github/iranianpep/slackbot/badges/coverage.svg)](https://codeclimate.com/github/iranianpep/slackbot/coverage)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iranianpep/slackbot/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/slackbot/?branch=master)
 [![Issue Count](https://codeclimate.com/github/iranianpep/slackbot/badges/issue_count.svg)](https://codeclimate.com/github/iranianpep/slackbot)
 [![License](https://poser.pugx.org/slackbot/slackbot/license)](https://packagist.org/packages/slackbot/slackbot)
 [![Code consistency](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/slackbot/grade.svg)](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/slackbot)
