@@ -27,11 +27,7 @@ class BlackList extends AbstractAccessList
             return true;
         }
 
-        if ($this->isEmailBlackListed() !== false) {
-            return true;
-        }
-
-        return false;
+        return $this->isEmailBlackListed() !== false ? true : false;
     }
 
     /**
@@ -39,11 +35,8 @@ class BlackList extends AbstractAccessList
      */
     public function isUsernameBlackListed()
     {
-        if ($this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username') === true) {
-            return true;
-        }
-
-        return false;
+        return $this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username') === true
+            ? true : false;
     }
 
     /**
@@ -51,11 +44,8 @@ class BlackList extends AbstractAccessList
      */
     public function isUserIdBlackListed()
     {
-        if ($this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId') === true) {
-            return true;
-        }
-
-        return false;
+        return $this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId') === true
+            ? true : false;
     }
 
     /**

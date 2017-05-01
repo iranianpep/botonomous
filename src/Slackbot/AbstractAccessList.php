@@ -82,11 +82,7 @@ abstract class AbstractAccessList
             return;
         }
 
-        if (in_array($request[$requestKey], $list[$subListKey])) {
-            return true;
-        }
-
-        return false;
+        return in_array($request[$requestKey], $list[$subListKey]);
     }
 
     /**

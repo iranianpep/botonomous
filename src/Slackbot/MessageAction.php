@@ -226,7 +226,7 @@ class MessageAction extends AbstractBaseSlack
     /**
      * @param $info
      *
-     * @return mixed
+     * @return AbstractBaseSlack
      */
     public function load($info)
     {
