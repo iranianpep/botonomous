@@ -99,7 +99,7 @@ class ApiClient
      * API CURL Call with post method.
      *
      * @param string $method
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @throws \Exception
      *
