@@ -294,7 +294,7 @@ class ApiClient
     }
 
     /** @noinspection PhpUndefinedClassInspection
-     * @return Client
+     * @return Client|null
      */
     public function getClient()
     {
