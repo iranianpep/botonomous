@@ -2,7 +2,8 @@ filter:
     excluded_paths:
         - 'tests/*'
 checks:
-    php: { }
+    php:
+        use_self_instead_of_fqcn: true
 
 coding_style:
     php:
