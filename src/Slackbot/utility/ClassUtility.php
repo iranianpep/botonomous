@@ -10,7 +10,7 @@ use Slackbot\AbstractBaseSlack;
 class ClassUtility
 {
     /**
-     * @param $fullName
+     * @param string $fullName
      *
      * @return mixed
      */

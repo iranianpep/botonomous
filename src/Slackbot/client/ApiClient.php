@@ -98,7 +98,7 @@ class ApiClient
     /**
      * API CURL Call with post method.
      *
-     * @param $method
+     * @param string $method
      * @param array $arguments
      *
      * @throws \Exception
@@ -195,7 +195,7 @@ class ApiClient
     }
 
     /**
-     * @return Team|mixed
+     * @return null|\Slackbot\AbstractBaseSlack
      */
     public function teamInfoAsObject()
     {

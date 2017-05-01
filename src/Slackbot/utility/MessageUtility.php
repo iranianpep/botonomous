@@ -74,7 +74,7 @@ class MessageUtility extends AbstractUtility
      *
      * @param $message
      *
-     * @return null
+     * @return \Slackbot\Command
      */
     public function extractCommandDetails($message)
     {
