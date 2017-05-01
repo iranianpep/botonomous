@@ -28,7 +28,6 @@ checks:
             verify_parent_constraints: true
         classes_in_camel_caps: true
         encourage_postdec_operator: true
-        encourage_single_quotes: true
         fix_line_ending: true
         fix_use_statements:
             remove_unused: true
