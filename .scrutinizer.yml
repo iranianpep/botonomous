@@ -37,7 +37,6 @@ checks:
             type_name: '^[A-Z][a-zA-Z0-9]*$'
             exception_name: '^[A-Z][a-zA-Z0-9]*Exception$'
             isser_method_name: '^(?:is|has|should|may|supports)'
-        align_assignments: true
         avoid_fixme_comments: true
         avoid_multiple_statements_on_same_line: true
         avoid_perl_style_comments: true

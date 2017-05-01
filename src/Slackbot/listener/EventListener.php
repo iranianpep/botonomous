@@ -197,10 +197,6 @@ class EventListener extends AbstractBaseListener
 
         $event = $this->getEvent();
 
-        if ($event instanceof Event && !empty($event->getBotId())) {
-            return true;
-        }
-
-        return false;
+        return $event instanceof Event && !empty($event->getBotId());
     }
 }

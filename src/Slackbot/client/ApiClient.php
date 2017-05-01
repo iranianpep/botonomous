@@ -99,21 +99,21 @@ class ApiClient
      * API CURL Call with post method.
      *
      * @param $method
-     * @param array $args
+     * @param array $arguments
      *
      * @throws \Exception
      *
      * @return mixed
      */
-    public function apiCall($method, array $args = [])
+    public function apiCall($method, array $arguments = [])
     {
-        $args = array_merge($args, $this->getArgs());
+        $arguments = array_merge($arguments, $this->getArgs());
 
         // check the required arguments are provided
-        $this->validateRequiredArguments($method, $args);
+        $this->validateRequiredArguments($method, $arguments);
 
         // filter unwanted arguments
-        $args = $this->filterArguments($method, $args);
+        $arguments = $this->filterArguments($method, $arguments);
 
         try {
             /** @noinspection PhpUndefinedClassInspection */
@@ -121,7 +121,7 @@ class ApiClient
                 'POST',
                 self::BASE_URL.$method,
                 ['Content-Type' => 'application/x-www-form-urlencoded'],
-                http_build_query($args)
+                http_build_query($arguments)
             );
 
             $response = $this->getClient()->send($request);
@@ -156,25 +156,25 @@ class ApiClient
     }
 
     /**
-     * @param $args
+     * @param $arguments
      *
      * @return mixed
      */
-    public function chatPostMessage($args)
+    public function chatPostMessage($arguments)
     {
-        return $this->apiCall('chat.postMessage', $args);
+        return $this->apiCall('chat.postMessage', $arguments);
     }
 
     /**
-     * @param $args
+     * @param $arguments
      *
      * @throws \Exception
      *
      * @return mixed
      */
-    public function rtmStart($args)
+    public function rtmStart($arguments)
     {
-        return $this->apiCall('rtm.start', $args);
+        return $this->apiCall('rtm.start', $arguments);
     }
 
     /**
@@ -229,15 +229,15 @@ class ApiClient
     /**
      * Return a user by Slack user id.
      *
-     * @param $args
+     * @param $arguments
      *
      * @throws \Exception
      *
      * @return mixed
      */
-    public function userInfo($args)
+    public function userInfo($arguments)
     {
-        $result = $this->apiCall('users.info', $args);
+        $result = $this->apiCall('users.info', $arguments);
 
         if (!isset($result['user'])) {
             /* @noinspection PhpInconsistentReturnPointsInspection */
@@ -274,15 +274,15 @@ class ApiClient
     }
 
     /**
-     * @param $args
+     * @param $arguments
      *
      * @throws \Exception
      *
      * @return mixed
      */
-    public function oauthAccess($args)
+    public function oauthAccess($arguments)
     {
-        return $this->apiCall('oauth.access', $args);
+        return $this->apiCall('oauth.access', $arguments);
     }
 
     /** @noinspection PhpUndefinedClassInspection
@@ -308,19 +308,19 @@ class ApiClient
 
     /**
      * @param $method
-     * @param $args
+     * @param $arguments
      *
      * @throws \Exception
      *
      * @return bool
      */
-    private function validateRequiredArguments($method, $args)
+    private function validateRequiredArguments($method, $arguments)
     {
-        $arguments = $this->getArguments($method);
+        $validArguments = $this->getArguments($method);
 
-        if (!empty($arguments['required'])) {
-            foreach ($arguments['required'] as $argument) {
-                if (!isset($args[$argument]) || empty($args[$argument])) {
+        if (!empty($validArguments['required'])) {
+            foreach ($validArguments['required'] as $argument) {
+                if (!isset($arguments[$argument]) || empty($arguments[$argument])) {
                     throw new \Exception("{$argument} must be provided for {$method}");
                 }
             }
@@ -360,25 +360,25 @@ class ApiClient
 
     /**
      * @param       $method
-     * @param array $args
+     * @param array $arguments
      *
      * @return array
      */
-    public function filterArguments($method, array $args)
+    public function filterArguments($method, array $arguments)
     {
-        $arguments = $this->getArguments($method);
+        $validArguments = $this->getArguments($method);
 
-        if (empty($arguments)) {
-            return $args;
+        if (empty($validArguments)) {
+            return $arguments;
         }
 
-        if (!isset($arguments['optional'])) {
-            $arguments['optional'] = [];
+        if (!isset($validArguments['optional'])) {
+            $validArguments['optional'] = [];
         }
 
-        $extractedArguments = array_merge($arguments['required'], $arguments['optional']);
+        $extractedArguments = array_merge($validArguments['required'], $validArguments['optional']);
 
-        return (new ArrayUtility())->filterArray($args, $extractedArguments);
+        return (new ArrayUtility())->filterArray($arguments, $extractedArguments);
     }
 
     /**
