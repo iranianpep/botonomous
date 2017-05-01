@@ -41,6 +41,22 @@ abstract class AbstractAccessList
     }
 
     /**
+     * @param array $list
+     *
+     * @return bool
+     */
+    protected function isEmailInList(array $list)
+    {
+        // get user info
+        $userInfo = $this->getSlackUserInfo();
+        if (!empty($userInfo) && in_array($userInfo['profile']['email'], $list['userEmail'])) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @param $requestKey
      * @param $listKey
      * @param $subListKey

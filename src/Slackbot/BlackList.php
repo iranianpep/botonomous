@@ -72,12 +72,6 @@ class BlackList extends AbstractAccessList
             return false;
         }
 
-        // get user info
-        $userInfo = $this->getSlackUserInfo();
-        if (in_array($userInfo['profile']['email'], $list['userEmail'])) {
-            return true;
-        }
-
-        return false;
+        return $this->isEmailInList($list);
     }
 }

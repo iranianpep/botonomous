@@ -80,17 +80,6 @@ class WhiteList extends AbstractAccessList
             return true;
         }
 
-        // get user info
-        $userInfo = $this->getSlackUserInfo();
-
-        if (empty($userInfo)) {
-            return false;
-        }
-
-        if (in_array($userInfo['profile']['email'], $list['userEmail'])) {
-            return true;
-        }
-
-        return false;
+        return $this->isEmailInList($list);
     }
 }
