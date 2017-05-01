@@ -54,9 +54,9 @@ abstract class AbstractAccessList
     }
 
     /**
-     * @param $requestKey
+     * @param string $requestKey
      * @param $listKey
-     * @param $subListKey
+     * @param string $subListKey
      *
      * @return null|bool
      */
