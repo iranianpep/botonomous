@@ -61,7 +61,7 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @param $text
+     * @param string $text
      *
      * @throws \Exception
      *
@@ -134,7 +134,7 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @param $function
+     * @param string $function
      * @param string $message
      *
      * @return string

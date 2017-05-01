@@ -307,7 +307,7 @@ class ApiClient
     }
 
     /**
-     * @param $method
+     * @param string $method
      * @param $arguments
      *
      * @throws \Exception
@@ -359,7 +359,7 @@ class ApiClient
     }
 
     /**
-     * @param       $method
+     * @param       string $method
      * @param array $arguments
      *
      * @return array
