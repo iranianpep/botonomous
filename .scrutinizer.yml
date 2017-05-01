@@ -10,6 +10,18 @@ checks:
         remove_extra_empty_lines: true
         prefer_while_loop_over_for_loop: true
         phpunit_assertions: true
+        no_short_variable_names:
+            minimum: '3'
+        no_short_method_names:
+            minimum: '3'
+        no_long_variable_names:
+            maximum: '20'
+        no_goto: true
+        newline_at_end_of_file: true
+        avoid_fixme_comments: true
+        avoid_multiple_statements_on_same_line: true
+        avoid_perl_style_comments: true
+        avoid_todo_comments: true
 
 coding_style:
     php:

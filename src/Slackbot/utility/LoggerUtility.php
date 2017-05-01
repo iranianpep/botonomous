@@ -114,7 +114,7 @@ class LoggerUtility extends AbstractUtility
     /**
      * @throws \Exception
      *
-     * @return string
+     * @return null|string
      */
     public function getLogFilePath()
     {
