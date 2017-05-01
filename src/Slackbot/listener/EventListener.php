@@ -20,54 +20,11 @@ class EventListener extends AbstractBaseListener
     ];
 
     /**
-     * EventListener constructor.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
-     * listen.
-     *
-     * @return mixed
-     */
-    public function listen()
-    {
-        // This is needed otherwise timeout error is displayed
-        $this->respondOK();
-
-        $request = $this->extractRequest();
-
-        if (empty($request)) {
-            /* @noinspection PhpInconsistentReturnPointsInspection */
-            return;
-        }
-
-        $this->processRequest();
-        $this->setRequest($request);
-
-        if ($this->isThisBot() !== false) {
-            /* @noinspection PhpInconsistentReturnPointsInspection */
-            return;
-        }
-
-        return $request;
-    }
-
-    /**
      * @return mixed
      */
     public function extractRequest()
     {
         return $this->getRequestUtility()->getPostedBody();
-    }
-
-    /**
-     * process the event.
-     */
-    public function processRequest()
-    {
-        $this->loadEvent();
     }
 
     /**

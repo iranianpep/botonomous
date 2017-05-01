@@ -9,31 +9,6 @@ class SlashCommandListener extends AbstractBaseListener
     /**
      * @return mixed
      */
-    public function listen()
-    {
-        // This is needed otherwise timeout error is displayed
-        $this->respondOK();
-
-        $request = $this->extractRequest();
-
-        if (empty($request)) {
-            /* @noinspection PhpInconsistentReturnPointsInspection */
-            return;
-        }
-
-        $this->setRequest($request);
-
-        if ($this->isThisBot() !== false) {
-            /* @noinspection PhpInconsistentReturnPointsInspection */
-            return;
-        }
-
-        return $request;
-    }
-
-    /**
-     * @return mixed
-     */
     public function extractRequest()
     {
         $postRequest = $this->getRequestUtility()->getPost();

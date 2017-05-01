@@ -309,7 +309,6 @@ class EventListenerTest extends TestCase
     {
         $eventListener = new EventListener();
         $eventListener->setRequestUtility($this->getSampleRequestUtility());
-        $eventListener->processRequest();
 
         $this->assertEquals($eventListener->getEvent()->getType(), 'message');
     }
