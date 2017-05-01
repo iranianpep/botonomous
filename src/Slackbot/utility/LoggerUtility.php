@@ -35,11 +35,7 @@ class LoggerUtility extends AbstractUtility
      */
     private function canLog()
     {
-        if ($this->getConfig()->get('chatLogging') !== true) {
-            return false;
-        }
-
-        return true;
+        return $this->getConfig()->get('chatLogging') !== true ? false : true;
     }
 
     /**
@@ -90,11 +86,8 @@ class LoggerUtility extends AbstractUtility
     public function logRaw($message)
     {
         try {
-            if ($this->canLog() === true && $this->makeTmpDir() === true && $this->write($message) !== false) {
-                return true;
-            }
-
-            return false;
+            return $this->canLog() === true && $this->makeTmpDir() === true && $this->write($message) !== false
+                ? true : false;
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
