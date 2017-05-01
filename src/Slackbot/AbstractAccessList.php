@@ -49,11 +49,7 @@ abstract class AbstractAccessList
     {
         // get user info
         $userInfo = $this->getSlackUserInfo();
-        if (!empty($userInfo) && in_array($userInfo['profile']['email'], $list['userEmail'])) {
-            return true;
-        }
-
-        return false;
+        return !empty($userInfo) && in_array($userInfo['profile']['email'], $list['userEmail']);
     }
 
     /**
@@ -61,7 +57,7 @@ abstract class AbstractAccessList
      * @param $listKey
      * @param $subListKey
      *
-     * @return bool|mixed
+     * @return null|boolean
      */
     protected function findInListByRequestKey($requestKey, $listKey, $subListKey)
     {
