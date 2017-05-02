@@ -224,30 +224,37 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
             }
 
             try {
-                $response = $this->requestAccessToken($code);
+                $this->handleRequestAccessTokenResponse($this->requestAccessToken($code));
             } catch (\Exception $e) {
                 throw $e;
             }
-
-            if ($response['ok'] !== true) {
-                throw new \Exception($response['error']);
-            }
-
-            $this->setAccessToken($response['access_token']);
-            $this->setTeamId($response['team_id']);
-            $this->setBotUserId($response['bot']['bot_user_id']);
-            $this->setBotAccessToken($response['bot']['bot_access_token']);
-
-            $channel = '';
-
-            if (isset($response['incoming_webhook']['channel'])) {
-                $channel = $response['incoming_webhook']['channel'];
-            }
-
-            $this->setChannel($channel);
         }
 
         return $this->accessToken;
+    }
+
+    /**
+     * @param $response
+     *
+     * @throws \Exception
+     */
+    private function handleRequestAccessTokenResponse($response)
+    {
+        if ($response['ok'] !== true) {
+            throw new \Exception($response['error']);
+        }
+
+        $this->setAccessToken($response['access_token']);
+        $this->setTeamId($response['team_id']);
+        $this->setBotUserId($response['bot']['bot_user_id']);
+        $this->setBotAccessToken($response['bot']['bot_access_token']);
+
+        $channel = '';
+        if (isset($response['incoming_webhook']['channel'])) {
+            $channel = $response['incoming_webhook']['channel'];
+        }
+
+        $this->setChannel($channel);
     }
 
     /**
