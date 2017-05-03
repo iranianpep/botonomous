@@ -2,9 +2,9 @@
 
 namespace Botonomous\utility;
 
+use Botonomous\Dictionary;
 use NlpTools\Stemmers\PorterStemmer;
 use NlpTools\Tokenizers\WhitespaceTokenizer;
-use Botonomous\Dictionary;
 
 /**
  * Class LanguageProcessingUtility.

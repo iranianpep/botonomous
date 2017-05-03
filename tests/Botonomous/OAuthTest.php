@@ -2,6 +2,9 @@
 
 namespace Botonomous;
 
+use Botonomous\client\ApiClient;
+use Botonomous\utility\RequestUtility;
+use Botonomous\utility\SessionUtility;
 use GuzzleHttp\Client;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Exception\RequestException;
@@ -11,9 +14,6 @@ use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
-use Botonomous\client\ApiClient;
-use Botonomous\utility\RequestUtility;
-use Botonomous\utility\SessionUtility;
 
 /**
  * Class OAuthTest.

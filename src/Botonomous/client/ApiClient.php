@@ -2,13 +2,13 @@
 
 namespace Botonomous\client;
 
+use Botonomous\Config;
+use Botonomous\Team;
+use Botonomous\utility\ArrayUtility;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
-use Botonomous\Config;
-use Botonomous\Team;
-use Botonomous\utility\ArrayUtility;
 
 /**
  * Class ApiClient.

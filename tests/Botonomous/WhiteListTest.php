@@ -2,8 +2,8 @@
 
 namespace Botonomous;
 
-use PHPUnit\Framework\TestCase;
 use Botonomous\client\ApiClient;
+use PHPUnit\Framework\TestCase;
 
 /** @noinspection PhpUndefinedClassInspection */
 class WhiteListTest extends TestCase

@@ -2,8 +2,8 @@
 
 namespace Botonomous\plugin\ping;
 
-use PHPUnit\Framework\TestCase;
 use Botonomous\PhpunitHelper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class PingTest.

@@ -2,12 +2,12 @@
 
 namespace Botonomous;
 
+use Botonomous\client\ApiClient;
+use Botonomous\utility\LoggerUtility;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
-use Botonomous\client\ApiClient;
-use Botonomous\utility\LoggerUtility;
 
 class Sender
 {
