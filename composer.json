@@ -1,7 +1,7 @@
 {
-  "name": "slackbot/slackbot",
+  "name": "botonomous/botonomous",
   "description": "Simple Slackbot that can listen to Slack messages and send back appropriate responses to a channel(s).",
-  "homepage": "https://github.com/iranianpep/slackbot",
+  "homepage": "https://github.com/iranianpep/botonomous",
   "license": "MIT",
   "authors": [
     { "name": "Ehsan Abbasi", "email": "ehsan.abb@gmail.com" }
