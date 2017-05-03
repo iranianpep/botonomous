@@ -10,7 +10,6 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iranianpep/botonomous/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/botonomous/?branch=master)
 [![Issue Count](https://codeclimate.com/github/iranianpep/botonomous/badges/issue_count.svg)](https://codeclimate.com/github/iranianpep/botonomous)
 [![License](https://poser.pugx.org/slackbot/slackbot/license)](https://packagist.org/packages/slackbot/slackbot)
-[![Code consistency](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/botonomous/grade.svg)](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/botonomous)
 [![StyleCI](https://styleci.io/repos/73189365/shield?branch=master)](https://styleci.io/repos/73189365)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0/mini.png)](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/039ffa789e6a4040b9b8d596ede07db4)](https://www.codacy.com/app/iranianpep/botonomous)
