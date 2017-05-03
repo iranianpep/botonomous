@@ -2,8 +2,8 @@
 
 namespace Botonomous\utility;
 
-use PHPUnit\Framework\TestCase;
 use Botonomous\Config;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class LoggerUtilityTest.

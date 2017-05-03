@@ -2,11 +2,11 @@
 
 namespace Botonomous;
 
-use PHPUnit\Framework\TestCase;
 use Botonomous\listener\EventListener;
 use Botonomous\listener\SlashCommandListener;
 use Botonomous\plugin\AbstractPlugin;
 use Botonomous\utility\RequestUtility;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class SlackbotTest.

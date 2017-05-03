@@ -2,6 +2,8 @@
 
 namespace Botonomous\client;
 
+use Botonomous\Config;
+use Botonomous\Team;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
 use /* @noinspection PhpUndefinedClassInspection */
@@ -15,8 +17,6 @@ use /* @noinspection PhpUndefinedClassInspection */
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
-use Botonomous\Config;
-use Botonomous\Team;
 
 /**
  * Class ApiClientTest.

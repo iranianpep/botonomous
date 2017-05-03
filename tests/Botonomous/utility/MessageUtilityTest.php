@@ -2,9 +2,9 @@
 
 namespace Botonomous\utility;
 
-use PHPUnit\Framework\TestCase;
 use Botonomous\Command;
 use Botonomous\Config;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class MessageUtilityTest.

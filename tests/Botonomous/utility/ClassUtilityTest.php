@@ -2,9 +2,9 @@
 
 namespace Botonomous\utility;
 
-use PHPUnit\Framework\TestCase;
 use Botonomous\Channel;
 use Botonomous\Event;
+use PHPUnit\Framework\TestCase;
 
 class ClassUtilityTest extends TestCase
 {

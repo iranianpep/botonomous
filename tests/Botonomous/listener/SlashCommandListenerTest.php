@@ -2,12 +2,12 @@
 
 namespace Botonomous\listener;
 
-use PHPUnit\Framework\TestCase;
 use Botonomous\BlackList;
 use Botonomous\Config;
 use Botonomous\Dictionary;
 use Botonomous\Slackbot;
 use Botonomous\utility\RequestUtility;
+use PHPUnit\Framework\TestCase;
 
 /** @noinspection PhpUndefinedClassInspection */
 class SlashCommandListenerTest extends TestCase
