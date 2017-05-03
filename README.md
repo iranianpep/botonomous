@@ -18,7 +18,7 @@
 [![Beerpay](https://img.shields.io/beerpay/iranianpep/botonomous.svg)](https://beerpay.io/iranianpep/botonomous)
 [![Join Botonomous Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
 
-A PHP framework to create Slack bots faaaaaaaaster! Either your bot uses [Events API](https://api.slack.com/events-api) or [Slash Commands](https://api.slack.com/slash-commands) it is supported by Botonomous:
+A PHP framework to create Slack bots faaaaaaaster! Either your bot uses [Events API](https://api.slack.com/events-api) or [Slash Commands](https://api.slack.com/slash-commands) it is supported by Botonomous:
 
 ### Events API
 ![](https://ajaxlivesearch.com/img/slack-event.png)
