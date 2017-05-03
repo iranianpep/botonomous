@@ -177,4 +177,11 @@ coding_style:
             constants:
                 true_false_null: undefined
 
-build: true
+build:
+    tests:
+        override:
+            -
+                command: 'vendor/bin/phpunit --coverage-clover=coverage-file'
+                coverage:
+                    file: 'coverage-file'
+                    format: 'clover'
