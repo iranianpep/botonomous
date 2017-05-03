@@ -1,7 +1,7 @@
 # Botonomous
 [![Botonomous](http://ajaxlivesearch.com/img/robo-256.png)](http://ajaxlivesearch.com/img/robo-256.png)
 
-[![Latest Stable Version](https://poser.pugx.org/slackbot/slackbot/v/stable)](https://packagist.org/packages/slackbot/slackbot)
+[![Latest Stable Version](https://poser.pugx.org/botonomous/botonomous/v/stable)](https://packagist.org/packages/botonomous/botonomous)
 [![Build Status](https://travis-ci.org/iranianpep/botonomous.svg?branch=master)](https://travis-ci.org/iranianpep/botonomous)
 [![Build Status](https://scrutinizer-ci.com/g/iranianpep/botonomous/badges/build.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/botonomous/build-status/master)
 [![Code Climate](https://codeclimate.com/github/iranianpep/botonomous/badges/gpa.svg)](https://codeclimate.com/github/iranianpep/botonomous)
@@ -9,11 +9,11 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/iranianpep/botonomous/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/botonomous/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iranianpep/botonomous/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/botonomous/?branch=master)
 [![Issue Count](https://codeclimate.com/github/iranianpep/botonomous/badges/issue_count.svg)](https://codeclimate.com/github/iranianpep/botonomous)
-[![License](https://poser.pugx.org/slackbot/slackbot/license)](https://packagist.org/packages/slackbot/slackbot)
+[![License](https://poser.pugx.org/botonomous/botonomous/license)](https://packagist.org/packages/botonomous/botonomous)
 [![StyleCI](https://styleci.io/repos/73189365/shield?branch=master)](https://styleci.io/repos/73189365)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0/mini.png)](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/039ffa789e6a4040b9b8d596ede07db4)](https://www.codacy.com/app/iranianpep/botonomous)
-[![Packagist](https://img.shields.io/packagist/dt/slackbot/slackbot.svg)](https://packagist.org/packages/slackbot/slackbot)
+[![Packagist](https://img.shields.io/packagist/dt/botonomous/botonomous.svg)](https://packagist.org/packages/botonomous/botonomous)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE)
 [![Beerpay](https://img.shields.io/beerpay/iranianpep/botonomous.svg)](https://beerpay.io/iranianpep/botonomous)
 [![Join Botonomous Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
