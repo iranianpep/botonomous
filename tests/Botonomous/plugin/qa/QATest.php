@@ -2,9 +2,9 @@
 
 namespace Botonomous\plugin\qa;
 
-use PHPUnit\Framework\TestCase;
 use Botonomous\Dictionary;
 use Botonomous\PhpunitHelper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class PingTest.

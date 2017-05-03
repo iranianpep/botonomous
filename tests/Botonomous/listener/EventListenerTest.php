@@ -2,10 +2,10 @@
 
 namespace Botonomous\listener;
 
-use PHPUnit\Framework\TestCase;
 use Botonomous\Config;
 use Botonomous\Event;
 use Botonomous\utility\RequestUtility;
+use PHPUnit\Framework\TestCase;
 
 class EventListenerTest extends TestCase
 {

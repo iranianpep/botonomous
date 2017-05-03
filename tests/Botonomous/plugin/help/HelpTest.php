@@ -2,8 +2,8 @@
 
 namespace Botonomous\plugin\help;
 
-use PHPUnit\Framework\TestCase;
 use Botonomous\PhpunitHelper;
+use PHPUnit\Framework\TestCase;
 
 /** @noinspection PhpUndefinedClassInspection */
 class HelpTest extends TestCase
