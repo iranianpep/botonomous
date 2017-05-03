@@ -17,10 +17,10 @@
   },
   "autoload": {
     "psr-4": {
-      "Slackbot\\": ["src/Slackbot"]
+      "Botonomous\\": ["src/Botonomous"]
     }
   },
   "autoload-dev": {
-    "psr-4": {"Slackbot\\": "tests/Slackbot"}
+    "psr-4": {"Botonomous\\": "tests/Botonomous"}
   }
 }

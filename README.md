@@ -1,5 +1,5 @@
-# Slackbot Framework
-[![Slackbot Framework](http://ajaxlivesearch.com/img/robo-256.png)](http://ajaxlivesearch.com/img/robo-256.png)
+# Botonomous
+[![Botonomous](http://ajaxlivesearch.com/img/robo-256.png)](http://ajaxlivesearch.com/img/robo-256.png)
 
 [![Latest Stable Version](https://poser.pugx.org/slackbot/slackbot/v/stable)](https://packagist.org/packages/slackbot/slackbot)
 [![Build Status](https://travis-ci.org/iranianpep/slackbot.svg?branch=master)](https://travis-ci.org/iranianpep/slackbot)
@@ -17,9 +17,9 @@
 [![Packagist](https://img.shields.io/packagist/dt/slackbot/slackbot.svg)](https://packagist.org/packages/slackbot/slackbot)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/slackbot/master/LICENSE)
 [![Beerpay](https://img.shields.io/beerpay/iranianpep/slackbot.svg)](https://beerpay.io/iranianpep/slackbot)
-[![Join Slackbot Framework Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
+[![Join Botonomous Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
 
-A PHP framework to create Slackbots faaaaaaaaster! Either your bot uses [Events API](https://api.slack.com/events-api) or [Slash Commands](https://api.slack.com/slash-commands) it is supported by Slackbot Framework:
+A PHP framework to create Slack bots faaaaaaaaster! Either your bot uses [Events API](https://api.slack.com/events-api) or [Slash Commands](https://api.slack.com/slash-commands) it is supported by Botonomous:
 
 ### Events API
 ![](https://ajaxlivesearch.com/img/slack-event.png)
@@ -36,8 +36,8 @@ Please check out the [contributing guide](https://github.com/iranianpep/slackbot
 ## Reporting security issues
 To report any security vulnerabilities, please drop us an email at ehsan.abb@gmail.com and please do not report it on GitHub.
 
-## Slack bots based on Slackbot!
-If you have created any awesome bot using Slackbot Framework let us know to list it here.
+## Slack bots based on Botonomous!
+If you have created any awesome bot using Botonomous let us know to list it here.
 
 ## Buy me a coffee / beer if you like!
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="tests/bootstrap.php" backupGlobals="false" verbose="true" debug="true" processIsolation="true">
   <testsuites>
-    <testsuite name="Slackbot Test Suite">
-      <directory suffix="Test.php">tests/Slackbot/</directory>
+    <testsuite name="Botonomous Test Suite">
+      <directory suffix="Test.php">tests/Botonomous/</directory>
     </testsuite>
   </testsuites>
 
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
-      <directory suffix=".php">src/Slackbot/</directory>
+      <directory suffix=".php">src/Botonomous/</directory>
     </whitelist>
   </filter>
 
