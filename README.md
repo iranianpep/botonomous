@@ -6,6 +6,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/iranianpep/slackbot/badges/build.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/slackbot/build-status/master)
 [![Code Climate](https://codeclimate.com/github/iranianpep/slackbot/badges/gpa.svg)](https://codeclimate.com/github/iranianpep/slackbot)
 [![Test Coverage](https://codeclimate.com/github/iranianpep/slackbot/badges/coverage.svg)](https://codeclimate.com/github/iranianpep/slackbot/coverage)
+[![Code Coverage](https://scrutinizer-ci.com/g/iranianpep/slackbot/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/slackbot/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/iranianpep/slackbot/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/slackbot/?branch=master)
 [![Issue Count](https://codeclimate.com/github/iranianpep/slackbot/badges/issue_count.svg)](https://codeclimate.com/github/iranianpep/slackbot)
 [![License](https://poser.pugx.org/slackbot/slackbot/license)](https://packagist.org/packages/slackbot/slackbot)
