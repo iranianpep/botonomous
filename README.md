@@ -22,19 +22,21 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/039ffa789e6a4040b9b8d596ede07db4)](https://www.codacy.com/app/iranianpep/botonomous)
 [![Issue Count](https://codeclimate.com/github/iranianpep/botonomous/badges/issue_count.svg)](https://codeclimate.com/github/iranianpep/botonomous)
 
-A PHP framework to create Slack bots faaaaaaaster!
+Botonomous is a PHP framework for creating autonomous slack bots.
 
 ## Get Started
 
 The documentation and installation guide can be found [here](https://github.com/iranianpep/botonomous/wiki) or you can go straight to [Getting Started](https://github.com/iranianpep/botonomous/wiki/Getting-Started) section.
 
-## Community
-
-Follow us on [Twitter](https://twitter.com/botonomous) or [Facebook](https://www.facebook.com/botonomous).
-
 ## Get help
 
-Join us on Slack: [![Join Botonomous Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
+* [![Join Botonomous Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
+* [Issues](https://github.com/iranianpep/botonomous/issues) - Got issues? We are happy to help!
+
+## Community
+
+* [Twitter](https://twitter.com/botonomous)
+* [Facebook](https://www.facebook.com/botonomous).
 
 ## Get involved!
 
