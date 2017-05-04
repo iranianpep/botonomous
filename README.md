@@ -3,7 +3,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/botonomous/botonomous/v/stable)](https://packagist.org/packages/botonomous/botonomous)
 [![Packagist](https://img.shields.io/packagist/dt/botonomous/botonomous.svg)](https://packagist.org/packages/botonomous/botonomous)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE)
 
 ## Code Status
 
