@@ -30,13 +30,24 @@ A PHP framework to create Slack bots faaaaaaaster! Either your bot uses [Events 
 ### Slash Command
 ![](https://ajaxlivesearch.com/img/slack-slash.png)
 
-## Getting Started
+## Get Started
+
 The documentation and installation guide can be found [here](https://github.com/iranianpep/botonomous/wiki) or you can go straight to [Getting Started](https://github.com/iranianpep/botonomous/wiki/Getting-Started) section.
 
-## Contributing
+## Community
+
+Follow us on [Twitter](https://twitter.com/botonomous) or [Facebook](https://www.facebook.com/botonomous).
+
+## Get help
+
+Join us on Slack: [![Join Botonomous Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
+
+## Get involved!
+
 Please check out the [contributing guide](https://github.com/iranianpep/botonomous/blob/master/CONTRIBUTING.md) for guidelines about how to proceed.
 
 ## Reporting security issues
+
 To report any security vulnerabilities, please drop us an email at ehsan.abb@gmail.com and please do not report it on GitHub.
 
 ## Slack bots based on Botonomous!
