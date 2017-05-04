@@ -2,8 +2,6 @@
 [![Botonomous](http://ajaxlivesearch.com/img/robo-256.png)](http://ajaxlivesearch.com/img/robo-256.png)
 
 [![Latest Stable Version](https://poser.pugx.org/botonomous/botonomous/v/stable)](https://packagist.org/packages/botonomous/botonomous)
-[![Build Status](https://travis-ci.org/iranianpep/botonomous.svg?branch=master)](https://travis-ci.org/iranianpep/botonomous)
-[![Build Status](https://scrutinizer-ci.com/g/iranianpep/botonomous/badges/build.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/botonomous/build-status/master)
 [![License](https://poser.pugx.org/botonomous/botonomous/license)](https://packagist.org/packages/botonomous/botonomous)
 [![Packagist](https://img.shields.io/packagist/dt/botonomous/botonomous.svg)](https://packagist.org/packages/botonomous/botonomous)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE)
@@ -13,6 +11,9 @@
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/iranianpep/botonomous.svg)](http://isitmaintained.com/project/iranianpep/botonomous "Percentage of issues still open")
 
 ## Code Status
+
+[![Build Status](https://travis-ci.org/iranianpep/botonomous.svg?branch=master)](https://travis-ci.org/iranianpep/botonomous)
+[![Build Status](https://scrutinizer-ci.com/g/iranianpep/botonomous/badges/build.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/botonomous/build-status/master)
 [![Code Climate](https://codeclimate.com/github/iranianpep/botonomous/badges/gpa.svg)](https://codeclimate.com/github/iranianpep/botonomous)
 [![Test Coverage](https://codeclimate.com/github/iranianpep/botonomous/badges/coverage.svg)](https://codeclimate.com/github/iranianpep/botonomous/coverage)
 [![Code Coverage](https://scrutinizer-ci.com/g/iranianpep/botonomous/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/iranianpep/botonomous/?branch=master)
