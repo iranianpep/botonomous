@@ -31,24 +31,20 @@ The documentation and installation guide can be found [here](https://github.com/
 ## Get help
 
 * [![Join Botonomous Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
-* [Issues](https://github.com/iranianpep/botonomous/issues) - Got issues? We are happy to help!
+* [Issues](https://github.com/iranianpep/botonomous/issues) - Got issues? We are happy to help! However to report any security vulnerabilities, please drop us an email at ehsan.abb@gmail.com and please do not report it on GitHub.
+
+## Get involved
+
+Please check out the [contributing guide](https://github.com/iranianpep/botonomous/blob/master/CONTRIBUTING.md) for guidelines about how to proceed.
+
+## Botonomous-based Slack bots
+If you have built any awesome Slack bot with Botonomous let us know to list it here.
 
 ## Community
 
 * [Twitter](https://twitter.com/botonomous)
-* [Facebook](https://www.facebook.com/botonomous).
+* [Facebook](https://www.facebook.com/botonomous)
 
-## Get involved!
-
-Please check out the [contributing guide](https://github.com/iranianpep/botonomous/blob/master/CONTRIBUTING.md) for guidelines about how to proceed.
-
-## Reporting security issues
-
-To report any security vulnerabilities, please drop us an email at ehsan.abb@gmail.com and please do not report it on GitHub.
-
-## Slack bots based on Botonomous!
-If you have created any awesome bot using Botonomous let us know to list it here.
-
-## Buy me a coffee / beer if you like!
+## Support
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
 [![Beerpay](https://beerpay.io/iranianpep/botonomous/badge.svg?style=beer-square)](https://beerpay.io/iranianpep/botonomous)  [![Beerpay](https://beerpay.io/iranianpep/botonomous/make-wish.svg?style=flat-square)](https://beerpay.io/iranianpep/botonomous?focus=wish)
