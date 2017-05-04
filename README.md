@@ -17,6 +17,8 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE)
 [![Beerpay](https://img.shields.io/beerpay/iranianpep/botonomous.svg)](https://beerpay.io/iranianpep/botonomous)
 [![Join Botonomous Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/iranianpep/botonomous.svg)](http://isitmaintained.com/project/iranianpep/botonomous "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/iranianpep/botonomous.svg)](http://isitmaintained.com/project/iranianpep/botonomous "Percentage of issues still open")
 
 A PHP framework to create Slack bots faaaaaaaster! Either your bot uses [Events API](https://api.slack.com/events-api) or [Slash Commands](https://api.slack.com/slash-commands) it is supported by Botonomous:
 
