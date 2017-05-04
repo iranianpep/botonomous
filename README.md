@@ -2,8 +2,8 @@
 [![Botonomous](http://ajaxlivesearch.com/img/robo-256.png)](http://ajaxlivesearch.com/img/robo-256.png)
 
 [![Latest Stable Version](https://poser.pugx.org/botonomous/botonomous/v/stable)](https://packagist.org/packages/botonomous/botonomous)
-[![Packagist](https://img.shields.io/packagist/dt/botonomous/botonomous.svg)](https://packagist.org/packages/botonomous/botonomous)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE)
+[![Packagist](https://img.shields.io/packagist/dt/botonomous/botonomous.svg)](https://packagist.org/packages/botonomous/botonomous)
 
 ## Code Status
 
@@ -37,7 +37,7 @@ Please check the [wiki](https://github.com/iranianpep/botonomous/wiki) for the d
 
 ## Get involved
 
-Botonomous is free forever but we need your help to make it even better. Let's make it happen by contributing to this project. You can check out the [contributing guide](https://github.com/iranianpep/botonomous/blob/master/CONTRIBUTING.md) for guidelines about how to proceed.
+Botonomous is free forever but we need your help to make it even better. Let's make it happen by contributing to it. You can check out the [contributing guide](https://github.com/iranianpep/botonomous/blob/master/CONTRIBUTING.md) for guidelines about how to proceed.
 
 ## Botonomous-based Slack bots
 If you have built any awesome Slack bot with Botonomous let us know to list it here.
