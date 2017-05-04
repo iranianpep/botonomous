@@ -37,7 +37,7 @@ Please check the [wiki](https://github.com/iranianpep/botonomous/wiki) for the d
 
 ## Get involved
 
-Please check out the [contributing guide](https://github.com/iranianpep/botonomous/blob/master/CONTRIBUTING.md) for guidelines about how to proceed.
+Botonomous is free forever but we need your help to make it even better. Let's make it happen by contributing to this project. You can check out the [contributing guide](https://github.com/iranianpep/botonomous/blob/master/CONTRIBUTING.md) for guidelines about how to proceed.
 
 ## Botonomous-based Slack bots
 If you have built any awesome Slack bot with Botonomous let us know to list it here.
