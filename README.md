@@ -26,6 +26,7 @@ Botonomous is a PHP framework for creating autonomous [Slack bots](https://api.s
 * Modern, high quality and fully unit tested code base
 * Pluggable architecture for enhanced management of commands
 * Built-in [Add to Slack](https://api.slack.com/docs/slack-button) button with OAuth
+* Standalone utility classes to make everyone's life (even your partner!) easier
 
 ## Get Started
 
