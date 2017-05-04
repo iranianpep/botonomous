@@ -2,7 +2,6 @@
 [![Botonomous](http://ajaxlivesearch.com/img/robo-256.png)](http://ajaxlivesearch.com/img/robo-256.png)
 
 [![Latest Stable Version](https://poser.pugx.org/botonomous/botonomous/v/stable)](https://packagist.org/packages/botonomous/botonomous)
-[![License](https://poser.pugx.org/botonomous/botonomous/license)](https://packagist.org/packages/botonomous/botonomous)
 [![Packagist](https://img.shields.io/packagist/dt/botonomous/botonomous.svg)](https://packagist.org/packages/botonomous/botonomous)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE)
 [![Beerpay](https://img.shields.io/beerpay/iranianpep/botonomous.svg)](https://beerpay.io/iranianpep/botonomous)
