@@ -16,6 +16,7 @@
 [![StyleCI](https://styleci.io/repos/73189365/shield?branch=master)](https://styleci.io/repos/73189365)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0/mini.png)](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/039ffa789e6a4040b9b8d596ede07db4)](https://www.codacy.com/app/iranianpep/botonomous)
+[![Code consistency](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/botonomous/grade.svg)](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/botonomous)
 [![Issue Count](https://codeclimate.com/github/iranianpep/botonomous/badges/issue_count.svg)](https://codeclimate.com/github/iranianpep/botonomous)
 
 Botonomous is a PHP framework for creating autonomous [Slack bots](https://api.slack.com/bot-users). It is specifically designed for [Slack](https://slack.com) and supports [Events API](https://api.slack.com/events-api) and [Slash commands](https://api.slack.com/slash-commands). Botonomous is unique because of:
@@ -40,6 +41,7 @@ Please check the [wiki](https://github.com/iranianpep/botonomous/wiki) for the d
 Botonomous is free forever but we need your help to make it even better. Let's make it happen by contributing to it. You can check out the [contributing guide](https://github.com/iranianpep/botonomous/blob/master/CONTRIBUTING.md) for guidelines about how to proceed.
 
 ## Botonomous-based Slack bots
+
 If you have built any awesome Slack bot with Botonomous let us know to list it here.
 
 ## Community
@@ -48,6 +50,8 @@ If you have built any awesome Slack bot with Botonomous let us know to list it h
 * [Facebook](https://www.facebook.com/botonomous)
 
 ## Support
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
+
+* [Jet Brains](https://www.jetbrains.com) - Without [PhpStorm](https://www.jetbrains.com/phpstorm) this project was in the middle of nowhere!
+* [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
 [![Beerpay](https://beerpay.io/iranianpep/botonomous/badge.svg?style=beer-square)](https://beerpay.io/iranianpep/botonomous)  [![Beerpay](https://beerpay.io/iranianpep/botonomous/make-wish.svg?style=flat-square)](https://beerpay.io/iranianpep/botonomous?focus=wish)
 [![Beerpay](https://img.shields.io/beerpay/iranianpep/botonomous.svg)](https://beerpay.io/iranianpep/botonomous)
