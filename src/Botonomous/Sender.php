@@ -14,6 +14,8 @@ class Sender
     private $slackbot;
     private $loggerUtility;
     private $config;
+    private $apiClient;
+    private $client;
 
     /**
      * Sender constructor.
@@ -80,8 +82,9 @@ class Sender
             echo json_encode($data);
         } elseif ($responseType === 'slack') {
             $this->getLoggerUtility()->logChat(__METHOD__, $response);
-            (new ApiClient())->chatPostMessage($data);
+            $this->getApiClient()->chatPostMessage($data);
         } elseif ($responseType === 'slashCommand') {
+            $this->getLoggerUtility()->logChat(__METHOD__, $response);
             /** @noinspection PhpUndefinedClassInspection */
             $request = new Request(
                 'POST',
@@ -94,7 +97,7 @@ class Sender
             );
 
             /* @noinspection PhpUndefinedClassInspection */
-            (new Client())->send($request);
+            $this->getClient()->send($request);
         } elseif ($responseType === 'json') {
             $this->getLoggerUtility()->logChat(__METHOD__, $response);
             // headers_sent is used to avoid issue in the test
@@ -145,5 +148,45 @@ class Sender
     public function setConfig(Config $config)
     {
         $this->config = $config;
+    }
+
+    /**
+     * @return ApiClient
+     */
+    public function getApiClient()
+    {
+        if (!isset($this->apiClient)) {
+            $this->setApiClient(new ApiClient());
+        }
+
+        return $this->apiClient;
+    }
+
+    /**
+     * @param ApiClient $apiClient
+     */
+    public function setApiClient(ApiClient $apiClient)
+    {
+        $this->apiClient = $apiClient;
+    }
+
+    /**
+     * @return Client
+     */
+    public function getClient()
+    {
+        if (!isset($this->client)) {
+            $this->setClient(new Client());
+        }
+
+        return $this->client;
+    }
+
+    /**
+     * @param Client $client
+     */
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
     }
 }
