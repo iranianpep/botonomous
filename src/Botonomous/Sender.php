@@ -81,31 +81,55 @@ class Sender
         $this->getLoggerUtility()->logChat(__METHOD__, $response, $channel);
 
         if ($responseType === 'slack') {
-            $this->getApiClient()->chatPostMessage($data);
+            $this->respondToSlack($data);
         } elseif ($responseType === 'slashCommand') {
-            /** @noinspection PhpUndefinedClassInspection */
-            $request = new Request(
-                'POST',
-                $this->getSlackbot()->getRequest('response_url'),
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'text'          => $response,
-                    'response_type' => 'in_channel',
-                ])
-            );
-
-            /* @noinspection PhpUndefinedClassInspection */
-            $this->getClient()->send($request);
+            $this->respondToSlashCommand($response);
         } elseif ($responseType === 'json' || $debug === true) {
-            // headers_sent is used to avoid issue in the test
-            if (!headers_sent()) {
-                header('Content-type:application/json;charset=utf-8');
-            }
-
-            echo json_encode($data);
+            $this->respondAsJSON($data);
         }
 
         return true;
+    }
+
+    /**
+     * @param $response
+     */
+    private function respondToSlashCommand($response)
+    {
+        /** @noinspection PhpUndefinedClassInspection */
+        $request = new Request(
+            'POST',
+            $this->getSlackbot()->getRequest('response_url'),
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'text'          => $response,
+                'response_type' => 'in_channel',
+            ])
+        );
+
+        /* @noinspection PhpUndefinedClassInspection */
+        $this->getClient()->send($request);
+    }
+
+    /**
+     * @param $data
+     */
+    private function respondToSlack($data)
+    {
+        $this->getApiClient()->chatPostMessage($data);
+    }
+
+    /**
+     * @param $data
+     */
+    private function respondAsJSON($data)
+    {
+        // headers_sent is used to avoid issue in the test
+        if (!headers_sent()) {
+            header('Content-type:application/json;charset=utf-8');
+        }
+
+        echo json_encode($data);
     }
 
     /**
