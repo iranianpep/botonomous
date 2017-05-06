@@ -78,6 +78,8 @@ class Sender
             $data['attachments'] = json_encode($attachments);
         }
 
+        $this->getLoggerUtility()->logChat(__METHOD__, $response, $channel);
+
         if ($responseType === 'slack') {
             $this->getApiClient()->chatPostMessage($data);
         } elseif ($responseType === 'slashCommand') {

@@ -14,15 +14,16 @@ class LoggerUtility extends AbstractUtility
     /**
      * @param string $function
      * @param string $message
+     * @param string $channel
      *
      * @throws \Exception
      *
      * @return bool
      */
-    public function logChat($function, $message = '')
+    public function logChat($function, $message = '', $channel = '')
     {
         try {
-            return $this->logRaw($this->getLogContent($function, $message));
+            return $this->logRaw($this->getLogContent($function, $message, $channel));
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
@@ -129,11 +130,12 @@ class LoggerUtility extends AbstractUtility
     /**
      * @param $function
      * @param string $message
+     * @param $channel
      *
      * @return string
      */
-    public function getLogContent($function, $message)
+    public function getLogContent($function, $message, $channel)
     {
-        return date(self::DATE_FORMAT)."|{$function}|{$message}\r\n";
+        return date(self::DATE_FORMAT)."|{$function}|{$message}|{$channel}\r\n";
     }
 }
