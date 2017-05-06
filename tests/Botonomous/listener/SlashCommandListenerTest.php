@@ -263,23 +263,7 @@ class SlashCommandListenerTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testSend()
-    {
-        $this->sendByResponseType('json');
-    }
-
-    /**
-     * @throws \Exception
-     */
     public function testSendResponseSlashCommand()
-    {
-        $this->sendByResponseType('slashCommand');
-    }
-
-    /**
-     * @param $response
-     */
-    private function sendByResponseType($response)
     {
         $config = new Config();
         $config->set('listenerType', 'slashCommand');
@@ -302,12 +286,12 @@ class SlashCommandListenerTest extends TestCase
         // set request
         $listener->setRequest($request);
 
-        $config->set('response', $response);
+        $config->set('response', 'json');
         $slackbot->setConfig($config);
 
-        $this->expectOutputString('{"text":"test response","channel":"#dummyChannel"}');
+        $this->expectOutputString('{"text":"test response 1","channel":"#dummyChannel"}');
 
-        $slackbot->getSender()->send('#dummyChannel', 'test response');
+        $slackbot->getSender()->send('#dummyChannel', 'test response 1');
     }
 
     /**

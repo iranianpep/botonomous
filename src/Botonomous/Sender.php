@@ -78,13 +78,9 @@ class Sender
             $data['attachments'] = json_encode($attachments);
         }
 
-        if ($debug === true) {
-            echo json_encode($data);
-        } elseif ($responseType === 'slack') {
-            $this->getLoggerUtility()->logChat(__METHOD__, $response);
+        if ($responseType === 'slack') {
             $this->getApiClient()->chatPostMessage($data);
         } elseif ($responseType === 'slashCommand') {
-            $this->getLoggerUtility()->logChat(__METHOD__, $response);
             /** @noinspection PhpUndefinedClassInspection */
             $request = new Request(
                 'POST',
@@ -98,12 +94,12 @@ class Sender
 
             /* @noinspection PhpUndefinedClassInspection */
             $this->getClient()->send($request);
-        } elseif ($responseType === 'json') {
-            $this->getLoggerUtility()->logChat(__METHOD__, $response);
+        } elseif ($responseType === 'json' || $debug === true) {
             // headers_sent is used to avoid issue in the test
-            if (!headers_sent()) {
-                header('Content-type:application/json;charset=utf-8');
-            }
+//            if (!headers_sent()) {
+//                header('Content-type:application/json;charset=utf-8');
+//            }
+
             echo json_encode($data);
         }
 
@@ -135,7 +131,7 @@ class Sender
      */
     public function getConfig()
     {
-        if ($this->config === null) {
+        if (!isset($this->config)) {
             $this->config = (new Config());
         }
 
