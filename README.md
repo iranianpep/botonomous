@@ -31,7 +31,7 @@ Please check the [wiki](https://github.com/iranianpep/botonomous/wiki) for the d
 
 ## Get help
 
-* [![Join Botonomous Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://slackbot-framework.herokuapp.com/)
+* [![Join Botonomous Team](https://img.shields.io/badge/Slack-Join%20Team-green.svg)](http://botonomous.herokuapp.com/)
 * [Issues](https://github.com/iranianpep/botonomous/issues) - Got issues? We are happy to help! However to report any security vulnerabilities, please drop us an email at ehsan.abb@gmail.com and please do not report it on GitHub.
 * [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/iranianpep/botonomous.svg)](http://isitmaintained.com/project/iranianpep/botonomous "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/iranianpep/botonomous.svg)](http://isitmaintained.com/project/iranianpep/botonomous "Percentage of issues still open")
