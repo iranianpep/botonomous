@@ -96,9 +96,9 @@ class Sender
             $this->getClient()->send($request);
         } elseif ($responseType === 'json' || $debug === true) {
             // headers_sent is used to avoid issue in the test
-//            if (!headers_sent()) {
-//                header('Content-type:application/json;charset=utf-8');
-//            }
+            if (!headers_sent()) {
+                header('Content-type:application/json;charset=utf-8');
+            }
 
             echo json_encode($data);
         }
