@@ -318,11 +318,13 @@ class ApiClient
     {
         $validArguments = $this->getArguments($method);
 
-        if (!empty($validArguments['required'])) {
-            foreach ($validArguments['required'] as $argument) {
-                if (!isset($arguments[$argument]) || empty($arguments[$argument])) {
-                    throw new \Exception("{$argument} must be provided for {$method}");
-                }
+        if (empty($validArguments['required'])) {
+            return true;
+        }
+
+        foreach ($validArguments['required'] as $argument) {
+            if (!isset($arguments[$argument]) || empty($arguments[$argument])) {
+                throw new \Exception("{$argument} must be provided for {$method}");
             }
         }
 
