@@ -2,9 +2,9 @@
 
 namespace Botonomous;
 
-use PHPUnit\Framework\TestCase;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
+use PHPUnit\Framework\TestCase;
 
 class SenderTest extends TestCase
 {
