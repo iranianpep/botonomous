@@ -84,6 +84,7 @@ class ApiClient
 
     private $client;
     private $token;
+    private $arrayUtility;
 
     /**
      * ApiClient constructor.
@@ -323,7 +324,7 @@ class ApiClient
         }
 
         foreach ($validArguments['required'] as $argument) {
-            if (!isset($arguments[$argument]) || empty($arguments[$argument])) {
+            if ($this->getArrayUtility()->arrayKeyValueExists($argument, $arguments) !== true) {
                 throw new \Exception("{$argument} must be provided for {$method}");
             }
         }
@@ -402,5 +403,25 @@ class ApiClient
     public function setToken($token)
     {
         $this->token = $token;
+    }
+
+    /**
+     * @return ArrayUtility
+     */
+    public function getArrayUtility()
+    {
+        if (!isset($this->arrayUtility)) {
+            $this->setArrayUtility(new ArrayUtility());
+        }
+
+        return $this->arrayUtility;
+    }
+
+    /**
+     * @param ArrayUtility $arrayUtility
+     */
+    public function setArrayUtility(ArrayUtility $arrayUtility)
+    {
+        $this->arrayUtility = $arrayUtility;
     }
 }
