@@ -19,7 +19,7 @@ class ArrayUtility extends AbstractUtility
     }
 
     /**
-     * Check if key is present in $search array and has got a value only if the value is string
+     * Check if key is present in $search array and has got a value only if the value is string.
      *
      * @param       $key
      * @param array $search

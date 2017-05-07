@@ -113,11 +113,11 @@ class ArrayUtilityTest extends TestCase
             ],
             [
                 'input' => [
-                    'test' => [],
-                    'test2' => 2
+                    'test'  => [],
+                    'test2' => 2,
                 ],
-                'key' => 'test',
-                'expected' => true
+                'key'      => 'test',
+                'expected' => true,
             ],
         ];
 
