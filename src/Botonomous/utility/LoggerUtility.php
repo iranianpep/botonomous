@@ -101,7 +101,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function getTempDir()
     {
-        return dirname(__DIR__).DIRECTORY_SEPARATOR.$this->getConfig()->get('tmpFolderName');
+        return dirname(__DIR__).DIRECTORY_SEPARATOR.$this->getConfig()->get('tmpFolder');
     }
 
     /**
@@ -120,7 +120,7 @@ class LoggerUtility extends AbstractUtility
     public function getLogFilePath()
     {
         if (!isset($this->logFilePath)) {
-            $logFilePath = $this->getTempDir().DIRECTORY_SEPARATOR.$this->getConfig()->get('chatLoggingFileName');
+            $logFilePath = $this->getTempDir().DIRECTORY_SEPARATOR.$this->getConfig()->get('chatLoggingFile');
             $this->setLogFilePath($logFilePath);
         }
 

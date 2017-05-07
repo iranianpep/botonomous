@@ -225,7 +225,7 @@ class EventListenerTest extends TestCase
 
         $eventListener->setRequest([
             'token'      => (new Config())->get('verificationToken'),
-            'api_app_id' => (new Config())->get('apiAppId'),
+            'api_app_id' => (new Config())->get('appId'),
         ]);
 
         $this->assertEquals([
@@ -268,7 +268,7 @@ class EventListenerTest extends TestCase
         $config = new Config();
         $config->set('listener', 'event');
         $eventListener = new EventListener();
-        $config->set('apiAppId', '');
+        $config->set('appId', '');
         $config->set('verificationToken', '12345');
         $eventListener->setConfig($config);
 
@@ -336,14 +336,14 @@ class EventListenerTest extends TestCase
     }
 
     /**
-     * Test getApiAppId.
+     * Test getAppId.
      */
-    public function testGetApiAppId()
+    public function testGetAppId()
     {
         $eventListener = new EventListener();
-        $eventListener->setApiAppId('12345');
+        $eventListener->setAppId('12345');
 
-        $this->assertEquals('12345', $eventListener->getApiAppId());
+        $this->assertEquals('12345', $eventListener->getAppId());
     }
 
     /**

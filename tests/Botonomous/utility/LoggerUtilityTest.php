@@ -26,7 +26,7 @@ class LoggerUtilityTest extends TestCase
 
         $config = new Config();
         $config->set('chatLogging', false);
-        $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
+        $config->set('chatLoggingFile', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
 
@@ -44,7 +44,7 @@ class LoggerUtilityTest extends TestCase
 
         $config = new Config();
         $config->set('chatLogging', true);
-        $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
+        $config->set('chatLoggingFile', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
 
@@ -62,7 +62,7 @@ class LoggerUtilityTest extends TestCase
 
         $config = new Config();
         $config->set('chatLogging', true);
-        $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
+        $config->set('chatLoggingFile', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
 
@@ -80,7 +80,7 @@ class LoggerUtilityTest extends TestCase
 
         $config = new Config();
         $config->set('chatLogging', true);
-        $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
+        $config->set('chatLoggingFile', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
         $utility->setLogFilePath('dummy/file/path');
@@ -103,7 +103,7 @@ class LoggerUtilityTest extends TestCase
 
         $config = new Config();
         $config->set('chatLogging', true);
-        $config->set('chatLoggingFileName', self::TEST_CHAT_LOG_FILE);
+        $config->set('chatLoggingFile', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
         $utility->setLogFilePath('dummy/file/path');

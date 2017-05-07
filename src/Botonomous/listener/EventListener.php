@@ -12,7 +12,7 @@ class EventListener extends AbstractBaseListener
 {
     private $token;
     private $teamId;
-    private $apiAppId;
+    private $appId;
     private $event;
     private $requestEventMaps = [
         'ts'       => 'timestamp',
@@ -62,17 +62,17 @@ class EventListener extends AbstractBaseListener
     /**
      * @return string
      */
-    public function getApiAppId()
+    public function getAppId()
     {
-        return $this->apiAppId;
+        return $this->appId;
     }
 
     /**
-     * @param string $apiAppId
+     * @param string $appId
      */
-    public function setApiAppId($apiAppId)
+    public function setAppId($appId)
     {
-        $this->apiAppId = $apiAppId;
+        $this->appId = $appId;
     }
 
     /**
@@ -160,14 +160,14 @@ class EventListener extends AbstractBaseListener
             throw new \Exception('Verification token must be provided');
         }
 
-        $expectedApiAppId = $this->getConfig()->get('apiAppId');
+        $expectedAppId = $this->getConfig()->get('appId');
 
-        if (empty($expectedApiAppId)) {
+        if (empty($expectedAppId)) {
             throw new \Exception('Api app id must be provided');
         }
 
         if ($verificationToken === $request['token'] &&
-            $expectedApiAppId === $request['api_app_id']) {
+            $expectedAppId === $request['api_app_id']) {
             return [
                 'success' => true,
                 'message' => 'O La la!',

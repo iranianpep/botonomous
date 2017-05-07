@@ -15,8 +15,8 @@ class Config extends AbstractConfig
         'botUserId'            => 'YOUR_BOT_USER_ID',
         'botUsername'          => 'YOUR_BOT_USERNAME',
         'chatLogging'          => true,
-        'tmpFolderName'        => 'tmp',
-        'chatLoggingFileName'  => 'chat_log',
+        'tmpFolder'        => 'tmp',
+        'chatLoggingFile'  => 'chat_log',
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',
         'asUser'               => true,
         // possible values are: slashCommand, event
@@ -49,7 +49,7 @@ class Config extends AbstractConfig
          * use this token to verify that requests are actually coming from Slack
          */
         'verificationToken'    => 'YOUR_APP_VERIFICATION_TOKEN',
-        'apiAppId'             => 'YOUR_API_ID',
+        'appId'             => 'YOUR_API_ID',
         'enabledAccessControl' => false,
     ];
 }
