@@ -219,29 +219,32 @@ class Sender
      */
     private function getResponseType()
     {
-        $debug = (bool) $this->getSlackbot()->getRequest('debug');
-
-        if ($debug === true) {
+        if ($this->getSlackbot()->getRequest('debug') === true
+            || $this->getSlackbot()->getRequest('debug') === 'true') {
             return 'json';
         }
 
         $responseType = $this->getConfig()->get('response');
-
         if (!empty($responseType)) {
             // Maybe later add a check for response type validation
             return $responseType;
         }
 
         // response type in the config is empty, so choose it based on listener type
+        return $this->getResponseByListenerType();
+    }
 
+    /**
+     * @return string
+     */
+    private function getResponseByListenerType()
+    {
         $listenerType = $this->getConfig()->get('listenerType');
         switch ($listenerType) {
             case 'slashCommand':
                 return 'slashCommand';
             case 'event':
                 return 'slack';
-            default:
-                return 'json';
         }
     }
 }
