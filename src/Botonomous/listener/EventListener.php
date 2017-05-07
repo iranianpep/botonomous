@@ -199,4 +199,12 @@ class EventListener extends AbstractBaseListener
 
         return $event instanceof Event && !empty($event->getBotId());
     }
+
+    /**
+     * @return string
+     */
+    public function getChannelId()
+    {
+        return $this->getEvent()->getChannel();
+    }
 }

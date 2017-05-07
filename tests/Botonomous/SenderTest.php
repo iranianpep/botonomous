@@ -46,7 +46,7 @@ class SenderTest extends TestCase
     {
         $sender = new Sender($this->getSlackbot('', true));
 
-        $sender->send('#dummyChannel', 'test response 2', []);
+        $sender->send('test response 2', '#dummyChannel', []);
 
         $response = '{"text":"test response 2","channel":"#dummyChannel","attachments":"[]"}';
 
@@ -57,7 +57,7 @@ class SenderTest extends TestCase
     {
         $sender = new Sender($this->getSlackbot('json'));
 
-        $sender->send('#dummyChannel', 'test response 3');
+        $sender->send('test response 3', '#dummyChannel');
 
         $response = '{"text":"test response 3","channel":"#dummyChannel"}';
 
@@ -68,7 +68,7 @@ class SenderTest extends TestCase
     {
         $sender = new Sender($this->getSlackbot('slack'));
 
-        $sender->send('#dummyChannel', 'test response 4');
+        $sender->send('test response 4', '#dummyChannel');
 
         $response = '';
 

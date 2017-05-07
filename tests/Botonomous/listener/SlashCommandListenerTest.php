@@ -291,7 +291,7 @@ class SlashCommandListenerTest extends TestCase
 
         $this->expectOutputString('{"text":"test response 1","channel":"#dummyChannel"}');
 
-        $slackbot->getSender()->send('#dummyChannel', 'test response 1');
+        $slackbot->getSender()->send('test response 1', '#dummyChannel');
     }
 
     /**

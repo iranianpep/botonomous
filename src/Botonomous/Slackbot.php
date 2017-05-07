@@ -123,7 +123,7 @@ class Slackbot extends AbstractBot
         $response = $this->respond($message);
 
         if (!empty($response)) {
-            $this->getSender()->send($this->getRequest('channel_name'), $response);
+            $this->getSender()->send($response);
         }
     }
 
@@ -139,14 +139,14 @@ class Slackbot extends AbstractBot
 
         if ($this->getBlackList()->isBlackListed() !== false) {
             // found in blacklist
-            $this->getSender()->send($this->getRequest('channel_name'), $this->getConfig()->get('blacklistedMessage'));
+            $this->getSender()->send($this->getConfig()->get('blacklistedMessage'));
 
             return false;
         }
 
         if ($this->getWhiteList()->isWhiteListed() !== true) {
             // not found in whitelist
-            $this->getSender()->send($this->getRequest('channel_name'), $this->getConfig()->get('whitelistedMessage'));
+            $this->getSender()->send($this->getConfig()->get('whitelistedMessage'));
 
             return false;
         }
@@ -209,9 +209,8 @@ class Slackbot extends AbstractBot
 
         $confirmMessage = $this->getConfig()->get('confirmReceivedMessage', ['user' => $user]);
 
-        $channel = $this->getRequest('channel_name');
         if (!empty($confirmMessage)) {
-            $this->getSender()->send($channel, $confirmMessage);
+            $this->getSender()->send($confirmMessage);
         }
     }
 

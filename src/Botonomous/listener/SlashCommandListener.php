@@ -68,4 +68,12 @@ class SlashCommandListener extends AbstractBaseListener
 
         return ($userId == 'USLACKBOT' || $username == 'slackbot') ? true : false;
     }
+
+    /**
+     * @return string
+     */
+    public function getChannelId()
+    {
+        return $this->getRequest('channel_id');
+    }
 }

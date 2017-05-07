@@ -47,14 +47,14 @@ class Sender
      * Final endpoint for the response.
      *
      * @param $channel
-     * @param $response
+     * @param $text
      * @param $attachments
      *
      * @throws \Exception
      *
      * @return bool
      */
-    public function send($channel, $response, $attachments = null)
+    public function send($text, $channel = null, $attachments = null)
     {
         // @codeCoverageIgnoreStart
         if ($this->getSlackbot()->getListener()->isThisBot() !== false) {
@@ -65,11 +65,15 @@ class Sender
         $responseType = $this->getResponseType();
 
         if (empty($channel)) {
-            $channel = $this->getConfig()->get('channel');
+            $channel = $this->getSlackbot()->getListener()->getChannelId();
+
+            if (empty($channel)) {
+                $channel = $this->getConfig()->get('channel');
+            }
         }
 
         $data = [
-            'text'    => $response,
+            'text'    => $text,
             'channel' => $channel,
         ];
 
@@ -77,12 +81,12 @@ class Sender
             $data['attachments'] = json_encode($attachments);
         }
 
-        $this->getLoggerUtility()->logChat(__METHOD__, $response, $channel);
+        $this->getLoggerUtility()->logChat(__METHOD__, $text, $channel);
 
         if ($responseType === 'slack') {
             $this->respondToSlack($data);
         } elseif ($responseType === 'slashCommand') {
-            $this->respondToSlashCommand($response);
+            $this->respondToSlashCommand($text);
         } elseif ($responseType === 'json') {
             $this->respondAsJSON($data);
         }
