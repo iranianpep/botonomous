@@ -62,7 +62,7 @@ class Sender
         }
         // @codeCoverageIgnoreEnd
 
-        $responseType = $this->getConfig()->get('response');
+        $responseType = $this->getResponseType();
         $debug = (bool) $this->getSlackbot()->getRequest('debug');
 
         if (empty($channel)) {
@@ -210,5 +210,33 @@ class Sender
     public function setClient(Client $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * Specify the response type
+     * If response in config is set to empty, it will be considered based on listenerType
+     *
+     * @return mixed|string
+     */
+    private function getResponseType()
+    {
+        $responseType = $this->getConfig()->get('response');
+
+        if (!empty($responseType)) {
+            // Maybe later add a check for response type validation
+            return $responseType;
+        }
+
+        // response type in the config is empty, so choose it based on listener type
+
+        $listenerType = $this->getConfig()->get('listenerType');
+        switch ($listenerType) {
+            case 'slashCommand':
+                return 'slashCommand';
+            case 'event':
+                return 'slack';
+            default:
+                return 'json';
+        }
     }
 }
