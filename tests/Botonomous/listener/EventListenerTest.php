@@ -202,7 +202,7 @@ class EventListenerTest extends TestCase
     public function testVerifyOrigin()
     {
         $config = new Config();
-        $config->set('listenerType', 'event');
+        $config->set('listener', 'event');
         $eventListener = new EventListener();
         $eventListener->setConfig($config);
 
@@ -242,7 +242,7 @@ class EventListenerTest extends TestCase
     public function testVerifyOriginTokenException()
     {
         $config = new Config();
-        $config->set('listenerType', 'event');
+        $config->set('listener', 'event');
         $eventListener = new EventListener();
         $eventListener->setConfig($config);
         $config->set('verificationToken', '');
@@ -266,7 +266,7 @@ class EventListenerTest extends TestCase
     public function testVerifyOriginAppIdException()
     {
         $config = new Config();
-        $config->set('listenerType', 'event');
+        $config->set('listener', 'event');
         $eventListener = new EventListener();
         $config->set('apiAppId', '');
         $config->set('verificationToken', '12345');

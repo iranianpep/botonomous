@@ -65,7 +65,7 @@ class SlashCommandListenerTest extends TestCase
     public function testRun()
     {
         $config = new Config();
-        $config->set('listenerType', 'slashCommand');
+        $config->set('listener', 'slashCommand');
         $config->set('channel', '#dummyChannel');
         $commandPrefix = $config->get('commandPrefix');
 
@@ -117,7 +117,7 @@ class SlashCommandListenerTest extends TestCase
     public function testRunWithAccessControl()
     {
         $config = new Config();
-        $config->set('listenerType', 'slashCommand');
+        $config->set('listener', 'slashCommand');
         $config->set('channel', '#dummyChannel');
         $commandPrefix = $config->get('commandPrefix');
 
@@ -165,7 +165,7 @@ class SlashCommandListenerTest extends TestCase
     public function testRunWithBlackListedAccessControl()
     {
         $config = new Config();
-        $config->set('listenerType', 'slashCommand');
+        $config->set('listener', 'slashCommand');
         $config->set('channel', '#dummyChannel');
         $commandPrefix = $config->get('commandPrefix');
 
@@ -232,7 +232,7 @@ class SlashCommandListenerTest extends TestCase
     public function testSendByBot()
     {
         $config = new Config();
-        $config->set('listenerType', 'slashCommand');
+        $config->set('listener', 'slashCommand');
 
         /**
          * Form the request.
@@ -266,7 +266,7 @@ class SlashCommandListenerTest extends TestCase
     public function testSendResponseSlashCommand()
     {
         $config = new Config();
-        $config->set('listenerType', 'slashCommand');
+        $config->set('listener', 'slashCommand');
 
         /**
          * Form the request.

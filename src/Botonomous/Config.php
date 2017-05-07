@@ -20,9 +20,9 @@ class Config extends AbstractConfig
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',
         'asUser'               => true,
         // possible values are: slashCommand, event
-        'listenerType'         => 'slashCommand',
+        'listener'         => 'slashCommand',
         // response type - possible values are: slack, json, slashCommand
-        // If nothing is set, the response is automatically specified based on listenerType
+        // If nothing is set, the response is automatically specified based on listener
         'response'      => '',
         // this is used if there is no command has been specified in the message
         'defaultCommand'     => 'qa',

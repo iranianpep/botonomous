@@ -213,7 +213,7 @@ class Sender
 
     /**
      * Specify the response type
-     * If response in config is set to empty, it will be considered based on listenerType.
+     * If response in config is set to empty, it will be considered based on listener.
      *
      * @return mixed|string
      */
@@ -239,8 +239,8 @@ class Sender
      */
     private function getResponseByListenerType()
     {
-        $listenerType = $this->getConfig()->get('listenerType');
-        switch ($listenerType) {
+        $listener = $this->getConfig()->get('listener');
+        switch ($listener) {
             case 'slashCommand':
                 return 'slashCommand';
             case 'event':
