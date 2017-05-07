@@ -1,5 +1,11 @@
 {
-  "test": {
-    "answers": ["This question includes test", "test is in this question"]
+  "hi": {
+    "answers": ["hi!", "hello!"]
+  },
+  "how are you?": {
+    "answers": ["not too bad.", "I'm fine. Thank you"]
+  },
+  "who are you?": {
+    "answers": ["My name is Botonomous, a Slack bot which is autonomous!"]
   }
 }
