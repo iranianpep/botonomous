@@ -63,7 +63,6 @@ class Sender
         // @codeCoverageIgnoreEnd
 
         $responseType = $this->getResponseType();
-        $debug = (bool) $this->getSlackbot()->getRequest('debug');
 
         if (empty($channel)) {
             $channel = $this->getConfig()->get('channel');
@@ -84,7 +83,7 @@ class Sender
             $this->respondToSlack($data);
         } elseif ($responseType === 'slashCommand') {
             $this->respondToSlashCommand($response);
-        } elseif ($responseType === 'json' || $debug === true) {
+        } elseif ($responseType === 'json') {
             $this->respondAsJSON($data);
         }
 
@@ -220,6 +219,12 @@ class Sender
      */
     private function getResponseType()
     {
+        $debug = (bool) $this->getSlackbot()->getRequest('debug');
+
+        if ($debug === true) {
+            return 'json';
+        }
+
         $responseType = $this->getConfig()->get('response');
 
         if (!empty($responseType)) {

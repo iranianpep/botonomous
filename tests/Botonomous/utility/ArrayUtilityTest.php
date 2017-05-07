@@ -73,14 +73,6 @@ class ArrayUtilityTest extends TestCase
             ],
             [
                 'input' => [
-                    'test'  => '  ',
-                    'test2' => 2,
-                ],
-                'key'      => 'test',
-                'expected' => false,
-            ],
-            [
-                'input' => [
                     'test'  => 0,
                     'test2' => 2,
                 ],
