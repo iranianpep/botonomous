@@ -49,7 +49,7 @@ class Config extends AbstractConfig
          * use this token to verify that requests are actually coming from Slack
          */
         'verificationToken'    => 'YOUR_APP_VERIFICATION_TOKEN',
-        'appId'             => 'YOUR_API_ID',
-        'enabledAccessControl' => false,
+        'appId'             => 'YOUR_APP_ID',
+        'accessControlEnabled' => false,
     ];
 }

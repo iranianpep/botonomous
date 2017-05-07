@@ -147,7 +147,7 @@ class SlashCommandListenerTest extends TestCase
         $listener->setRequest($request);
         $slackbot->setListener($listener);
 
-        $config->set('enabledAccessControl', true);
+        $config->set('accessControlEnabled', true);
 
         $sorryResponse = $config->get('whitelistedMessage');
 
@@ -195,7 +195,7 @@ class SlashCommandListenerTest extends TestCase
         $listener->setRequest($request);
         $slackbot->setListener($listener);
 
-        $config->set('enabledAccessControl', true);
+        $config->set('accessControlEnabled', true);
 
         $blackList = new BlackList($request);
 
