@@ -214,7 +214,7 @@ class Sender
 
     /**
      * Specify the response type
-     * If response in config is set to empty, it will be considered based on listenerType
+     * If response in config is set to empty, it will be considered based on listenerType.
      *
      * @return mixed|string
      */
