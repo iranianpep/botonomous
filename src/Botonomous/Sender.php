@@ -235,7 +235,7 @@ class Sender
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     private function getResponseByListenerType()
     {
