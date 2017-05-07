@@ -19,7 +19,7 @@ class ArrayUtility extends AbstractUtility
     }
 
     /**
-     * Check if key is present in $search array and has got a value
+     * Check if key is present in $search array and has got a value only if the value is string
      * It considers values such as 0, '0', true and false AS true
      *
      * @param       $key
@@ -34,15 +34,7 @@ class ArrayUtility extends AbstractUtility
         }
 
         if (is_string($search[$key])) {
-            if (strlen(trim($search[$key])) > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        if (empty($search[$key]) && !in_array($search[$key], [0, true, false])) {
-            return false;
+            return strlen(trim($search[$key])) > 0;
         }
 
         return true;

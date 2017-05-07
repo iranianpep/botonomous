@@ -119,6 +119,14 @@ class ArrayUtilityTest extends TestCase
                 'key' => 'test',
                 'expected' => true
             ],
+            [
+                'input' => [
+                    'test' => [],
+                    'test2' => 2
+                ],
+                'key' => 'test',
+                'expected' => true
+            ],
         ];
 
         foreach ($inputsOutputs as $inputOutput) {
