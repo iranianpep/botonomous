@@ -102,7 +102,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function getTempDir()
     {
-        return self::TEMP_FOLDER;
+        return dirname(__DIR__).DIRECTORY_SEPARATOR.self::TEMP_FOLDER;
     }
 
     /**
