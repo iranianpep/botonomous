@@ -391,7 +391,7 @@ class ApiClient
     {
         // fall back to config
         if (empty($this->token)) {
-            $this->setToken((new Config())->get('accessToken'));
+            $this->setToken((new Config())->get('oAuthToken'));
         }
 
         return $this->token;

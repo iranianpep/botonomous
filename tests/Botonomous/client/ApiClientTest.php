@@ -157,7 +157,7 @@ class ApiClientTest extends TestCase
         $config = new Config();
 
         $expected = [
-            'token'    => $config->get('accessToken'),
+            'token'    => $config->get('oAuthToken'),
             'username' => $config->get('botUsername'),
             'as_user'  => $config->get('asUser'),
             'icon_url' => $config->get('iconURL'),
@@ -310,7 +310,7 @@ class ApiClientTest extends TestCase
         $config = new Config();
 
         $args = [
-            'token'    => $config->get('accessToken'),
+            'token'    => $config->get('oAuthToken'),
         ];
 
         $apiClient = new ApiClient();
