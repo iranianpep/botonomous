@@ -9,7 +9,8 @@ class Config extends AbstractConfig
 {
     protected static $configs = [
         'timezone'             => 'Australia/Melbourne',
-        'accessToken'          => 'YOUR_API_TOKEN',
+        'oAuthToken'           => 'OAuth_Access_Token',
+        'botUserToken'         => 'Bot_User_OAuth_Access_Token',
         'channel'              => '#general',
         'botUserId'            => 'YOUR_BOT_USER_ID',
         'botUsername'          => 'YOUR_BOT_USERNAME',
