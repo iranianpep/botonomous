@@ -8,6 +8,7 @@ namespace Botonomous\utility;
 class LoggerUtility extends AbstractUtility
 {
     const DATE_FORMAT = 'Y-m-d H:i:s';
+    const TEMP_FOLDER = 'tmp';
 
     private $logFilePath;
 
@@ -101,7 +102,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function getTempDir()
     {
-        return dirname(__DIR__).DIRECTORY_SEPARATOR.$this->getConfig()->get('tmpFolder');
+        return self::TEMP_FOLDER;
     }
 
     /**

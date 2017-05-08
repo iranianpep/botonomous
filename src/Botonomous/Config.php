@@ -8,14 +8,12 @@ namespace Botonomous;
 class Config extends AbstractConfig
 {
     protected static $configs = [
-        'baseUrl'              => 'http://localhost:8888',
         'timezone'             => 'Australia/Melbourne',
         'accessToken'          => 'YOUR_API_TOKEN',
         'channel'              => '#general',
         'botUserId'            => 'YOUR_BOT_USER_ID',
         'botUsername'          => 'YOUR_BOT_USERNAME',
         'chatLogging'          => true,
-        'tmpFolder'            => 'tmp',
         'chatLoggingFile'      => 'chat_log',
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',
         'asUser'               => true,
