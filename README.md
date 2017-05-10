@@ -44,10 +44,10 @@ Botonomous is free forever but we need your help to make it even better. Let's m
 
 If you have built any awesome Slack bot with Botonomous let us know to list it here. You can also add the following badge:
 
-[![Powered by Botonomous](https://img.shields.io/badge/Powered%20by-Botonomous-green.svg)](https://github.com/iranianpep/botonomous)
+[![Built with Botonomous](https://img.shields.io/badge/Built%20with-Botonomous-green.svg)](https://github.com/iranianpep/botonomous)
 
 ```
-[![Powered by Botonomous](https://img.shields.io/badge/Powered%20by-Botonomous-green.svg)](https://github.com/iranianpep/botonomous)
+[![Built with Botonomous](https://img.shields.io/badge/Built%20with-Botonomous-green.svg)](https://github.com/iranianpep/botonomous)
 ```
 
 ## Community
