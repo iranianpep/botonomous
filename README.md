@@ -21,8 +21,8 @@
 
 Botonomous is a PHP framework for creating autonomous [Slack bots](https://api.slack.com/bot-users). It is specifically designed for [Slack](https://slack.com) and supports [Events API](https://api.slack.com/events-api) and [Slash commands](https://api.slack.com/slash-commands). Botonomous is unique because of:
 * Quality Code: Modern, high quality and fully unit tested code base
-* Modular: Pluggable architecture for enhanced management of commands
-* OAuth 2.0: Built-in [Add to Slack](https://api.slack.com/docs/slack-button) button using OAuth 2.0
+* Modular System: Pluggable architecture for enhanced management of commands
+* OAuth 2.0 Support: Built-in [Add to Slack](https://api.slack.com/docs/slack-button) button using OAuth 2.0
 * Utility Classes: A handful of standalone utility classes to make everyone's life (even your partner's!) easier
 
 ## Get Started
