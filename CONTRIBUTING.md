@@ -1,5 +1,5 @@
 # Contributing to Botonomous
-You are more than welcome for any contributions to the Botonomous. The rules are:
+You are more than welcome for any contributions to this project. The rules are:
 * The framework follows `PSR-2` coding standard and the `PSR-4` autoloading standard
 * Make sure all the existing `PHPUnit` tests are passed
 * For any new function write a test and keep the [code coverage](https://codeclimate.com/github/iranianpep/botonomous/coverage) >= `95%`
