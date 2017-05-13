@@ -14,6 +14,10 @@ class Ping extends AbstractPlugin
      */
     public function index()
     {
+        if ($this->getSlackbot()->youTalkingToMe() !== true) {
+            return '';
+        }
+
         return 'pong';
     }
 

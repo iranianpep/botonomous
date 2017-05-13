@@ -167,7 +167,11 @@ abstract class AbstractBaseListener
         header('Connection: close');
 
         ob_end_flush();
-        ob_flush();
+        // only if an output buffer is active do ob_flush
+        if (ob_get_level() > 0) {
+            ob_flush();
+        }
+
         flush();
 
         /* @noinspection PhpInconsistentReturnPointsInspection */

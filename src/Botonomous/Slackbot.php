@@ -2,6 +2,7 @@
 
 namespace Botonomous;
 
+use Botonomous\client\ApiClient;
 use Botonomous\listener\EventListener;
 use Botonomous\plugin\AbstractPlugin;
 
@@ -450,6 +451,30 @@ class Slackbot extends AbstractBot
             return false;
         }
 
-        return $this->getMessageUtility()->isBotMentioned($message);
+        if ($this->getMessageUtility()->isBotMentioned($message) === true) {
+            return true;
+        }
+
+        $listener = $this->getListener();
+        if ($listener instanceof EventListener) {
+            // check direct messages
+            $list = (new ApiClient())->imList();
+
+            if (!empty($list)) {
+                foreach ($list as $ImObject) {
+                    // ignore any direct conversation with the default slack bot
+                    if ($ImObject['user'] === 'USLACKBOT') {
+                        continue;
+                    }
+
+                    // if IM Object id equals the event channel id the conversation is with the bot
+                    if ($ImObject['id'] === $listener->getEvent()->getChannel()) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }

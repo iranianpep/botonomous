@@ -16,6 +16,10 @@ class Help extends AbstractPlugin
      */
     public function index()
     {
+        if ($this->getSlackbot()->youTalkingToMe() !== true) {
+            return '';
+        }
+
         $allCommands = $this->getSlackbot()->getCommands();
 
         $response = '';

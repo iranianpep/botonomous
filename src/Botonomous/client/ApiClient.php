@@ -111,7 +111,11 @@ class ApiClient
         $arguments = array_merge($arguments, $this->getArgs());
 
         // check the required arguments are provided
-        $this->validateRequiredArguments($method, $arguments);
+        try {
+            $this->validateRequiredArguments($method, $arguments);
+        } catch (\Exception $e) {
+            throw new \Exception('Missing required argument(s): '.$e->getMessage());
+        }
 
         // filter unwanted arguments
         $arguments = $this->filterArguments($method, $arguments);
@@ -391,7 +395,7 @@ class ApiClient
     {
         // fall back to config
         if (empty($this->token)) {
-            $this->setToken((new Config())->get('oAuthToken'));
+            $this->setToken((new Config())->get('botUserToken'));
         }
 
         return $this->token;
