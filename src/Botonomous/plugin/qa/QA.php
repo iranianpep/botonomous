@@ -17,10 +17,6 @@ class QA extends AbstractPlugin
      */
     public function index()
     {
-        if ($this->getSlackbot()->youTalkingToMe() !== true) {
-            return '';
-        }
-
         $questions = $this->getQuestions();
 
         $stringUtility = new StringUtility();

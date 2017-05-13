@@ -152,12 +152,13 @@ class ApiClientTest extends TestCase
      */
     public function testGetArgs()
     {
-        $args = (new ApiClient())->getArgs();
+        $apiClient = new ApiClient();
+        $args = $apiClient->getArgs();
 
         $config = new Config();
 
         $expected = [
-            'token'    => $config->get('oAuthToken'),
+            'token'    => $apiClient->getToken(),
             'username' => $config->get('botUsername'),
             'as_user'  => $config->get('asUser'),
             'icon_url' => $config->get('iconURL'),
