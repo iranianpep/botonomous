@@ -2,7 +2,6 @@
 
 namespace Botonomous\plugin\qa;
 
-use Botonomous\Config;
 use Botonomous\Dictionary;
 use Botonomous\PhpunitHelper;
 use PHPUnit\Framework\TestCase;
