@@ -456,11 +456,7 @@ class Slackbot extends AbstractBot
         }
 
         $listener = $this->getListener();
-        if ($listener instanceof EventListener && $listener->getEvent()->isDirectMessage() === true) {
-            // check direct messages
-            return true;
-        }
-
-        return false;
+        // check direct messages
+        return $listener instanceof EventListener && $listener->getEvent()->isDirectMessage() === true ? true : false;
     }
 }
