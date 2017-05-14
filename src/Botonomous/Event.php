@@ -137,7 +137,7 @@ class Event extends AbstractBaseSlack
     }
 
     /**
-     * Check if the event belongs to a direct message
+     * Check if the event belongs to a direct message.
      *
      * @return bool|void
      */

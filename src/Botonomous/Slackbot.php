@@ -2,7 +2,6 @@
 
 namespace Botonomous;
 
-use Botonomous\client\ApiClient;
 use Botonomous\listener\EventListener;
 use Botonomous\plugin\AbstractPlugin;
 
