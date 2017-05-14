@@ -1,10 +1,9 @@
 # Botonomous
 <p align="center">
 <a href="https://botonomous.io"><img src="http://botonomous.io/img/botonomous.png" alt="Botonomous Logo" width="250"></a>
-
-[![Latest Stable Version](https://poser.pugx.org/botonomous/botonomous/v/stable)](https://packagist.org/packages/botonomous/botonomous)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE)
-[![Packagist](https://img.shields.io/packagist/dt/botonomous/botonomous.svg)](https://packagist.org/packages/botonomous/botonomous)
+<a href="https://packagist.org/packages/botonomous/botonomous"><img src="https://poser.pugx.org/botonomous/botonomous/v/stable" alt="Latest Stable Version"></a>
+<a href="https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license"></a>
+<a href="https://packagist.org/packages/botonomous/botonomous"><img src="https://img.shields.io/packagist/dt/botonomous/botonomous.svg" alt="Packagist"></a>
 </p>
 
 ## Code Status
