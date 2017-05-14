@@ -456,23 +456,9 @@ class Slackbot extends AbstractBot
         }
 
         $listener = $this->getListener();
-        if ($listener instanceof EventListener) {
+        if ($listener instanceof EventListener && $listener->getEvent()->isDirectMessage() === true) {
             // check direct messages
-            $list = (new ApiClient())->imList();
-
-            if (!empty($list)) {
-                foreach ($list as $imObject) {
-                    // ignore any direct conversation with the default slack bot
-                    if ($imObject['user'] === 'USLACKBOT') {
-                        continue;
-                    }
-
-                    // if IM Object id equals the event channel id the conversation is with the bot
-                    if ($imObject['id'] === $listener->getEvent()->getChannel()) {
-                        return true;
-                    }
-                }
-            }
+            return true;
         }
 
         return false;

@@ -2,6 +2,8 @@
 
 namespace Botonomous;
 
+use Botonomous\client\ApiClient;
+
 class Event extends AbstractBaseSlack
 {
     private $type;
@@ -132,5 +134,31 @@ class Event extends AbstractBaseSlack
     public function setBotId($botId)
     {
         $this->botId = $botId;
+    }
+
+    /**
+     * Check if the event belongs to a direct message
+     *
+     * @return bool|void
+     */
+    public function isDirectMessage()
+    {
+        $list = (new ApiClient())->imList();
+
+        if (empty($list)) {
+            return;
+        }
+
+        foreach ($list as $imObject) {
+            // ignore any direct conversation with the default slack bot
+            if ($imObject['user'] === 'USLACKBOT') {
+                continue;
+            }
+
+            // if IM Object id equals the event channel id the conversation is with the bot
+            if ($imObject['id'] === $this->getChannel()) {
+                return true;
+            }
+        }
     }
 }

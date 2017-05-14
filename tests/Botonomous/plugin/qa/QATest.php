@@ -18,7 +18,7 @@ class QATest extends TestCase
      */
     public function testIndex()
     {
-        $question = 'hi';
+        $question = 'Hi';
         $slackbot = (new PhpunitHelper())->getSlackbot('qa', " {$question}");
 
         $answer = (new QA($slackbot))->index();
