@@ -1,5 +1,5 @@
 # Botonomous
-[![Botonomous](http://ajaxlivesearch.com/img/robo-256.png)](http://ajaxlivesearch.com/img/robo-256.png)
+<img src="http://botonomous.io/img/botonomous.png" alt="Botonomous Logo">
 
 [![Latest Stable Version](https://poser.pugx.org/botonomous/botonomous/v/stable)](https://packagist.org/packages/botonomous/botonomous)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE)

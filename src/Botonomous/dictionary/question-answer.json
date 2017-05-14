@@ -1,11 +1,11 @@
 {
-  "hi": {
-    "answers": ["hi!", "hello!"]
+  "Hi": {
+    "answers": ["Hi there :raised_hand_with_fingers_splayed:", "Hello"]
   },
-  "how are you?": {
-    "answers": ["not too bad.", "I'm fine. Thank you"]
+  "How are you?": {
+    "answers": ["I'm fine. Thank you :facepunch:"]
   },
-  "who are you?": {
-    "answers": ["My name is Botonomous, a Slack bot which is autonomous!"]
+  "Who are you?": {
+    "answers": ["My name is :tada: *Botonomous* :tada: a PHP framework to help you create awesome Slack bots :robot_face:"]
   }
 }
