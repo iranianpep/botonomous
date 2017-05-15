@@ -4,6 +4,7 @@ namespace Botonomous;
 
 use Botonomous\client\ApiClient;
 use Botonomous\utility\LoggerUtility;
+use Botonomous\utility\MessageUtility;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
 use /* @noinspection PhpUndefinedClassInspection */
@@ -13,6 +14,7 @@ class Sender
 {
     private $slackbot;
     private $loggerUtility;
+    private $messageUtility;
     private $config;
     private $apiClient;
     private $client;
@@ -250,5 +252,44 @@ class Sender
             case 'event':
                 return 'slack';
         }
+    }
+
+    /**
+     * Send confirmation.
+     */
+    public function sendConfirmation()
+    {
+        $userId = $this->getSlackbot()->getRequest('user_id');
+
+        $user = '';
+        if (!empty($userId)) {
+            $user = $this->getMessageUtility()->linkToUser($userId).' ';
+        }
+
+        $confirmMessage = $this->getConfig()->get('confirmReceivedMessage', ['user' => $user]);
+
+        if (!empty($confirmMessage)) {
+            $this->send($confirmMessage);
+        }
+    }
+
+    /**
+     * @return MessageUtility
+     */
+    public function getMessageUtility()
+    {
+        if (!isset($this->messageUtility)) {
+            $this->setMessageUtility(new MessageUtility());
+        }
+
+        return $this->messageUtility;
+    }
+
+    /**
+     * @param MessageUtility $messageUtility
+     */
+    public function setMessageUtility(MessageUtility $messageUtility)
+    {
+        $this->messageUtility = $messageUtility;
     }
 }

@@ -119,7 +119,7 @@ class Slackbot extends AbstractBot
         $this->getLoggerUtility()->logRaw($this->getRequestUtility()->getContent());
 
         // 7. send confirmation message if is enabled
-        $this->sendConfirmation();
+        $this->getSender()->sendConfirmation();
 
         // 8. And send the response to the channel, only if the response is not empty
         $response = $this->respond($message);
@@ -195,25 +195,6 @@ class Slackbot extends AbstractBot
         }
 
         echo $request['challenge'];
-    }
-
-    /**
-     * Send confirmation.
-     */
-    private function sendConfirmation()
-    {
-        $userId = $this->getRequest('user_id');
-
-        $user = '';
-        if (!empty($userId)) {
-            $user = $this->getMessageUtility()->linkToUser($userId).' ';
-        }
-
-        $confirmMessage = $this->getConfig()->get('confirmReceivedMessage', ['user' => $user]);
-
-        if (!empty($confirmMessage)) {
-            $this->getSender()->send($confirmMessage);
-        }
     }
 
     /**
