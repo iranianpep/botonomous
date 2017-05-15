@@ -60,6 +60,7 @@ If you have built any awesome Slack bot with Botonomous let us know to list it h
 ## Support
 
 * [Jet Brains](https://www.jetbrains.com) - Without [PhpStorm](https://www.jetbrains.com/phpstorm) this project was in the middle of nowhere!
+* [Sara Salim Pour](http://sarasalimpour.com) - The outstanding artwork is because of her.
 * [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
 [![Beerpay](https://beerpay.io/iranianpep/botonomous/badge.svg?style=beer-square)](https://beerpay.io/iranianpep/botonomous)  [![Beerpay](https://beerpay.io/iranianpep/botonomous/make-wish.svg?style=flat-square)](https://beerpay.io/iranianpep/botonomous?focus=wish)
 [![Beerpay](https://img.shields.io/beerpay/iranianpep/botonomous.svg)](https://beerpay.io/iranianpep/botonomous)
