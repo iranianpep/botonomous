@@ -19,15 +19,9 @@ class BlackList extends AbstractAccessList
      */
     public function isBlackListed()
     {
-        if ($this->isUsernameBlackListed() !== false) {
-            return true;
-        }
-
-        if ($this->isUserIdBlackListed() !== false) {
-            return true;
-        }
-
-        return $this->isEmailBlackListed() !== false ? true : false;
+        return $this->isUsernameBlackListed()
+            || $this->isUserIdBlackListed()
+            || $this->isEmailBlackListed();
     }
 
     /**
