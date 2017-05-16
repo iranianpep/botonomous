@@ -151,6 +151,17 @@ class EventListenerTest extends TestCase
     }
 
     /**
+     * Test get channel id.
+     */
+    public function testGetChannelId()
+    {
+        $eventListener = new EventListener();
+        $eventListener->setRequestUtility($this->getSampleRequestUtility());
+
+        $this->assertEquals('test', $eventListener->getChannelId());
+    }
+
+    /**
      * Test get event.
      */
     public function testGetEmptyEvent()
