@@ -55,7 +55,7 @@ abstract class AbstractAccessList
 
     /**
      * Check if email is white listed or black listed
-     * If userEmail list is not set, return true for whitelist and false for blacklist
+     * If userEmail list is not set, return true for whitelist and false for blacklist.
      *
      * @return bool
      */
