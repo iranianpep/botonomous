@@ -54,6 +54,25 @@ abstract class AbstractAccessList
     }
 
     /**
+     * Check if email is white listed or black listed
+     * If userEmail list is not set, return true for whitelist and false for blacklist
+     *
+     * @return bool
+     */
+    protected function checkEmail()
+    {
+        // load the relevant list based on the class name e.g. BlackList or WhiteList
+        $list = $this->getSubAccessControlList($this->getShortClassName());
+
+        if (!isset($list['userEmail'])) {
+            // if list is not set do not check it
+            return $this->getShortClassName() === 'whitelist' ? true : false;
+        }
+
+        return $this->isEmailInList($list);
+    }
+
+    /**
      * @param string $requestKey
      * @param $listKey
      * @param string $subListKey

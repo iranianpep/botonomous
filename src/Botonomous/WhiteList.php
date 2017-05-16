@@ -60,14 +60,6 @@ class WhiteList extends AbstractAccessList
      */
     public function isEmailWhiteListed()
     {
-        // user_name is set, load the blacklist to start checking
-        $list = $this->getSubAccessControlList($this->getShortClassName());
-
-        // currently if list is not set we do not check it
-        if (!isset($list['userEmail'])) {
-            return true;
-        }
-
-        return $this->isEmailInList($list);
+        return $this->checkEmail();
     }
 }
