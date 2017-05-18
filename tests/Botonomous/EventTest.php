@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 class EventTest extends TestCase
 {
     /**
-     * Test getBotId
+     * Test getBotId.
      */
     public function testGetBotId()
     {
@@ -24,7 +24,7 @@ class EventTest extends TestCase
     }
 
     /**
-     * Test isDirectMessageEmpty
+     * Test isDirectMessageEmpty.
      */
     public function testIsDirectMessageEmpty()
     {
@@ -33,7 +33,7 @@ class EventTest extends TestCase
     }
 
     /**
-     * Test isDirectMessageEmpty
+     * Test isDirectMessageEmpty.
      */
     public function testIsDirectMessage()
     {
@@ -49,7 +49,7 @@ class EventTest extends TestCase
     }
 
     /**
-     * Test isDirectMessageEmpty
+     * Test isDirectMessageEmpty.
      */
     public function testIsNotDirectMessage()
     {
@@ -64,7 +64,7 @@ class EventTest extends TestCase
     }
 
     /**
-     * Return im list dummy response content
+     * Return im list dummy response content.
      */
     private function getDummyImListResponse()
     {
