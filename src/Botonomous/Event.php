@@ -15,6 +15,11 @@ class Event extends AbstractBaseSlack
     private $botId;
 
     /**
+     * Dependencies
+     */
+    private $apiClient;
+
+    /**
      * Event constructor.
      *
      * @param $type
@@ -137,13 +142,33 @@ class Event extends AbstractBaseSlack
     }
 
     /**
+     * @return ApiClient
+     */
+    public function getApiClient()
+    {
+        if (!isset($this->apiClient)) {
+            $this->setApiClient(new ApiClient());
+        }
+
+        return $this->apiClient;
+    }
+
+    /**
+     * @param ApiClient $apiClient
+     */
+    public function setApiClient(ApiClient $apiClient)
+    {
+        $this->apiClient = $apiClient;
+    }
+
+    /**
      * Check if the event belongs to a direct message.
      *
      * @return bool|void
      */
     public function isDirectMessage()
     {
-        $list = (new ApiClient())->imList();
+        $list = $this->getApiClient()->imList();
 
         if (empty($list)) {
             return;
