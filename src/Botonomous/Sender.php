@@ -140,12 +140,6 @@ class Sender extends AbstractSender
             return 'json';
         }
 
-        $responseType = $this->getConfig()->get('response');
-        if (!empty($responseType)) {
-            // Maybe later add a check for response type validation
-            return $responseType;
-        }
-
         // response type in the config is empty, so choose it based on listener type
         return $this->getResponseByListenerType();
     }

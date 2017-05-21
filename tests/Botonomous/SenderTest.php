@@ -10,11 +10,10 @@ class SenderTest extends TestCase
 {
     const VERIFICATION_TOKEN = 'verificationToken';
 
-    private function getSlackbot($responseType, $debug = null)
+    private function getSlackbot()
     {
         $config = new Config();
         $config->set('chatLogging', false);
-        $config->set('response', $responseType);
 
         $slackbot = new Slackbot($config);
 
@@ -25,11 +24,8 @@ class SenderTest extends TestCase
             'token'     => $config->get(self::VERIFICATION_TOKEN),
             'user_id'   => 'dummyId',
             'user_name' => 'dummyUsername',
+            'debug'     => true
         ];
-
-        if ($debug !== null) {
-            $request['debug'] = $debug;
-        }
 
         // get listener
         $listener = $slackbot->getListener();
@@ -44,7 +40,7 @@ class SenderTest extends TestCase
 
     public function testSendDebug()
     {
-        $sender = new Sender($this->getSlackbot('', true));
+        $sender = new Sender($this->getSlackbot());
 
         $sender->send('test response 2', '#dummyChannel', []);
 
@@ -55,7 +51,7 @@ class SenderTest extends TestCase
 
     public function testSendSlackJson()
     {
-        $sender = new Sender($this->getSlackbot('json'));
+        $sender = new Sender($this->getSlackbot());
 
         $sender->send('test response 3', '#dummyChannel');
 
@@ -66,11 +62,11 @@ class SenderTest extends TestCase
 
     public function testSendSlackSlack()
     {
-        $sender = new Sender($this->getSlackbot('slack'));
+        $sender = new Sender($this->getSlackbot());
 
         $sender->send('test response 4', '#dummyChannel');
 
-        $response = '';
+        $response = '{"text":"test response 4","channel":"#dummyChannel"}';
 
         $this->expectOutputString($response);
     }

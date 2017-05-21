@@ -78,9 +78,9 @@ class SlashCommandListenerTest extends TestCase
             'user_id'      => 'dummyId',
             'user_name'    => $config->get('botUsername'),
             'trigger_word' => 'mybot:',
+            'debug'        => true,
         ];
 
-        $config->set('response', 'json');
         $config->set('chatLogging', false);
 
         $slackbot = new Slackbot();
@@ -130,9 +130,9 @@ class SlashCommandListenerTest extends TestCase
             'user_id'      => 'dummyId',
             'user_name'    => $config->get('botUsername'),
             'trigger_word' => 'mybot:',
+            'debug'        => true,
         ];
 
-        $config->set('response', 'json');
         $config->set('chatLogging', false);
 
         $slackbot = new Slackbot();
@@ -178,9 +178,9 @@ class SlashCommandListenerTest extends TestCase
             'user_id'      => 'dummyId',
             'user_name'    => $config->get('botUsername'),
             'trigger_word' => 'mybot:',
+            'debug'        => true,
         ];
 
-        $config->set('response', 'json');
         $config->set('chatLogging', false);
 
         $slackbot = new Slackbot();
@@ -240,9 +240,8 @@ class SlashCommandListenerTest extends TestCase
         $request = [
             'token'   => $config->get(self::VERIFICATION_TOKEN),
             'user_id' => 'USLACKBOT',
+            'debug'   => true,
         ];
-
-        $config->set('response', 'json');
 
         $this->expectException('\Exception');
         $this->expectExceptionMessage('Request comes from the bot');
@@ -286,7 +285,6 @@ class SlashCommandListenerTest extends TestCase
         // set request
         $listener->setRequest($request);
 
-        $config->set('response', 'json');
         $slackbot->setConfig($config);
 
         $this->expectOutputString('{"text":"test response 1","channel":"#dummyChannel"}');
