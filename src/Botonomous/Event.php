@@ -15,7 +15,7 @@ class Event extends AbstractBaseSlack
     private $botId;
 
     /**
-     * Dependencies
+     * Dependencies.
      */
     private $apiClient;
 
