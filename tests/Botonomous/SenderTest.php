@@ -25,7 +25,7 @@ class SenderTest extends TestCase
             'token'     => $config->get(self::VERIFICATION_TOKEN),
             'user_id'   => 'dummyId',
             'user_name' => 'dummyUsername',
-            'debug'     => true
+            'debug'     => true,
         ];
 
         // get listener
