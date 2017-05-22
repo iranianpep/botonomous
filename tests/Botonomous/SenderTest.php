@@ -2,6 +2,7 @@
 
 namespace Botonomous;
 
+use Botonomous\client\ApiClient;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
@@ -90,7 +91,25 @@ class SenderTest extends TestCase
     {
         $client = new Client();
 
-        $sender = new Sender((new Slackbot()));
+        $sender = new Sender(new Slackbot());
         $this->assertEquals($client, $sender->getClient());
+    }
+
+    public function testGetApiClient()
+    {
+        $apiClient = new ApiClient();
+
+        $sender = new Sender(new Slackbot());
+        $sender->setApiClient($apiClient);
+
+        $this->assertEquals($apiClient, $sender->getApiClient());
+    }
+
+    public function testGetApiClientNotSet()
+    {
+        $apiClient = new ApiClient();
+
+        $sender = new Sender(new Slackbot());
+        $this->assertEquals($apiClient, $sender->getApiClient());
     }
 }

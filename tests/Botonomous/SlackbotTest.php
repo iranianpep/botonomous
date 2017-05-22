@@ -5,6 +5,7 @@ namespace Botonomous;
 use Botonomous\listener\EventListener;
 use Botonomous\listener\SlashCommandListener;
 use Botonomous\plugin\AbstractPlugin;
+use Botonomous\utility\FormattingUtility;
 use Botonomous\utility\RequestUtility;
 use PHPUnit\Framework\TestCase;
 
@@ -496,6 +497,9 @@ class SlackbotTest extends TestCase
         $slackbot->run();
     }
 
+    /**
+     * Test youTalkingToMe.
+     */
     public function testYouTalkingToMe()
     {
         $slackbot = new Slackbot();
@@ -514,6 +518,9 @@ class SlackbotTest extends TestCase
         $this->assertEquals(false, $slackbot->youTalkingToMe());
     }
 
+    /**
+     * Test messageActions.
+     */
     public function testMessageActions()
     {
         $utility = new RequestUtility();
@@ -614,5 +621,30 @@ class SlackbotTest extends TestCase
             'token' => $config->get(self::VERIFICATION_TOKEN),
             'text'  => $text,
         ];
+    }
+
+    /**
+     * Test formattingUtility.
+     */
+    public function getFormattingUtility()
+    {
+        $slackbot = new Slackbot();
+
+        $utility = new FormattingUtility();
+        $slackbot->setFormattingUtility($utility);
+
+        $this->assertEmpty($utility, $slackbot->getFormattingUtility());
+    }
+
+    /**
+     * Test formattingUtility.
+     */
+    public function getFormattingUtilityNotSet()
+    {
+        $slackbot = new Slackbot();
+
+        $utility = new FormattingUtility();
+
+        $this->assertEmpty($utility, $slackbot->getFormattingUtility());
     }
 }
