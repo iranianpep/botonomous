@@ -3,15 +3,23 @@
 namespace Botonomous;
 
 use Botonomous\client\ApiClient;
+use Botonomous\client\ApiClientTest;
+use Botonomous\listener\EventListener;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
+use /* @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Handler\MockHandler;
+use /* @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Psr7\Response;
+use /* @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\HandlerStack;
 
 class SenderTest extends TestCase
 {
     const VERIFICATION_TOKEN = 'verificationToken';
 
-    private function getSlackbot()
+    private function getSlackbot($debug = true)
     {
         $config = new Config();
         $config->set('chatLogging', false);
@@ -25,7 +33,7 @@ class SenderTest extends TestCase
             'token'     => $config->get(self::VERIFICATION_TOKEN),
             'user_id'   => 'dummyId',
             'user_name' => 'dummyUsername',
-            'debug'     => true,
+            'debug'     => $debug,
         ];
 
         // get listener
@@ -61,7 +69,7 @@ class SenderTest extends TestCase
         $this->expectOutputString($response);
     }
 
-    public function testSendSlackSlack()
+    public function testSendSlackWithDebug()
     {
         $sender = new Sender($this->getSlackbot());
 
@@ -70,6 +78,48 @@ class SenderTest extends TestCase
         $response = '{"text":"test response 4","channel":"#dummyChannel"}';
 
         $this->expectOutputString($response);
+    }
+
+    public function testSendSlack()
+    {
+        $config = new Config();
+        $config->set('listener', 'event');
+
+        $sender = new Sender($this->getSlackbot(false));
+
+        $apiClient = (new ApiClientTest())->getApiClient(
+            '{ "ok": true, "ts": "1405895017.000506", "channel": "C024BE91L", "message": {} }'
+        );
+
+        $sender->setApiClient($apiClient);
+
+        $result = $sender->send('test response 5', '#dummyChannel');
+
+        $this->assertTrue($result);
+
+        // reset the config
+        $config->set('listener', 'slashCommand');
+    }
+
+    public function testSendSlashCommand()
+    {
+        $sender = new Sender($this->getSlackbot(false));
+
+        $mock = new MockHandler([
+            new Response(200, [], ''),
+        ]);
+
+        /** @noinspection PhpUndefinedClassInspection */
+        $handler = new HandlerStack($mock);
+        /** @noinspection PhpUndefinedClassInspection */
+        $client = new Client(['handler' => $handler]);
+
+        // $client
+        $sender->setClient($client);
+
+        $result = $sender->send('test response 6', '#dummyChannel');
+
+        $this->assertTrue($result);
     }
 
     public function testGetConfig()
