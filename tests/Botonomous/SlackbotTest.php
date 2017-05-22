@@ -626,25 +626,25 @@ class SlackbotTest extends TestCase
     /**
      * Test formattingUtility.
      */
-    public function getFormattingUtility()
+    public function testGetFormattingUtility()
     {
         $slackbot = new Slackbot();
 
         $utility = new FormattingUtility();
         $slackbot->setFormattingUtility($utility);
 
-        $this->assertEmpty($utility, $slackbot->getFormattingUtility());
+        $this->assertEquals($utility, $slackbot->getFormattingUtility());
     }
 
     /**
      * Test formattingUtility.
      */
-    public function getFormattingUtilityNotSet()
+    public function testGetFormattingUtilityNotSet()
     {
         $slackbot = new Slackbot();
 
         $utility = new FormattingUtility();
 
-        $this->assertEmpty($utility, $slackbot->getFormattingUtility());
+        $this->assertEquals($utility, $slackbot->getFormattingUtility());
     }
 }
