@@ -4,16 +4,15 @@ namespace Botonomous;
 
 use Botonomous\client\ApiClient;
 use Botonomous\client\ApiClientTest;
-use Botonomous\listener\EventListener;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
-use PHPUnit\Framework\TestCase;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Handler\MockHandler;
 use /* @noinspection PhpUndefinedClassInspection */
-    GuzzleHttp\Psr7\Response;
-use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\HandlerStack;
+use /* @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
 class SenderTest extends TestCase
 {
