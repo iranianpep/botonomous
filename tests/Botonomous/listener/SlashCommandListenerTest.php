@@ -56,6 +56,19 @@ class SlashCommandListenerTest extends TestCase
         return $listener;
     }
 
+    private function getRequest(Config $config, $commandPrefix)
+    {
+        return [
+                'token'        => $config->get(self::VERIFICATION_TOKEN),
+                'text'         => "mybot: {$commandPrefix}ping",
+                'user_id'      => 'dummyId',
+                'user_name'    => $config->get('botUsername'),
+                'trigger_word' => 'mybot:',
+                'channel_id'   => 'C2147483705',
+                'debug'        => true,
+        ];
+    }
+
     /**
      * @throws \Exception
      *
@@ -71,15 +84,7 @@ class SlashCommandListenerTest extends TestCase
         /**
          * Form the request.
          */
-        $request = [
-            'token'        => $config->get(self::VERIFICATION_TOKEN),
-            'text'         => "mybot: {$commandPrefix}ping",
-            'user_id'      => 'dummyId',
-            'user_name'    => $config->get('botUsername'),
-            'trigger_word' => 'mybot:',
-            'channel_id'   => 'C2147483705',
-            'debug'        => true,
-        ];
+        $request = $this->getRequest($config, $commandPrefix);
 
         $config->set('chatLogging', false);
 
@@ -123,15 +128,7 @@ class SlashCommandListenerTest extends TestCase
         /**
          * Form the request.
          */
-        $request = [
-            'token'        => $config->get(self::VERIFICATION_TOKEN),
-            'text'         => "mybot: {$commandPrefix}ping",
-            'user_id'      => 'dummyId',
-            'user_name'    => $config->get('botUsername'),
-            'trigger_word' => 'mybot:',
-            'channel_id'   => 'C2147483705',
-            'debug'        => true,
-        ];
+        $request = $this->getRequest($config, $commandPrefix);
 
         $config->set('chatLogging', false);
 
@@ -171,15 +168,7 @@ class SlashCommandListenerTest extends TestCase
         /**
          * Form the request.
          */
-        $request = [
-            'token'        => $config->get(self::VERIFICATION_TOKEN),
-            'text'         => "mybot: {$commandPrefix}ping",
-            'user_id'      => 'dummyId',
-            'user_name'    => $config->get('botUsername'),
-            'trigger_word' => 'mybot:',
-            'channel_id'   => 'C2147483705',
-            'debug'        => true,
-        ];
+        $request = $this->getRequest($config, $commandPrefix);
 
         $config->set('chatLogging', false);
 
