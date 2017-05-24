@@ -66,7 +66,6 @@ class SlashCommandListenerTest extends TestCase
     {
         $config = new Config();
         $config->set('listener', 'slashCommand');
-        $config->set('channel', '#dummyChannel');
         $commandPrefix = $config->get('commandPrefix');
 
         /**
@@ -78,6 +77,7 @@ class SlashCommandListenerTest extends TestCase
             'user_id'      => 'dummyId',
             'user_name'    => $config->get('botUsername'),
             'trigger_word' => 'mybot:',
+            'channel_id'   => 'C2147483705',
             'debug'        => true,
         ];
 
@@ -100,10 +100,10 @@ class SlashCommandListenerTest extends TestCase
 
         $response = '';
         if (!empty($confirmMessage)) {
-            $response .= '{"text":"'.$confirmMessage.'","channel":"#dummyChannel"}';
+            $response .= '{"text":"'.$confirmMessage.'","channel":"C2147483705"}';
         }
 
-        $response .= '{"text":"pong","channel":"#dummyChannel"}';
+        $response .= '{"text":"pong","channel":"C2147483705"}';
 
         $this->expectOutputString($response);
 
@@ -118,7 +118,6 @@ class SlashCommandListenerTest extends TestCase
     {
         $config = new Config();
         $config->set('listener', 'slashCommand');
-        $config->set('channel', '#dummyChannel');
         $commandPrefix = $config->get('commandPrefix');
 
         /**
@@ -130,6 +129,7 @@ class SlashCommandListenerTest extends TestCase
             'user_id'      => 'dummyId',
             'user_name'    => $config->get('botUsername'),
             'trigger_word' => 'mybot:',
+            'channel_id'   => 'C2147483705',
             'debug'        => true,
         ];
 
@@ -151,7 +151,7 @@ class SlashCommandListenerTest extends TestCase
 
         $sorryResponse = $config->get('whitelistedMessage');
 
-        $response = '{"text":"'.$sorryResponse.'","channel":"#dummyChannel"}';
+        $response = '{"text":"'.$sorryResponse.'","channel":"C2147483705"}';
 
         $this->expectOutputString($response);
 
@@ -166,7 +166,6 @@ class SlashCommandListenerTest extends TestCase
     {
         $config = new Config();
         $config->set('listener', 'slashCommand');
-        $config->set('channel', '#dummyChannel');
         $commandPrefix = $config->get('commandPrefix');
 
         /**
@@ -178,6 +177,7 @@ class SlashCommandListenerTest extends TestCase
             'user_id'      => 'dummyId',
             'user_name'    => $config->get('botUsername'),
             'trigger_word' => 'mybot:',
+            'channel_id'   => 'C2147483705',
             'debug'        => true,
         ];
 
@@ -216,7 +216,7 @@ class SlashCommandListenerTest extends TestCase
 
         $sorryResponse = $config->get('blacklistedMessage');
 
-        $response = '{"text":"'.$sorryResponse.'","channel":"#dummyChannel"}';
+        $response = '{"text":"'.$sorryResponse.'","channel":"C2147483705"}';
 
         $this->expectOutputString($response);
 

@@ -124,8 +124,8 @@ class SenderTest extends TestCase
     public function testGetConfig()
     {
         $config = new Config();
-        $originalChannel = $config->get('channel');
-        $config->set('channel', $originalChannel.'Changed');
+        $originalTimezone = $config->get('timezone');
+        $config->set('timezone', 'America/Los_Angeles');
 
         $sender = new Sender((new Slackbot()));
         $sender->setConfig($config);
@@ -133,7 +133,7 @@ class SenderTest extends TestCase
         $this->assertEquals($config, $sender->getConfig());
 
         // reset config value
-        $config->set('channel', $originalChannel);
+        $config->set('timezone', $originalTimezone);
     }
 
     public function testGetClient()

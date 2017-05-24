@@ -58,10 +58,6 @@ class Sender extends AbstractSender
 
         if (empty($channel)) {
             $channel = $this->getSlackbot()->getListener()->getChannelId();
-
-            if (empty($channel)) {
-                $channel = $this->getConfig()->get('channel');
-            }
         }
 
         $data = [
