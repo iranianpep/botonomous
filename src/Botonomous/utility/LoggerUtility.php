@@ -137,6 +137,6 @@ class LoggerUtility extends AbstractUtility
      */
     public function getLogContent($function, $message, $channel)
     {
-        return date(self::DATE_FORMAT)."|{$function}|{$message}|{$channel}\r\n";
+        return date(self::DATE_FORMAT)."|{$function}|{$message}|{$channel}".PHP_EOL;
     }
 }
