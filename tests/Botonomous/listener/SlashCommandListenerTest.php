@@ -255,6 +255,7 @@ class SlashCommandListenerTest extends TestCase
     {
         $config = new Config();
         $config->set('listener', 'slashCommand');
+        $config->set('chatLogging', false);
 
         /**
          * Form the request.
