@@ -449,7 +449,7 @@ class SlackbotTest extends TestCase
 
         $slackbot->setListener($listener);
 
-        $this->assertEquals('<@U3Qdfvdfv> test', $slackbot->getMessage());
+        $this->assertEquals('<@U3Qdfvdfv> test', $slackbot->getListener()->getMessage());
     }
 
     /**
@@ -468,7 +468,7 @@ class SlackbotTest extends TestCase
 
         $slackbot->setListener($listener);
 
-        $this->assertEquals('<@U3Qdfvdfv> test', $slackbot->getMessage());
+        $this->assertEquals('<@U3Qdfvdfv> test', $slackbot->getListener()->getMessage());
     }
 
     /**

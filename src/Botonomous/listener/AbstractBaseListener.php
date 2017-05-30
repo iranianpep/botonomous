@@ -3,6 +3,7 @@
 namespace Botonomous\listener;
 
 use Botonomous\Config;
+use Botonomous\Event;
 use Botonomous\utility\RequestUtility;
 
 abstract class AbstractBaseListener
@@ -218,5 +219,24 @@ abstract class AbstractBaseListener
         if (isset($request['type']) && $request['type'] === 'url_verification') {
             return 'url_verification';
         }
+    }
+
+    /**
+     * Return message based on the listener
+     * If listener is event and event text is empty, fall back to request text.
+     *
+     * @return mixed|string
+     */
+    public function getMessage()
+    {
+        if ($this instanceof EventListener && $this->getEvent() instanceof Event) {
+            $message = $this->getEvent()->getText();
+
+            if (!empty($message)) {
+                return $message;
+            }
+        }
+
+        return $this->getRequest('text');
     }
 }

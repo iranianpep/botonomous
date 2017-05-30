@@ -20,7 +20,7 @@ class QA extends AbstractPlugin
         $questions = $this->getQuestions();
 
         $stringUtility = new StringUtility();
-        $text = $this->getSlackbot()->getMessage();
+        $text = $this->getSlackbot()->getListener()->getMessage();
 
         if (empty($questions)) {
             return '';

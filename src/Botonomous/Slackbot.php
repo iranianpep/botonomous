@@ -88,7 +88,7 @@ class Slackbot extends AbstractBot
         }
 
         // 5. set the current command
-        $message = $this->getMessage();
+        $message = $this->getListener()->getMessage();
         $this->setCurrentCommand($this->getMessageUtility()->extractCommandName($message));
 
         // 6. log the message
@@ -245,7 +245,7 @@ class Slackbot extends AbstractBot
     {
         // If message is not set, get it from the current request
         if ($message === null) {
-            $message = $this->getMessage();
+            $message = $this->getListener()->getMessage();
         }
 
         if (empty($message)) {
@@ -347,33 +347,13 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * Return message based on the listener
-     * If listener is event and event text is empty, fall back to request text.
-     *
-     * @return mixed|string
-     */
-    public function getMessage()
-    {
-        $listener = $this->getListener();
-        if ($listener instanceof EventListener && $listener->getEvent() instanceof Event) {
-            $message = $listener->getEvent()->getText();
-
-            if (!empty($message)) {
-                return $message;
-            }
-        }
-
-        return $listener->getRequest('text');
-    }
-
-    /**
      * Determine if bot user id is mentioned in the message.
      *
      * @return bool
      */
     public function youTalkingToMe()
     {
-        $message = $this->getMessage();
+        $message = $this->getListener()->getMessage();
 
         if (empty($message)) {
             return false;
