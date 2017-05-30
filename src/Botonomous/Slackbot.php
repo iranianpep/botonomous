@@ -27,6 +27,14 @@ class Slackbot extends AbstractBot
             $this->setConfig($config);
         }
 
+        $this->setTimezone();
+    }
+
+    /**
+     * Set the timezone
+     */
+    private function setTimezone()
+    {
         // set timezone
         date_default_timezone_set($this->getConfig()->get('timezone'));
     }
