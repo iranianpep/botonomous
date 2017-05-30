@@ -229,7 +229,7 @@ abstract class AbstractBaseListener
      */
     public function getMessage()
     {
-        if ($this instanceof EventListener && $this->getEvent() instanceof Event) {
+        if ($this instanceof EventListener && method_exists($this, 'getEvent') && $this->getEvent() instanceof Event) {
             $message = $this->getEvent()->getText();
 
             if (!empty($message)) {
