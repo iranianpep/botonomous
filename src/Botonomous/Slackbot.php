@@ -31,7 +31,7 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * Set the timezone
+     * Set the timezone.
      */
     private function setTimezone()
     {
