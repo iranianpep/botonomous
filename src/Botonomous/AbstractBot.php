@@ -23,7 +23,6 @@ abstract class AbstractBot
     protected $formattingUtility;
     protected $loggerUtility;
     protected $oauth;
-    protected $requestUtility;
     protected $blackList;
     protected $whiteList;
     protected $sender;
@@ -172,11 +171,7 @@ abstract class AbstractBot
      */
     public function getRequestUtility()
     {
-        if (!isset($this->requestUtility)) {
-            $this->setRequestUtility((new RequestUtility()));
-        }
-
-        return $this->requestUtility;
+        return $this->getListener()->getRequestUtility();
     }
 
     /**
@@ -184,7 +179,7 @@ abstract class AbstractBot
      */
     public function setRequestUtility(RequestUtility $requestUtility)
     {
-        $this->requestUtility = $requestUtility;
+        $this->getListener()->setRequestUtility($requestUtility);
     }
 
     /**

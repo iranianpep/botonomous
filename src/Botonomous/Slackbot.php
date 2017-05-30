@@ -42,25 +42,6 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * @return string|null
-     */
-    private function determineAction()
-    {
-        $utility = $this->getRequestUtility();
-        $getRequest = $utility->getGet();
-
-        if (!empty($getRequest['action'])) {
-            return strtolower($getRequest['action']);
-        }
-
-        $request = $utility->getPostedBody();
-
-        if (isset($request['type']) && $request['type'] === 'url_verification') {
-            return 'url_verification';
-        }
-    }
-
-    /**
      * @return null|AbstractBaseSlack
      */
     private function handleMessageActions()
@@ -89,7 +70,7 @@ class Slackbot extends AbstractBot
 
         // 2. verify the request
         try {
-            $verificationResult = $this->verifyRequest();
+            $verificationResult = $this->getListener()->verifyRequest();
 
             if ($verificationResult['success'] !== true) {
                 throw new \Exception($verificationResult['message']);
@@ -161,7 +142,7 @@ class Slackbot extends AbstractBot
      */
     public function run()
     {
-        switch ($this->determineAction()) {
+        switch ($this->getListener()->determineAction()) {
             case 'oauth':
                 return $this->handleOAuth();
             case 'message_actions':
@@ -311,39 +292,6 @@ class Slackbot extends AbstractBot
         }
 
         return $commandObject;
-    }
-
-    /**
-     * @throws \Exception
-     *
-     * @return array<string,boolean|string>
-     */
-    private function verifyRequest()
-    {
-        $originCheck = $this->getListener()->verifyOrigin();
-
-        if (!isset($originCheck['success'])) {
-            throw new \Exception('Success must be provided in verifyOrigin response');
-        }
-
-        if ($originCheck['success'] !== true) {
-            return [
-                'success' => false,
-                'message' => $originCheck['message'],
-            ];
-        }
-
-        if ($this->getListener()->isThisBot() !== false) {
-            return [
-                'success' => false,
-                'message' => 'Request comes from the bot',
-            ];
-        }
-
-        return [
-            'success' => true,
-            'message' => 'Yay!',
-        ];
     }
 
     /**
