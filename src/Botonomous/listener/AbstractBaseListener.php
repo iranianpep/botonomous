@@ -191,23 +191,14 @@ abstract class AbstractBaseListener
         }
 
         if ($originCheck['success'] !== true) {
-            return [
-                'success' => false,
-                'message' => $originCheck['message'],
-            ];
+            return ['success' => false, 'message' => $originCheck['message']];
         }
 
         if ($this->isThisBot() !== false) {
-            return [
-                'success' => false,
-                'message' => 'Request comes from the bot',
-            ];
+            return ['success' => false, 'message' => 'Request comes from the bot'];
         }
 
-        return [
-            'success' => true,
-            'message' => 'Yay!',
-        ];
+        return ['success' => true, 'message' => 'Yay!'];
     }
 
     /**
