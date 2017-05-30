@@ -269,7 +269,7 @@ class SlackbotTest extends TestCase
             return $pluginObject->index();
         }
 
-        return $config->get('noCommandMessage');
+        return (new Dictionary())->get('generic-messages')['noCommandMessage'];
     }
 
     /**
@@ -363,7 +363,7 @@ class SlackbotTest extends TestCase
 
         $slackbot->getCommandByMessage('dummy message without command');
 
-        $this->assertEquals($config->get('noCommandMessage'), $slackbot->getLastError());
+        $this->assertEquals((new Dictionary())->get('generic-messages')['noCommandMessage'], $slackbot->getLastError());
     }
 
     /**

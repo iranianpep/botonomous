@@ -1,0 +1,5 @@
+{
+  "noCommandMessage": "Sorry. I couldn't find any command in your message. List the available commands using /help",
+  "blacklistedMessage": "Sorry, we cannot process your message as we detected it in the blacklist",
+  "whitelistedMessage": "Sorry, we cannot process your message as we could not find it in whitelist"
+}

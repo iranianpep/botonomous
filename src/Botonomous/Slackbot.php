@@ -141,14 +141,14 @@ class Slackbot extends AbstractBot
 
         if ($this->getBlackList()->isBlackListed() !== false) {
             // found in blacklist
-            $this->getSender()->send($this->getConfig()->get('blacklistedMessage'));
+            $this->getSender()->send($this->getDictionary()->get('generic-messages')['blacklistedMessage']);
 
             return false;
         }
 
         if ($this->getWhiteList()->isWhiteListed() !== true) {
             // not found in whitelist
-            $this->getSender()->send($this->getConfig()->get('whitelistedMessage'));
+            $this->getSender()->send($this->getDictionary()->get('generic-messages')['whitelistedMessage']);
 
             return false;
         }
@@ -286,7 +286,7 @@ class Slackbot extends AbstractBot
             $command = $config->get('defaultCommand');
 
             if (empty($command)) {
-                $this->setLastError($config->get('noCommandMessage'));
+                $this->setLastError($this->getDictionary()->get('generic-messages')['noCommandMessage']);
 
                 return false;
             }

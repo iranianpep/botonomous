@@ -27,6 +27,7 @@ abstract class AbstractBot
     protected $blackList;
     protected $whiteList;
     protected $sender;
+    protected $dictionary;
 
     /**
      * @return Config
@@ -244,5 +245,25 @@ abstract class AbstractBot
     public function setSender(Sender $sender)
     {
         $this->sender = $sender;
+    }
+
+    /**
+     * @return Dictionary
+     */
+    public function getDictionary()
+    {
+        if (!isset($this->dictionary)) {
+            $this->setDictionary(new Dictionary());
+        }
+
+        return $this->dictionary;
+    }
+
+    /**
+     * @param Dictionary $dictionary
+     */
+    public function setDictionary(Dictionary $dictionary)
+    {
+        $this->dictionary = $dictionary;
     }
 }

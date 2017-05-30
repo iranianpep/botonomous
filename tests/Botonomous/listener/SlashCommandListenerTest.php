@@ -146,7 +146,7 @@ class SlashCommandListenerTest extends TestCase
 
         $config->set('accessControlEnabled', true);
 
-        $sorryResponse = $config->get('whitelistedMessage');
+        $sorryResponse = (new Dictionary())->get('generic-messages')['whitelistedMessage'];
 
         $response = '{"text":"'.$sorryResponse.'","channel":"C2147483705"}';
 
@@ -203,7 +203,7 @@ class SlashCommandListenerTest extends TestCase
 
         $slackbot->setBlackList($blackList);
 
-        $sorryResponse = $config->get('blacklistedMessage');
+        $sorryResponse = (new Dictionary())->get('generic-messages')['blacklistedMessage'];
 
         $response = '{"text":"'.$sorryResponse.'","channel":"C2147483705"}';
 
