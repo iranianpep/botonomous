@@ -58,6 +58,13 @@ class DictionaryTest extends TestCase
     {
         $dictionary = new Dictionary();
 
-        $this->assertEquals('testValue dummy user', $dictionary->getValueByKey('test-key-value', 'testKeyWithReplacements', ['user' => 'dummy user']));
+        $this->assertEquals(
+            'testValue dummy user',
+            $dictionary->getValueByKey(
+                'test-key-value',
+                'testKeyWithReplacements',
+                ['user' => 'dummy user']
+            )
+        );
     }
 }

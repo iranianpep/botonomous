@@ -167,7 +167,9 @@ class Sender extends AbstractSender
         }
 
         $confirmMessage = $this->getSlackbot()->getDictionary()->getValueByKey(
-            'generic-messages', 'confirmReceivedMessage', ['user' => $user]
+            'generic-messages',
+            'confirmReceivedMessage',
+            ['user' => $user]
         );
 
         if (!empty($confirmMessage)) {
