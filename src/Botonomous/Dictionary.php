@@ -68,8 +68,10 @@ class Dictionary
      * @param $fileName
      * @param $key
      * @param array $replacements
-     * @return mixed
+     *
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function getValueByKey($fileName, $key, $replacements = [])
     {
