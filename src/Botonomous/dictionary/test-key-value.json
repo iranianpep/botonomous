@@ -1,0 +1,4 @@
+{
+  "testKey": "testValue",
+  "testKeyWithReplacements": "testValue {user}"
+}
