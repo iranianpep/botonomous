@@ -21,7 +21,7 @@ class SenderTest extends TestCase
     private function getSlackbot($debug = true)
     {
         $config = new Config();
-        $config->set('chatLogging', false);
+        $config->set('log', false);
 
         $slackbot = new Slackbot($config);
 

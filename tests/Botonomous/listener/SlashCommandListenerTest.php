@@ -86,7 +86,7 @@ class SlashCommandListenerTest extends TestCase
          */
         $request = $this->getRequest($config, $commandPrefix);
 
-        $config->set('chatLogging', false);
+        $config->set('log', false);
 
         $slackbot = new Slackbot();
 
@@ -130,7 +130,7 @@ class SlashCommandListenerTest extends TestCase
          */
         $request = $this->getRequest($config, $commandPrefix);
 
-        $config->set('chatLogging', false);
+        $config->set('log', false);
 
         $slackbot = new Slackbot();
 
@@ -170,7 +170,7 @@ class SlashCommandListenerTest extends TestCase
          */
         $request = $this->getRequest($config, $commandPrefix);
 
-        $config->set('chatLogging', false);
+        $config->set('log', false);
 
         $slackbot = new Slackbot();
 
@@ -255,7 +255,7 @@ class SlashCommandListenerTest extends TestCase
     {
         $config = new Config();
         $config->set('listener', 'slashCommand');
-        $config->set('chatLogging', false);
+        $config->set('log', false);
 
         /**
          * Form the request.

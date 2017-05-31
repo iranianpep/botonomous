@@ -37,7 +37,7 @@ class LoggerUtility extends AbstractUtility
      */
     private function canLog()
     {
-        return $this->getConfig()->get('chatLogging') !== true ? false : true;
+        return $this->getConfig()->get('log') !== true ? false : true;
     }
 
     /**
@@ -121,7 +121,7 @@ class LoggerUtility extends AbstractUtility
     public function getLogFilePath()
     {
         if (!isset($this->logFilePath)) {
-            $logFilePath = $this->getTempDir().DIRECTORY_SEPARATOR.$this->getConfig()->get('chatLoggingFile');
+            $logFilePath = $this->getTempDir().DIRECTORY_SEPARATOR.$this->getConfig()->get('logFile');
             $this->setLogFilePath($logFilePath);
         }
 

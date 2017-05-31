@@ -25,8 +25,8 @@ class LoggerUtilityTest extends TestCase
         date_default_timezone_set(self::TIMEZONE);
 
         $config = new Config();
-        $config->set('chatLogging', false);
-        $config->set('chatLoggingFile', self::TEST_CHAT_LOG_FILE);
+        $config->set('log', false);
+        $config->set('logFile', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
 
@@ -43,8 +43,8 @@ class LoggerUtilityTest extends TestCase
         date_default_timezone_set(self::TIMEZONE);
 
         $config = new Config();
-        $config->set('chatLogging', true);
-        $config->set('chatLoggingFile', self::TEST_CHAT_LOG_FILE);
+        $config->set('log', true);
+        $config->set('logFile', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
 
@@ -61,8 +61,8 @@ class LoggerUtilityTest extends TestCase
         date_default_timezone_set(self::TIMEZONE);
 
         $config = new Config();
-        $config->set('chatLogging', true);
-        $config->set('chatLoggingFile', self::TEST_CHAT_LOG_FILE);
+        $config->set('log', true);
+        $config->set('logFile', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
 
@@ -79,8 +79,8 @@ class LoggerUtilityTest extends TestCase
         date_default_timezone_set(self::TIMEZONE);
 
         $config = new Config();
-        $config->set('chatLogging', true);
-        $config->set('chatLoggingFile', self::TEST_CHAT_LOG_FILE);
+        $config->set('log', true);
+        $config->set('logFile', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
         $utility->setLogFilePath('dummy/file/path');
@@ -102,8 +102,8 @@ class LoggerUtilityTest extends TestCase
         date_default_timezone_set(self::TIMEZONE);
 
         $config = new Config();
-        $config->set('chatLogging', true);
-        $config->set('chatLoggingFile', self::TEST_CHAT_LOG_FILE);
+        $config->set('log', true);
+        $config->set('logFile', self::TEST_CHAT_LOG_FILE);
 
         $utility = new LoggerUtility($config);
         $utility->setLogFilePath('dummy/file/path');
@@ -125,7 +125,7 @@ class LoggerUtilityTest extends TestCase
         date_default_timezone_set(self::TIMEZONE);
 
         $config = new Config();
-        $config->set('chatLogging', false);
+        $config->set('log', false);
 
         $utility = new LoggerUtility($config);
 
