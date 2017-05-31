@@ -106,7 +106,7 @@ class SlackbotTest extends TestCase
                 'i' => [
                     'message' => "{$commandPrefix}unknownCommand",
                 ],
-                'o' => $config->get('unknownCommandMessage', ['command' => 'unknownCommand']),
+                'o' => (new Dictionary())->getValueByKey('generic-messages', 'unknownCommandMessage', ['command' => 'unknownCommand']),
             ],
         ];
 

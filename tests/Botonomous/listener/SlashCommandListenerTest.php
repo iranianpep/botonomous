@@ -99,7 +99,7 @@ class SlashCommandListenerTest extends TestCase
 
         $slackbot->setConfig($config);
 
-        $confirmMessage = $slackbot->getConfig()->get('confirmReceivedMessage', [
+        $confirmMessage = $slackbot->getDictionary()->getValueByKey('generic-messages', 'confirmReceivedMessage', [
             'user' => '<@dummyId> ',
         ]);
 

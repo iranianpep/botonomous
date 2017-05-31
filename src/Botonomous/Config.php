@@ -23,13 +23,6 @@ class Config extends AbstractConfig
         'defaultCommand'     => 'qa',
         'commandPrefix'      => '/',
         /*
-         * Generic messages
-         */
-        'unknownCommandMessage' => "Sorry. I do not know anything about your command: '/{command}'.
-        List the available commands using /help",
-        // leave it empty to disable it
-        'confirmReceivedMessage' => ":point_right: {user}I've received your message and am thinking about that ...",
-        /*
          * App credentials - This is required for Event listener
          * Can be found at https://api.slack.com/apps
          */
