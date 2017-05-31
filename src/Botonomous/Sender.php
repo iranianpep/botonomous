@@ -166,7 +166,9 @@ class Sender extends AbstractSender
             $user = $this->getMessageUtility()->linkToUser($userId).' ';
         }
 
-        $confirmMessage = $this->getSlackbot()->getDictionary()->getValueByKey('generic-messages', 'confirmReceivedMessage', ['user' => $user]);
+        $confirmMessage = $this->getSlackbot()->getDictionary()->getValueByKey(
+            'generic-messages', 'confirmReceivedMessage', ['user' => $user]
+        );
 
         if (!empty($confirmMessage)) {
             $this->send($confirmMessage);
