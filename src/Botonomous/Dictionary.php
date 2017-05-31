@@ -46,19 +46,49 @@ class Dictionary
     }
 
     /**
-     * @param $key
+     * @param $fileName
      *
      * @return mixed
      */
-    public function get($key)
+    public function get($fileName)
     {
         $data = $this->getData();
 
-        if (!isset($data[$key])) {
-            $data[$key] = $this->load($key);
+        if (!isset($data[$fileName])) {
+            $data[$fileName] = $this->load($fileName);
             $this->setData($data);
         }
 
-        return $data[$key];
+        return $data[$fileName];
+    }
+
+    /**
+     * Return value for the key in the file content.
+     *
+     * @param $fileName
+     * @param $key
+     * @param array $replacements
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getValueByKey($fileName, $key, $replacements = [])
+    {
+        $fileContent = $this->get($fileName);
+
+        if (!array_key_exists($key, $fileContent)) {
+            throw new \Exception("Key: '{$key}' does not exist in file: {$fileName}");
+        }
+
+        $found = $fileContent[$key];
+
+        if (empty($replacements)) {
+            return $found;
+        }
+
+        foreach ($replacements as $key => $value) {
+            $found = str_replace('{'.$key.'}', $value, $found);
+        }
+
+        return $found;
     }
 }
