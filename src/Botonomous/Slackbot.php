@@ -345,7 +345,7 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * Get the current command.
+     * Return the current command.
      *
      * @return string
      */
