@@ -15,7 +15,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @return bool
      */
-    public function getIsIm()
+    public function isIm()
     {
         return $this->isIm;
     }
@@ -63,7 +63,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @return bool
      */
-    public function getIsUserDeleted()
+    public function isUserDeleted()
     {
         return $this->isUserDeleted;
     }

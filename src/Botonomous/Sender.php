@@ -54,8 +54,6 @@ class Sender extends AbstractSender
         }
         // @codeCoverageIgnoreEnd
 
-        $responseType = $this->getResponseType();
-
         if (empty($channel)) {
             $channel = $this->getSlackbot()->getListener()->getChannelId();
         }
@@ -71,6 +69,7 @@ class Sender extends AbstractSender
 
         $this->getLoggerUtility()->logChat(__METHOD__, $text, $channel);
 
+        $responseType = $this->getResponseType();
         if ($responseType === 'slack') {
             $this->respondToSlack($data);
         } elseif ($responseType === 'slashCommand') {
