@@ -3,6 +3,7 @@
 namespace Botonomous\client;
 
 use Botonomous\Config;
+use Botonomous\ImChannel;
 use Botonomous\Team;
 use Botonomous\utility\ArrayUtility;
 use /* @noinspection PhpUndefinedClassInspection */
@@ -276,6 +277,25 @@ class ApiClient
         }
 
         return $result['ims'];
+    }
+
+    /**
+     * @return array
+     */
+    public function imListAsObject()
+    {
+        $imChannels = $this->imList();
+
+        $imChannelObjects = [];
+        if (empty($imChannels)) {
+            return $imChannelObjects;
+        }
+
+        foreach ($imChannels as $imChannel) {
+            $imChannelObjects[$imChannel['id']] = (new ImChannel())->load($imChannel);
+        }
+
+        return $imChannelObjects;
     }
 
     /**

@@ -7,9 +7,26 @@ namespace Botonomous;
  */
 class Team extends AbstractSlackEntity
 {
+    private $name;
     private $domain;
     private $emailDomain;
     private $icon;
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
     /**
      * @return string

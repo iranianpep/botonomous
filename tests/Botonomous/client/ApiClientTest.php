@@ -3,6 +3,7 @@
 namespace Botonomous\client;
 
 use Botonomous\Config;
+use Botonomous\ImChannel;
 use Botonomous\Team;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
@@ -249,6 +250,25 @@ class ApiClientTest extends TestCase
         );
 
         $this->assertEmpty($this->getApiClient('{"ok":true}')->imList());
+    }
+
+    /**
+     * Test imListAsObject.
+     */
+    public function testImListAsObject()
+    {
+        $response = '{"ok":true,"ims":[{"id":"D39PQF1C4","is_im": true,"user": "USLACKBOT","created": 1372105335,"is_user_deleted": false}]}';
+        $imChannels = $this->getApiClient($response)->imListAsObject();
+        $imChannel = $imChannels['D39PQF1C4'];
+
+        $expectedChannel = new ImChannel();
+        $expectedChannel->setSlackId('D39PQF1C4');
+        $expectedChannel->setIsIm(true);
+        $expectedChannel->setUser('USLACKBOT');
+        $expectedChannel->setCreated('1372105335');
+        $expectedChannel->setIsUserDeleted(false);
+
+        $this->assertEquals($expectedChannel, $imChannel);
     }
 
     /**
