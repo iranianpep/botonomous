@@ -52,6 +52,7 @@ class ClassUtility
     /**
      * @param AbstractBaseSlack $object
      * @param $attributeKey
+     *
      * @return bool|string
      */
     private function getSetMethodByAttribute(AbstractBaseSlack $object, $attributeKey)
