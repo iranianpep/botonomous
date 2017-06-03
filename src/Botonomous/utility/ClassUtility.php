@@ -78,17 +78,10 @@ class ClassUtility
          *
          * The style checkers complain about functions such as setIsIm, ...
          */
-        $booleanPrefixes = ['is', 'has'];
-        sort($booleanPrefixes);
-
-        foreach ($booleanPrefixes as $booleanPrefix) {
-            if (!preg_match('/^((?i)'.$booleanPrefix.')[A-Z0-9]/', $camelCase)) {
-                continue;
-            }
-
+        $booleanPrefix = $this->findBooleanPrefix($camelCase);
+        if (!empty($booleanPrefix)) {
             // found the boolean prefix - remove it
             $camelCase = substr($camelCase, strlen($booleanPrefix));
-            break;
         }
 
         $function = 'set'.$camelCase;
@@ -98,5 +91,24 @@ class ClassUtility
         }
 
         return false;
+    }
+
+    /**
+     * @param $text
+     *
+     * @return mixed
+     */
+    private function findBooleanPrefix($text)
+    {
+        $booleanPrefixes = ['is', 'has'];
+        sort($booleanPrefixes);
+
+        foreach ($booleanPrefixes as $booleanPrefix) {
+            if (!preg_match('/^((?i)'.$booleanPrefix.')[A-Z0-9]/', $text)) {
+                continue;
+            }
+
+            return $booleanPrefix;
+        }
     }
 }
