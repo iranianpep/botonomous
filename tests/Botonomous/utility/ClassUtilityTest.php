@@ -33,6 +33,7 @@ class ClassUtilityTest extends TestCase
             'name' => self::DUMMY_NAME,
         ];
 
+        /** @var Channel $channel */
         $channel = $utility->loadAttributes($channel, $info);
 
         $this->assertEquals(self::DUMMY_ID, $channel->getSlackId());
@@ -47,6 +48,7 @@ class ClassUtilityTest extends TestCase
             'event_ts'          => '1355517523.000005',
         ];
 
+        /** @var Event $event */
         $event = $utility->loadAttributes($event, $info);
 
         $this->assertEquals(self::DUMMY_ID, $event->getBotId());
