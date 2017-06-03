@@ -63,13 +63,9 @@ class ClassUtility
         }
 
         // handle ts because there is setTimestamp instead of setTs
-        $stringUtility = new StringUtility();
-        if ($attributeKey === 'ts' || $stringUtility->endsWith($attributeKey, '_ts')) {
-            // replace the last ts with timestamp
-            $attributeKey = preg_replace('/ts$/', 'timestamp', $attributeKey);
-        }
+        $attributeKey = $this->processTimestamp($attributeKey);
 
-        $camelCase = $stringUtility->snakeCaseToCamelCase($attributeKey);
+        $camelCase = (new StringUtility())->snakeCaseToCamelCase($attributeKey);
 
         /**
          * If camel case attribute starts with 'is', 'has', ... following by an uppercase letter, remove it
@@ -86,14 +82,29 @@ class ClassUtility
 
         $function = 'set'.$camelCase;
 
-        if (method_exists($object, $function)) {
-            return $function;
-        }
-
-        return false;
+        return method_exists($object, $function) ? $function : false;
     }
 
     /**
+     * If text is 'ts' or ends with '_ts' replace it with 'timestamp'
+     *
+     * @param $text
+     *
+     * @return mixed
+     */
+    private function processTimestamp($text)
+    {
+        if ($text === 'ts' || (new StringUtility())->endsWith($text, '_ts')) {
+            // replace the last ts with timestamp
+            $text = preg_replace('/ts$/', 'timestamp', $text);
+        }
+
+        return $text;
+    }
+
+    /**
+     * Check if the text starts with boolean prefixes such as 'is', 'has', ...
+     *
      * @param $text
      *
      * @return mixed
