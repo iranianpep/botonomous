@@ -14,14 +14,25 @@ class LoggerUtility extends AbstractUtility
     const DATE_FORMAT = 'Y-m-d H:i:s';
     const TEMP_FOLDER = 'tmp';
 
-    const LEVEL_DEBUG = 'debug';
-    const LEVEL_INFO = 'info';
-    const LEVEL_NOTICE = 'notice';
-    const LEVEL_WARNING = 'warning';
-    const LEVEL_ERROR = 'error';
-    const LEVEL_CRITICAL = 'critical';
-    const LEVEL_ALERT = 'alert';
-    const LEVEL_EMERGENCY = 'emergency';
+    const DEBUG = 'debug';
+    const INFO = 'info';
+    const NOTICE = 'notice';
+    const WARNING = 'warning';
+    const ERROR = 'error';
+    const CRITICAL = 'critical';
+    const ALERT = 'alert';
+    const EMERGENCY = 'emergency';
+
+    public static $levels = [
+        self::DEBUG,
+        self::INFO,
+        self::NOTICE,
+        self::WARNING,
+        self::ERROR,
+        self::CRITICAL,
+        self::ALERT,
+        self::EMERGENCY,
+    ];
 
     private $logger;
 
@@ -186,7 +197,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function logDebug($message, array $context = [])
     {
-        return $this->log(self::LEVEL_DEBUG, $message, $context);
+        return $this->log(self::DEBUG, $message, $context);
     }
 
     /**
@@ -197,7 +208,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function logInfo($message, array $context = [])
     {
-        return $this->log(self::LEVEL_INFO, $message, $context);
+        return $this->log(self::INFO, $message, $context);
     }
 
     /**
@@ -208,7 +219,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function logNotice($message, array $context = [])
     {
-        return $this->log(self::LEVEL_NOTICE, $message, $context);
+        return $this->log(self::NOTICE, $message, $context);
     }
 
     /**
@@ -219,7 +230,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function logWarning($message, array $context = [])
     {
-        return $this->log(self::LEVEL_WARNING, $message, $context);
+        return $this->log(self::WARNING, $message, $context);
     }
 
     /**
@@ -230,7 +241,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function logError($message, array $context = [])
     {
-        return $this->log(self::LEVEL_ERROR, $message, $context);
+        return $this->log(self::ERROR, $message, $context);
     }
 
     /**
@@ -241,7 +252,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function logCritical($message, array $context = [])
     {
-        return $this->log(self::LEVEL_CRITICAL, $message, $context);
+        return $this->log(self::CRITICAL, $message, $context);
     }
 
     /**
@@ -252,7 +263,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function logAlert($message, array $context = [])
     {
-        return $this->log(self::LEVEL_ALERT, $message, $context);
+        return $this->log(self::ALERT, $message, $context);
     }
 
     /**
@@ -263,7 +274,7 @@ class LoggerUtility extends AbstractUtility
      */
     public function logEmergency($message, array $context = [])
     {
-        return $this->log(self::LEVEL_EMERGENCY, $message, $context);
+        return $this->log(self::EMERGENCY, $message, $context);
     }
 
     /**
@@ -283,34 +294,11 @@ class LoggerUtility extends AbstractUtility
 
         $logger = $this->getLogger();
 
-        switch ($level) {
-            case self::LEVEL_DEBUG:
-                $logger->debug($message, $context);
-                break;
-            case self::LEVEL_INFO:
-                $logger->info($message, $context);
-                break;
-            case self::LEVEL_NOTICE:
-                $logger->notice($message, $context);
-                break;
-            case self::LEVEL_WARNING:
-                $logger->warning($message, $context);
-                break;
-            case self::LEVEL_ERROR:
-                $logger->error($message, $context);
-                break;
-            case self::LEVEL_CRITICAL:
-                $logger->critical($message, $context);
-                break;
-            case self::LEVEL_ALERT:
-                $logger->alert($message, $context);
-                break;
-            case self::LEVEL_EMERGENCY:
-                $logger->emergency($message, $context);
-                break;
-            default:
-                throw new \Exception("'{$level}' is invalid log level");
+        if (!in_array($level, self::$levels)) {
+            throw new \Exception("'{$level}' is invalid log level");
         }
+
+        $logger->$level($message, $context);
 
         return true;
     }

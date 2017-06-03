@@ -163,13 +163,13 @@ class ArrayUtilityTest extends TestCase
             [
                 'input' => [
                     'test'  => 1,
-                    'test2' => ['test3' => 3, 'test4' => 4],
+                    'test2' => ['test3' => 3, 'test4' => 4, 'test5' => 4],
                 ],
                 'path'      => ['test2', 'test4'],
                 'value'     => 5,
                 'expected'  => [
                     'test'  => 1,
-                    'test2' => ['test3' => 3, 'test4' => 5],
+                    'test2' => ['test3' => 3, 'test4' => 5, 'test5' => 4],
                 ],
             ],
             [
