@@ -36,10 +36,10 @@ class ClassUtility
         }
 
         foreach ($attributes as $attributeKey => $attributeValue) {
-            $method = $this->getMethodByAttribute($attributeKey);
+            $method = $this->getSetMethodByAttribute($object, $attributeKey);
 
             // ignore if setter function does not exist
-            if (!method_exists($object, $method)) {
+            if (empty($method)) {
                 continue;
             }
 
@@ -50,11 +50,12 @@ class ClassUtility
     }
 
     /**
+     * @param AbstractBaseSlack $object
      * @param $attributeKey
      *
-     * @return string
+     * @return bool|string
      */
-    private function getMethodByAttribute($attributeKey)
+    private function getSetMethodByAttribute(AbstractBaseSlack $object, $attributeKey)
     {
         // For id, we cannot use 'set'.$stringUtility->snakeCaseToCamelCase($attributeKey) since it's named slackId
         if ($attributeKey === 'id') {
@@ -70,6 +71,10 @@ class ClassUtility
 
         $method = 'set'.$stringUtility->snakeCaseToCamelCase($attributeKey);
 
-        return $method;
+        if (method_exists($object, $method)) {
+            return $method;
+        }
+
+        return false;
     }
 }

@@ -168,20 +168,24 @@ class Event extends AbstractBaseSlack
      */
     public function isDirectMessage()
     {
-        $list = $this->getApiClient()->imList();
+        $imChannels = $this->getApiClient()->imListAsObject();
 
-        if (empty($list)) {
+        if (empty($imChannels)) {
             return;
         }
 
-        foreach ($list as $imObject) {
+        foreach ($imChannels as $imChannel) {
+            if (!$imChannel instanceof ImChannel) {
+                continue;
+            }
+
             // ignore any direct conversation with the default slack bot
-            if ($imObject['user'] === 'USLACKBOT') {
+            if ($imChannel->getUser() === 'USLACKBOT') {
                 continue;
             }
 
             // if IM Object id equals the event channel id the conversation is with the bot
-            if ($imObject['id'] === $this->getChannel()) {
+            if ($imChannel->getSlackId() === $this->getChannel()) {
                 return true;
             }
         }

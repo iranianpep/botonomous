@@ -342,6 +342,8 @@ class Slackbot extends AbstractBot
     }
 
     /**
+     * Return the current command.
+     *
      * @return string
      */
     public function getCurrentCommand()
