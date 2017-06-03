@@ -257,7 +257,8 @@ class ApiClientTest extends TestCase
      */
     public function testImListAsObject()
     {
-        $response = '{"ok":true,"ims":[{"id":"D39PQF1C4","is_im": true,"user": "USLACKBOT","created": 1372105335,"is_user_deleted": false}]}';
+        $response = '{"ok":true,"ims":[{"id":"D39PQF1C4","is_im": true,"user": "USLACKBOT","created": 1372105335,
+        "is_user_deleted": false}]}';
         $imChannels = $this->getApiClient($response)->imListAsObject();
         $imChannel = $imChannels['D39PQF1C4'];
 

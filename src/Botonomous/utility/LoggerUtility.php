@@ -50,15 +50,15 @@ class LoggerUtility extends AbstractUtility
 
         $logger = new Logger($monologConfig['channel']);
 
-        foreach ($monologConfig['handlers'] as $key => $value) {
-            $logger = $this->pushMonologHandler($logger, $key);
+        foreach (array_keys($monologConfig['handlers']) as $value) {
+            $logger = $this->pushMonologHandler($logger, $value);
         }
 
         $this->setLogger($logger);
     }
 
     /**
-     * @return bool
+     * @return mixed
      */
     private function getMonologConfig()
     {
@@ -280,30 +280,32 @@ class LoggerUtility extends AbstractUtility
             return false;
         }
 
+        $logger = $this->getLogger();
+
         switch ($level) {
             case self::LEVEL_DEBUG:
-                $this->getLogger()->debug($message, $context);
+                $logger->debug($message, $context);
                 break;
             case self::LEVEL_INFO:
-                $this->getLogger()->info($message, $context);
+                $logger->info($message, $context);
                 break;
             case self::LEVEL_NOTICE:
-                $this->getLogger()->notice($message, $context);
+                $logger->notice($message, $context);
                 break;
             case self::LEVEL_WARNING:
-                $this->getLogger()->warning($message, $context);
+                $logger->warning($message, $context);
                 break;
             case self::LEVEL_ERROR:
-                $this->getLogger()->error($message, $context);
+                $logger->error($message, $context);
                 break;
             case self::LEVEL_CRITICAL:
-                $this->getLogger()->critical($message, $context);
+                $logger->critical($message, $context);
                 break;
             case self::LEVEL_ALERT:
-                $this->getLogger()->alert($message, $context);
+                $logger->alert($message, $context);
                 break;
             case self::LEVEL_EMERGENCY:
-                $this->getLogger()->emergency($message, $context);
+                $logger->emergency($message, $context);
                 break;
             default:
                 throw new \Exception("'{$level}' is invalid log level");

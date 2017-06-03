@@ -135,27 +135,16 @@ class ArrayUtilityTest extends TestCase
 
         $inputsOutputs = [
             [
-                'input' => [
-                    'test'  => 1,
-                    'test2' => 2,
-                ],
+                'input' => ['test' => 1, 'test2' => 2],
                 'path'      => ['test'],
                 'value' => 3,
-                'expected' => [
-                    'test'  => 3,
-                    'test2' => 2,
-                ],
+                'expected' => ['test'  => 3, 'test2' => 2]
             ],
             [
-                'input' => [
-                    'test'  => 1
-                ],
+                'input' => ['test' => 1],
                 'path'      => ['dummy'],
                 'value' => 3,
-                'expected' => [
-                    'test'  => 1,
-                    'dummy' => 3
-                ],
+                'expected' => ['test' => 1, 'dummy' => 3]
             ],
             [
                 'input' => [
@@ -163,59 +152,36 @@ class ArrayUtilityTest extends TestCase
                 ],
                 'path'      => ['dummy1', 'dummy2'],
                 'value' => 3,
-                'expected' => [
-                    'test'  => 1,
-                    'dummy1' => [
-                        'dummy2' => 3
-                    ]
-                ],
+                'expected' => ['test'  => 1, 'dummy1' => ['dummy2' => 3]],
             ],
             [
-                'input' => [
-                    'test'  => 1,
-                    'test2' => 2,
-                ],
+                'input' => ['test' => 1, 'test2' => 2,],
                 'path'      => ['test'],
                 'value' => null,
-                'expected' => [
-                    'test'  => null,
-                    'test2' => 2,
-                ],
+                'expected' => ['test'  => null, 'test2' => 2,],
             ],
             [
                 'input' => [
                     'test'  => 1,
-                    'test2' => [
-                        'test3' => 3,
-                        'test4' => 4
-                    ],
+                    'test2' => ['test3' => 3, 'test4' => 4],
                 ],
                 'path'      => ['test2', 'test4'],
                 'value' => 5,
                 'expected' => [
                     'test'  => 1,
-                    'test2' => [
-                        'test3' => 3,
-                        'test4' => 5
-                    ],
+                    'test2' => ['test3' => 3, 'test4' => 5],
                 ],
             ],
             [
                 'input' => [
                     'test'  => 1,
-                    'test2' => [
-                        'test3' => 3,
-                        'test4' => 4
-                    ],
+                    'test2' => ['test3' => 3, 'test4' => 4],
                 ],
                 'path'      => ['test2', 'test3'],
                 'value' => 6,
                 'expected' => [
                     'test'  => 1,
-                    'test2' => [
-                        'test3' => 6,
-                        'test4' => 4
-                    ],
+                    'test2' => ['test3' => 6, 'test4' => 4]
                 ],
             ],
         ];

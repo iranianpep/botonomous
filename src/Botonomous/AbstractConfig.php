@@ -44,10 +44,7 @@ abstract class AbstractConfig
      */
     public function set($key, $value)
     {
-        if (is_array($key)) {
-            (new ArrayUtility())->setNestedArrayValue(static::$configs, $key, $value);
-        } else {
-            static::$configs[$key] = $value;
-        }
+        is_array($key) ? (new ArrayUtility())->setNestedArrayValue(static::$configs, $key, $value)
+            : static::$configs[$key] = $value;
     }
 }
