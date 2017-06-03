@@ -4,6 +4,8 @@ namespace Botonomous;
 
 /**
  * Class Action.
+ *
+ * Model for Actions
  */
 class Action extends AbstractBaseSlack
 {
