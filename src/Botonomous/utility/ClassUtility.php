@@ -74,7 +74,7 @@ class ClassUtility
         /**
          * If camel case attribute starts with 'is', 'has', ... following by an uppercase letter, remove it
          * This is used to handle calling functions such as setIm or setUserDeleted
-         * instead of setIsIm or setIsUserDeleted
+         * instead of setIsIm or setIsUserDeleted.
          *
          * The style checkers complain about functions such as setIsIm, ...
          */
