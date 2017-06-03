@@ -3,7 +3,9 @@
 namespace Botonomous;
 
 /**
- * Class ImChannel.
+ * Class ImChannel
+ *
+ * Model for ImChannel
  */
 class ImChannel extends AbstractSlackEntity
 {

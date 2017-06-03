@@ -2,6 +2,9 @@
 
 namespace Botonomous;
 
+/**
+ * Class Command.
+ */
 class Command
 {
     const DEFAULT_ACTION = 'index';
