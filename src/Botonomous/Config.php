@@ -22,8 +22,8 @@ class Config extends AbstractConfig
                         // should be full path
                         'fileName' => 'bot.log',
                     ],
-                ]
-            ]
+                ],
+            ],
         ],
         'logFile'              => 'chat_log',
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',

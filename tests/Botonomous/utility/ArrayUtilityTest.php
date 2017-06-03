@@ -140,34 +140,34 @@ class ArrayUtilityTest extends TestCase
                     'test2' => 2,
                 ],
                 'path'      => ['test'],
-                'value' => 3,
-                'expected' => [
+                'value'     => 3,
+                'expected'  => [
                     'test'  => 3,
                     'test2' => 2,
                 ],
             ],
             [
                 'input' => [
-                    'test'  => 1
+                    'test'  => 1,
                 ],
                 'path'      => ['dummy'],
-                'value' => 3,
-                'expected' => [
+                'value'     => 3,
+                'expected'  => [
                     'test'  => 1,
-                    'dummy' => 3
+                    'dummy' => 3,
                 ],
             ],
             [
                 'input' => [
-                    'test'  => 1
+                    'test'  => 1,
                 ],
                 'path'      => ['dummy1', 'dummy2'],
-                'value' => 3,
-                'expected' => [
-                    'test'  => 1,
+                'value'     => 3,
+                'expected'  => [
+                    'test'   => 1,
                     'dummy1' => [
-                        'dummy2' => 3
-                    ]
+                        'dummy2' => 3,
+                    ],
                 ],
             ],
             [
@@ -176,8 +176,8 @@ class ArrayUtilityTest extends TestCase
                     'test2' => 2,
                 ],
                 'path'      => ['test'],
-                'value' => null,
-                'expected' => [
+                'value'     => null,
+                'expected'  => [
                     'test'  => null,
                     'test2' => 2,
                 ],
@@ -187,16 +187,16 @@ class ArrayUtilityTest extends TestCase
                     'test'  => 1,
                     'test2' => [
                         'test3' => 3,
-                        'test4' => 4
+                        'test4' => 4,
                     ],
                 ],
                 'path'      => ['test2', 'test4'],
-                'value' => 5,
-                'expected' => [
+                'value'     => 5,
+                'expected'  => [
                     'test'  => 1,
                     'test2' => [
                         'test3' => 3,
-                        'test4' => 5
+                        'test4' => 5,
                     ],
                 ],
             ],
@@ -205,16 +205,16 @@ class ArrayUtilityTest extends TestCase
                     'test'  => 1,
                     'test2' => [
                         'test3' => 3,
-                        'test4' => 4
+                        'test4' => 4,
                     ],
                 ],
                 'path'      => ['test2', 'test3'],
-                'value' => 6,
-                'expected' => [
+                'value'     => 6,
+                'expected'  => [
                     'test'  => 1,
                     'test2' => [
                         'test3' => 6,
-                        'test4' => 4
+                        'test4' => 4,
                     ],
                 ],
             ],
@@ -242,45 +242,45 @@ class ArrayUtilityTest extends TestCase
                     'test2' => 2,
                 ],
                 'path'      => ['test'],
-                'expected' => 1,
+                'expected'  => 1,
             ],
             [
                 'input' => [
-                    'test'  => 1
+                    'test'  => 1,
                 ],
                 'path'      => ['dummy'],
-                'expected' => null,
+                'expected'  => null,
             ],
             [
                 'input' => [
-                    'test'  => 1
+                    'test'  => 1,
                 ],
                 'path'      => ['dummy1', 'dummy2'],
-                'expected' => null,
+                'expected'  => null,
             ],
             [
                 'input' => [
                     'test'  => 1,
                     'test2' => [
                         'test3' => 3,
-                        'test4' => 4
+                        'test4' => 4,
                     ],
                 ],
                 'path'      => ['test2', 'test4'],
-                'expected' => 4,
+                'expected'  => 4,
             ],
             [
                 'input' => [
                     'test'  => 1,
                     'test2' => [
                         'test3' => 3,
-                        'test4' => 4
+                        'test4' => 4,
                     ],
                 ],
                 'path'      => ['test2'],
-                'expected' => [
+                'expected'  => [
                     'test3' => 3,
-                    'test4' => 4
+                    'test4' => 4,
                 ],
             ],
             [
@@ -289,7 +289,7 @@ class ArrayUtilityTest extends TestCase
                     'test2' => false,
                 ],
                 'path'      => ['test2'],
-                'expected' => false,
+                'expected'  => false,
             ],
         ];
 
