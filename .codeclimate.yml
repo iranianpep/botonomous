@@ -15,6 +15,7 @@ engines:
     config:
       languages:
         php:
+          mass_threshold: 53
 ratings:
    paths:
    - "src/**/*"
