@@ -264,10 +264,10 @@ class ApiClientTest extends TestCase
 
         $expectedChannel = new ImChannel();
         $expectedChannel->setSlackId('D39PQF1C4');
-        $expectedChannel->setIsIm(true);
+        $expectedChannel->setIm(true);
         $expectedChannel->setUser('USLACKBOT');
         $expectedChannel->setCreated('1372105335');
-        $expectedChannel->setIsUserDeleted(false);
+        $expectedChannel->setUserDeleted(false);
 
         $this->assertEquals($expectedChannel, $imChannel);
     }

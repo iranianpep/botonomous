@@ -69,10 +69,32 @@ class ClassUtility
             $attributeKey = preg_replace('/ts$/', 'timestamp', $attributeKey);
         }
 
-        $method = 'set'.$stringUtility->snakeCaseToCamelCase($attributeKey);
+        $camelCase = $stringUtility->snakeCaseToCamelCase($attributeKey);
 
-        if (method_exists($object, $method)) {
-            return $method;
+        /**
+         * If camel case attribute starts with 'is', 'has', ... following by an uppercase letter, remove it
+         * This is used to handle calling functions such as setIm or setUserDeleted
+         * instead of setIsIm or setIsUserDeleted
+         *
+         * The style checkers complain about functions such as setIsIm, ...
+         */
+        $booleanPrefixes = ['is', 'has'];
+        sort($booleanPrefixes);
+
+        foreach ($booleanPrefixes as $booleanPrefix) {
+            if (!preg_match('/^((?i)'.$booleanPrefix.')[A-Z0-9]/', $camelCase)) {
+                continue;
+            }
+
+            // found the boolean prefix - remove it
+            $camelCase = substr($camelCase, strlen($booleanPrefix));
+            break;
+        }
+
+        $function = 'set'.$camelCase;
+
+        if (method_exists($object, $function)) {
+            return $function;
         }
 
         return false;

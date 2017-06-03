@@ -23,7 +23,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @param bool $isIm
      */
-    public function setIsIm($isIm)
+    public function setIm($isIm)
     {
         $this->isIm = $isIm;
     }
@@ -71,7 +71,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @param bool $isUserDeleted
      */
-    public function setIsUserDeleted($isUserDeleted)
+    public function setUserDeleted($isUserDeleted)
     {
         $this->isUserDeleted = $isUserDeleted;
     }
