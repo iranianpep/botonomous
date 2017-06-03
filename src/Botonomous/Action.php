@@ -2,6 +2,9 @@
 
 namespace Botonomous;
 
+/**
+ * Class Action.
+ */
 class Action extends AbstractBaseSlack
 {
     private $name;
