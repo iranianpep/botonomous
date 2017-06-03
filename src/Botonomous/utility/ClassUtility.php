@@ -117,8 +117,6 @@ class ClassUtility
 
             return $booleanPrefix;
         }
-
-        return;
     }
 
     /**
