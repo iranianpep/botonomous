@@ -86,7 +86,7 @@ class ClassUtility
     }
 
     /**
-     * If text is 'ts' or ends with '_ts' replace it with 'timestamp'
+     * If text is 'ts' or ends with '_ts' replace it with 'timestamp'.
      *
      * @param $text
      *
