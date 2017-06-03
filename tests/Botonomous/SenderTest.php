@@ -4,6 +4,7 @@ namespace Botonomous;
 
 use Botonomous\client\ApiClient;
 use Botonomous\client\ApiClientTest;
+use Botonomous\utility\LoggerUtilityTest;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
 use /* @noinspection PhpUndefinedClassInspection */
@@ -18,10 +19,15 @@ class SenderTest extends TestCase
 {
     const VERIFICATION_TOKEN = 'verificationToken';
 
+    /**
+     * @param bool $debug
+     *
+     * @return Slackbot
+     */
     private function getSlackbot($debug = true)
     {
         $config = new Config();
-        $config->set('log', false);
+        (new LoggerUtilityTest())->setLogFile();
 
         $slackbot = new Slackbot($config);
 
@@ -46,6 +52,9 @@ class SenderTest extends TestCase
         return $slackbot;
     }
 
+    /**
+     * Test send.
+     */
     public function testSendDebug()
     {
         $sender = new Sender($this->getSlackbot());
@@ -57,6 +66,9 @@ class SenderTest extends TestCase
         $this->expectOutputString($response);
     }
 
+    /**
+     * Test send.
+     */
     public function testSendSlackJson()
     {
         $sender = new Sender($this->getSlackbot());
@@ -68,6 +80,9 @@ class SenderTest extends TestCase
         $this->expectOutputString($response);
     }
 
+    /**
+     * Test send.
+     */
     public function testSendSlackWithDebug()
     {
         $sender = new Sender($this->getSlackbot());
@@ -79,6 +94,9 @@ class SenderTest extends TestCase
         $this->expectOutputString($response);
     }
 
+    /**
+     * Test send.
+     */
     public function testSendSlack()
     {
         $config = new Config();
@@ -100,6 +118,9 @@ class SenderTest extends TestCase
         $config->set('listener', 'slashCommand');
     }
 
+    /**
+     * Test send.
+     */
     public function testSendSlashCommand()
     {
         $sender = new Sender($this->getSlackbot(false));
@@ -121,6 +142,9 @@ class SenderTest extends TestCase
         $this->assertTrue($result);
     }
 
+    /**
+     * Test getConfig.
+     */
     public function testGetConfig()
     {
         $config = new Config();
@@ -136,6 +160,9 @@ class SenderTest extends TestCase
         $config->set('timezone', $originalTimezone);
     }
 
+    /**
+     * Test getClient.
+     */
     public function testGetClient()
     {
         $client = new Client();
@@ -144,6 +171,9 @@ class SenderTest extends TestCase
         $this->assertEquals($client, $sender->getClient());
     }
 
+    /**
+     * Test getApiClient.
+     */
     public function testGetApiClient()
     {
         $apiClient = new ApiClient();
@@ -154,6 +184,9 @@ class SenderTest extends TestCase
         $this->assertEquals($apiClient, $sender->getApiClient());
     }
 
+    /**
+     * Test getApiClient.
+     */
     public function testGetApiClientNotSet()
     {
         $apiClient = new ApiClient();

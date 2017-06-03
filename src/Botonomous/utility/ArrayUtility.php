@@ -38,4 +38,40 @@ class ArrayUtility extends AbstractUtility
 
         return true;
     }
+
+    /**
+     * Set a value in a nested array based on path
+     *
+     * @param array $array The array to modify
+     * @param array $path The path in the array
+     * @param mixed $value The value to set
+     * @return void
+     */
+    public function setNestedArrayValue(&$array, $path, &$value)
+    {
+        $current = &$array;
+        foreach ($path as $key) {
+            $current = &$current[$key];
+        }
+
+        $current = $value;
+    }
+
+    /**
+     * Get a value in a nested array based on path
+     * See https://stackoverflow.com/a/9628276/419887
+     *
+     * @param array $array The array to modify
+     * @param array $path The path in the array
+     * @return mixed
+     */
+    public function getNestedArrayValue(&$array, $path)
+    {
+        $current = &$array;
+        foreach ($path as $key) {
+            $current = &$current[$key];
+        }
+
+        return $current;
+    }
 }

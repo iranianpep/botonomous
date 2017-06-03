@@ -6,6 +6,7 @@ use Botonomous\BlackList;
 use Botonomous\Config;
 use Botonomous\Dictionary;
 use Botonomous\Slackbot;
+use Botonomous\utility\LoggerUtilityTest;
 use Botonomous\utility\RequestUtility;
 use PHPUnit\Framework\TestCase;
 
@@ -85,8 +86,7 @@ class SlashCommandListenerTest extends TestCase
          * Form the request.
          */
         $request = $this->getRequest($config, $commandPrefix);
-
-        $config->set('log', false);
+        (new LoggerUtilityTest())->setLogFile();
 
         $slackbot = new Slackbot();
 
@@ -129,8 +129,7 @@ class SlashCommandListenerTest extends TestCase
          * Form the request.
          */
         $request = $this->getRequest($config, $commandPrefix);
-
-        $config->set('log', false);
+        (new LoggerUtilityTest())->setLogFile();
 
         $slackbot = new Slackbot();
 
@@ -169,8 +168,7 @@ class SlashCommandListenerTest extends TestCase
          * Form the request.
          */
         $request = $this->getRequest($config, $commandPrefix);
-
-        $config->set('log', false);
+        (new LoggerUtilityTest())->setLogFile();
 
         $slackbot = new Slackbot();
 
@@ -255,7 +253,7 @@ class SlashCommandListenerTest extends TestCase
     {
         $config = new Config();
         $config->set('listener', 'slashCommand');
-        $config->set('log', false);
+        (new LoggerUtilityTest())->setLogFile();
 
         /**
          * Form the request.

@@ -13,7 +13,18 @@ class Config extends AbstractConfig
         'botUserToken'         => 'Bot_User_OAuth_Access_Token',
         'botUserId'            => 'YOUR_BOT_USER_ID',
         'botUsername'          => 'YOUR_BOT_USERNAME',
-        'log'                  => true,
+        'logger'               => [
+            'enabled' => true,
+            'monolog' => [
+                'channel'  => 'logger',
+                'handlers' => [
+                    'file' => [
+                        // should be full path
+                        'fileName' => 'bot.log',
+                    ],
+                ]
+            ]
+        ],
         'logFile'              => 'chat_log',
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',
         'asUser'               => true,
