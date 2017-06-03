@@ -38,7 +38,7 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * Init the logger
+     * Init the logger.
      */
     private function initLogger()
     {
@@ -136,8 +136,8 @@ class LoggerUtility extends AbstractUtility
         try {
             return $this->logInfo('Log Chat', [
                 'function' => $function,
-                'message' => $message,
-                'channel' => $channel
+                'message'  => $message,
+                'channel'  => $channel,
             ]);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
@@ -152,6 +152,7 @@ class LoggerUtility extends AbstractUtility
     private function canLog()
     {
         $loggerConfig = $this->getConfig()->get('logger');
+
         return empty($loggerConfig['enabled']) ? false : true;
     }
 
