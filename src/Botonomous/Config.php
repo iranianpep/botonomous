@@ -25,7 +25,6 @@ class Config extends AbstractConfig
                 ],
             ],
         ],
-        'logFile'              => 'chat_log',
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',
         'asUser'               => true,
         // possible values are: slashCommand, event

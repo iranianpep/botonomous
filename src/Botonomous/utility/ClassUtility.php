@@ -74,11 +74,7 @@ class ClassUtility
          *
          * The style checkers complain about functions such as setIsIm, ...
          */
-        $booleanPrefix = $this->findBooleanPrefix($camelCase);
-        if (!empty($booleanPrefix)) {
-            // found the boolean prefix - remove it
-            $camelCase = substr($camelCase, strlen($booleanPrefix));
-        }
+        $camelCase = $this->removeBooleanPrefix($camelCase);
 
         $function = 'set'.$camelCase;
 
@@ -121,5 +117,25 @@ class ClassUtility
 
             return $booleanPrefix;
         }
+
+        return;
+    }
+
+    /**
+     * If find the boolean prefix, remove it.
+     *
+     * @param $text
+     *
+     * @return string
+     */
+    private function removeBooleanPrefix($text)
+    {
+        $booleanPrefix = $this->findBooleanPrefix($text);
+        if (!empty($booleanPrefix)) {
+            // found the boolean prefix - remove it
+            $text = substr($text, strlen($booleanPrefix));
+        }
+
+        return $text;
     }
 }
