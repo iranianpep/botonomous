@@ -3,7 +3,7 @@
 namespace Botonomous;
 
 /**
- * Class ImChannel
+ * Class ImChannel.
  *
  * Model for ImChannel
  */
