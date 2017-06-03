@@ -175,12 +175,9 @@ class Event extends AbstractBaseSlack
         }
 
         foreach ($imChannels as $imChannel) {
-            if (!$imChannel instanceof ImChannel) {
-                continue;
-            }
-
-            // ignore any direct conversation with the default slack bot
+            /** @var ImChannel $imChannel */
             if ($imChannel->getUser() === 'USLACKBOT') {
+                // ignore any direct conversation with the default slack bot
                 continue;
             }
 
