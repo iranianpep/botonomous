@@ -102,8 +102,6 @@ class Slackbot extends AbstractBot
         // 6. log the message
         $this->getLoggerUtility()->logChat(__METHOD__, $message);
 
-        $this->getLoggerUtility()->logInfo($this->getRequestUtility()->getContent());
-
         // 7. send confirmation message if is enabled
         $this->getSender()->sendConfirmation();
 
