@@ -41,6 +41,7 @@ Please check the [wiki](https://github.com/iranianpep/botonomous/wiki) for the d
 ## Get involved
 
 Botonomous is free forever but we need your help to make it even better. Let's make it happen by contributing to it. You can check out the [contributing guide](https://github.com/iranianpep/botonomous/blob/master/CONTRIBUTING.md) for guidelines about how to proceed.
+[![Code Triagers Badge](https://www.codetriage.com/iranianpep/botonomous/badges/users.svg)](https://www.codetriage.com/iranianpep/botonomous)
 
 ## Built with Botonomous
 
