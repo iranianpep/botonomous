@@ -286,7 +286,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    private function log($level, $message, $context = [])
+    public function log($level, $message, $context = [])
     {
         if ($this->canLog() !== true) {
             return false;
@@ -295,7 +295,7 @@ class LoggerUtility extends AbstractUtility
         $logger = $this->getLogger();
 
         if (!in_array($level, self::$levels)) {
-            throw new \Exception("'{$level}' is invalid log level");
+            throw new \Exception("'{$level}' is an invalid log level");
         }
 
         $logger->$level($message, $context);

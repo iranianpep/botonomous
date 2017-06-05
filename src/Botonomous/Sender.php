@@ -150,6 +150,8 @@ class Sender extends AbstractSender
                 return 'slashCommand';
             case 'event':
                 return 'slack';
+            default:
+                return 'slashCommand';
         }
     }
 
