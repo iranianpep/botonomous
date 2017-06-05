@@ -80,6 +80,14 @@ class LoggerUtilityTest extends TestCase
         $config->set(['logger', 'monolog', 'handlers', 'file', 'fileName'], $name);
     }
 
+    public function testLogDebug()
+    {
+        $this->setLogFile();
+        $utility = new LoggerUtility($this->getConfig());
+
+        $this->assertTrue($utility->logDebug('This is a debug log'));
+    }
+
     public function testLogNotice()
     {
         $this->setLogFile();
