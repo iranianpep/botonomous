@@ -179,7 +179,6 @@ class Slackbot extends AbstractBot
         }
 
         echo $request['challenge'];
-        return;
     }
 
     /**
