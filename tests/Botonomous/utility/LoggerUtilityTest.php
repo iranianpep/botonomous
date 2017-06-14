@@ -84,7 +84,10 @@ class LoggerUtilityTest extends TestCase
     {
         $utility = new LoggerUtility($this->getConfig());
 
-        $this->assertEquals(__METHOD__.'|test message|#dummy', $utility->getLogContent(__METHOD__, 'test message', '#dummy'));
+        $this->assertEquals(
+            __METHOD__.'|test message|#dummy',
+            $utility->getLogContent(__METHOD__, 'test message', '#dummy')
+        );
     }
 
     public function testLogDebug()
