@@ -57,10 +57,10 @@ class SlashCommandListenerTest extends TestCase
         return $listener;
     }
 
-    private function getRequest(Config $config, $commandPrefix)
+    private function getRequest(Config $config, $commandPrefix, $token = null)
     {
         return [
-                'token'        => $config->get(self::VERIFICATION_TOKEN),
+                'token'        => $token === null ? $config->get(self::VERIFICATION_TOKEN) : $token,
                 'text'         => "mybot: {$commandPrefix}ping",
                 'user_id'      => 'dummyId',
                 'user_name'    => $config->get('botUsername'),
@@ -111,6 +111,38 @@ class SlashCommandListenerTest extends TestCase
         $response .= '{"text":"pong","channel":"C2147483705"}';
 
         $this->expectOutputString($response);
+
+        $slackbot->run();
+    }
+
+    /**
+     * Test run without token.
+     */
+    public function testRunWithoutToken()
+    {
+        $config = new Config();
+        $config->set('listener', 'slashCommand');
+        $commandPrefix = $config->get('commandPrefix');
+
+        /**
+         * Form the request.
+         */
+        $request = $this->getRequest($config, $commandPrefix, '');
+        (new LoggerUtilityTest())->setLogFile();
+
+        $slackbot = new Slackbot();
+
+        // get listener
+        $listener = $slackbot->getListener();
+
+        // set request
+        $listener->setRequest($request);
+        $slackbot->setListener($listener);
+
+        $slackbot->setConfig($config);
+
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Token is missing');
 
         $slackbot->run();
     }
