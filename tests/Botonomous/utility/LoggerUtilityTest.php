@@ -156,6 +156,17 @@ class LoggerUtilityTest extends TestCase
         $utility->log('invalidLevel', 'dummyMessage');
     }
 
+    public function testLogEmptyConfig()
+    {
+        $config = new Config();
+        $config->set('logger', null);
+
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Monolog config is missing');
+
+        new LoggerUtility($config);
+    }
+
     private function getConfig($loggerEnabled = true)
     {
         $config = new Config();

@@ -40,12 +40,18 @@ class LoggerUtility extends AbstractUtility
      * LoggerUtility constructor.
      *
      * @param null $config
+     *
+     * @throws \Exception
      */
     public function __construct($config = null)
     {
         parent::__construct($config);
 
-        $this->initLogger();
+        try {
+            $this->initLogger();
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
     /**
@@ -56,7 +62,7 @@ class LoggerUtility extends AbstractUtility
         $monologConfig = $this->getMonologConfig();
 
         if (empty($monologConfig)) {
-            return;
+            throw new \Exception('Monolog config is missing');
         }
 
         $logger = new Logger($monologConfig['channel']);

@@ -116,7 +116,10 @@ class SlashCommandListenerTest extends TestCase
     }
 
     /**
-     * Test run without token.
+     * @throws \Exception
+     *
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testRunWithoutToken()
     {
