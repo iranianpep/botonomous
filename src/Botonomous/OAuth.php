@@ -457,15 +457,11 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     {
         $getRequest = $this->getRequestUtility()->getGet();
 
-        // get code from GET request
-        if ($code === null && isset($getRequest['code'])) {
-            $code = $getRequest['code'];
-        }
+        // get code from GET request if $code is null
+        $code = $code === null && isset($getRequest['code']) ? $getRequest['code'] : $code;
 
-        // get state from GET request
-        if ($state === null && isset($getRequest['state'])) {
-            $state = $getRequest['state'];
-        }
+        // get state from GET request if $state is null
+        $state = $state === null && isset($getRequest['state']) ? $getRequest['state'] : $state;
 
         try {
             $this->processAccessToken($this->getAccessToken($code, true, $state));
