@@ -119,6 +119,14 @@ class ApiClient
         }
     }
 
+    /**
+     * @param $method
+     * @param $requestBody
+     *
+     * @throws \Exception
+     *
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
     private function sendRequest($method, $requestBody)
     {
         try {
