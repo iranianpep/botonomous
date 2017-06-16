@@ -113,6 +113,7 @@ class ApiClient
         try {
             $requestBody = $this->prepareRequestBody($method, $arguments);
             $response = $this->sendRequest($method, $requestBody);
+
             return $this->processResponse($response);
         } catch (\Exception $e) {
             throw $e;
@@ -132,6 +133,7 @@ class ApiClient
         try {
             /** @noinspection PhpUndefinedClassInspection */
             $request = new Request('POST', self::BASE_URL.$method, ['Content-Type' => self::CONTENT_TYPE], $requestBody);
+
             return $this->getClient()->send($request);
         } catch (\Exception $e) {
             throw new \Exception('Failed to send data to the Slack API: '.$e->getMessage());
