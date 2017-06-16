@@ -216,9 +216,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
                     throw new \Exception('State is not provided');
                 }
 
-                $verificationResult = $this->verifyState($state);
-
-                if ($verificationResult !== true) {
+                if ($this->verifyState($state) !== true) {
                     throw new \Exception("State: {$state} is not valid");
                 }
             }
