@@ -110,7 +110,7 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @return bool|string
+     * @return false|string
      */
     public function getLogFilePath()
     {
@@ -207,7 +207,7 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @param       $message
+     * @param       string $message
      * @param array $context
      *
      * @return bool
@@ -284,7 +284,7 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @param $level
+     * @param string $level
      * @param $message
      * @param array $context
      *
