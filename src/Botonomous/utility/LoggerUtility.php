@@ -207,8 +207,8 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @param       string $message
-     * @param array $context
+     * @param string $message
+     * @param array  $context
      *
      * @return bool
      */
