@@ -468,18 +468,26 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         }
 
         try {
-            $accessToken = $this->getAccessToken($code, true, $state);
-
-            if (empty($accessToken)) {
-                throw new \Exception('Access token is not provided');
-            }
-
-            // do whatever you want with the access token
+            $this->processAccessToken($this->getAccessToken($code, true, $state));
         } catch (\Exception $e) {
             throw $e;
         }
 
         return true;
+    }
+
+    /**
+     * @param $accessToken
+     *
+     * @throws \Exception
+     */
+    private function processAccessToken($accessToken)
+    {
+        if (empty($accessToken)) {
+            throw new \Exception('Access token is not provided');
+        }
+
+        // do whatever you want with the access token
     }
 
     /**
