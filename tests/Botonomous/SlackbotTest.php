@@ -41,7 +41,7 @@ class SlackbotTest extends TestCase
         $slackbot->setRequestUtility($requestUtility);
 
         $this->expectException('\Exception');
-        $this->expectExceptionMessage('State is not provided');
+        $this->expectExceptionMessage("State: '' is not valid");
 
         $slackbot->run();
     }

@@ -150,6 +150,10 @@ class OAuth
      */
     public function verifyState($state)
     {
+        if (empty($state)) {
+            return false;
+        }
+
         return $state === $this->getSessionUtility()->get(self::SESSION_STATE_KEY) ? true : false;
     }
 
@@ -211,14 +215,8 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     public function getAccessToken($code, $verifyState = true, $state = null)
     {
         if (!isset($this->accessToken)) {
-            if ($verifyState === true) {
-                if (empty($state)) {
-                    throw new \Exception('State is not provided');
-                }
-
-                if ($this->verifyState($state) !== true) {
-                    throw new \Exception("State: {$state} is not valid");
-                }
+            if ($verifyState === true && $this->verifyState($state) !== true) {
+                throw new \Exception("State: '{$state}' is not valid");
             }
 
             try {

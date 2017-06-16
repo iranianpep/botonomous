@@ -71,7 +71,7 @@ class OAuthTest extends TestCase
         $oauth->setSessionUtility($sessionUtility);
 
         $this->expectException('\Exception');
-        $this->expectExceptionMessage('State: 54321 is not valid');
+        $this->expectExceptionMessage("State: '54321' is not valid");
 
         $oauth->doOauth();
     }
@@ -213,7 +213,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
         $oAuth = new OAuth($clientId, $clientSecret, $scope);
 
         $this->expectException('\Exception');
-        $this->expectExceptionMessage('State is not provided');
+        $this->expectExceptionMessage("State: '' is not valid");
 
         $this->assertEquals($accessToken, $oAuth->getAccessToken(''));
     }
