@@ -17,6 +17,7 @@ use /* @noinspection PhpUndefinedClassInspection */
 class ApiClient
 {
     const BASE_URL = 'https://slack.com/api/';
+    const CONTENT_TYPE = 'application/x-www-form-urlencoded';
 
     private $arguments = [
         'rtm.start' => [
@@ -109,6 +110,36 @@ class ApiClient
      */
     public function apiCall($method, array $arguments = [])
     {
+        try {
+            $requestBody = $this->prepareRequestBody($method, $arguments);
+            $response = $this->sendRequest($method, $requestBody);
+            return $this->processResponse($response);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    private function sendRequest($method, $requestBody)
+    {
+        try {
+            /** @noinspection PhpUndefinedClassInspection */
+            $request = new Request('POST', self::BASE_URL.$method, ['Content-Type' => self::CONTENT_TYPE], $requestBody);
+            return $this->getClient()->send($request);
+        } catch (\Exception $e) {
+            throw new \Exception('Failed to send data to the Slack API: '.$e->getMessage());
+        }
+    }
+
+    /**
+     * @param $method
+     * @param array $arguments
+     *
+     * @throws \Exception
+     *
+     * @return string
+     */
+    private function prepareRequestBody($method, array $arguments = [])
+    {
         $arguments = array_merge($arguments, $this->getArgs());
 
         // check the required arguments are provided
@@ -119,27 +150,7 @@ class ApiClient
         }
 
         // filter unwanted arguments
-        $arguments = $this->filterArguments($method, $arguments);
-
-        try {
-            /** @noinspection PhpUndefinedClassInspection */
-            $request = new Request(
-                'POST',
-                self::BASE_URL.$method,
-                ['Content-Type' => 'application/x-www-form-urlencoded'],
-                http_build_query($arguments)
-            );
-
-            $response = $this->getClient()->send($request);
-        } catch (\Exception $e) {
-            throw new \Exception('Failed to send data to the Slack API: '.$e->getMessage());
-        }
-
-        try {
-            return $this->processResponse($response);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        return http_build_query($this->filterArguments($method, $arguments));
     }
 
     /**
