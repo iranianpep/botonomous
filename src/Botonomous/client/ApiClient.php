@@ -130,7 +130,12 @@ class ApiClient extends AbstractClient
     {
         try {
             /** @noinspection PhpUndefinedClassInspection */
-            $request = new Request('POST', self::BASE_URL.$method, ['Content-Type' => self::CONTENT_TYPE], $requestBody);
+            $request = new Request(
+                'POST',
+                self::BASE_URL.$method,
+                ['Content-Type' => self::CONTENT_TYPE],
+                $requestBody
+            );
 
             return $this->getClient()->send($request);
         } catch (\Exception $e) {
