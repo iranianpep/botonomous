@@ -5,7 +5,6 @@ namespace Botonomous\client;
 use Botonomous\Config;
 use Botonomous\ImChannel;
 use Botonomous\Team;
-use Botonomous\utility\ArrayUtility;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Client;
 use /* @noinspection PhpUndefinedClassInspection */
@@ -14,7 +13,7 @@ use /* @noinspection PhpUndefinedClassInspection */
 /**
  * Class ApiClient.
  */
-class ApiClient
+class ApiClient extends AbstractClient
 {
     const BASE_URL = 'https://slack.com/api/';
     const CONTENT_TYPE = 'application/x-www-form-urlencoded';
@@ -86,7 +85,6 @@ class ApiClient
 
     private $client;
     private $token;
-    private $arrayUtility;
 
     /**
      * ApiClient constructor.
@@ -442,7 +440,7 @@ class ApiClient
 
         $extractedArguments = array_merge($validArguments['required'], $validArguments['optional']);
 
-        return (new ArrayUtility())->filterArray($arguments, $extractedArguments);
+        return $this->getArrayUtility()->filterArray($arguments, $extractedArguments);
     }
 
     /**
@@ -464,25 +462,5 @@ class ApiClient
     public function setToken($token)
     {
         $this->token = $token;
-    }
-
-    /**
-     * @return ArrayUtility
-     */
-    public function getArrayUtility()
-    {
-        if (!isset($this->arrayUtility)) {
-            $this->setArrayUtility(new ArrayUtility());
-        }
-
-        return $this->arrayUtility;
-    }
-
-    /**
-     * @param ArrayUtility $arrayUtility
-     */
-    public function setArrayUtility(ArrayUtility $arrayUtility)
-    {
-        $this->arrayUtility = $arrayUtility;
     }
 }
