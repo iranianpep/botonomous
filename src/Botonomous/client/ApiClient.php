@@ -135,6 +135,22 @@ class ApiClient
             throw new \Exception('Failed to send data to the Slack API: '.$e->getMessage());
         }
 
+        try {
+            return $this->processResponse($response);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * @param $response
+     *
+     * @throws \Exception
+     *
+     * @return mixed
+     */
+    private function processResponse($response)
+    {
         $response = json_decode($response->getBody()->getContents(), true);
 
         if (!is_array($response)) {
