@@ -11,7 +11,6 @@ abstract class AbstractClient
 {
     private $arrayUtility;
 
-
     /**
      * @return ArrayUtility
      */
@@ -32,5 +31,5 @@ abstract class AbstractClient
         $this->arrayUtility = $arrayUtility;
     }
 
-    abstract function apiCall($method, array $arguments = []);
+    abstract public function apiCall($method, array $arguments = []);
 }
