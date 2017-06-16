@@ -126,14 +126,12 @@ class Slackbot extends AbstractBot
         if ($this->getBlackList()->isBlackListed() !== false) {
             // found in blacklist
             $this->getSender()->send($this->getDictionary()->get('generic-messages')['blacklistedMessage']);
-
             return false;
         }
 
         if ($this->getWhiteList()->isWhiteListed() !== true) {
             // not found in whitelist
             $this->getSender()->send($this->getDictionary()->get('generic-messages')['whitelistedMessage']);
-
             return false;
         }
 
