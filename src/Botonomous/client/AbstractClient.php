@@ -2,14 +2,42 @@
 
 namespace Botonomous\client;
 
+use Botonomous\Config;
 use Botonomous\utility\ArrayUtility;
+use /* @noinspection PhpUndefinedClassInspection */
+    GuzzleHttp\Client;
 
 /**
  * Class AbstractClient.
  */
 abstract class AbstractClient
 {
+    private $client;
+    private $config;
     private $arrayUtility;
+
+    abstract public function apiCall($method, array $arguments = []);
+
+    /** @noinspection PhpUndefinedClassInspection
+     * @param Client $client
+     */
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+    }
+
+    /** @noinspection PhpUndefinedClassInspection
+     * @return Client|null
+     */
+    public function getClient()
+    {
+        if (!isset($this->client)) {
+            /* @noinspection PhpUndefinedClassInspection */
+            $this->setClient(new Client());
+        }
+
+        return $this->client;
+    }
 
     /**
      * @return ArrayUtility
@@ -31,5 +59,23 @@ abstract class AbstractClient
         $this->arrayUtility = $arrayUtility;
     }
 
-    abstract public function apiCall($method, array $arguments = []);
+    /**
+     * @return Config
+     */
+    public function getConfig()
+    {
+        if (!isset($this->config)) {
+            $this->setConfig(new Config());
+        }
+
+        return $this->config;
+    }
+
+    /**
+     * @param Config $config
+     */
+    public function setConfig(Config $config)
+    {
+        $this->config = $config;
+    }
 }

@@ -2,11 +2,8 @@
 
 namespace Botonomous\client;
 
-use Botonomous\Config;
 use Botonomous\ImChannel;
 use Botonomous\Team;
-use /* @noinspection PhpUndefinedClassInspection */
-    GuzzleHttp\Client;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
 
@@ -83,7 +80,6 @@ class ApiClient extends AbstractClient
         ],
     ];
 
-    private $client;
     private $token;
 
     /**
@@ -191,13 +187,11 @@ class ApiClient extends AbstractClient
      */
     public function getArgs()
     {
-        $config = new Config();
-
         return [
             'token'    => $this->getToken(),
-            'username' => $config->get('botUsername'),
-            'as_user'  => $config->get('asUser'),
-            'icon_url' => $config->get('iconURL'),
+            'username' => $this->getConfig()->get('botUsername'),
+            'as_user'  => $this->getConfig()->get('asUser'),
+            'icon_url' => $this->getConfig()->get('iconURL'),
         ];
     }
 
@@ -348,27 +342,6 @@ class ApiClient extends AbstractClient
     public function oauthAccess($arguments)
     {
         return $this->apiCall('oauth.access', $arguments);
-    }
-
-    /** @noinspection PhpUndefinedClassInspection
-     * @param Client $client
-     */
-    public function setClient(Client $client)
-    {
-        $this->client = $client;
-    }
-
-    /** @noinspection PhpUndefinedClassInspection
-     * @return Client|null
-     */
-    public function getClient()
-    {
-        if (!isset($this->client)) {
-            /* @noinspection PhpUndefinedClassInspection */
-            $this->setClient(new Client());
-        }
-
-        return $this->client;
     }
 
     /**
