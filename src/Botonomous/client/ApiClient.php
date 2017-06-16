@@ -428,7 +428,7 @@ class ApiClient extends AbstractClient
     {
         // fall back to config
         if (empty($this->token)) {
-            $this->setToken((new Config())->get('botUserToken'));
+            $this->setToken($this->getConfig()->get('botUserToken'));
         }
 
         return $this->token;
