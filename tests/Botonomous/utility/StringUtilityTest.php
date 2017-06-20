@@ -349,6 +349,11 @@ class StringUtilityTest extends TestCase
                 'replacements'   => [],
                 'output'         => 'test {testKey}',
             ],
+            [
+                'string'         => ['test {testKey}'],
+                'replacements'   => ['testKey' => 'testValue'],
+                'output'         => ['test {testKey}'],
+            ],
         ];
 
         foreach ($inputOutputs as $inputOutput) {

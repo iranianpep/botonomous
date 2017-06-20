@@ -107,21 +107,21 @@ class StringUtility extends AbstractUtility
      * Apply replacements in a string
      * Replacement key in the string should be like {replacementKey}.
      *
-     * @param $string mixed
+     * @param $subject mixed
      * @param $replacements array
      *
      * @return mixed
      */
-    public function applyReplacements($string, $replacements)
+    public function applyReplacements($subject, $replacements)
     {
-        if (empty($replacements)) {
-            return $string;
+        if (empty($replacements) || !is_string($subject)) {
+            return $subject;
         }
 
         foreach ($replacements as $key => $value) {
-            $string = str_replace('{'.$key.'}', $value, $string);
+            $subject = str_replace('{'.$key.'}', $value, $subject);
         }
 
-        return $string;
+        return $subject;
     }
 }
