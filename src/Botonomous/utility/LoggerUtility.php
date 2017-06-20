@@ -132,8 +132,6 @@ class LoggerUtility extends AbstractUtility
         if (isset($monologConfig['handlers']['file']['fileName'])) {
             return $monologConfig['handlers']['file']['fileName'];
         }
-
-        return;
     }
 
     /**

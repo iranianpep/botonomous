@@ -230,12 +230,13 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * Get plugin class by command
+     * Get plugin class by command.
      *
      * @param Command $command
      *
-     * @return AbstractPlugin
      * @throws \Exception
+     *
+     * @return AbstractPlugin
      */
     private function getPluginClassByCommand(Command $command)
     {
