@@ -3,6 +3,7 @@
 namespace Botonomous;
 
 use Botonomous\utility\FileUtility;
+use Botonomous\utility\StringUtility;
 
 /**
  * Class Dictionary.
@@ -83,14 +84,6 @@ class Dictionary
 
         $found = $fileContent[$key];
 
-        if (empty($replacements)) {
-            return $found;
-        }
-
-        foreach ($replacements as $key => $value) {
-            $found = str_replace('{'.$key.'}', $value, $found);
-        }
-
-        return $found;
+        return (new StringUtility())->applyReplacements($found, $replacements);
     }
 }

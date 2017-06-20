@@ -77,7 +77,7 @@ abstract class AbstractAccessList
      * @param $listKey
      * @param string $subListKey
      *
-     * @return null|bool
+     * @return bool|null
      */
     protected function findInListByRequestKey($requestKey, $listKey, $subListKey)
     {

@@ -50,7 +50,7 @@ class Slackbot extends AbstractBot
     }
 
     /**
-     * @return null|AbstractBaseSlack
+     * @return AbstractBaseSlack|null|void
      */
     private function handleMessageActions()
     {
@@ -167,8 +167,6 @@ class Slackbot extends AbstractBot
 
     /**
      * @throws \Exception
-     *
-     * @return mixed
      */
     private function handleUrlVerification()
     {

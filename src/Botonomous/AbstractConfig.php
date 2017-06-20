@@ -3,6 +3,7 @@
 namespace Botonomous;
 
 use Botonomous\utility\ArrayUtility;
+use Botonomous\utility\StringUtility;
 
 /**
  * Class AbstractConfig.
@@ -27,15 +28,7 @@ abstract class AbstractConfig
 
         $found = static::$configs[$key];
 
-        if (empty($replacements)) {
-            return $found;
-        }
-
-        foreach ($replacements as $key => $value) {
-            $found = str_replace('{'.$key.'}', $value, $found);
-        }
-
-        return $found;
+        return (new StringUtility())->applyReplacements($found, $replacements);
     }
 
     /**

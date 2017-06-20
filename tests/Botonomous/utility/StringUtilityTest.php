@@ -273,6 +273,9 @@ class StringUtilityTest extends TestCase
         }
     }
 
+    /**
+     * Test endWith.
+     */
     public function testEndsWith()
     {
         $utility = new StringUtility();
@@ -319,6 +322,39 @@ class StringUtilityTest extends TestCase
             $this->assertEquals(
                 $inputOutput['output'],
                 $utility->endsWith($inputOutput['haystack'], $inputOutput['needle'])
+            );
+        }
+    }
+
+    /**
+     * Test applyReplacements.
+     */
+    public function testApplyReplacements()
+    {
+        $utility = new StringUtility();
+
+        $inputOutputs = [
+            [
+                'string' => 'test {testKey}',
+                'replacements'   => ['testKey' => 'testValue'],
+                'output' => 'test testValue'
+            ],
+            [
+                'string' => 'test {{testKey}}',
+                'replacements'   => ['testKey' => 'testValue'],
+                'output' => 'test {testValue}'
+            ],
+            [
+                'string' => 'test {testKey}',
+                'replacements'   => [],
+                'output' => 'test {testKey}'
+            ],
+        ];
+
+        foreach ($inputOutputs as $inputOutput) {
+            $this->assertEquals(
+                $inputOutput['output'],
+                $utility->applyReplacements($inputOutput['string'], $inputOutput['replacements'])
             );
         }
     }

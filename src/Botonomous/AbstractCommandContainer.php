@@ -12,7 +12,7 @@ abstract class AbstractCommandContainer
     /**
      * @param $key
      *
-     * @return Command
+     * @return Command|void
      */
     public function getAsObject($key)
     {

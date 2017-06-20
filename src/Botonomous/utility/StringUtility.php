@@ -102,4 +102,25 @@ class StringUtility extends AbstractUtility
 
         return substr($haystack, -$length) === $needle;
     }
+
+    /**
+     * Apply replacements in a string
+     * Replacement key in the string should be like {replacementKey}
+     *
+     * @param $string string
+     * @param $replacements array
+     * @return string
+     */
+    public function applyReplacements($string, $replacements)
+    {
+        if (empty($replacements)) {
+            return $string;
+        }
+
+        foreach ($replacements as $key => $value) {
+            $string = str_replace('{'.$key.'}', $value, $string);
+        }
+
+        return $string;
+    }
 }

@@ -6,6 +6,7 @@ use Botonomous\ImChannel;
 use Botonomous\Team;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class ApiClient.
@@ -169,7 +170,7 @@ class ApiClient extends AbstractClient
      *
      * @return mixed
      */
-    private function processResponse($response)
+    private function processResponse(ResponseInterface $response)
     {
         $response = json_decode($response->getBody()->getContents(), true);
 
@@ -235,7 +236,7 @@ class ApiClient extends AbstractClient
     }
 
     /**
-     * @return null|\Botonomous\AbstractBaseSlack
+     * @return \Botonomous\AbstractBaseSlack|null|void
      */
     public function teamInfoAsObject()
     {
