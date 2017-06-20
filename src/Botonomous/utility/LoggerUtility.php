@@ -114,12 +114,12 @@ class LoggerUtility extends AbstractUtility
      */
     public function getLogFilePath()
     {
-        $monologConfigFileName = $this->getMonologConfigFileName();
-        if (empty($monologConfigFileName)) {
+        $monologConfigFile = $this->getMonologConfigFileName();
+        if (empty($monologConfigFile)) {
             return false;
         }
 
-        return $this->getTempDir().DIRECTORY_SEPARATOR.$monologConfigFileName;
+        return $this->getTempDir().DIRECTORY_SEPARATOR.$monologConfigFile;
     }
 
     /**
