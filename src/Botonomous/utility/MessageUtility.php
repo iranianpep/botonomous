@@ -74,7 +74,7 @@ class MessageUtility extends AbstractUtility
      *
      * @param $message
      *
-     * @return \Botonomous\Command
+     * @return \Botonomous\Command|null
      */
     public function extractCommandDetails($message)
     {
