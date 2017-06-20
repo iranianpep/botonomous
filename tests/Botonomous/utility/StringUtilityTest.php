@@ -335,19 +335,19 @@ class StringUtilityTest extends TestCase
 
         $inputOutputs = [
             [
-                'string' => 'test {testKey}',
+                'string'         => 'test {testKey}',
                 'replacements'   => ['testKey' => 'testValue'],
-                'output' => 'test testValue'
+                'output'         => 'test testValue',
             ],
             [
-                'string' => 'test {{testKey}}',
+                'string'         => 'test {{testKey}}',
                 'replacements'   => ['testKey' => 'testValue'],
-                'output' => 'test {testValue}'
+                'output'         => 'test {testValue}',
             ],
             [
-                'string' => 'test {testKey}',
+                'string'         => 'test {testKey}',
                 'replacements'   => [],
-                'output' => 'test {testKey}'
+                'output'         => 'test {testKey}',
             ],
         ];
 

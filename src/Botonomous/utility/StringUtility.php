@@ -105,10 +105,11 @@ class StringUtility extends AbstractUtility
 
     /**
      * Apply replacements in a string
-     * Replacement key in the string should be like {replacementKey}
+     * Replacement key in the string should be like {replacementKey}.
      *
      * @param $string string
      * @param $replacements array
+     *
      * @return string
      */
     public function applyReplacements($string, $replacements)
