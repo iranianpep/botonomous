@@ -107,10 +107,10 @@ class StringUtility extends AbstractUtility
      * Apply replacements in a string
      * Replacement key in the string should be like {replacementKey}.
      *
-     * @param $string string
+     * @param $string mixed
      * @param $replacements array
      *
-     * @return string
+     * @return mixed
      */
     public function applyReplacements($string, $replacements)
     {
