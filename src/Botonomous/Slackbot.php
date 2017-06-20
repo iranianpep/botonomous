@@ -214,25 +214,42 @@ class Slackbot extends AbstractBot
                 return $this->getLastError();
             }
 
-            // create the class
-            $pluginClassFile = $command->getClass();
-            $pluginClass = new $pluginClassFile($this);
-
-            // check class is valid
-            if (!$pluginClass instanceof AbstractPlugin) {
-                throw new \Exception("Couldn't create class: '{$pluginClassFile}'");
-            }
+            $pluginClass = $this->getPluginClassByCommand($command);
 
             // check action exists
             $action = $command->getAction();
             if (!method_exists($pluginClass, $action)) {
-                throw new \Exception("Action / function: '{$action}' does not exist in '{$pluginClassFile}'");
+                $className = get_class($pluginClass);
+                throw new \Exception("Action / function: '{$action}' does not exist in '{$className}'");
             }
 
             return $pluginClass->$action();
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    /**
+     * Get plugin class by command
+     *
+     * @param Command $command
+     *
+     * @return AbstractPlugin
+     * @throws \Exception
+     */
+    private function getPluginClassByCommand(Command $command)
+    {
+        // create the class
+        $pluginClassFile = $command->getClass();
+        $pluginClass = new $pluginClassFile($this);
+
+        // check class is valid
+        if (!$pluginClass instanceof AbstractPlugin) {
+            $className = get_class($pluginClass);
+            throw new \Exception("Couldn't create class: '{$className}'");
+        }
+
+        return $pluginClass;
     }
 
     /**

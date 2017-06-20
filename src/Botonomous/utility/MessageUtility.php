@@ -20,8 +20,7 @@ class MessageUtility extends AbstractUtility
      */
     public function removeMentionedBot($message)
     {
-        $botUserId = $this->getConfig()->get('botUserId');
-        $userLink = $this->linkToUser($botUserId);
+        $userLink = $this->getUserLink();
 
         return preg_replace("/{$userLink}/", '', $message, 1);
     }
@@ -37,8 +36,7 @@ class MessageUtility extends AbstractUtility
      */
     public function isBotMentioned($message)
     {
-        $botUserId = $this->getConfig()->get('botUserId');
-        $userLink = $this->linkToUser($botUserId);
+        $userLink = $this->getUserLink();
 
         return (new StringUtility())->findInString($userLink, $message, false);
     }
@@ -117,5 +115,10 @@ class MessageUtility extends AbstractUtility
         }
 
         return "<@{$userId}{$userName}>";
+    }
+
+    private function getUserLink()
+    {
+        return $this->linkToUser($this->getConfig()->get('botUserId'));
     }
 }
