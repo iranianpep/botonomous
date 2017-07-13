@@ -355,10 +355,6 @@ class Slackbot extends AbstractBot
             return false;
         }
 
-        if (!$commandObject instanceof Command) {
-            throw new \Exception('Command is not an object');
-        }
-
         // check the plugin for the command
         if (empty($commandObject->getPlugin())) {
             throw new \Exception('Plugin is not set for this command');
