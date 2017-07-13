@@ -273,7 +273,7 @@ class Slackbot extends AbstractBot
             return false;
         }
 
-        /**
+        /*
          * Process the message.
          */
         try {
@@ -286,9 +286,9 @@ class Slackbot extends AbstractBot
     /**
      * @param $message
      *
-     * @return bool|Command|void
-     *
      * @throws \Exception
+     *
+     * @return bool|Command|void
      */
     private function getCommandObjectByMessage($message)
     {
@@ -316,9 +316,9 @@ class Slackbot extends AbstractBot
     /**
      * @param $command
      *
-     * @return bool|Command|void
-     *
      * @throws \Exception
+     *
+     * @return bool|Command|void
      */
     private function getCommandObjectByCommand($command)
     {
