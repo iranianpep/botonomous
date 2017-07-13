@@ -260,12 +260,10 @@ class Slackbot extends AbstractBot
          */
         $command = $this->getMessageUtility()->extractCommandName($message);
 
-        $config = $this->getConfig();
-
         // check command name
         if (empty($command)) {
             // get the default command if no command is find in the message
-            $command = $config->get('defaultCommand');
+            $command = $this->getConfig()->get('defaultCommand');
 
             if (empty($command)) {
                 $this->setLastError($this->getDictionary()->get('generic-messages')['noCommandMessage']);
@@ -276,14 +274,31 @@ class Slackbot extends AbstractBot
 
         $commandObject = $this->getCommandContainer()->getAsObject($command);
 
+        try {
+            if ($this->validateCommandObject($commandObject, $command) !== true) {
+                return false;
+            }
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        return $commandObject;
+    }
+
+    /**
+     * Validate the command object.
+     *
+     * @param $commandObject
+     * @param $command
+     * @return bool
+     * @throws \Exception
+     */
+    private function validateCommandObject($commandObject, $command)
+    {
         // check command details
         if (empty($commandObject)) {
             $this->setLastError(
-                $this->getDictionary()->getValueByKey(
-                    'generic-messages',
-                    'unknownCommandMessage',
-                    ['command' => $command]
-                )
+                $this->getDictionary()->getValueByKey('generic-messages', 'unknownCommandMessage', ['command' => $command])
             );
 
             return false;
@@ -298,7 +313,7 @@ class Slackbot extends AbstractBot
             throw new \Exception('Plugin is not set for this command');
         }
 
-        return $commandObject;
+        return true;
     }
 
     /**
