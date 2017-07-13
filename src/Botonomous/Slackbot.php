@@ -255,8 +255,10 @@ class Slackbot extends AbstractBot
 
     /**
      * @param null $message
-     * @return bool|Command|void
+     *
      * @throws \Exception
+     *
+     * @return bool|Command|void
      */
     public function getCommandByMessage($message = null)
     {
