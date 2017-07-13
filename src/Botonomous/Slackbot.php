@@ -316,7 +316,11 @@ class Slackbot extends AbstractBot
         // check command details
         if (empty($commandObject)) {
             $this->setLastError(
-                $this->getDictionary()->getValueByKey('generic-messages', 'unknownCommandMessage', ['command' => $command])
+                $this->getDictionary()->getValueByKey(
+                    'generic-messages',
+                    'unknownCommandMessage',
+                    ['command' => $command]
+                )
             );
 
             return false;
