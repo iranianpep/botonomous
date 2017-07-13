@@ -258,7 +258,7 @@ class Slackbot extends AbstractBot
      *
      * @throws \Exception
      *
-     * @return bool|Command
+     * @return Command
      */
     public function getCommandByMessage($message = null)
     {
@@ -306,10 +306,12 @@ class Slackbot extends AbstractBot
     /**
      * Validate the command object.
      *
-     * @param $commandObject
+     * @param Command|null $commandObject
      * @param $command
-     * @return bool
+     *
      * @throws \Exception
+     *
+     * @return bool
      */
     private function validateCommandObject($commandObject, $command)
     {
