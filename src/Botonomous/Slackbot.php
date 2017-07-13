@@ -308,8 +308,10 @@ class Slackbot extends AbstractBot
      *
      * @param $commandObject
      * @param $command
-     * @return bool
+     *
      * @throws \Exception
+     *
+     * @return bool
      */
     private function validateCommandObject($commandObject, $command)
     {
