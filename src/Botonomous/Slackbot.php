@@ -276,6 +276,22 @@ class Slackbot extends AbstractBot
         /**
          * Process the message.
          */
+        try {
+            return $this->getCommandObjectByMessage($message);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * @param $message
+     *
+     * @return bool|Command|void
+     *
+     * @throws \Exception
+     */
+    private function getCommandObjectByMessage($message)
+    {
         $command = $this->getMessageUtility()->extractCommandName($message);
 
         // check command name
@@ -290,37 +306,50 @@ class Slackbot extends AbstractBot
             }
         }
 
-        $commandObject = $this->getCommandContainer()->getAsObject($command);
-
         try {
-            if ($this->validateCommandObject($commandObject, $command) !== true) {
-                return false;
-            }
+            return $this->getCommandObjectByCommand($command);
         } catch (\Exception $e) {
             throw $e;
         }
+    }
 
-        return $commandObject;
+    /**
+     * @param $command
+     *
+     * @return bool|Command|void
+     *
+     * @throws \Exception
+     */
+    private function getCommandObjectByCommand($command)
+    {
+        try {
+            $commandObject = $this->getCommandContainer()->getAsObject($command);
+
+            if ($this->validateCommandObject($commandObject) !== true) {
+                return false;
+            }
+
+            return $commandObject;
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
     /**
      * Validate the command object.
      *
      * @param Command|null $commandObject
-     * @param $command
      *
      * @throws \Exception
      *
      * @return bool
      */
-    private function validateCommandObject($commandObject, $command)
+    private function validateCommandObject($commandObject)
     {
         // check command details
         if (empty($commandObject)) {
             $this->setLastError(
-                $this->getDictionary()->getValueByKey(
-                    'generic-messages', 'unknownCommandMessage', ['command' => $command]
-                )
+                $this->getDictionary()->getValueByKey('generic-messages', 'unknownCommandMessage')
             );
 
             return false;

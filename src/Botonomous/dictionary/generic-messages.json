@@ -2,6 +2,6 @@
   "noCommandMessage": "Sorry. I couldn't find any command in your message. List the available commands using /help",
   "blacklistedMessage": "Sorry, we cannot process your message as we detected it in the blacklist",
   "whitelistedMessage": "Sorry, we cannot process your message as we could not find it in whitelist",
-  "unknownCommandMessage": "Sorry. I do not know anything about your command: '/{command}'. List the available commands using /help",
+  "unknownCommandMessage": "Sorry. I do not know anything about your command. List the available commands using /help",
   "confirmReceivedMessage": ":point_right: {user}I've received your message and am thinking about that ..."
 }
