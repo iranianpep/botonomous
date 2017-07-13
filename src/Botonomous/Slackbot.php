@@ -256,9 +256,7 @@ class Slackbot extends AbstractBot
     /**
      * @param null $message
      *
-     * @throws \Exception
-     *
-     * @return bool|Command|void
+     * @return Command|void
      */
     public function getCommandByMessage($message = null)
     {
@@ -269,26 +267,19 @@ class Slackbot extends AbstractBot
 
         if (empty($message)) {
             $this->setLastError('Message is empty');
-
-            return false;
+            return;
         }
 
         /*
          * Process the message.
          */
-        try {
-            return $this->getCommandObjectByMessage($message);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        return $this->getCommandObjectByMessage($message);
     }
 
     /**
      * @param $message
      *
-     * @throws \Exception
-     *
-     * @return bool|Command|void
+     * @return Command|void
      */
     private function getCommandObjectByMessage($message)
     {
@@ -301,46 +292,33 @@ class Slackbot extends AbstractBot
 
             if (empty($command)) {
                 $this->setLastError($this->getDictionary()->get('generic-messages')['noCommandMessage']);
-
-                return false;
+                return;
             }
         }
 
-        try {
-            return $this->getCommandObjectByCommand($command);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        return $this->getCommandObjectByCommand($command);
     }
 
     /**
      * @param $command
      *
-     * @throws \Exception
-     *
-     * @return bool|Command|void
+     * @return Command|void
      */
     private function getCommandObjectByCommand($command)
     {
-        try {
-            $commandObject = $this->getCommandContainer()->getAsObject($command);
+        $commandObject = $this->getCommandContainer()->getAsObject($command);
 
-            if ($this->validateCommandObject($commandObject) !== true) {
-                return false;
-            }
-
-            return $commandObject;
-        } catch (\Exception $e) {
-            throw $e;
+        if ($this->validateCommandObject($commandObject) !== true) {
+            return;
         }
+
+        return $commandObject;
     }
 
     /**
      * Validate the command object.
      *
      * @param Command|null $commandObject
-     *
-     * @throws \Exception
      *
      * @return bool
      */
@@ -353,11 +331,6 @@ class Slackbot extends AbstractBot
             );
 
             return false;
-        }
-
-        // check the plugin for the command
-        if (empty($commandObject->getPlugin())) {
-            throw new \Exception('Plugin is not set for this command');
         }
 
         return true;

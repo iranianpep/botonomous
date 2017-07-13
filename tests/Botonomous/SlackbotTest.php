@@ -397,7 +397,7 @@ class SlackbotTest extends TestCase
 
         $this->assertEquals('Message is empty', $slackbot->getLastError());
 
-        $this->assertFalse($result);
+        $this->assertEmpty($result);
     }
 
     /**
