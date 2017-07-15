@@ -173,7 +173,10 @@ class CommandExtractorTest extends TestCase
         $commandExtractor = new CommandExtractor();
         $commandExtractor->getCommandByMessage('dummy message without command');
 
-        $this->assertEquals((new Dictionary())->get('generic-messages')['noCommandMessage'], $commandExtractor->getError());
+        $this->assertEquals(
+            (new Dictionary())->get('generic-messages')['noCommandMessage'],
+            $commandExtractor->getError()
+        );
     }
 
     /**
