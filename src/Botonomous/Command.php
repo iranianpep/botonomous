@@ -15,6 +15,7 @@ class Command
     private $description;
     private $action;
     private $class;
+    private $keywords;
 
     /**
      * Command constructor.
@@ -113,5 +114,21 @@ class Command
     public function setClass($class)
     {
         $this->class = $class;
+    }
+
+    /**
+     * @return array
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * @param array $keywords
+     */
+    public function setKeywords(array $keywords)
+    {
+        $this->keywords = $keywords;
     }
 }
