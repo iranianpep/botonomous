@@ -27,6 +27,7 @@ abstract class AbstractBot
     protected $whiteList;
     protected $sender;
     protected $dictionary;
+    protected $commandExtractor;
 
     /**
      * @return Config
@@ -260,5 +261,25 @@ abstract class AbstractBot
     public function setDictionary(Dictionary $dictionary)
     {
         $this->dictionary = $dictionary;
+    }
+
+    /**
+     * @return CommandExtractor
+     */
+    public function getCommandExtractor()
+    {
+        if (!isset($this->commandExtractor)) {
+            $this->setCommandExtractor(new CommandExtractor());
+        }
+
+        return $this->commandExtractor;
+    }
+
+    /**
+     * @param CommandExtractor $commandExtractor
+     */
+    public function setCommandExtractor(CommandExtractor $commandExtractor)
+    {
+        $this->commandExtractor = $commandExtractor;
     }
 }

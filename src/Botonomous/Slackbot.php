@@ -207,11 +207,17 @@ class Slackbot extends AbstractBot
     public function respond($message = null)
     {
         try {
-            $command = $this->getCommandByMessage($message);
+            // If message is not set, get it from the current request
+            if ($message === null) {
+                $message = $this->getListener()->getMessage();
+            }
+
+            $commandExtractor = $this->getCommandExtractor();
+            $command = $commandExtractor->getCommandByMessage($message);
 
             if (!$command instanceof Command) {
                 // something went wrong, error will tell us!
-                return $this->getLastError();
+                return $commandExtractor->getError();
             }
 
             $pluginClass = $this->getPluginClassByCommand($command);
@@ -251,91 +257,6 @@ class Slackbot extends AbstractBot
         }
 
         return $pluginClass;
-    }
-
-    /**
-     * @param null $message
-     *
-     * @return Command|void
-     */
-    public function getCommandByMessage($message = null)
-    {
-        // If message is not set, get it from the current request
-        if ($message === null) {
-            $message = $this->getListener()->getMessage();
-        }
-
-        if (empty($message)) {
-            $this->setLastError('Message is empty');
-
-            return;
-        }
-
-        /*
-         * Process the message.
-         */
-        return $this->getCommandObjectByMessage($message);
-    }
-
-    /**
-     * @param $message
-     *
-     * @return Command|void
-     */
-    private function getCommandObjectByMessage($message)
-    {
-        $command = $this->getMessageUtility()->extractCommandName($message);
-
-        // check command name
-        if (empty($command)) {
-            // get the default command if no command is find in the message
-            $command = $this->getConfig()->get('defaultCommand');
-
-            if (empty($command)) {
-                $this->setLastError($this->getDictionary()->get('generic-messages')['noCommandMessage']);
-
-                return;
-            }
-        }
-
-        return $this->getCommandObjectByCommand($command);
-    }
-
-    /**
-     * @param $command
-     *
-     * @return Command|void
-     */
-    private function getCommandObjectByCommand($command)
-    {
-        $commandObject = $this->getCommandContainer()->getAsObject($command);
-
-        if ($this->validateCommandObject($commandObject) !== true) {
-            return;
-        }
-
-        return $commandObject;
-    }
-
-    /**
-     * Validate the command object.
-     *
-     * @param Command|null $commandObject
-     *
-     * @return bool
-     */
-    private function validateCommandObject($commandObject)
-    {
-        // check command details
-        if (empty($commandObject)) {
-            $this->setLastError(
-                $this->getDictionary()->getValueByKey('generic-messages', 'unknownCommandMessage')
-            );
-
-            return false;
-        }
-
-        return true;
     }
 
     /**
