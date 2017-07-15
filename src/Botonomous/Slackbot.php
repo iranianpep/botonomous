@@ -267,6 +267,7 @@ class Slackbot extends AbstractBot
 
         if (empty($message)) {
             $this->setLastError('Message is empty');
+
             return;
         }
 
@@ -292,6 +293,7 @@ class Slackbot extends AbstractBot
 
             if (empty($command)) {
                 $this->setLastError($this->getDictionary()->get('generic-messages')['noCommandMessage']);
+
                 return;
             }
         }
