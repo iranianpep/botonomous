@@ -209,4 +209,13 @@ class CommandExtractorTest extends TestCase
 
         $this->assertEmpty($result);
     }
+
+    public function testGetConfig()
+    {
+        $commandExtractor = new CommandExtractor();
+        $config = new Config();
+        $commandExtractor->setConfig($config);
+
+        $this->assertEquals($config, $commandExtractor->getConfig());
+    }
 }
