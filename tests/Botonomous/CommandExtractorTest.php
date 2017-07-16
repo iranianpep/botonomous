@@ -218,4 +218,51 @@ class CommandExtractorTest extends TestCase
 
         $this->assertEquals($config, $commandExtractor->getConfig());
     }
+
+    public function testCalculateKeywordSimilarity()
+    {
+        $commandExtractor = new CommandExtractor();
+
+        $commandContainer = new CommandContainer();
+
+        $commands = [
+            'ping' => [
+                'plugin'      => 'Ping',
+                'description' => 'Use as a health check',
+                'keywords' => [
+                    'play',
+                    'sport',
+                    'pong'
+                ]
+            ],
+            'pong' => [
+                'plugin'      => 'Ping',
+                'action'      => 'pong',
+                'description' => 'Use as a health check',
+                'keywords' => [
+                    'play',
+                    'sport',
+                    'ping'
+                ]
+            ],
+            'dummy' => [
+                'plugin'      => 'Ping',
+                'action'      => 'pong',
+                'description' => 'Use as a health check',
+            ],
+        ];
+
+        $commandContainer->setAll($commands);
+
+        $commandExtractor->setCommandContainer($commandContainer);
+
+        $similarities = $commandExtractor->calculateKeywordSimilarity("let's play ping pong");
+
+        $expected = [
+            'ping' => 62.85714285714285409767398959957063198089599609375,
+            'pong' => 51.4285714285714306015506736002862453460693359375
+        ];
+
+        $this->assertEquals($expected, $similarities);
+    }
 }

@@ -34,6 +34,24 @@ class CommandExtractor
         return $this->getCommandObjectByMessage($message);
     }
 
+    public function calculateKeywordSimilarity($message)
+    {
+        $commandContainer = $this->getCommandContainer();
+        $commands = $commandContainer->getAllAsObject();
+
+        $similarities = [];
+        foreach ($commands as $commandKey => $commandObject) {
+            if (empty($commandObject->getKeywords())) {
+                continue;
+            }
+
+            similar_text($message, implode(' ', $commandObject->getKeywords()), $percent);
+            $similarities[$commandKey] = $percent;
+        }
+
+        return $similarities;
+    }
+
     /**
      * @param $message
      *
