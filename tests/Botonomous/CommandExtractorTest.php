@@ -229,21 +229,21 @@ class CommandExtractorTest extends TestCase
             'ping' => [
                 'plugin'      => 'Ping',
                 'description' => 'Use as a health check',
-                'keywords' => [
+                'keywords'    => [
                     'play',
                     'sport',
-                    'pong'
-                ]
+                    'pong',
+                ],
             ],
             'pong' => [
                 'plugin'      => 'Ping',
                 'action'      => 'pong',
                 'description' => 'Use as a health check',
-                'keywords' => [
+                'keywords'    => [
                     'play',
                     'sport',
-                    'ping'
-                ]
+                    'ping',
+                ],
             ],
             'dummy' => [
                 'plugin'      => 'Ping',
@@ -260,7 +260,7 @@ class CommandExtractorTest extends TestCase
 
         $expected = [
             'ping' => 62.85714285714285409767398959957063198089599609375,
-            'pong' => 51.4285714285714306015506736002862453460693359375
+            'pong' => 51.4285714285714306015506736002862453460693359375,
         ];
 
         $this->assertEquals($expected, $similarities);
