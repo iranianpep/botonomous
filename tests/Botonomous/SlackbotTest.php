@@ -235,6 +235,17 @@ class SlackbotTest extends TestCase
     }
 
     /**
+     * Test getLastError.
+     */
+    public function testGetLastError()
+    {
+        $slackbot = new Slackbot();
+        $slackbot->setLastError('Test error');
+
+        $this->assertEquals('Test error', $slackbot->getLastError());
+    }
+
+    /**
      * Test setConfig in constructor.
      */
     public function testConstructorSetConfig()
