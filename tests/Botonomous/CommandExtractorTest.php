@@ -255,11 +255,11 @@ class CommandExtractorTest extends TestCase
                 'plugin'      => 'Ping',
                 'action'      => 'pong',
                 'description' => 'Use as a health check',
-                'keywords' => [
+                'keywords'    => [
                     'play ping pong',
                     'play',
-                    "let's play"
-                ]
+                    "let's play",
+                ],
             ],
         ];
 
@@ -272,7 +272,7 @@ class CommandExtractorTest extends TestCase
         $expected = [
             'dummy1' => 2,
             'dummy2' => 2,
-            'dummy4' => 1
+            'dummy4' => 1,
         ];
 
         $commandContainer->setAll($originalCommands);
