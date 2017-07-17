@@ -225,8 +225,8 @@ class MessageUtilityTest extends TestCase
 
         $expected = [
             'two words' => 2,
-            'word' => 1,
-            ' plus' => 1,
+            'word'      => 1,
+            ' plus'     => 1,
         ];
 
         $this->assertEquals($expected, $result);
@@ -240,10 +240,10 @@ class MessageUtilityTest extends TestCase
         ], "What's the weather like tomorrow?");
 
         $expected = [
-            "What's" => 1,
+            "What's"      => 1,
             'the weather' => 1,
-            'tomorrow' => 1,
-            ' like ' => 1,
+            'tomorrow'    => 1,
+            ' like '      => 1,
         ];
 
         $this->assertEquals($expected, $result);
