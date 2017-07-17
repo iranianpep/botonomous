@@ -133,8 +133,8 @@ class MessageUtility extends AbstractUtility
             return $found;
         }
 
-        usort($keywords, function ($a, $b) {
-            return strlen($b) <=> strlen($a);
+        usort($keywords, function ($array1, $array2) {
+            return strlen($array2) <=> strlen($array1);
         });
 
         foreach ($keywords as $keyword) {

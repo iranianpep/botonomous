@@ -48,8 +48,7 @@ class CommandExtractor
         // tokenize $message
         $tokenizer = new WhitespaceTokenizer();
         $tokenizedMessage = $tokenizer->tokenize($message);
-        $stemmedTokenizedMessage = $stemmer->stemAll($tokenizedMessage);
-        $stemmedMessage = implode(' ', $stemmedTokenizedMessage);
+        $stemmedMessage = implode(' ', $stemmer->stemAll($tokenizedMessage));
 
         $keywordCount = [];
         foreach ($commands as $commandKey => $commandObject) {
