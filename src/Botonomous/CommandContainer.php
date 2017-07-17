@@ -34,7 +34,7 @@ class CommandContainer extends AbstractCommandContainer
             'description' => 'List all the available commands',
             'keywords'    => [
                 'help',
-                'ask'
+                'ask',
             ],
         ],
         'qa' => [
