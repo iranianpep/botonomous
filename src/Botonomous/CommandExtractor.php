@@ -40,27 +40,20 @@ class CommandExtractor
 
     public function countKeywordOccurrence($message)
     {
-        $commandContainer = $this->getCommandContainer();
-        $commands = $commandContainer->getAllAsObject();
-
         $stemmer = new PorterStemmer();
 
         // tokenize $message
-        $tokenizer = new WhitespaceTokenizer();
-        $tokenizedMessage = $tokenizer->tokenize($message);
-        $stemmedMessage = implode(' ', $stemmer->stemAll($tokenizedMessage));
+        $stemmedMessage = implode(' ', $stemmer->stemAll((new WhitespaceTokenizer())->tokenize($message)));
 
         $keywordCount = [];
-        foreach ($commands as $commandKey => $commandObject) {
+        foreach ($this->getCommandContainer()->getAllAsObject() as $commandKey => $commandObject) {
             $keywords = $commandObject->getKeywords();
 
             if (empty($keywords)) {
                 continue;
             }
 
-            $stemmedKeywords = $stemmer->stemAll($keywords);
-
-            $keywordsPositions = $this->getMessageUtility()->keywordPos($stemmedKeywords, $stemmedMessage);
+            $keywordsPositions = $this->getMessageUtility()->keywordPos($stemmer->stemAll($keywords), $stemmedMessage);
 
             $total = 0;
             if (empty($keywordsPositions)) {

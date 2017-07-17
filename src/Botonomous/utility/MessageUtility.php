@@ -125,6 +125,12 @@ class MessageUtility extends AbstractUtility
         return $this->linkToUser($this->getConfig()->get('botUserId'));
     }
 
+    /**
+     * @param array $keywords
+     * @param       $message
+     *
+     * @return array
+     */
     public function keywordPos(array $keywords, $message)
     {
         $found = [];
@@ -153,6 +159,12 @@ class MessageUtility extends AbstractUtility
         return $found;
     }
 
+    /**
+     * @param array $tokensPositions
+     * @param       $newPosition
+     *
+     * @return bool
+     */
     private function isPositionTaken(array $tokensPositions, $newPosition)
     {
         if (empty($tokensPositions)) {
@@ -171,12 +183,15 @@ class MessageUtility extends AbstractUtility
         return false;
     }
 
+    /**
+     * @param $newPosition
+     * @param $position
+     * @param $tokenLength
+     *
+     * @return bool
+     */
     private function isPositionIn($newPosition, $position, $tokenLength)
     {
-        if ($newPosition >= $position && $newPosition < $position + $tokenLength) {
-            return true;
-        }
-
-        return false;
+        return $newPosition >= $position && $newPosition < $position + $tokenLength;
     }
 }
