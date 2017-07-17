@@ -76,4 +76,18 @@ class ArrayUtility extends AbstractUtility
 
         return $current;
     }
+
+    /**
+     * @param $array
+     *
+     * @return mixed
+     */
+    public function sortArrayByLength($array)
+    {
+        usort($array, function ($array1, $array2) {
+            return strlen($array2) <=> strlen($array1);
+        });
+
+        return $array;
+    }
 }
