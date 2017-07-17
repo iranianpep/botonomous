@@ -3,6 +3,8 @@
 namespace Botonomous;
 
 use Botonomous\utility\MessageUtility;
+use NlpTools\Stemmers\PorterStemmer;
+use NlpTools\Tokenizers\WhitespaceTokenizer;
 
 /**
  * Class CommandExtractor.
@@ -29,27 +31,52 @@ class CommandExtractor
         }
 
         /*
-         * Process the message.
+         * Process the message and find explicitly specified command
          */
-        return $this->getCommandObjectByMessage($message);
+        $foundCommand = $this->getCommandObjectByMessage($message);
+
+        return $foundCommand;
     }
 
-    public function calculateKeywordSimilarity($message)
+    public function countKeywordOccurrence($message)
     {
         $commandContainer = $this->getCommandContainer();
         $commands = $commandContainer->getAllAsObject();
 
-        $similarities = [];
+        $stemmer = new PorterStemmer();
+
+        // tokenize $message
+        $tokenizer = new WhitespaceTokenizer();
+        $tokenizedMessage = $tokenizer->tokenize($message);
+        $stemmedTokenizedMessage = $stemmer->stemAll($tokenizedMessage);
+        $stemmedMessage = implode(' ', $stemmedTokenizedMessage);
+
+        $keywordCount = [];
         foreach ($commands as $commandKey => $commandObject) {
-            if (empty($commandObject->getKeywords())) {
+            $keywords = $commandObject->getKeywords();
+
+            if (empty($keywords)) {
                 continue;
             }
 
-            similar_text($message, implode(' ', $commandObject->getKeywords()), $percent);
-            $similarities[$commandKey] = $percent;
+            $stemmedKeywords = $stemmer->stemAll($keywords);
+
+            $keywordsPositions = $this->getMessageUtility()->keywordPos($stemmedKeywords, $stemmedMessage);
+
+            $total = 0;
+            if (empty($keywordsPositions)) {
+                $keywordCount[$commandKey] = $total;
+                continue;
+            }
+
+            foreach ($keywordsPositions as $keywordPositions) {
+                $total += count($keywordPositions);
+            }
+
+            $keywordCount[$commandKey] = $total;
         }
 
-        return $similarities;
+        return $keywordCount;
     }
 
     /**

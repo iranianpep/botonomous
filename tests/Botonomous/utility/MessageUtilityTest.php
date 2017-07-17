@@ -154,4 +154,56 @@ class MessageUtilityTest extends TestCase
         $this->assertEquals(true, $utility->isBotMentioned("How are you <@{$botUserId}>?"));
         $this->assertEquals(false, $utility->isBotMentioned('/help'));
     }
+
+    public function testKeywordPos()
+    {
+        $utility = new MessageUtility();
+        $result = $utility->keywordPos([
+            'two words',
+            'word',
+            'two',
+            'words',
+            ' plus'
+        ], 'This is a two words plus one word and two words');
+
+        $expected = [
+            'two words' => [
+                10,
+                38
+            ],
+            'word' => [
+                29
+            ],
+            ' plus' => [
+                19
+            ]
+        ];
+
+        $this->assertEquals($expected, $result);
+
+        $result = $utility->keywordPos([
+            "What's",
+            'the',
+            'the weather',
+            ' like ',
+            'tomorrow'
+        ], "What's the weather like tomorrow?");
+
+        $expected = [
+            "What's" => [
+                0
+            ],
+            'the weather' => [
+                7
+            ],
+            'tomorrow' => [
+                24
+            ],
+            ' like ' => [
+                18
+            ]
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
 }

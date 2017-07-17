@@ -219,14 +219,15 @@ class CommandExtractorTest extends TestCase
         $this->assertEquals($config, $commandExtractor->getConfig());
     }
 
-    public function testCalculateKeywordSimilarity()
+    public function testCountKeywordOccurrence()
     {
         $commandExtractor = new CommandExtractor();
 
         $commandContainer = new CommandContainer();
+        $originalCommands = $commandContainer->getAll();
 
         $commands = [
-            'ping' => [
+            'dummy1' => [
                 'plugin'      => 'Ping',
                 'description' => 'Use as a health check',
                 'keywords'    => [
@@ -235,7 +236,7 @@ class CommandExtractorTest extends TestCase
                     'pong',
                 ],
             ],
-            'pong' => [
+            'dummy2' => [
                 'plugin'      => 'Ping',
                 'action'      => 'pong',
                 'description' => 'Use as a health check',
@@ -245,10 +246,20 @@ class CommandExtractorTest extends TestCase
                     'ping',
                 ],
             ],
-            'dummy' => [
+            'dummy3' => [
                 'plugin'      => 'Ping',
                 'action'      => 'pong',
                 'description' => 'Use as a health check',
+            ],
+            'dummy4' => [
+                'plugin'      => 'Ping',
+                'action'      => 'pong',
+                'description' => 'Use as a health check',
+                'keywords' => [
+                    'play ping pong',
+                    'play',
+                    "let's play"
+                ]
             ],
         ];
 
@@ -256,13 +267,16 @@ class CommandExtractorTest extends TestCase
 
         $commandExtractor->setCommandContainer($commandContainer);
 
-        $similarities = $commandExtractor->calculateKeywordSimilarity("let's play ping pong");
+        $keywordsCount = $commandExtractor->countKeywordOccurrence("let's play ping pong");
 
         $expected = [
-            'ping' => 62.85714285714285409767398959957063198089599609375,
-            'pong' => 51.4285714285714306015506736002862453460693359375,
+            'dummy1' => 2,
+            'dummy2' => 2,
+            'dummy4' => 1
         ];
 
-        $this->assertEquals($expected, $similarities);
+        $commandContainer->setAll($originalCommands);
+
+        $this->assertEquals($expected, $keywordsCount);
     }
 }

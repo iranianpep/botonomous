@@ -117,8 +117,57 @@ class MessageUtility extends AbstractUtility
         return "<@{$userId}{$userName}>";
     }
 
+    /**
+     * @return string
+     */
     private function getUserLink()
     {
         return $this->linkToUser($this->getConfig()->get('botUserId'));
+    }
+
+    public function keywordPos(array $keywords, $message)
+    {
+        $found = [];
+
+        if (empty($keywords)) {
+            return $found;
+        }
+
+        usort($keywords, function ($a, $b) {
+            return strlen($b) <=> strlen($a);
+        });
+
+        foreach ($keywords as $keyword) {
+            $result = preg_match_all("/\b{$keyword}\b/", $message, $matches, PREG_OFFSET_CAPTURE);
+
+            if ($result && !empty($matches[0])) {
+                foreach ($matches[0] as $match) {
+                    // check if the keyword does not overlap with one of the already found
+                    if ($this->isPositionTaken($found, $match[1]) === false) {
+                        $found[$keyword][] = $match[1];
+                    }
+                }
+            }
+        }
+
+        return $found;
+    }
+
+    private function isPositionTaken(array $tokensPositions, $newPosition)
+    {
+        if (empty($tokensPositions)) {
+            return false;
+        }
+
+        foreach ($tokensPositions as $token => $positions) {
+            $tokenLength = strlen($token);
+            foreach ($positions as $position) {
+                if ($newPosition >= $position && $newPosition < $position+ $tokenLength) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
