@@ -162,7 +162,7 @@ class MessageUtility extends AbstractUtility
         foreach ($tokensPositions as $token => $positions) {
             $tokenLength = strlen($token);
             foreach ($positions as $position) {
-                if ($newPosition >= $position && $newPosition < $position+ $tokenLength) {
+                if ($newPosition >= $position && $newPosition < $position + $tokenLength) {
                     return true;
                 }
             }
