@@ -174,24 +174,10 @@ class MessageUtility extends AbstractUtility
         foreach ($tokensPositions as $token => $positions) {
             $tokenLength = strlen($token);
             foreach ($positions as $position) {
-                if ($this->isPositionIn($newPosition, $position, $tokenLength) === true) {
-                    return true;
-                }
+                return $newPosition >= $position && $newPosition < $position + $tokenLength;
             }
         }
 
         return false;
-    }
-
-    /**
-     * @param $newPosition
-     * @param $position
-     * @param $tokenLength
-     *
-     * @return bool
-     */
-    private function isPositionIn($newPosition, $position, $tokenLength)
-    {
-        return $newPosition >= $position && $newPosition < $position + $tokenLength;
     }
 }
