@@ -205,6 +205,10 @@ class MessageUtilityTest extends TestCase
         ];
 
         $this->assertEquals($expected, $result);
+
+        $result = $utility->keywordPos([], "What's the weather like tomorrow?");
+
+        $this->assertEmpty($result);
     }
 
     public function testKeywordCount()
@@ -243,5 +247,9 @@ class MessageUtilityTest extends TestCase
         ];
 
         $this->assertEquals($expected, $result);
+
+        $result = $utility->keywordCount([], "What's the weather like tomorrow?");
+
+        $this->assertEmpty($result);
     }
 }

@@ -38,6 +38,11 @@ class CommandExtractor
         return $foundCommand;
     }
 
+    /**
+     * @param $message
+     *
+     * @return array
+     */
     public function countKeywordOccurrence($message)
     {
         $stemmer = new PorterStemmer();
@@ -47,15 +52,7 @@ class CommandExtractor
 
         $count = [];
         foreach ($this->getCommandContainer()->getAllAsObject() as $commandKey => $commandObject) {
-            $keywords = $commandObject->getKeywords();
-            if (empty($keywords)) {
-                continue;
-            }
-
-            $keywordsCount = $this->getMessageUtility()->keywordCount(
-                $stemmer->stemAll($keywords),
-                $stemmedMessage
-            );
+            $keywordsCount = $this->commandKeywordOccurrence($commandObject, $stemmedMessage);
 
             $total = 0;
             if (empty($keywordsCount)) {
@@ -67,6 +64,26 @@ class CommandExtractor
         }
 
         return $count;
+    }
+
+    /**
+     * @param Command $command
+     * @param         $message
+     *
+     * @return array|void
+     */
+    private function commandKeywordOccurrence(Command $command, $message)
+    {
+        $stemmer = new PorterStemmer();
+        $keywords = $command->getKeywords();
+        if (empty($keywords)) {
+            return;
+        }
+
+        return $this->getMessageUtility()->keywordCount(
+            $stemmer->stemAll($keywords),
+            $message
+        );
     }
 
     /**

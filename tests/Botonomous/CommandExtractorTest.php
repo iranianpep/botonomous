@@ -273,6 +273,7 @@ class CommandExtractorTest extends TestCase
             'dummy1' => 2,
             'dummy2' => 2,
             'dummy4' => 1,
+            'dummy3' => 0
         ];
 
         $commandContainer->setAll($originalCommands);
