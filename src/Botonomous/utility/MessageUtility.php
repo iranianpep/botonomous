@@ -133,7 +133,9 @@ class MessageUtility extends AbstractUtility
             return $found;
         }
 
-        usort($keywords, [$this, 'compareLength']);
+        usort($keywords, function ($array1, $array2) {
+            return strlen($array2) <=> strlen($array1);
+        });
 
         foreach ($keywords as $keyword) {
             $result = preg_match_all("/\b{$keyword}\b/", $message, $matches, PREG_OFFSET_CAPTURE);
@@ -149,11 +151,6 @@ class MessageUtility extends AbstractUtility
         }
 
         return $found;
-    }
-
-    private function compareLength($array1, $array2)
-    {
-        return strlen($array2) <=> strlen($array1);
     }
 
     private function isPositionTaken(array $tokensPositions, $newPosition)
