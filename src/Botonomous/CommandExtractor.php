@@ -45,30 +45,28 @@ class CommandExtractor
         // tokenize $message
         $stemmedMessage = implode(' ', $stemmer->stemAll((new WhitespaceTokenizer())->tokenize($message)));
 
-        $keywordCount = [];
+        $count = [];
         foreach ($this->getCommandContainer()->getAllAsObject() as $commandKey => $commandObject) {
             $keywords = $commandObject->getKeywords();
-
             if (empty($keywords)) {
                 continue;
             }
 
-            $keywordsPositions = $this->getMessageUtility()->keywordPos($stemmer->stemAll($keywords), $stemmedMessage);
+            $keywordsCount = $this->getMessageUtility()->keywordCount(
+                $stemmer->stemAll($keywords),
+                $stemmedMessage
+            );
 
             $total = 0;
-            if (empty($keywordsPositions)) {
-                $keywordCount[$commandKey] = $total;
+            if (empty($keywordsCount)) {
+                $count[$commandKey] = $total;
                 continue;
             }
 
-            foreach ($keywordsPositions as $keywordPositions) {
-                $total += count($keywordPositions);
-            }
-
-            $keywordCount[$commandKey] = $total;
+            $count[$commandKey] = array_sum($keywordsCount);
         }
 
-        return $keywordCount;
+        return $count;
     }
 
     /**

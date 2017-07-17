@@ -134,7 +134,6 @@ class MessageUtility extends AbstractUtility
     public function keywordPos(array $keywords, $message)
     {
         $found = [];
-
         if (empty($keywords)) {
             return $found;
         }
@@ -157,6 +156,21 @@ class MessageUtility extends AbstractUtility
         }
 
         return $found;
+    }
+
+    public function keywordCount(array $keywords, $message)
+    {
+        $keysPositions = $this->keywordPos($keywords, $message);
+
+        if (empty($keysPositions)) {
+            return;
+        }
+
+        foreach ($keysPositions as $key => $positions) {
+            $keysPositions[$key] = count($positions);
+        }
+
+        return $keysPositions;
     }
 
     /**

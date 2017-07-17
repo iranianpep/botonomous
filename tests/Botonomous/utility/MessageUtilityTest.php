@@ -206,4 +206,42 @@ class MessageUtilityTest extends TestCase
 
         $this->assertEquals($expected, $result);
     }
+
+    public function testKeywordCount()
+    {
+        $utility = new MessageUtility();
+
+        $result = $utility->keywordCount([
+            'two words',
+            'word',
+            'two',
+            'words',
+            ' plus',
+        ], 'This is a two words plus one word and two words');
+
+        $expected = [
+            'two words' => 2,
+            'word' => 1,
+            ' plus' => 1,
+        ];
+
+        $this->assertEquals($expected, $result);
+
+        $result = $utility->keywordCount([
+            "What's",
+            'the',
+            'the weather',
+            ' like ',
+            'tomorrow',
+        ], "What's the weather like tomorrow?");
+
+        $expected = [
+            "What's" => 1,
+            'the weather' => 1,
+            'tomorrow' => 1,
+            ' like ' => 1,
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
 }
