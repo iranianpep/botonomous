@@ -268,4 +268,39 @@ class ArrayUtilityTest extends TestCase
             $this->assertEquals($inputOutput['expected'], $result);
         }
     }
+
+    public function testMaxPositiveValueKey()
+    {
+        $utility = new ArrayUtility();
+
+        $inputsOutputs = [
+            [
+                'input' => [
+                    'test'  => 1,
+                    'test2' => 2,
+                ],
+                'output' => 'test2'
+            ],
+            [
+                'input' => [
+                    'test'  => 1,
+                    'test2' => 0,
+                ],
+                'output' => 'test'
+            ],
+            [
+                'input' => [
+                    'test'  => 0,
+                    'test2' => -2,
+                ],
+                'output' => null
+            ],
+        ];
+
+        foreach ($inputsOutputs as $inputOutput) {
+            $result = $utility->maxPositiveValueKey($inputOutput['input']);
+
+            $this->assertEquals($inputOutput['output'], $result);
+        }
+    }
 }

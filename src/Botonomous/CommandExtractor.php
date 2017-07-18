@@ -2,6 +2,7 @@
 
 namespace Botonomous;
 
+use Botonomous\utility\ArrayUtility;
 use Botonomous\utility\MessageUtility;
 use NlpTools\Stemmers\PorterStemmer;
 use NlpTools\Tokenizers\WhitespaceTokenizer;
@@ -34,6 +35,10 @@ class CommandExtractor
          * Process the message and find explicitly specified command
          */
         $foundCommand = $this->getCommandObjectByMessage($message);
+
+        if (empty($foundCommand)) {
+            (new ArrayUtility())->maxPositiveValueKey($this->countKeywordOccurrence($message));
+        }
 
         return $foundCommand;
     }

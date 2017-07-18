@@ -90,4 +90,21 @@ class ArrayUtility extends AbstractUtility
 
         return $array;
     }
+
+    /**
+     * Find the key for the max positive value
+     *
+     * @param $array
+     *
+     * @return mixed
+     */
+    public function maxPositiveValueKey($array)
+    {
+        $maxValue = max($array);
+
+        if ($maxValue > 0) {
+            return array_search($maxValue, $array);
+        }
+    }
+
 }
