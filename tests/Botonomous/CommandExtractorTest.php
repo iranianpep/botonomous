@@ -336,7 +336,7 @@ class CommandExtractorTest extends TestCase
         $commandObject = $commandExtractor->getCommandByMessage("What's the weather like?");
         $this->assertEquals($commandObjects['weather'], $commandObject);
 
-        $command = $commandExtractor->getCommandByMessage("Can you forecast the visitors?");
+        $command = $commandExtractor->getCommandByMessage('Can you forecast the visitors?');
         $this->assertEquals($commandObjects['report'], $command);
 
         $config = new Config();
@@ -351,7 +351,7 @@ class CommandExtractorTest extends TestCase
         $expected = isset($commandObjects[$defaultCommand]) ? $commandObjects[$defaultCommand] : null;
 
         // since there is no command, it tries to get the default command but it also depends to $commandsArray
-        $command = $commandExtractor->getCommandByMessage("there is no command in this message and no keywords");
+        $command = $commandExtractor->getCommandByMessage('there is no command in this message and no keywords');
         $this->assertEquals($expected, $command);
 
         $commandContainer->setAll($originalCommands);
