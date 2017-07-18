@@ -184,10 +184,8 @@ class MessageUtility extends AbstractUtility
 
         foreach ($tokensPositions as $token => $positions) {
             $tokenLength = strlen($token);
-            foreach ($positions as $position) {
-                if ($this->isPositionIn($newPosition, $position, $tokenLength) === true) {
-                    return true;
-                }
+            if ($this->isPositionIn($newPosition, $positions, $tokenLength) === true) {
+                return true;
             }
         }
 
@@ -196,13 +194,19 @@ class MessageUtility extends AbstractUtility
 
     /**
      * @param $newPosition
-     * @param $position
+     * @param $positions
      * @param $tokenLength
      *
      * @return bool
      */
-    private function isPositionIn($newPosition, $position, $tokenLength)
+    private function isPositionIn($newPosition, array $positions, $tokenLength)
     {
-        return $newPosition >= $position && $newPosition < $position + $tokenLength;
+        foreach ($positions as $position) {
+            if ($newPosition >= $position && $newPosition < $position + $tokenLength) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
