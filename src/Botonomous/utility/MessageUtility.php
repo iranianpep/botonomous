@@ -138,8 +138,7 @@ class MessageUtility extends AbstractUtility
             return $found;
         }
 
-        $keywords = (new ArrayUtility())->sortArrayByLength($keywords);
-        foreach ($keywords as $keyword) {
+        foreach ((new ArrayUtility())->sortArrayByLength($keywords) as $keyword) {
             $result = preg_match_all("/\b{$keyword}\b/", $message, $matches, PREG_OFFSET_CAPTURE);
 
             if ($result && !empty($matches[0])) {
