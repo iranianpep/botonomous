@@ -67,7 +67,7 @@ class CommandExtractor
 
     /**
      * @param Command $command
-     * @param         $message
+     * @param         string $message
      *
      * @return array|void
      */
@@ -88,7 +88,7 @@ class CommandExtractor
     /**
      * @param $message
      *
-     * @return string
+     * @return Command|null
      */
     private function getCommandObjectByMessage($message)
     {
