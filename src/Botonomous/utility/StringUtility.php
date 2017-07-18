@@ -37,6 +37,11 @@ class StringUtility extends AbstractUtility
         return trim(preg_replace('!\s+!', ' ', str_replace($toRemove, '', $subject)));
     }
 
+    private function getFindPattern($toFind, $wordBoundary)
+    {
+        return $wordBoundary === true ? "/\b{$toFind}\b/" : "/{$toFind}/";
+    }
+
     /**
      * @param $toFind
      * @param $subject
@@ -46,8 +51,7 @@ class StringUtility extends AbstractUtility
      */
     public function findInString($toFind, $subject, $wordBoundary = true)
     {
-        $pattern = $wordBoundary === true ? "/\b{$toFind}\b/" : "/{$toFind}/";
-
+        $pattern = $this->getFindPattern($toFind, $wordBoundary);
         return preg_match($pattern, $subject) ? true : false;
     }
 
@@ -60,8 +64,7 @@ class StringUtility extends AbstractUtility
      */
     public function findPositionInString($toFind, $subject, $wordBoundary = true)
     {
-        $pattern = $wordBoundary === true ? "/\b{$toFind}\b/" : "/{$toFind}/";
-
+        $pattern = $this->getFindPattern($toFind, $wordBoundary);
         $positions = [];
         if (preg_match_all($pattern, $subject, $matches, PREG_OFFSET_CAPTURE) && !empty($matches[0])) {
             foreach ($matches[0] as $match) {
