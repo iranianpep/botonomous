@@ -18,16 +18,14 @@ class QA extends AbstractPlugin
     public function index()
     {
         $questions = $this->getQuestions();
-
         $stringUtility = new StringUtility();
-        $text = $this->getSlackbot()->getListener()->getMessage();
 
         if (empty($questions)) {
             return '';
         }
 
         foreach ($questions as $question => $questionInfo) {
-            if ($stringUtility->findInString($question, $text)) {
+            if ($stringUtility->findInString($question, $this->getSlackbot()->getListener()->getMessage())) {
                 // found - return random answer
                 $answers = $questionInfo['answers'];
 

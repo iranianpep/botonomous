@@ -81,27 +81,19 @@ abstract class AbstractAccessList
      */
     protected function findInListByRequestKey($requestKey, $listKey, $subListKey)
     {
-        // get request
-        $request = $this->getRequest();
-
         /**
          * load the relevant list to start checking
          * The list name is the called class name e.g. WhiteList in lowercase.
          */
         $list = $this->getSubAccessControlList($listKey);
 
-        if ($list === null) {
-            /* @noinspection PhpInconsistentReturnPointsInspection */
-            return;
-        }
-
         // currently if list key is not set we do not check it
-        if (!isset($list[$subListKey])) {
+        if ($list === null || !isset($list[$subListKey])) {
             /* @noinspection PhpInconsistentReturnPointsInspection */
             return;
         }
 
-        return in_array($request[$requestKey], $list[$subListKey]);
+        return in_array($this->getRequest()[$requestKey], $list[$subListKey]);
     }
 
     /**

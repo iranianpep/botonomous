@@ -63,9 +63,7 @@ class ClassUtility
         }
 
         // handle ts because there is setTimestamp instead of setTs
-        $attributeKey = $this->processTimestamp($attributeKey);
-
-        $camelCase = (new StringUtility())->snakeCaseToCamelCase($attributeKey);
+        $camelCase = (new StringUtility())->snakeCaseToCamelCase($this->processTimestamp($attributeKey));
 
         /**
          * If camel case attribute starts with 'is', 'has', ... following by an uppercase letter, remove it
@@ -74,9 +72,7 @@ class ClassUtility
          *
          * The style checkers complain about functions such as setIsIm, ...
          */
-        $camelCase = $this->removeBooleanPrefix($camelCase);
-
-        $function = 'set'.$camelCase;
+        $function = 'set'.$this->removeBooleanPrefix($camelCase);
 
         return method_exists($object, $function) ? $function : false;
     }
