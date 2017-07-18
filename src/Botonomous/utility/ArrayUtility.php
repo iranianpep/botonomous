@@ -92,7 +92,7 @@ class ArrayUtility extends AbstractUtility
     }
 
     /**
-     * Find the key for the max positive value
+     * Find the key for the max positive value.
      *
      * @param $array
      *
@@ -106,5 +106,4 @@ class ArrayUtility extends AbstractUtility
             return array_search($maxValue, $array);
         }
     }
-
 }

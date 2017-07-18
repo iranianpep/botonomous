@@ -279,21 +279,21 @@ class ArrayUtilityTest extends TestCase
                     'test'  => 1,
                     'test2' => 2,
                 ],
-                'output' => 'test2'
+                'output' => 'test2',
             ],
             [
                 'input' => [
                     'test'  => 1,
                     'test2' => 0,
                 ],
-                'output' => 'test'
+                'output' => 'test',
             ],
             [
                 'input' => [
                     'test'  => 0,
                     'test2' => -2,
                 ],
-                'output' => null
+                'output' => null,
             ],
         ];
 
