@@ -6,6 +6,7 @@ use Botonomous\utility\ArrayUtility;
 use Botonomous\utility\MessageUtility;
 use NlpTools\Stemmers\PorterStemmer;
 use NlpTools\Tokenizers\WhitespaceAndPunctuationTokenizer;
+use NlpTools\Tokenizers\WhitespaceTokenizer;
 
 /**
  * Class CommandExtractor.
@@ -88,7 +89,7 @@ class CommandExtractor
     /**
      * @param $message
      *
-     * @return Command|void
+     * @return string
      */
     private function getCommandObjectByMessage($message)
     {
@@ -100,15 +101,25 @@ class CommandExtractor
         // check command name
         if (empty($command)) {
             // get the default command if no command is find in the message
-            $command = $this->getConfig()->get('defaultCommand');
-
-            if (empty($command)) {
-                $this->setError($this->getDictionary()->get('generic-messages')['noCommandMessage']);
-                return;
-            }
+            $command = $this->checkDefaultCommand();
         }
 
         return $this->getCommandObjectByCommand($command);
+    }
+
+    /**
+     * @return mixed|void
+     */
+    private function checkDefaultCommand()
+    {
+        $command = $this->getConfig()->get('defaultCommand');
+
+        if (empty($command)) {
+            $this->setError($this->getDictionary()->get('generic-messages')['noCommandMessage']);
+            return;
+        }
+
+        return $command;
     }
 
     /**
@@ -118,6 +129,10 @@ class CommandExtractor
      */
     private function getCommandObjectByCommand($command)
     {
+        if (empty($command)) {
+            return;
+        }
+
         $commandObject = $this->getCommandContainer()->getAsObject($command);
 
         if ($this->validateCommandObject($commandObject) !== true) {
