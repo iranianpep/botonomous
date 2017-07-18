@@ -30,8 +30,6 @@ class FileUtility extends AbstractUtility
             throw new \Exception('File is not a json file');
         }
 
-        $content = file_get_contents($filePath);
-
-        return (new StringUtility())->jsonToArray($content);
+        return (new StringUtility())->jsonToArray(file_get_contents($filePath));
     }
 }

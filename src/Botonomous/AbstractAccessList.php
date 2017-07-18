@@ -178,7 +178,6 @@ abstract class AbstractAccessList
          * Get it by user_id. For this users:read and users:read.email are needed.
          */
         $userInfo = $this->getApiClient()->userInfo(['user' => $request['user_id']]);
-
         if (empty($userInfo)) {
             /*
              * Could not find the user in the team
