@@ -6,7 +6,6 @@ use Botonomous\utility\ArrayUtility;
 use Botonomous\utility\MessageUtility;
 use NlpTools\Stemmers\PorterStemmer;
 use NlpTools\Tokenizers\WhitespaceAndPunctuationTokenizer;
-use NlpTools\Tokenizers\WhitespaceTokenizer;
 
 /**
  * Class CommandExtractor.
