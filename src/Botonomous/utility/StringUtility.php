@@ -52,6 +52,7 @@ class StringUtility extends AbstractUtility
     public function findInString($toFind, $subject, $wordBoundary = true)
     {
         $pattern = $this->getFindPattern($toFind, $wordBoundary);
+
         return preg_match($pattern, $subject) ? true : false;
     }
 
