@@ -52,6 +52,28 @@ class StringUtility extends AbstractUtility
     }
 
     /**
+     * @param      $toFind
+     * @param      $subject
+     * @param bool $wordBoundary
+     *
+     * @return mixed
+     */
+    public function findPositionInString($toFind, $subject, $wordBoundary = true)
+    {
+        $pattern = $wordBoundary === true ? "/\b{$toFind}\b/" : "/{$toFind}/";
+        $result = preg_match_all($pattern, $subject, $matches, PREG_OFFSET_CAPTURE);
+
+        $positions = [];
+        if ($result && !empty($matches[0])) {
+            foreach ($matches[0] as $match) {
+                $positions[] = $match[1];
+            }
+        }
+
+        return $positions;
+    }
+
+    /**
      * Convert snake case to camel case e.g. admin_user becomes AdminUser.
      *
      * @param $string

@@ -139,14 +139,10 @@ class MessageUtility extends AbstractUtility
         }
 
         foreach ((new ArrayUtility())->sortArrayByLength($keywords) as $keyword) {
-            $result = preg_match_all("/\b{$keyword}\b/", $message, $matches, PREG_OFFSET_CAPTURE);
-
-            if ($result && !empty($matches[0])) {
-                foreach ($matches[0] as $match) {
-                    // check if the keyword does not overlap with one of the already found
-                    if ($this->isPositionTaken($found, $match[1]) === false) {
-                        $found[$keyword][] = $match[1];
-                    }
+            foreach ((new StringUtility())->findPositionInString($keyword, $message) as $position) {
+                // check if the keyword does not overlap with one of the already found
+                if ($this->isPositionTaken($found, $position) === false) {
+                    $found[$keyword][] = $position;
                 }
             }
         }
