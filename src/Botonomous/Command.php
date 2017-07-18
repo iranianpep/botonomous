@@ -5,7 +5,7 @@ namespace Botonomous;
 /**
  * Class Command.
  */
-class Command
+class Command extends AbstractBaseSlack
 {
     const DEFAULT_ACTION = 'index';
     const PLUGIN_DIR = 'plugin';

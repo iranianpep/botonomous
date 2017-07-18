@@ -5,6 +5,7 @@ namespace Botonomous;
 use Botonomous\utility\ArrayUtility;
 use Botonomous\utility\MessageUtility;
 use NlpTools\Stemmers\PorterStemmer;
+use NlpTools\Tokenizers\WhitespaceAndPunctuationTokenizer;
 use NlpTools\Tokenizers\WhitespaceTokenizer;
 
 /**
@@ -34,13 +35,7 @@ class CommandExtractor
         /*
          * Process the message and find explicitly specified command
          */
-        $foundCommand = $this->getCommandObjectByMessage($message);
-
-        if (empty($foundCommand)) {
-            (new ArrayUtility())->maxPositiveValueKey($this->countKeywordOccurrence($message));
-        }
-
-        return $foundCommand;
+        return $this->getCommandObjectByMessage($message);
     }
 
     /**
@@ -53,11 +48,11 @@ class CommandExtractor
         $stemmer = new PorterStemmer();
 
         // tokenize $message
-        $stemmedMessage = implode(' ', $stemmer->stemAll((new WhitespaceTokenizer())->tokenize($message)));
+        $stemmed = implode(' ', $stemmer->stemAll((new WhitespaceAndPunctuationTokenizer())->tokenize($message)));
 
         $count = [];
         foreach ($this->getCommandContainer()->getAllAsObject() as $commandKey => $commandObject) {
-            $keywordsCount = $this->commandKeywordOccurrence($commandObject, $stemmedMessage);
+            $keywordsCount = $this->commandKeywordOccurrence($commandObject, $stemmed);
 
             $total = 0;
             if (empty($keywordsCount)) {
@@ -99,6 +94,10 @@ class CommandExtractor
     private function getCommandObjectByMessage($message)
     {
         $command = $this->getMessageUtility()->extractCommandName($message);
+
+        if (empty($command)) {
+            $command = (new ArrayUtility())->maxPositiveValueKey($this->countKeywordOccurrence($message));
+        }
 
         // check command name
         if (empty($command)) {

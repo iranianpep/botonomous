@@ -210,6 +210,9 @@ class CommandExtractorTest extends TestCase
         $this->assertEmpty($result);
     }
 
+    /**
+     * Test getConfig.
+     */
     public function testGetConfig()
     {
         $commandExtractor = new CommandExtractor();
@@ -219,6 +222,9 @@ class CommandExtractorTest extends TestCase
         $this->assertEquals($config, $commandExtractor->getConfig());
     }
 
+    /**
+     * Test countKeywordOccurrence.
+     */
     public function testCountKeywordOccurrence()
     {
         $commandExtractor = new CommandExtractor();
@@ -279,5 +285,75 @@ class CommandExtractorTest extends TestCase
         $commandContainer->setAll($originalCommands);
 
         $this->assertEquals($expected, $keywordsCount);
+    }
+
+    /**
+     * Test getCommandWithKeywordByMessage.
+     */
+    public function testGetCommandWithKeywordByMessage()
+    {
+        $commandExtractor = new CommandExtractor();
+
+        $commandContainer = new CommandContainer();
+        $originalCommands = $commandContainer->getAll();
+
+        $commandsArray = [
+            'weather' => [
+                'plugin'      => 'Ping',
+                'description' => 'Use as a health check',
+                'keywords'    => [
+                    'weather',
+                    'forecast',
+                ],
+            ],
+            'report' => [
+                'plugin'      => 'Ping',
+                'action'      => 'pong',
+                'description' => 'Use as a health check',
+                'keywords'    => [
+                    'visitors',
+                    'forecast',
+                ],
+            ],
+            'dummy' => [
+                'plugin'      => 'Ping',
+                'action'      => 'pong',
+                'description' => 'Use as a health check',
+            ],
+        ];
+
+        $commandContainer->setAll($commandsArray);
+
+        $commandExtractor->setCommandContainer($commandContainer);
+
+        $commandObjects = [];
+        foreach ($commandsArray as $commandKey => $commandDetails) {
+            $command = new Command($commandKey);
+            $command->load($commandDetails);
+            $commandObjects[$commandKey] = $command;
+        }
+
+        $commandObject = $commandExtractor->getCommandByMessage("What's the weather like?");
+        $this->assertEquals($commandObjects['weather'], $commandObject);
+
+        $command = $commandExtractor->getCommandByMessage("Can you forecast the visitors?");
+        $this->assertEquals($commandObjects['report'], $command);
+
+        $config = new Config();
+        $commandPrefix = $config->get('commandPrefix');
+        $command = $commandExtractor->getCommandByMessage("{$commandPrefix}dummy Can you forecast the visitors?");
+        $this->assertEquals($commandObjects['dummy'], $command);
+
+        $command = $commandExtractor->getCommandByMessage("{$commandPrefix}weather Can you forecast the visitors?");
+        $this->assertEquals($commandObjects['weather'], $command);
+
+        $defaultCommand = $config->get('defaultCommand');
+        $expected = isset($commandObjects[$defaultCommand]) ? $commandObjects[$defaultCommand] : null;
+
+        // since there is no command, it tries to get the default command but it also depends to $commandsArray
+        $command = $commandExtractor->getCommandByMessage("there is no command in this message and no keywords");
+        $this->assertEquals($expected, $command);
+
+        $commandContainer->setAll($originalCommands);
     }
 }
