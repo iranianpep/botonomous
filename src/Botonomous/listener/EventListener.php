@@ -101,13 +101,11 @@ class EventListener extends AbstractBaseListener
     private function loadEvent()
     {
         $request = $this->getRequest();
-
         if (!isset($request['event'])) {
             return;
         }
 
         $request = $request['event'];
-
         if (!isset($request['type'])) {
             throw new \Exception('Event type must be specified');
         }

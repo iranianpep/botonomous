@@ -52,7 +52,6 @@ abstract class AbstractCommandContainer
     public function getAllAsObject($key = null)
     {
         $commands = $this->getAll();
-
         if (!empty($commands)) {
             foreach ($commands as $commandKey => $commandDetails) {
                 if (!empty($key) && $commandKey !== $key) {
@@ -60,10 +59,7 @@ abstract class AbstractCommandContainer
                 }
 
                 $commandDetails['key'] = $commandKey;
-
-                $mappedObject = $this->mapToCommandObject($commandDetails);
-
-                $commands[$commandKey] = $mappedObject;
+                $commands[$commandKey] = $this->mapToCommandObject($commandDetails);
             }
         }
 
