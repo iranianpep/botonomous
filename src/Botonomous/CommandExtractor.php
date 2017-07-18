@@ -94,7 +94,6 @@ class CommandExtractor
     private function getCommandObjectByMessage($message)
     {
         $command = $this->getMessageUtility()->extractCommandName($message);
-
         if (empty($command)) {
             $command = (new ArrayUtility())->maxPositiveValueKey($this->countKeywordOccurrence($message));
         }
@@ -106,7 +105,6 @@ class CommandExtractor
 
             if (empty($command)) {
                 $this->setError($this->getDictionary()->get('generic-messages')['noCommandMessage']);
-
                 return;
             }
         }
