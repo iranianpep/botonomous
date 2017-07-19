@@ -7,8 +7,10 @@ sudo: false
 addons:
   code_climate:
     repo_token: e3f592753a2a1c938f2fc8597a5344c91f3e1baa6e44ac5fdb88970c3a94265d
-install:
-- composer install
+before_install:
+  - composer install
+  - composer self-update
+  - composer clear-cache
 script: phpunit --coverage-clover build/logs/clover.xml --configuration phpunit.xml
 after_success:
 - vendor/bin/test-reporter
