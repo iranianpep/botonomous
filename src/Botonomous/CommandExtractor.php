@@ -67,7 +67,7 @@ class CommandExtractor
 
     /**
      * @param Command $command
-     * @param         string $message
+     * @param string  $message
      *
      * @return array|void
      */
