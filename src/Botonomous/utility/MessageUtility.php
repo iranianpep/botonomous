@@ -150,6 +150,12 @@ class MessageUtility extends AbstractUtility
         return $found;
     }
 
+    /**
+     * @param array $keywords
+     * @param       $message
+     *
+     * @return array|void
+     */
     public function keywordCount(array $keywords, $message)
     {
         $keysPositions = $this->keywordPos($keywords, $message);
