@@ -20,15 +20,47 @@ abstract class AbstractConfig
      *
      * @return mixed
      */
-    public function get($key, $replacements = [])
+    public function get($key, $replacements = [], $plugin = null)
     {
-        if (!array_key_exists($key, static::$configs)) {
+        if ($plugin !== null) {
+            try {
+                $configs = $this->getPluginConfigs($plugin);
+            } catch (\Exception $e) {
+                throw $e;
+            }
+        } else {
+            $configs = static::$configs;
+        }
+
+        if (!array_key_exists($key, $configs)) {
             throw new \Exception("Key: '{$key}' does not exist in configs");
         }
 
-        $found = static::$configs[$key];
+        $found = $configs[$key];
 
         return (new StringUtility())->applyReplacements($found, $replacements);
+    }
+
+    public function getPluginConfigs($plugin)
+    {
+        $pluginConfigClass = __NAMESPACE__."\\components\\".strtolower($plugin)
+            .'\\'.ucfirst($plugin).'Config';
+
+        if (!class_exists($pluginConfigClass)) {
+            throw new \Exception("Config file: '{$pluginConfigClass}.php' does not exist");
+        }
+
+        $pluginConfigObject = new $pluginConfigClass();
+        if (!$pluginConfigObject instanceof self) {
+            throw new \Exception("Class: '{$pluginConfigClass}' must extend BaseConfig");
+        }
+
+        return $pluginConfigObject->getConfigs();
+    }
+
+    public function getConfigs()
+    {
+        return static::$configs;
     }
 
     /**
