@@ -22,6 +22,26 @@ class ConfigTest extends TestCase
         $this->assertEquals('testValue', $config->get('testKey'));
     }
 
+    public function testGetByPlugin()
+    {
+        $config = new Config();
+        $result = $config->get('testConfigKey', [], 'help');
+
+        $this->assertEquals('testConfigValue', $result);
+    }
+
+    public function testGetByInvalidPlugin()
+    {
+        $config = new Config();
+
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage(
+            "Config file: 'Botonomous\\plugin\\dummy\\DummyConfig.php' does not exist"
+        );
+
+        $config->get('testConfigKey', [], 'dummy');
+    }
+
     /**
      * @throws \Exception
      */

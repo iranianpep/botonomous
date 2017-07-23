@@ -22,14 +22,15 @@ abstract class AbstractConfig
      */
     public function get($key, $replacements = [], $plugin = null)
     {
+        $configs = static::$configs;
+
+        // overwrite $configs if $plugin is presented
         if ($plugin !== null) {
             try {
                 $configs = $this->getPluginConfigs($plugin);
             } catch (\Exception $e) {
                 throw $e;
             }
-        } else {
-            $configs = static::$configs;
         }
 
         if (!array_key_exists($key, $configs)) {
@@ -43,7 +44,7 @@ abstract class AbstractConfig
 
     public function getPluginConfigs($plugin)
     {
-        $pluginConfigClass = __NAMESPACE__.'\\components\\'.strtolower($plugin)
+        $pluginConfigClass = __NAMESPACE__.'\\plugin\\'.strtolower($plugin)
             .'\\'.ucfirst($plugin).'Config';
 
         if (!class_exists($pluginConfigClass)) {
