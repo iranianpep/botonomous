@@ -17,8 +17,9 @@ abstract class AbstractConfig
      * @param array $replacements
      * @param null  $plugin
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function get($key, $replacements = [], $plugin = null)
     {
