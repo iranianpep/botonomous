@@ -2,7 +2,6 @@
 
 namespace Botonomous;
 
-use Botonomous\plugin\help\HelpConfig;
 use Botonomous\utility\ArrayUtility;
 use Botonomous\utility\StringUtility;
 
@@ -60,6 +59,7 @@ abstract class AbstractConfig
     {
         try {
             $pluginConfigObject = $this->getPluginConfigObject($plugin);
+
             return $pluginConfigObject->getConfigs();
         } catch (\Exception $e) {
             throw $e;
