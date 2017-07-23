@@ -15,10 +15,10 @@ abstract class AbstractConfig
     /**
      * @param       $key
      * @param array $replacements
-     *
-     * @throws \Exception
+     * @param null  $plugin
      *
      * @return mixed
+     * @throws \Exception
      */
     public function get($key, $replacements = [], $plugin = null)
     {
