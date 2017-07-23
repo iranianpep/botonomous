@@ -43,7 +43,7 @@ abstract class AbstractConfig
 
     public function getPluginConfigs($plugin)
     {
-        $pluginConfigClass = __NAMESPACE__."\\components\\".strtolower($plugin)
+        $pluginConfigClass = __NAMESPACE__.'\\components\\'.strtolower($plugin)
             .'\\'.ucfirst($plugin).'Config';
 
         if (!class_exists($pluginConfigClass)) {
