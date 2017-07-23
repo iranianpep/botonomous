@@ -2,6 +2,7 @@
 
 namespace Botonomous;
 
+use Botonomous\plugin\help\HelpConfig;
 use Botonomous\utility\ArrayUtility;
 use Botonomous\utility\StringUtility;
 
@@ -42,7 +43,7 @@ abstract class AbstractConfig
         return (new StringUtility())->applyReplacements($found, $replacements);
     }
 
-    public function getPluginConfigs($plugin)
+    private function getPluginConfigObject($plugin)
     {
         $pluginConfigClass = __NAMESPACE__.'\\plugin\\'.strtolower($plugin)
             .'\\'.ucfirst($plugin).'Config';
@@ -51,12 +52,17 @@ abstract class AbstractConfig
             throw new \Exception("Config file: '{$pluginConfigClass}.php' does not exist");
         }
 
-        $pluginConfigObject = new $pluginConfigClass();
-        if (!$pluginConfigObject instanceof self) {
-            throw new \Exception("Class: '{$pluginConfigClass}' must extend BaseConfig");
-        }
+        return new $pluginConfigClass();
+    }
 
-        return $pluginConfigObject->getConfigs();
+    public function getPluginConfigs($plugin)
+    {
+        try {
+            $pluginConfigObject = $this->getPluginConfigObject($plugin);
+            return $pluginConfigObject->getConfigs();
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
     public function getConfigs()
@@ -65,11 +71,23 @@ abstract class AbstractConfig
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param      $key
+     * @param      $value
+     * @param null $plugin
+     *
+     * @throws \Exception
      */
-    public function set($key, $value)
+    public function set($key, $value, $plugin = null)
     {
+        if ($plugin !== null) {
+            try {
+                $config = $this->getPluginConfigObject($plugin);
+                $config->set($key, $value);
+            } catch (\Exception $e) {
+                throw $e;
+            }
+        }
+
         is_array($key) ? (new ArrayUtility())->setNestedArrayValue(static::$configs, $key, $value)
             : static::$configs[$key] = $value;
     }

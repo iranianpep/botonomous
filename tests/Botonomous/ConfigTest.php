@@ -78,5 +78,12 @@ class ConfigTest extends TestCase
         $config->set('testKey', 'testNewValue');
 
         $this->assertEquals('testNewValue', $config->get('testKey'));
+
+        $config->set('testConfigKey', 'testConfigValueEdited', 'help');
+
+        $this->assertEquals('testConfigValueEdited', $config->get('testConfigKey', [], 'help'));
+
+        // reset config
+        $config->set('testConfigKey', 'testConfigValue', 'help');
     }
 }
