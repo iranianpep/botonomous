@@ -2,7 +2,6 @@
 
 namespace Botonomous;
 
-use Botonomous\plugin\help\HelpConfig;
 use Botonomous\utility\ArrayUtility;
 use Botonomous\utility\StringUtility;
 
