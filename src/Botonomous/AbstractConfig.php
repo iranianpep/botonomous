@@ -46,8 +46,9 @@ abstract class AbstractConfig
     /**
      * @param $plugin
      *
-     * @return self
      * @throws \Exception
+     *
+     * @return self
      */
     private function getPluginConfigObject($plugin)
     {
@@ -64,8 +65,9 @@ abstract class AbstractConfig
     /**
      * @param $plugin
      *
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function getPluginConfigs($plugin)
     {
