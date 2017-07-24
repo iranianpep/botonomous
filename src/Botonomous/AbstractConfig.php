@@ -44,6 +44,12 @@ abstract class AbstractConfig
         return (new StringUtility())->applyReplacements($found, $replacements);
     }
 
+    /**
+     * @param $plugin
+     *
+     * @return self
+     * @throws \Exception
+     */
     private function getPluginConfigObject($plugin)
     {
         $pluginConfigClass = __NAMESPACE__.'\\plugin\\'.strtolower($plugin)
@@ -56,16 +62,24 @@ abstract class AbstractConfig
         return new $pluginConfigClass();
     }
 
+    /**
+     * @param $plugin
+     *
+     * @return array
+     * @throws \Exception
+     */
     public function getPluginConfigs($plugin)
     {
         try {
-            $pluginConfigObject = $this->getPluginConfigObject($plugin);
-            return $pluginConfigObject->getConfigs();
+            return $this->getPluginConfigObject($plugin)->getConfigs();
         } catch (\Exception $e) {
             throw $e;
         }
     }
 
+    /**
+     * @return array
+     */
     public function getConfigs()
     {
         return static::$configs;
@@ -82,8 +96,7 @@ abstract class AbstractConfig
     {
         if ($plugin !== null) {
             try {
-                $config = $this->getPluginConfigObject($plugin);
-                $config->set($key, $value);
+                $this->getPluginConfigObject($plugin)->set($key, $value);
             } catch (\Exception $e) {
                 throw $e;
             }
