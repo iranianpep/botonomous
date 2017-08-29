@@ -19,6 +19,7 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0/mini.png)](https://insight.sensiolabs.com/projects/d9b77f1a-3d4a-423f-b473-30a25496f9a0)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/039ffa789e6a4040b9b8d596ede07db4)](https://www.codacy.com/app/iranianpep/botonomous)
 [![Code consistency](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/botonomous/grade.svg)](https://squizlabs.github.io/PHP_CodeSniffer/analysis/iranianpep/botonomous)
+[![BCH compliance](https://bettercodehub.com/edge/badge/iranianpep/botonomous?branch=master)](https://bettercodehub.com/)
 [![Issue Count](https://codeclimate.com/github/iranianpep/botonomous/badges/issue_count.svg)](https://codeclimate.com/github/iranianpep/botonomous)
 
 Botonomous is a PHP framework for creating autonomous [Slack bots](https://api.slack.com/bot-users). It is specifically designed for [Slack](https://slack.com) and supports [Events API](https://api.slack.com/events-api) and [Slash commands](https://api.slack.com/slash-commands). Botonomous is unique because of:
