@@ -43,7 +43,7 @@ class OAuthTest extends TestCase
         $oauth->setSessionUtility($sessionUtility);
 
         $this->expectException('\Exception');
-        $this->expectExceptionMessage('invalid_client_id');
+        $this->expectExceptionMessage('invalid_code');
 
         $oauth->doOauth();
     }
