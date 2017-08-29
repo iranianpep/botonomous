@@ -226,6 +226,7 @@ class Slackbot extends AbstractBot
             $action = $command->getAction();
             if (!method_exists($pluginClass, $action)) {
                 $className = get_class($pluginClass);
+
                 throw new \Exception("Action / function: '{$action}' does not exist in '{$className}'");
             }
 
@@ -253,6 +254,7 @@ class Slackbot extends AbstractBot
         // check class is valid
         if (!$pluginClass instanceof AbstractPlugin) {
             $className = get_class($pluginClass);
+
             throw new \Exception("Couldn't create class: '{$className}'");
         }
 
