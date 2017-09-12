@@ -8,7 +8,7 @@ namespace Botonomous\utility;
 class ArrayUtility extends AbstractUtility
 {
     /**
-     * Filter an array based on $keepKeys
+     * Filter an array based on $keepKeys.
      *
      * @param array $toFilter
      * @param array $keepKeys Includes the keys that need to be kept in $toFilter array
