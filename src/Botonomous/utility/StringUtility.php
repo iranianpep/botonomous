@@ -103,8 +103,12 @@ class StringUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function isString1FollowedByString2(string $subject, string $string1, string $string2, array $exceptions = []): bool
-    {
+    public function isString1FollowedByString2(
+        string $subject,
+        string $string1,
+        string $string2,
+        array $exceptions = []
+    ): bool {
         $exceptionsString = '';
         if (!empty($exceptions)) {
             $exceptions = implode('|', $exceptions);
