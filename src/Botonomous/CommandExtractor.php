@@ -20,6 +20,7 @@ class CommandExtractor
 
     /**
      * @param string $message
+     *
      * @return Command|null|void
      */
     public function getCommandByMessage(string $message)
