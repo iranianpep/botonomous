@@ -43,13 +43,13 @@ abstract class AbstractCommandContainer
     }
 
     /**
-     * @param null $key
+     * @param string $key
      *
      * @throws \Exception
      *
      * @return mixed
      */
-    public function getAllAsObject($key = null)
+    public function getAllAsObject(string $key = null)
     {
         $commands = $this->getAll();
         if (!empty($commands)) {

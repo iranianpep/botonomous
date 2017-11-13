@@ -17,7 +17,7 @@ class BlackList extends AbstractAccessList
     /**
      * @return bool
      */
-    public function isBlackListed()
+    public function isBlackListed(): bool
     {
         return $this->isUsernameBlackListed()
             || $this->isUserIdBlackListed()
@@ -27,7 +27,7 @@ class BlackList extends AbstractAccessList
     /**
      * @return bool
      */
-    public function isUsernameBlackListed()
+    public function isUsernameBlackListed(): bool
     {
         return $this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username') === true
             ? true : false;
@@ -36,7 +36,7 @@ class BlackList extends AbstractAccessList
     /**
      * @return bool
      */
-    public function isUserIdBlackListed()
+    public function isUserIdBlackListed(): bool
     {
         return $this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId') === true
             ? true : false;

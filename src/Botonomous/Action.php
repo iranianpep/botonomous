@@ -17,7 +17,7 @@ class Action extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -25,7 +25,7 @@ class Action extends AbstractBaseSlack
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -41,7 +41,7 @@ class Action extends AbstractBaseSlack
     /**
      * @param string $text
      */
-    public function setText($text)
+    public function setText(string $text)
     {
         $this->text = $text;
     }
@@ -49,7 +49,7 @@ class Action extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -57,7 +57,7 @@ class Action extends AbstractBaseSlack
     /**
      * @param string $value
      */
-    public function setValue($value)
+    public function setValue(string $value)
     {
         $this->value = $value;
     }
@@ -65,7 +65,7 @@ class Action extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -73,7 +73,7 @@ class Action extends AbstractBaseSlack
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
     }

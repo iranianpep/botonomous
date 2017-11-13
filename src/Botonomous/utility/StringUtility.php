@@ -14,7 +14,7 @@ class StringUtility extends AbstractUtility
      *
      * @return array|mixed
      */
-    public function jsonToArray($json)
+    public function jsonToArray(string $json)
     {
         $array = empty($json) ? [] : json_decode($json, true);
         if ($array === null || !is_array($array) || json_last_error() !== 0) {
@@ -25,30 +25,36 @@ class StringUtility extends AbstractUtility
     }
 
     /**
-     * @param $toRemove
-     * @param $subject
+     * @param string $toRemove
+     * @param string $subject
      *
      * @return string
      */
-    public function removeStringFromString($toRemove, $subject)
+    public function removeStringFromString(string $toRemove, string $subject): string
     {
         // pattern: !\s+! is used to replace multiple spaces with single space
         return trim(preg_replace('!\s+!', ' ', str_replace($toRemove, '', $subject)));
     }
 
-    private function getFindPattern($toFind, $wordBoundary)
+    /**
+     * @param string $toFind
+     * @param string $wordBoundary
+     *
+     * @return string
+     */
+    private function getFindPattern(string $toFind, string $wordBoundary): string
     {
         return $wordBoundary === true ? "/\b{$toFind}\b/" : "/{$toFind}/";
     }
 
     /**
-     * @param $toFind
-     * @param $subject
+     * @param string $toFind
+     * @param string $subject
      * @param bool $wordBoundary If true $toFind is searched with word boundaries
      *
      * @return bool
      */
-    public function findInString($toFind, $subject, $wordBoundary = true)
+    public function findInString(string $toFind, string $subject, bool $wordBoundary = true): bool
     {
         $pattern = $this->getFindPattern($toFind, $wordBoundary);
 
@@ -56,13 +62,13 @@ class StringUtility extends AbstractUtility
     }
 
     /**
-     * @param      $toFind
-     * @param      $subject
+     * @param string $toFind
+     * @param string $subject
      * @param bool $wordBoundary
      *
      * @return mixed
      */
-    public function findPositionInString($toFind, $subject, $wordBoundary = true)
+    public function findPositionInString(string $toFind, string $subject, bool $wordBoundary = true)
     {
         $pattern = $this->getFindPattern($toFind, $wordBoundary);
         $positions = [];
@@ -78,11 +84,11 @@ class StringUtility extends AbstractUtility
     /**
      * Convert snake case to camel case e.g. admin_user becomes AdminUser.
      *
-     * @param $string
+     * @param string $string
      *
      * @return string
      */
-    public function snakeCaseToCamelCase($string)
+    public function snakeCaseToCamelCase(string $string)
     {
         return str_replace(' ', '', ucwords(str_replace('_', ' ', $string)));
     }
@@ -90,14 +96,14 @@ class StringUtility extends AbstractUtility
     /**
      * Check subject to see whether $string1 is followed by $string2.
      *
-     * @param $subject
-     * @param $string1
-     * @param $string2
+     * @param string $subject
+     * @param string $string1
+     * @param string $string2
      * @param array $exceptions
      *
      * @return bool
      */
-    public function isString1FollowedByString2($subject, $string1, $string2, array $exceptions = [])
+    public function isString1FollowedByString2(string $subject, string $string1, string $string2, array $exceptions = []): bool
     {
         $exceptionsString = '';
         if (!empty($exceptions)) {
@@ -111,12 +117,12 @@ class StringUtility extends AbstractUtility
     }
 
     /**
-     * @param $haystack
+     * @param string $haystack
      * @param string $needle
      *
      * @return bool
      */
-    public function endsWith($haystack, $needle)
+    public function endsWith(string $haystack, string $needle): bool
     {
         $length = strlen($needle);
 
@@ -136,7 +142,7 @@ class StringUtility extends AbstractUtility
      *
      * @return mixed
      */
-    public function applyReplacements($subject, $replacements)
+    public function applyReplacements($subject, array $replacements)
     {
         if (empty($replacements) || !is_string($subject)) {
             return $subject;

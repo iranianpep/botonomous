@@ -28,7 +28,7 @@ class ArrayUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function arrayKeyValueExists($key, array $search)
+    public function arrayKeyValueExists(string $key, array $search): bool
     {
         if (!array_key_exists($key, $search)) {
             return false;
@@ -50,7 +50,7 @@ class ArrayUtility extends AbstractUtility
      *
      * @return void
      */
-    public function setNestedArrayValue(&$array, $path, &$value)
+    public function setNestedArrayValue(array &$array, array $path, &$value)
     {
         $current = &$array;
         foreach ($path as $key) {
@@ -69,7 +69,7 @@ class ArrayUtility extends AbstractUtility
      *
      * @return mixed
      */
-    public function getNestedArrayValue(&$array, $path)
+    public function getNestedArrayValue(array &$array, array $path)
     {
         $current = &$array;
         foreach ($path as $key) {
@@ -84,7 +84,7 @@ class ArrayUtility extends AbstractUtility
      *
      * @return mixed
      */
-    public function sortArrayByLength($array)
+    public function sortArrayByLength(array $array)
     {
         usort($array, function ($array1, $array2) {
             return strlen($array2) <=> strlen($array1);
@@ -100,7 +100,7 @@ class ArrayUtility extends AbstractUtility
      *
      * @return mixed
      */
-    public function maxPositiveValueKey($array)
+    public function maxPositiveValueKey(array $array)
     {
         $maxValue = max($array);
 

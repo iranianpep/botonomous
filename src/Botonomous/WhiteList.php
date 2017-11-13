@@ -17,7 +17,7 @@ class WhiteList extends AbstractAccessList
     /**
      * @return bool
      */
-    public function isWhiteListed()
+    public function isWhiteListed(): bool
     {
         $usernameCheck = true;
         $userIdCheck = true;
@@ -41,7 +41,7 @@ class WhiteList extends AbstractAccessList
     /**
      * @return bool
      */
-    public function isUsernameWhiteListed()
+    public function isUsernameWhiteListed(): bool
     {
         return empty($this->findInListByRequestKey('user_name', $this->getShortClassName(), 'username')) ? false : true;
     }
@@ -49,7 +49,7 @@ class WhiteList extends AbstractAccessList
     /**
      * @return bool
      */
-    public function isUserIdWhiteListed()
+    public function isUserIdWhiteListed(): bool
     {
         return empty($this->findInListByRequestKey('user_id', $this->getShortClassName(), 'userId')) ? false : true;
     }

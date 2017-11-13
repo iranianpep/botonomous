@@ -20,9 +20,9 @@ class Sender extends AbstractSender
     }
 
     /**
-     * @return Slackbot
+     * @return AbstractBot
      */
-    public function getSlackbot()
+    public function getSlackbot(): AbstractBot
     {
         return $this->slackbot;
     }
@@ -140,9 +140,9 @@ class Sender extends AbstractSender
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    private function getResponseByListenerType()
+    private function getResponseByListenerType(): string
     {
         $listener = $this->getConfig()->get('listener');
         switch ($listener) {

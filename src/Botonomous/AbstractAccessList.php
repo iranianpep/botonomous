@@ -45,7 +45,7 @@ abstract class AbstractAccessList
      *
      * @return bool
      */
-    protected function isEmailInList(array $list)
+    protected function isEmailInList(array $list): bool
     {
         // get user info
         $userInfo = $this->getSlackUserInfo();
@@ -59,7 +59,7 @@ abstract class AbstractAccessList
      *
      * @return bool
      */
-    protected function checkEmail()
+    protected function checkEmail(): bool
     {
         // load the relevant list based on the class name e.g. BlackList or WhiteList
         $list = $this->getSubAccessControlList($this->getShortClassName());
@@ -74,12 +74,12 @@ abstract class AbstractAccessList
 
     /**
      * @param string $requestKey
-     * @param $listKey
+     * @param string $listKey
      * @param string $subListKey
      *
      * @return bool|null
      */
-    protected function findInListByRequestKey($requestKey, $listKey, $subListKey)
+    protected function findInListByRequestKey(string $requestKey, string $listKey, string $subListKey)
     {
         /**
          * load the relevant list to start checking
@@ -123,7 +123,7 @@ abstract class AbstractAccessList
     /**
      * @return Dictionary
      */
-    public function getDictionary()
+    public function getDictionary(): Dictionary
     {
         if (!isset($this->dictionary)) {
             $this->setDictionary(new Dictionary());
@@ -143,7 +143,7 @@ abstract class AbstractAccessList
     /**
      * @return ApiClient
      */
-    public function getApiClient()
+    public function getApiClient(): ApiClient
     {
         if (!isset($this->apiClient)) {
             $this->setApiClient(new ApiClient());
@@ -192,7 +192,7 @@ abstract class AbstractAccessList
     /**
      * @return ClassUtility
      */
-    public function getClassUtility()
+    public function getClassUtility(): ClassUtility
     {
         if (!isset($this->classUtility)) {
             $this->setClassUtility(new ClassUtility());

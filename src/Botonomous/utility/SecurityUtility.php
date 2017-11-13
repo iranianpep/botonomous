@@ -16,17 +16,17 @@ class SecurityUtility
      *
      * @return string
      */
-    public function generateToken()
+    public function generateToken(): string
     {
         return hash($this->getHashAlgorithm(), uniqid(mt_rand(), true));
     }
 
     /**
-     * @param $hashAlgorithm
+     * @param string $hashAlgorithm
      *
      * @throws \Exception
      */
-    public function setHashAlgorithm($hashAlgorithm)
+    public function setHashAlgorithm(string $hashAlgorithm)
     {
         /*
          * check if hashing algorithm is valid
@@ -41,7 +41,7 @@ class SecurityUtility
     /**
      * @return string
      */
-    public function getHashAlgorithm()
+    public function getHashAlgorithm(): string
     {
         if (empty($this->hashAlgorithm)) {
             $this->setHashAlgorithm(self::DEFAULT_HASH_ALGORITHM);

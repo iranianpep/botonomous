@@ -26,7 +26,7 @@ class SlashCommandListener extends AbstractBaseListener
      *
      * @return array
      */
-    public function verifyOrigin()
+    public function verifyOrigin(): array
     {
         $token = $this->getRequest('token');
 
@@ -61,7 +61,7 @@ class SlashCommandListener extends AbstractBaseListener
      *
      * @return bool
      */
-    public function isThisBot()
+    public function isThisBot(): bool
     {
         $userId = $this->getRequest('user_id');
         $username = $this->getRequest('user_name');
@@ -72,7 +72,7 @@ class SlashCommandListener extends AbstractBaseListener
     /**
      * @return string
      */
-    public function getChannelId()
+    public function getChannelId(): string
     {
         return $this->getRequest('channel_id');
     }

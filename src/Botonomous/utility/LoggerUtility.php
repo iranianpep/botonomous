@@ -90,7 +90,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return Logger
      */
-    private function pushMonologHandler(Logger $logger, $handlerKey)
+    private function pushMonologHandler(Logger $logger, string $handlerKey): Logger
     {
         $activeHandlers = [];
 
@@ -137,7 +137,7 @@ class LoggerUtility extends AbstractUtility
     /**
      * @return LoggerInterface
      */
-    private function getLogger()
+    private function getLogger(): LoggerInterface
     {
         return $this->logger;
     }
@@ -159,7 +159,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function logChat($function, $message = '', $channel = '')
+    public function logChat(string $function, string $message = '', string $channel = ''): bool
     {
         try {
             return $this->logInfo('Log Chat', [
@@ -177,7 +177,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    private function canLog()
+    private function canLog(): bool
     {
         $loggerConfig = $this->getConfig()->get('logger');
 
@@ -189,7 +189,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return string
      */
-    public function getTempDir()
+    public function getTempDir(): string
     {
         return dirname(__DIR__).DIRECTORY_SEPARATOR.self::TEMP_FOLDER;
     }
@@ -201,7 +201,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return string
      */
-    public function getLogContent($function, $message, $channel)
+    public function getLogContent(string $function, string $message, string $channel): string
     {
         return "{$function}|{$message}|{$channel}";
     }
@@ -212,7 +212,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function logDebug($message, array $context = [])
+    public function logDebug(string $message, array $context = []): bool
     {
         return $this->log(self::DEBUG, $message, $context);
     }
@@ -223,7 +223,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function logInfo($message, array $context = [])
+    public function logInfo(string $message, array $context = []): bool
     {
         return $this->log(self::INFO, $message, $context);
     }
@@ -234,7 +234,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function logNotice($message, array $context = [])
+    public function logNotice(string $message, array $context = []): bool
     {
         return $this->log(self::NOTICE, $message, $context);
     }
@@ -245,7 +245,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function logWarning($message, array $context = [])
+    public function logWarning(string $message, array $context = []): bool
     {
         return $this->log(self::WARNING, $message, $context);
     }
@@ -256,7 +256,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function logError($message, array $context = [])
+    public function logError(string $message, array $context = []): bool
     {
         return $this->log(self::ERROR, $message, $context);
     }
@@ -267,7 +267,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function logCritical($message, array $context = [])
+    public function logCritical(string $message, array $context = []): bool
     {
         return $this->log(self::CRITICAL, $message, $context);
     }
@@ -278,7 +278,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function logAlert($message, array $context = [])
+    public function logAlert(string $message, array $context = []): bool
     {
         return $this->log(self::ALERT, $message, $context);
     }
@@ -289,7 +289,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function logEmergency($message, array $context = [])
+    public function logEmergency(string $message, array $context = []): bool
     {
         return $this->log(self::EMERGENCY, $message, $context);
     }
@@ -303,7 +303,7 @@ class LoggerUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function log($level, $message, $context = [])
+    public function log(string $level, string $message, array $context = []): bool
     {
         if ($this->canLog() !== true) {
             return false;

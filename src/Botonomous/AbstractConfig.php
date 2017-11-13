@@ -21,7 +21,7 @@ abstract class AbstractConfig
      *
      * @return mixed
      */
-    public function get($key, $replacements = [], $plugin = null)
+    public function get(string $key, array $replacements = [], $plugin = null)
     {
         $configs = static::$configs;
 
@@ -50,7 +50,7 @@ abstract class AbstractConfig
      *
      * @return self
      */
-    private function getPluginConfigObject($plugin)
+    private function getPluginConfigObject($plugin): self
     {
         $pluginConfigClass = __NAMESPACE__.'\\plugin\\'.strtolower($plugin)
             .'\\'.ucfirst($plugin).'Config';
@@ -81,7 +81,7 @@ abstract class AbstractConfig
     /**
      * @return array
      */
-    public function getConfigs()
+    public function getConfigs(): array
     {
         return static::$configs;
     }

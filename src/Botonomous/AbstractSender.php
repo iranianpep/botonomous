@@ -19,7 +19,7 @@ abstract class AbstractSender
     /**
      * @return LoggerUtility
      */
-    public function getLoggerUtility()
+    public function getLoggerUtility(): LoggerUtility
     {
         if (!isset($this->loggerUtility)) {
             $this->setLoggerUtility(new LoggerUtility());
@@ -39,7 +39,7 @@ abstract class AbstractSender
     /**
      * @return Config
      */
-    public function getConfig()
+    public function getConfig(): Config
     {
         if (!isset($this->config)) {
             $this->config = (new Config());
@@ -59,7 +59,7 @@ abstract class AbstractSender
     /**
      * @return ApiClient
      */
-    public function getApiClient()
+    public function getApiClient(): ApiClient
     {
         if (!isset($this->apiClient)) {
             $this->setApiClient(new ApiClient());
@@ -79,7 +79,7 @@ abstract class AbstractSender
     /**
      * @return Client
      */
-    public function getClient()
+    public function getClient(): Client
     {
         if (!isset($this->client)) {
             $this->setClient(new Client());
@@ -99,7 +99,7 @@ abstract class AbstractSender
     /**
      * @return MessageUtility
      */
-    public function getMessageUtility()
+    public function getMessageUtility(): MessageUtility
     {
         if (!isset($this->messageUtility)) {
             $this->setMessageUtility(new MessageUtility());

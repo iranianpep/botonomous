@@ -12,7 +12,7 @@ abstract class AbstractSlackEntity extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getSlackId()
+    public function getSlackId(): string
     {
         return $this->slackId;
     }
@@ -20,7 +20,7 @@ abstract class AbstractSlackEntity extends AbstractBaseSlack
     /**
      * @param string $slackId
      */
-    public function setSlackId($slackId)
+    public function setSlackId(string $slackId)
     {
         $this->slackId = $slackId;
     }

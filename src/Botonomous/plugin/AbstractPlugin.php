@@ -32,7 +32,7 @@ abstract class AbstractPlugin implements PluginInterface
      *
      * @return Slackbot
      */
-    public function getSlackbot()
+    public function getSlackbot(): Slackbot
     {
         return $this->slackbot;
     }
@@ -50,7 +50,7 @@ abstract class AbstractPlugin implements PluginInterface
     /**
      * @return Dictionary
      */
-    public function getDictionary()
+    public function getDictionary(): Dictionary
     {
         if (!isset($this->dictionary)) {
             $this->setDictionary((new Dictionary()));

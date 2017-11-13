@@ -32,7 +32,7 @@ class Event extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -40,7 +40,7 @@ class Event extends AbstractBaseSlack
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
     }
@@ -48,7 +48,7 @@ class Event extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getUser()
+    public function getUser(): string
     {
         return $this->user;
     }
@@ -56,7 +56,7 @@ class Event extends AbstractBaseSlack
     /**
      * @param string $user
      */
-    public function setUser($user)
+    public function setUser(string $user)
     {
         $this->user = $user;
     }
@@ -72,7 +72,7 @@ class Event extends AbstractBaseSlack
     /**
      * @param string $text
      */
-    public function setText($text)
+    public function setText(string $text)
     {
         $this->text = $text;
     }
@@ -80,7 +80,7 @@ class Event extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getTimestamp()
+    public function getTimestamp(): string
     {
         return $this->timestamp;
     }
@@ -88,7 +88,7 @@ class Event extends AbstractBaseSlack
     /**
      * @param string $timestamp
      */
-    public function setTimestamp($timestamp)
+    public function setTimestamp(string $timestamp)
     {
         $this->timestamp = $timestamp;
     }
@@ -96,7 +96,7 @@ class Event extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getEventTimestamp()
+    public function getEventTimestamp(): string
     {
         return $this->eventTimestamp;
     }
@@ -104,7 +104,7 @@ class Event extends AbstractBaseSlack
     /**
      * @param string $eventTimestamp
      */
-    public function setEventTimestamp($eventTimestamp)
+    public function setEventTimestamp(string $eventTimestamp)
     {
         $this->eventTimestamp = $eventTimestamp;
     }
@@ -120,7 +120,7 @@ class Event extends AbstractBaseSlack
     /**
      * @param string $channel
      */
-    public function setChannel($channel)
+    public function setChannel(string $channel)
     {
         $this->channel = $channel;
     }
@@ -136,7 +136,7 @@ class Event extends AbstractBaseSlack
     /**
      * @param string $botId
      */
-    public function setBotId($botId)
+    public function setBotId(string $botId)
     {
         $this->botId = $botId;
     }
@@ -144,7 +144,7 @@ class Event extends AbstractBaseSlack
     /**
      * @return ApiClient
      */
-    public function getApiClient()
+    public function getApiClient(): ApiClient
     {
         if (!isset($this->apiClient)) {
             $this->setApiClient(new ApiClient());

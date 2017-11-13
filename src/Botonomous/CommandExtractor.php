@@ -19,11 +19,10 @@ class CommandExtractor
     private $commandContainer;
 
     /**
-     * @param null $message
-     *
-     * @return Command|void
+     * @param string $message
+     * @return Command|null|void
      */
-    public function getCommandByMessage($message)
+    public function getCommandByMessage(string $message)
     {
         if (empty($message)) {
             $this->setError('Message is empty');
@@ -42,7 +41,7 @@ class CommandExtractor
      *
      * @return array
      */
-    public function countKeywordOccurrence($message)
+    public function countKeywordOccurrence(string $message): array
     {
         $stemmer = new PorterStemmer();
 
@@ -71,7 +70,7 @@ class CommandExtractor
      *
      * @return array|void
      */
-    private function commandKeywordOccurrence(Command $command, $message)
+    private function commandKeywordOccurrence(Command $command, string $message)
     {
         $stemmer = new PorterStemmer();
         $keywords = $command->getKeywords();
@@ -90,7 +89,7 @@ class CommandExtractor
      *
      * @return Command|null
      */
-    private function getCommandObjectByMessage($message)
+    private function getCommandObjectByMessage(string $message)
     {
         $command = $this->getMessageUtility()->extractCommandName($message);
         if (empty($command)) {
@@ -149,7 +148,7 @@ class CommandExtractor
      *
      * @return bool
      */
-    private function validateCommandObject($commandObject)
+    private function validateCommandObject($commandObject): bool
     {
         // check command details
         if (empty($commandObject)) {
@@ -166,7 +165,7 @@ class CommandExtractor
     /**
      * @return string
      */
-    public function getError()
+    public function getError(): string
     {
         return $this->error;
     }
@@ -174,7 +173,7 @@ class CommandExtractor
     /**
      * @param string $error
      */
-    public function setError($error)
+    public function setError(string $error)
     {
         $this->error = $error;
     }
@@ -182,7 +181,7 @@ class CommandExtractor
     /**
      * @return Config
      */
-    public function getConfig()
+    public function getConfig(): Config
     {
         if ($this->config === null) {
             $this->config = (new Config());
@@ -202,7 +201,7 @@ class CommandExtractor
     /**
      * @return MessageUtility
      */
-    public function getMessageUtility()
+    public function getMessageUtility(): MessageUtility
     {
         if (!isset($this->messageUtility)) {
             $this->setMessageUtility(new MessageUtility());
@@ -222,7 +221,7 @@ class CommandExtractor
     /**
      * @return Dictionary
      */
-    public function getDictionary()
+    public function getDictionary(): Dictionary
     {
         if (!isset($this->dictionary)) {
             $this->setDictionary(new Dictionary());
@@ -242,7 +241,7 @@ class CommandExtractor
     /**
      * @return CommandContainer
      */
-    public function getCommandContainer()
+    public function getCommandContainer(): CommandContainer
     {
         if (!isset($this->commandContainer)) {
             $this->setCommandContainer(new CommandContainer());

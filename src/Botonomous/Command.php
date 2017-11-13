@@ -30,7 +30,7 @@ class Command extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getKey()
+    public function getKey(): string
     {
         return $this->key;
     }
@@ -38,7 +38,7 @@ class Command extends AbstractBaseSlack
     /**
      * @param string $key
      */
-    public function setKey($key)
+    public function setKey(string $key)
     {
         $this->key = $key;
     }
@@ -46,7 +46,7 @@ class Command extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getPlugin()
+    public function getPlugin(): string
     {
         return $this->plugin;
     }
@@ -54,7 +54,7 @@ class Command extends AbstractBaseSlack
     /**
      * @param string $plugin
      */
-    public function setPlugin($plugin)
+    public function setPlugin(string $plugin)
     {
         $this->plugin = $plugin;
     }
@@ -62,7 +62,7 @@ class Command extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -70,7 +70,7 @@ class Command extends AbstractBaseSlack
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -78,7 +78,7 @@ class Command extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getAction()
+    public function getAction(): string
     {
         if (empty($this->action)) {
             $this->setAction(self::DEFAULT_ACTION);
@@ -90,7 +90,7 @@ class Command extends AbstractBaseSlack
     /**
      * @param string $action
      */
-    public function setAction($action)
+    public function setAction(string $action)
     {
         $this->action = $action;
     }
@@ -98,7 +98,7 @@ class Command extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getClass()
+    public function getClass(): string
     {
         if (empty($this->class)) {
             $class = __NAMESPACE__.'\\'.self::PLUGIN_DIR.'\\'.strtolower($this->getPlugin()).'\\'.$this->getPlugin();
@@ -111,7 +111,7 @@ class Command extends AbstractBaseSlack
     /**
      * @param string $class
      */
-    public function setClass($class)
+    public function setClass(string $class)
     {
         $this->class = $class;
     }

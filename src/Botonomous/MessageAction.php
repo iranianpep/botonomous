@@ -45,7 +45,7 @@ class MessageAction extends AbstractBaseSlack
     /**
      * @return string
      */
-    public function getCallbackId()
+    public function getCallbackId(): string
     {
         return $this->callbackId;
     }
@@ -53,7 +53,7 @@ class MessageAction extends AbstractBaseSlack
     /**
      * @param string $callbackId
      */
-    public function setCallbackId($callbackId)
+    public function setCallbackId(string $callbackId)
     {
         $this->callbackId = $callbackId;
     }
@@ -61,7 +61,7 @@ class MessageAction extends AbstractBaseSlack
     /**
      * @return Team
      */
-    public function getTeam()
+    public function getTeam(): Team
     {
         return $this->team;
     }
@@ -84,7 +84,7 @@ class MessageAction extends AbstractBaseSlack
     /**
      * @return Channel
      */
-    public function getChannel()
+    public function getChannel(): Channel
     {
         return $this->channel;
     }

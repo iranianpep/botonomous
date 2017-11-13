@@ -17,7 +17,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @return bool
      */
-    public function isIm()
+    public function isIm(): bool
     {
         return $this->isIm;
     }
@@ -25,7 +25,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @param bool $isIm
      */
-    public function setIm($isIm)
+    public function setIm(bool $isIm)
     {
         $this->isIm = $isIm;
     }
@@ -33,7 +33,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @return string
      */
-    public function getUser()
+    public function getUser(): string
     {
         return $this->user;
     }
@@ -41,7 +41,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @param string $user
      */
-    public function setUser($user)
+    public function setUser(string $user)
     {
         $this->user = $user;
     }
@@ -49,7 +49,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @return string
      */
-    public function getCreated()
+    public function getCreated(): string
     {
         return $this->created;
     }
@@ -57,7 +57,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @param string $created
      */
-    public function setCreated($created)
+    public function setCreated(string $created)
     {
         $this->created = $created;
     }
@@ -65,7 +65,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @return bool
      */
-    public function isUserDeleted()
+    public function isUserDeleted(): bool
     {
         return $this->isUserDeleted;
     }
@@ -73,7 +73,7 @@ class ImChannel extends AbstractSlackEntity
     /**
      * @param bool $isUserDeleted
      */
-    public function setUserDeleted($isUserDeleted)
+    public function setUserDeleted(bool $isUserDeleted)
     {
         $this->isUserDeleted = $isUserDeleted;
     }

@@ -51,7 +51,7 @@ class Dictionary
      *
      * @return mixed
      */
-    public function get($fileName)
+    public function get(string $fileName)
     {
         $data = $this->getData();
 
@@ -74,7 +74,7 @@ class Dictionary
      *
      * @return mixed
      */
-    public function getValueByKey($fileName, $key, $replacements = [])
+    public function getValueByKey(string $fileName, string $key, array $replacements = [])
     {
         $fileContent = $this->get($fileName);
 

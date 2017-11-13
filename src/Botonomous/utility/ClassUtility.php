@@ -14,7 +14,7 @@ class ClassUtility
      *
      * @return mixed
      */
-    public function extractClassNameFromFullName($fullName)
+    public function extractClassNameFromFullName(string $fullName)
     {
         // get last part of the namespace
         $classParts = explode('\\', $fullName);
@@ -55,7 +55,7 @@ class ClassUtility
      *
      * @return bool|string
      */
-    private function getSetMethodByAttribute(AbstractBaseSlack $object, $attributeKey)
+    private function getSetMethodByAttribute(AbstractBaseSlack $object, string $attributeKey)
     {
         // For id, we cannot use 'set'.$stringUtility->snakeCaseToCamelCase($attributeKey) since it's named slackId
         if ($attributeKey === 'id') {
@@ -84,7 +84,7 @@ class ClassUtility
      *
      * @return mixed
      */
-    private function processTimestamp($text)
+    private function processTimestamp(string $text): string
     {
         if ($text === 'ts' || (new StringUtility())->endsWith($text, '_ts')) {
             // replace the last ts with timestamp
@@ -101,7 +101,7 @@ class ClassUtility
      *
      * @return mixed
      */
-    private function findBooleanPrefix($text)
+    private function findBooleanPrefix(string $text)
     {
         $booleanPrefixes = ['is', 'has'];
         sort($booleanPrefixes);
@@ -122,7 +122,7 @@ class ClassUtility
      *
      * @return string
      */
-    private function removeBooleanPrefix($text)
+    private function removeBooleanPrefix(string $text): string
     {
         $booleanPrefix = $this->findBooleanPrefix($text);
         if (!empty($booleanPrefix)) {

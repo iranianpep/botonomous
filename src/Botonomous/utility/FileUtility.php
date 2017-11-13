@@ -16,7 +16,7 @@ class FileUtility extends AbstractUtility
      *
      * @return array|mixed
      */
-    public function jsonFileToArray($filePath)
+    public function jsonFileToArray(string $filePath)
     {
         if (empty($filePath)) {
             throw new \Exception('File path is empty');

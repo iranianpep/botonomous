@@ -69,7 +69,7 @@ class OAuth
     /**
      * @return string
      */
-    public function getClientId()
+    public function getClientId(): string
     {
         if (empty($this->clientId)) {
             $this->setClientId($this->getConfig()->get('clientId'));
@@ -81,7 +81,7 @@ class OAuth
     /**
      * @param string $clientId
      */
-    public function setClientId($clientId)
+    public function setClientId(string $clientId)
     {
         $this->clientId = $clientId;
     }
@@ -89,7 +89,7 @@ class OAuth
     /**
      * @return array
      */
-    public function getScopes()
+    public function getScopes(): array
     {
         if (empty($this->scopes)) {
             $this->setScopes($this->getConfig()->get('scopes'));
@@ -109,7 +109,7 @@ class OAuth
     /**
      * @return string
      */
-    public function getRedirectUri()
+    public function getRedirectUri(): string
     {
         return $this->redirectUri;
     }
@@ -117,7 +117,7 @@ class OAuth
     /**
      * @param string $redirectUri
      */
-    public function setRedirectUri($redirectUri)
+    public function setRedirectUri(string $redirectUri)
     {
         $this->redirectUri = $redirectUri;
     }
@@ -125,7 +125,7 @@ class OAuth
     /**
      * @return string
      */
-    public function getState()
+    public function getState(): string
     {
         if (!isset($this->state)) {
             $this->setState((new SecurityUtility())->generateToken());
@@ -137,7 +137,7 @@ class OAuth
     /**
      * @param string $state
      */
-    public function setState($state)
+    public function setState(string $state)
     {
         $this->getSessionUtility()->set(self::SESSION_STATE_KEY, $state);
         $this->state = $state;
@@ -148,7 +148,7 @@ class OAuth
      *
      * @return bool
      */
-    public function verifyState($state)
+    public function verifyState($state): bool
     {
         if (empty($state)) {
             return false;
@@ -158,17 +158,17 @@ class OAuth
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getTeamId()
+    public function getTeamId(): string
     {
         return $this->teamId;
     }
 
     /**
-     * @param int $teamId
+     * @param string $teamId
      */
-    public function setTeamId($teamId)
+    public function setTeamId(string $teamId)
     {
         $this->teamId = $teamId;
     }
@@ -180,7 +180,7 @@ class OAuth
      *
      * @return string
      */
-    public function generateAddButton($height = '40', $weight = '139', $cssClass = '')
+    public function generateAddButton($height = '40', $weight = '139', $cssClass = ''): string
     {
         $authorizationUrl = self::AUTHORIZATION_URL;
         $scope = implode(',', $this->getScopes());
@@ -280,7 +280,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @param $accessToken
      */
-    public function setAccessToken($accessToken)
+    public function setAccessToken(string $accessToken)
     {
         $this->accessToken = $accessToken;
     }
@@ -288,7 +288,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @return string
      */
-    public function getClientSecret()
+    public function getClientSecret(): string
     {
         if (empty($this->clientSecret)) {
             $this->setClientSecret($this->getConfig()->get('clientSecret'));
@@ -300,7 +300,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @param string $clientSecret
      */
-    public function setClientSecret($clientSecret)
+    public function setClientSecret(string $clientSecret)
     {
         $this->clientSecret = $clientSecret;
     }
@@ -308,7 +308,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @return string
      */
-    public function getBotUserId()
+    public function getBotUserId(): string
     {
         return $this->botUserId;
     }
@@ -316,7 +316,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @param string $botUserId
      */
-    public function setBotUserId($botUserId)
+    public function setBotUserId(string $botUserId)
     {
         $this->botUserId = $botUserId;
     }
@@ -324,7 +324,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @return string
      */
-    public function getBotAccessToken()
+    public function getBotAccessToken(): string
     {
         return $this->botAccessToken;
     }
@@ -332,7 +332,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @param string $botAccessToken
      */
-    public function setBotAccessToken($botAccessToken)
+    public function setBotAccessToken(string $botAccessToken)
     {
         $this->botAccessToken = $botAccessToken;
     }
@@ -340,7 +340,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @return string
      */
-    public function getChannel()
+    public function getChannel(): string
     {
         return $this->channel;
     }
@@ -348,7 +348,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @param string $channel
      */
-    public function setChannel($channel)
+    public function setChannel(string $channel)
     {
         $this->channel = $channel;
     }
@@ -356,7 +356,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @return string
      */
-    public function getTeamName()
+    public function getTeamName(): string
     {
         return $this->teamName;
     }
@@ -364,7 +364,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @param string $teamName
      */
-    public function setTeamName($teamName)
+    public function setTeamName(string $teamName)
     {
         $this->teamName = $teamName;
     }
@@ -372,7 +372,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @return string
      */
-    public function getConfigurationUrl()
+    public function getConfigurationUrl(): string
     {
         return $this->configurationUrl;
     }
@@ -380,7 +380,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @param string $configurationUrl
      */
-    public function setConfigurationUrl($configurationUrl)
+    public function setConfigurationUrl(string $configurationUrl)
     {
         $this->configurationUrl = $configurationUrl;
     }
@@ -388,7 +388,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @return ApiClient
      */
-    public function getApiClient()
+    public function getApiClient(): ApiClient
     {
         if (!isset($this->apiClient)) {
             $this->setApiClient(new ApiClient());
@@ -416,7 +416,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @return SessionUtility|null
      */
-    public function getSessionUtility()
+    public function getSessionUtility(): SessionUtility
     {
         if (!isset($this->sessionUtility)) {
             $this->setSessionUtility(new SessionUtility());
@@ -428,7 +428,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @return Config
      */
-    public function getConfig()
+    public function getConfig(): Config
     {
         if (!isset($this->config)) {
             $this->setConfig(new Config());
@@ -489,7 +489,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     /**
      * @return RequestUtility
      */
-    public function getRequestUtility()
+    public function getRequestUtility(): RequestUtility
     {
         if (!isset($this->requestUtility)) {
             $this->setRequestUtility((new RequestUtility()));

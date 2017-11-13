@@ -18,7 +18,7 @@ class MessageUtility extends AbstractUtility
      *
      * @return string
      */
-    public function removeMentionedBot($message)
+    public function removeMentionedBot(string $message): string
     {
         $userLink = $this->getUserLink();
 
@@ -34,7 +34,7 @@ class MessageUtility extends AbstractUtility
      *
      * @return bool
      */
-    public function isBotMentioned($message)
+    public function isBotMentioned(string $message): bool
     {
         $userLink = $this->getUserLink();
 
@@ -48,7 +48,7 @@ class MessageUtility extends AbstractUtility
      *
      * @return null|string
      */
-    public function extractCommandName($message)
+    public function extractCommandName(string $message)
     {
         // remove the bot mention if it exists
         $message = $this->removeMentionedBot($message);
@@ -74,7 +74,7 @@ class MessageUtility extends AbstractUtility
      *
      * @return \Botonomous\Command|null
      */
-    public function extractCommandDetails($message)
+    public function extractCommandDetails(string $message)
     {
         // first get the command name
         $command = $this->extractCommandName($message);
@@ -89,7 +89,7 @@ class MessageUtility extends AbstractUtility
      *
      * @return string
      */
-    public function removeTriggerWord($message, $triggerWord)
+    public function removeTriggerWord(string $message, string $triggerWord)
     {
         $count = 1;
 
@@ -104,7 +104,7 @@ class MessageUtility extends AbstractUtility
      *
      * @return string
      */
-    public function linkToUser($userId, $userName = '')
+    public function linkToUser(string $userId, string $userName = '')
     {
         if (empty($userId)) {
             throw new \Exception('User id is not provided');
@@ -120,7 +120,7 @@ class MessageUtility extends AbstractUtility
     /**
      * @return string
      */
-    private function getUserLink()
+    private function getUserLink(): string
     {
         return $this->linkToUser($this->getConfig()->get('botUserId'));
     }
@@ -131,7 +131,7 @@ class MessageUtility extends AbstractUtility
      *
      * @return array
      */
-    public function keywordPos(array $keywords, $message)
+    public function keywordPos(array $keywords, string $message): array
     {
         $found = [];
         if (empty($keywords)) {
@@ -156,7 +156,7 @@ class MessageUtility extends AbstractUtility
      *
      * @return array|void
      */
-    public function keywordCount(array $keywords, $message)
+    public function keywordCount(array $keywords, string $message)
     {
         $keysPositions = $this->keywordPos($keywords, $message);
 
@@ -177,7 +177,7 @@ class MessageUtility extends AbstractUtility
      *
      * @return bool
      */
-    private function isPositionTaken(array $tokensPositions, $newPosition)
+    private function isPositionTaken(array $tokensPositions, int $newPosition)
     {
         if (empty($tokensPositions)) {
             return false;
@@ -200,7 +200,7 @@ class MessageUtility extends AbstractUtility
      *
      * @return bool
      */
-    private function isPositionIn($newPosition, array $positions, $tokenLength)
+    private function isPositionIn(int $newPosition, array $positions, int $tokenLength)
     {
         foreach ($positions as $position) {
             if ($newPosition >= $position && $newPosition < $position + $tokenLength) {

@@ -116,7 +116,7 @@ class Slackbot extends AbstractBot
     /**
      * @return bool
      */
-    private function checkAccessControl()
+    private function checkAccessControl(): bool
     {
         // if accessControlEnabled is not set true ignore the check and return true
         if ($this->getConfig()->get('accessControlEnabled') !== true) {
@@ -264,7 +264,7 @@ class Slackbot extends AbstractBot
     /**
      * @return array
      */
-    public function getCommands()
+    public function getCommands(): array
     {
         if (!isset($this->commands)) {
             $this->setCommands($this->getCommandContainer()->getAllAsObject());
@@ -284,7 +284,7 @@ class Slackbot extends AbstractBot
     /**
      * @return string
      */
-    public function getLastError()
+    public function getLastError(): string
     {
         return $this->lastError;
     }
@@ -292,7 +292,7 @@ class Slackbot extends AbstractBot
     /**
      * @param string $lastError
      */
-    public function setLastError($lastError)
+    public function setLastError(string $lastError)
     {
         $this->lastError = $lastError;
     }
@@ -302,7 +302,7 @@ class Slackbot extends AbstractBot
      *
      * @return string
      */
-    public function getCurrentCommand()
+    public function getCurrentCommand(): string
     {
         return $this->currentCommand;
     }
@@ -310,7 +310,7 @@ class Slackbot extends AbstractBot
     /**
      * @param string $currentCommand
      */
-    public function setCurrentCommand($currentCommand)
+    public function setCurrentCommand(string $currentCommand)
     {
         $this->currentCommand = $currentCommand;
     }
@@ -320,7 +320,7 @@ class Slackbot extends AbstractBot
      *
      * @return bool
      */
-    public function youTalkingToMe()
+    public function youTalkingToMe(): bool
     {
         $message = $this->getListener()->getMessage();
 

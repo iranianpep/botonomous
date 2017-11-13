@@ -103,7 +103,7 @@ class ApiClient extends AbstractClient
      *
      * @return mixed
      */
-    public function apiCall($method, array $arguments = [])
+    public function apiCall(string $method, array $arguments = [])
     {
         try {
             $requestBody = $this->prepareRequestBody($method, $arguments);
@@ -123,7 +123,7 @@ class ApiClient extends AbstractClient
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    private function sendRequest($method, $requestBody)
+    private function sendRequest(string $method, $requestBody)
     {
         try {
             /** @noinspection PhpUndefinedClassInspection */
@@ -148,7 +148,7 @@ class ApiClient extends AbstractClient
      *
      * @return string
      */
-    private function prepareRequestBody($method, array $arguments = [])
+    private function prepareRequestBody(string $method, array $arguments = [])
     {
         $arguments = array_merge($arguments, $this->getArgs());
 
@@ -186,7 +186,7 @@ class ApiClient extends AbstractClient
      *
      * @return array
      */
-    public function getArgs()
+    public function getArgs():array
     {
         return [
             'token'    => $this->getToken(),
@@ -201,7 +201,7 @@ class ApiClient extends AbstractClient
      *
      * @return mixed
      */
-    public function chatPostMessage($arguments)
+    public function chatPostMessage(array $arguments)
     {
         return $this->apiCall('chat.postMessage', $arguments);
     }
@@ -213,7 +213,7 @@ class ApiClient extends AbstractClient
      *
      * @return mixed
      */
-    public function rtmStart($arguments)
+    public function rtmStart(array $arguments)
     {
         return $this->apiCall('rtm.start', $arguments);
     }
@@ -256,7 +256,7 @@ class ApiClient extends AbstractClient
      *
      * @return array
      */
-    public function usersList()
+    public function usersList(): array
     {
         $result = $this->apiCall('users.list');
 
@@ -276,7 +276,7 @@ class ApiClient extends AbstractClient
      *
      * @return mixed
      */
-    public function userInfo($arguments)
+    public function userInfo(array $arguments)
     {
         $result = $this->apiCall('users.info', $arguments);
 
@@ -317,7 +317,7 @@ class ApiClient extends AbstractClient
     /**
      * @return array
      */
-    public function imListAsObject()
+    public function imListAsObject(): array
     {
         $imChannels = $this->imList();
 
@@ -340,7 +340,7 @@ class ApiClient extends AbstractClient
      *
      * @return mixed
      */
-    public function oauthAccess($arguments)
+    public function oauthAccess(array $arguments)
     {
         return $this->apiCall('oauth.access', $arguments);
     }
@@ -353,7 +353,7 @@ class ApiClient extends AbstractClient
      *
      * @return bool
      */
-    private function validateRequiredArguments($method, $arguments)
+    private function validateRequiredArguments(string $method, array $arguments)
     {
         $validArguments = $this->getArguments($method);
 
@@ -405,7 +405,7 @@ class ApiClient extends AbstractClient
      *
      * @return array
      */
-    public function filterArguments($method, array $arguments)
+    public function filterArguments(string $method, array $arguments): array
     {
         $validArguments = $this->getArguments($method);
 
@@ -425,7 +425,7 @@ class ApiClient extends AbstractClient
     /**
      * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
         // fall back to config
         if (empty($this->token)) {

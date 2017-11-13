@@ -16,7 +16,7 @@ abstract class AbstractClient
     private $config;
     private $arrayUtility;
 
-    abstract public function apiCall($method, array $arguments = []);
+    abstract public function apiCall(string $method, array $arguments = []);
 
     /** @noinspection PhpUndefinedClassInspection
      * @param Client $client

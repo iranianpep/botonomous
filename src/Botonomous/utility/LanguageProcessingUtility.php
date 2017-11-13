@@ -36,7 +36,6 @@ class LanguageProcessingUtility extends AbstractUtility
         $stopWords = (new Dictionary())->get('stopwords-'.$language);
 
         $words = explode(' ', $text);
-
         if (!empty($words)) {
             foreach ($words as $key => $word) {
                 if (in_array($word, $stopWords)) {

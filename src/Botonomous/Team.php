@@ -15,7 +15,7 @@ class Team extends AbstractSlackEntity
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -23,7 +23,7 @@ class Team extends AbstractSlackEntity
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -31,7 +31,7 @@ class Team extends AbstractSlackEntity
     /**
      * @return string
      */
-    public function getDomain()
+    public function getDomain(): string
     {
         return $this->domain;
     }
@@ -39,7 +39,7 @@ class Team extends AbstractSlackEntity
     /**
      * @param string $domain
      */
-    public function setDomain($domain)
+    public function setDomain(string $domain)
     {
         $this->domain = $domain;
     }
@@ -47,7 +47,7 @@ class Team extends AbstractSlackEntity
     /**
      * @return string
      */
-    public function getEmailDomain()
+    public function getEmailDomain(): string
     {
         return $this->emailDomain;
     }
@@ -55,7 +55,7 @@ class Team extends AbstractSlackEntity
     /**
      * @param string $emailDomain
      */
-    public function setEmailDomain($emailDomain)
+    public function setEmailDomain(string $emailDomain)
     {
         $this->emailDomain = $emailDomain;
     }
@@ -63,7 +63,7 @@ class Team extends AbstractSlackEntity
     /**
      * @return array
      */
-    public function getIcon()
+    public function getIcon(): array
     {
         return $this->icon;
     }
@@ -79,7 +79,7 @@ class Team extends AbstractSlackEntity
     /**
      * @return bool
      */
-    public function isIconDefault()
+    public function isIconDefault(): bool
     {
         $icon = $this->getIcon();
 

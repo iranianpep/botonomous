@@ -30,7 +30,7 @@ class EventListener extends AbstractBaseListener
     /**
      * @return string
      */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->token;
     }
@@ -38,7 +38,7 @@ class EventListener extends AbstractBaseListener
     /**
      * @param string $token
      */
-    public function setToken($token)
+    public function setToken(string $token)
     {
         $this->token = $token;
     }
@@ -46,7 +46,7 @@ class EventListener extends AbstractBaseListener
     /**
      * @return string
      */
-    public function getTeamId()
+    public function getTeamId(): string
     {
         return $this->teamId;
     }
@@ -54,7 +54,7 @@ class EventListener extends AbstractBaseListener
     /**
      * @param string $teamId
      */
-    public function setTeamId($teamId)
+    public function setTeamId(string $teamId)
     {
         $this->teamId = $teamId;
     }
@@ -62,7 +62,7 @@ class EventListener extends AbstractBaseListener
     /**
      * @return string
      */
-    public function getAppId()
+    public function getAppId(): string
     {
         return $this->appId;
     }
@@ -70,7 +70,7 @@ class EventListener extends AbstractBaseListener
     /**
      * @param string $appId
      */
-    public function setAppId($appId)
+    public function setAppId(string $appId)
     {
         $this->appId = $appId;
     }
@@ -185,7 +185,7 @@ class EventListener extends AbstractBaseListener
      *
      * @return bool
      */
-    public function isThisBot()
+    public function isThisBot(): bool
     {
         $subType = $this->getRequest('subtype');
 
@@ -201,7 +201,7 @@ class EventListener extends AbstractBaseListener
     /**
      * @return string
      */
-    public function getChannelId()
+    public function getChannelId(): string
     {
         return $this->getEvent()->getChannel();
     }

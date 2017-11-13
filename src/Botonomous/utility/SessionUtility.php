@@ -21,7 +21,7 @@ class SessionUtility
     /**
      * @return mixed
      */
-    public function getSession()
+    public function getSession(): array
     {
         return $_SESSION;
     }
@@ -29,7 +29,7 @@ class SessionUtility
     /**
      * @param mixed $session
      */
-    public function setSession($session)
+    public function setSession(array $session)
     {
         $_SESSION = $session;
     }
@@ -38,7 +38,7 @@ class SessionUtility
      * @param $key
      * @param $value
      */
-    public function set($key, $value)
+    public function set(string $key, $value)
     {
         $session = $this->getSession();
         $session[$key] = $value;

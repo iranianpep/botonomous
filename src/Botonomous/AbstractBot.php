@@ -32,7 +32,7 @@ abstract class AbstractBot
     /**
      * @return Config
      */
-    public function getConfig()
+    public function getConfig(): Config
     {
         if ($this->config === null) {
             $this->config = (new Config());
@@ -52,7 +52,7 @@ abstract class AbstractBot
     /**
      * @return AbstractBaseListener
      */
-    public function getListener()
+    public function getListener(): AbstractBaseListener
     {
         if (!isset($this->listener)) {
             $listenerClass = __NAMESPACE__.'\\listener\\'.ucwords($this->getConfig()->get('listener')).'Listener';
@@ -70,7 +70,7 @@ abstract class AbstractBot
     /**
      * @return MessageUtility
      */
-    public function getMessageUtility()
+    public function getMessageUtility(): MessageUtility
     {
         if (!isset($this->messageUtility)) {
             $this->setMessageUtility(new MessageUtility());
@@ -90,7 +90,7 @@ abstract class AbstractBot
     /**
      * @return CommandContainer
      */
-    public function getCommandContainer()
+    public function getCommandContainer(): CommandContainer
     {
         if (!isset($this->commandContainer)) {
             $this->setCommandContainer(new CommandContainer());
@@ -110,7 +110,7 @@ abstract class AbstractBot
     /**
      * @return FormattingUtility
      */
-    public function getFormattingUtility()
+    public function getFormattingUtility(): FormattingUtility
     {
         if (!isset($this->formattingUtility)) {
             $this->setFormattingUtility(new FormattingUtility());
@@ -130,7 +130,7 @@ abstract class AbstractBot
     /**
      * @return LoggerUtility
      */
-    public function getLoggerUtility()
+    public function getLoggerUtility(): LoggerUtility
     {
         if (!isset($this->loggerUtility)) {
             $this->setLoggerUtility(new LoggerUtility());
@@ -150,7 +150,7 @@ abstract class AbstractBot
     /**
      * @return OAuth
      */
-    public function getOauth()
+    public function getOauth(): OAuth
     {
         if (!isset($this->oauth)) {
             $this->setOauth(new OAuth());
@@ -170,7 +170,7 @@ abstract class AbstractBot
     /**
      * @return RequestUtility
      */
-    public function getRequestUtility()
+    public function getRequestUtility(): RequestUtility
     {
         return $this->getListener()->getRequestUtility();
     }
@@ -186,7 +186,7 @@ abstract class AbstractBot
     /**
      * @return BlackList
      */
-    public function getBlackList()
+    public function getBlackList(): BlackList
     {
         if (!isset($this->blackList)) {
             $this->setBlackList(new BlackList($this->getListener()->getRequest()));
@@ -206,7 +206,7 @@ abstract class AbstractBot
     /**
      * @return WhiteList
      */
-    public function getWhiteList()
+    public function getWhiteList(): WhiteList
     {
         if (!isset($this->whiteList)) {
             $this->setWhiteList(new WhiteList($this->getListener()->getRequest()));
@@ -226,7 +226,7 @@ abstract class AbstractBot
     /**
      * @return Sender
      */
-    public function getSender()
+    public function getSender(): Sender
     {
         if (!isset($this->sender)) {
             $this->setSender(new Sender($this));
@@ -246,7 +246,7 @@ abstract class AbstractBot
     /**
      * @return Dictionary
      */
-    public function getDictionary()
+    public function getDictionary(): Dictionary
     {
         if (!isset($this->dictionary)) {
             $this->setDictionary(new Dictionary());
@@ -266,7 +266,7 @@ abstract class AbstractBot
     /**
      * @return CommandExtractor
      */
-    public function getCommandExtractor()
+    public function getCommandExtractor(): CommandExtractor
     {
         if (!isset($this->commandExtractor)) {
             $this->setCommandExtractor(new CommandExtractor());

@@ -12,7 +12,7 @@ class Ping extends AbstractPlugin
     /**
      * @return string
      */
-    public function index()
+    public function index(): string
     {
         return 'pong';
     }
@@ -20,7 +20,7 @@ class Ping extends AbstractPlugin
     /**
      * @return string
      */
-    public function pong()
+    public function pong(): string
     {
         return 'ping';
     }

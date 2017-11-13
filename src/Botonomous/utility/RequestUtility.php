@@ -14,7 +14,7 @@ class RequestUtility
     /**
      * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         if (isset($this->content)) {
             return $this->content;
@@ -26,7 +26,7 @@ class RequestUtility
     /**
      * @param $content
      */
-    public function setContent($content)
+    public function setContent(string $content)
     {
         $this->content = $content;
     }

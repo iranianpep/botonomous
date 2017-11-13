@@ -26,7 +26,7 @@ abstract class AbstractUtility
     /**
      * @return Config
      */
-    public function getConfig()
+    public function getConfig(): Config
     {
         if ($this->config === null) {
             $this->config = new Config();

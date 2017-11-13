@@ -47,14 +47,14 @@ abstract class AbstractBaseListener
     /**
      * @return string
      */
-    abstract public function getChannelId();
+    abstract public function getChannelId(): string;
 
     /**
      * @param null|string $key
      *
      * @return mixed
      */
-    public function getRequest($key = null)
+    public function getRequest(string $key = null)
     {
         if (!isset($this->request)) {
             // each listener has its own way of extracting the request
@@ -82,7 +82,7 @@ abstract class AbstractBaseListener
     /**
      * @return Config
      */
-    public function getConfig()
+    public function getConfig(): Config
     {
         if (!isset($this->config)) {
             $this->setConfig(new Config());
@@ -94,7 +94,7 @@ abstract class AbstractBaseListener
     /**
      * @param Config $config
      */
-    public function setConfig($config)
+    public function setConfig(Config $config)
     {
         $this->config = $config;
     }
@@ -116,12 +116,12 @@ abstract class AbstractBaseListener
      *
      * @return bool
      */
-    abstract public function isThisBot();
+    abstract public function isThisBot(): bool;
 
     /**
      * @return RequestUtility
      */
-    public function getRequestUtility()
+    public function getRequestUtility(): RequestUtility
     {
         if (!isset($this->requestUtility)) {
             $this->setRequestUtility((new RequestUtility()));
@@ -183,7 +183,7 @@ abstract class AbstractBaseListener
      *
      * @return array<string,boolean|string>
      */
-    public function verifyRequest()
+    public function verifyRequest(): array
     {
         $originCheck = $this->verifyOrigin();
 

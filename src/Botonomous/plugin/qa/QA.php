@@ -39,7 +39,7 @@ class QA extends AbstractPlugin
     /**
      * @return array
      */
-    public function getQuestions()
+    public function getQuestions(): array
     {
         if (!isset($this->questions)) {
             $this->setQuestions($this->getDictionary()->get('question-answer'));

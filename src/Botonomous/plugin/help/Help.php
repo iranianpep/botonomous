@@ -14,7 +14,7 @@ class Help extends AbstractPlugin
     /**
      * @return string
      */
-    public function index()
+    public function index(): string
     {
         $allCommands = $this->getSlackbot()->getCommands();
 

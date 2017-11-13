@@ -10,7 +10,7 @@ class FormattingUtility extends AbstractUtility
     /**
      * @return string
      */
-    public function newLine()
+    public function newLine(): string
     {
         return "\n";
     }
