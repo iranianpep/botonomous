@@ -50,7 +50,7 @@ class StringUtility extends AbstractUtility
     /**
      * @param string $toFind
      * @param string $subject
-     * @param bool $wordBoundary If true $toFind is searched with word boundaries
+     * @param bool   $wordBoundary If true $toFind is searched with word boundaries
      *
      * @return bool
      */
@@ -64,7 +64,7 @@ class StringUtility extends AbstractUtility
     /**
      * @param string $toFind
      * @param string $subject
-     * @param bool $wordBoundary
+     * @param bool   $wordBoundary
      *
      * @return mixed
      */
@@ -99,7 +99,7 @@ class StringUtility extends AbstractUtility
      * @param string $subject
      * @param string $string1
      * @param string $string2
-     * @param array $exceptions
+     * @param array  $exceptions
      *
      * @return bool
      */
