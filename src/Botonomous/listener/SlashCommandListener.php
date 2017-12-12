@@ -5,6 +5,8 @@ namespace Botonomous\listener;
 class SlashCommandListener extends AbstractBaseListener
 {
     const VERIFICATION_TOKEN = 'verificationToken';
+    const MISSING_TOKEN_MESSAGE = 'Token is missing';
+    const MISSING_TOKEN_CONFIG_MESSAGE = 'Token must be set in the config';
 
     /**
      * @return mixed
@@ -33,14 +35,14 @@ class SlashCommandListener extends AbstractBaseListener
         if (empty($token)) {
             return [
                 'success' => false,
-                'message' => 'Token is missing',
+                'message' => self::MISSING_TOKEN_MESSAGE,
             ];
         }
 
         $expectedToken = $this->getConfig()->get(self::VERIFICATION_TOKEN);
 
         if (empty($expectedToken)) {
-            throw new \Exception('Token must be set in the config');
+            throw new \Exception(self::MISSING_TOKEN_CONFIG_MESSAGE);
         }
 
         if ($token === $expectedToken) {

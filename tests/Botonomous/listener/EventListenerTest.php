@@ -4,6 +4,7 @@ namespace Botonomous\listener;
 
 use Botonomous\Config;
 use Botonomous\Event;
+use Botonomous\utility\FileUtility;
 use Botonomous\utility\RequestUtility;
 use PHPUnit\Framework\TestCase;
 
@@ -103,7 +104,7 @@ class EventListenerTest extends TestCase
         $eventListener->setRequestUtility($requestUtility);
 
         $this->expectException('\Exception');
-        $this->expectExceptionMessage('Event type must be specified');
+        $this->expectExceptionMessage(EventListener::MISSING_EVENT_TYPE);
 
         $eventListener->getEvent();
     }
@@ -221,7 +222,7 @@ class EventListenerTest extends TestCase
 
         $this->assertEquals([
             'success' => false,
-            'message' => 'Token or api_app_id is not provided',
+            'message' => EventListener::MISSING_TOKEN_OR_APP_ID_MESSAGE,
         ], $eventListener->verifyOrigin());
 
         $eventListener->setRequest([
@@ -264,7 +265,7 @@ class EventListenerTest extends TestCase
         ]);
 
         $this->expectException('\Exception');
-        $this->expectExceptionMessage('Verification token must be provided');
+        $this->expectExceptionMessage(EventListener::MISSING_VERIFICATION_TOKEN_MESSAGE);
 
         $this->assertEquals([], $eventListener->verifyOrigin());
     }
@@ -289,7 +290,7 @@ class EventListenerTest extends TestCase
         ]);
 
         $this->expectException('\Exception');
-        $this->expectExceptionMessage('Api app id must be provided');
+        $this->expectExceptionMessage(EventListener::MISSING_APP_ID_MESSAGE);
 
         $this->assertEquals([], $eventListener->verifyOrigin());
     }

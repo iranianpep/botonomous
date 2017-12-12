@@ -145,7 +145,7 @@ class SlashCommandListenerTest extends TestCase
         $slackbot->setConfig($config);
 
         $this->expectException('\Exception');
-        $this->expectExceptionMessage('Token is missing');
+        $this->expectExceptionMessage(SlashCommandListener::MISSING_TOKEN_MESSAGE);
 
         $slackbot->run();
     }
@@ -330,7 +330,7 @@ class SlashCommandListenerTest extends TestCase
 
         $this->assertEquals([
             'success' => false,
-            'message' => 'Token is missing',
+            'message' => SlashCommandListener::MISSING_TOKEN_MESSAGE,
         ], $result);
 
         $request = ['token' => '12345'];
@@ -361,7 +361,7 @@ class SlashCommandListenerTest extends TestCase
         $slashCommandListener->setConfig($config);
 
         $this->expectException('\Exception');
-        $this->expectExceptionMessage('Token must be set in the config');
+        $this->expectExceptionMessage(SlashCommandListener::MISSING_TOKEN_CONFIG_MESSAGE);
 
         $slashCommandListener->verifyOrigin();
     }

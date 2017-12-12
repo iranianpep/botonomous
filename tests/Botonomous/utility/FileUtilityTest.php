@@ -36,7 +36,7 @@ class FileUtilityTest extends TestCase
         try {
             (new FileUtility())->jsonFileToArray('');
         } catch (\Exception $e) {
-            $this->assertEquals('File path is empty', $e->getMessage());
+            $this->assertEquals(FileUtility::EMPTY_FILE_PATH_MESSAGE, $e->getMessage());
         }
     }
 
@@ -48,7 +48,7 @@ class FileUtilityTest extends TestCase
         try {
             (new FileUtility())->jsonFileToArray('/path/to/dummy.json');
         } catch (\Exception $e) {
-            $this->assertEquals('File does not exist or is not a file', $e->getMessage());
+            $this->assertEquals(FileUtility::MISSING_FILE_MESSAGE, $e->getMessage());
         }
     }
 
@@ -62,7 +62,7 @@ class FileUtilityTest extends TestCase
         try {
             (new FileUtility())->jsonFileToArray($dir);
         } catch (\Exception $e) {
-            $this->assertEquals('File is not a json file', $e->getMessage());
+            $this->assertEquals(FileUtility::INVALID_JSON_FILE_MESSAGE, $e->getMessage());
         }
     }
 

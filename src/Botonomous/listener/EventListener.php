@@ -10,6 +10,11 @@ use Botonomous\utility\StringUtility;
  */
 class EventListener extends AbstractBaseListener
 {
+    const MISSING_TOKEN_OR_APP_ID_MESSAGE = 'Token or api_app_id is not provided';
+    const MISSING_APP_ID_MESSAGE  = 'Api app id must be provided';
+    const MISSING_VERIFICATION_TOKEN_MESSAGE = 'Verification token must be provided';
+    const MISSING_EVENT_TYPE = 'Event type must be specified';
+
     private $token;
     private $teamId;
     private $appId;
@@ -107,7 +112,7 @@ class EventListener extends AbstractBaseListener
 
         $request = $request['event'];
         if (!isset($request['type'])) {
-            throw new \Exception('Event type must be specified');
+            throw new \Exception(self::MISSING_EVENT_TYPE);
         }
 
         // create the event
@@ -148,7 +153,7 @@ class EventListener extends AbstractBaseListener
         if (!isset($request['token']) || !isset($request['api_app_id'])) {
             return [
                 'success' => false,
-                'message' => 'Token or api_app_id is not provided',
+                'message' => self::MISSING_TOKEN_OR_APP_ID_MESSAGE,
             ];
         }
 
@@ -161,7 +166,7 @@ class EventListener extends AbstractBaseListener
         $expectedAppId = $this->getConfig()->get('appId');
 
         if (empty($expectedAppId)) {
-            throw new \Exception('Api app id must be provided');
+            throw new \Exception(self::MISSING_APP_ID_MESSAGE);
         }
 
         if ($verificationToken === $request['token'] &&
