@@ -16,25 +16,27 @@ class ApiClient extends AbstractClient
 {
     const BASE_URL = 'https://slack.com/api/';
     const CONTENT_TYPE = 'application/x-www-form-urlencoded';
+    const REQUIRED_KEY = 'required';
+    const OPTIONAL_KEY = 'optional';
 
     private $arguments = [
         'rtm.start' => [
-            'required' => [
+            self::REQUIRED_KEY => [
                 'token',
             ],
-            'optional' => [
+            self::OPTIONAL_KEY => [
                 'simple_latest',
                 'no_unreads',
                 'mpim_aware',
             ],
         ],
         'chat.postMessage' => [
-            'required' => [
+            self::REQUIRED_KEY => [
                 'token',
                 'channel',
                 'text',
             ],
-            'optional' => [
+            self::OPTIONAL_KEY => [
                 'parse',
                 'link_names',
                 'attachments',
@@ -47,35 +49,35 @@ class ApiClient extends AbstractClient
             ],
         ],
         'oauth.access' => [
-            'required' => [
+            self::REQUIRED_KEY => [
                 'client_id',
                 'client_secret',
                 'code',
             ],
-            'optional' => [
+            self::OPTIONAL_KEY => [
                 'redirect_uri',
             ],
         ],
         'team.info' => [
-            'required' => [
+            self::REQUIRED_KEY => [
                 'token',
             ],
         ],
         'im.list' => [
-            'required' => [
+            self::REQUIRED_KEY => [
                 'token',
             ],
         ],
         'users.list' => [
-            'required' => [
+            self::REQUIRED_KEY => [
                 'token',
             ],
-            'optional' => [
+            self::OPTIONAL_KEY => [
                 'presence',
             ],
         ],
         'users.info' => [
-            'required' => [
+            self::REQUIRED_KEY => [
                 'token',
                 'user',
             ],
@@ -358,11 +360,11 @@ class ApiClient extends AbstractClient
     {
         $validArguments = $this->getArguments($method);
 
-        if (empty($validArguments['required'])) {
+        if (empty($validArguments[self::REQUIRED_KEY])) {
             return true;
         }
 
-        foreach ($validArguments['required'] as $argument) {
+        foreach ($validArguments[self::REQUIRED_KEY] as $argument) {
             if ($this->getArrayUtility()->arrayKeyValueExists($argument, $arguments) !== true) {
                 throw new BotonomousException("{$argument} must be provided for {$method}");
             }
@@ -414,11 +416,11 @@ class ApiClient extends AbstractClient
             return $arguments;
         }
 
-        if (!isset($validArguments['optional'])) {
-            $validArguments['optional'] = [];
+        if (!isset($validArguments[self::OPTIONAL_KEY])) {
+            $validArguments[self::OPTIONAL_KEY] = [];
         }
 
-        $extractedArguments = array_merge($validArguments['required'], $validArguments['optional']);
+        $extractedArguments = array_merge($validArguments[self::REQUIRED_KEY], $validArguments[self::OPTIONAL_KEY]);
 
         return $this->getArrayUtility()->filterArray($arguments, $extractedArguments);
     }

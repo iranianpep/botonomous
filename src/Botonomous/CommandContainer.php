@@ -7,6 +7,8 @@ namespace Botonomous;
  */
 class CommandContainer extends AbstractCommandContainer
 {
+    const HEALTH_CHECK_PLUGIN_DESCRIPTION = 'Use as a health check';
+
     /**
      * Multiple commands can refer to the same plugin,
      * in other words a plugin can have multiple commands / actions / functions
@@ -17,17 +19,17 @@ class CommandContainer extends AbstractCommandContainer
     protected static $commands = [
         'ping' => [
             'plugin'      => 'Ping',
-            'description' => 'Use as a health check',
+            'description' => self::HEALTH_CHECK_PLUGIN_DESCRIPTION,
         ],
         'pong' => [
             'plugin'      => 'Ping',
             'action'      => 'pong',
-            'description' => 'Use as a health check',
+            'description' => self::HEALTH_CHECK_PLUGIN_DESCRIPTION,
         ],
         'commandWithoutFunctionForTest' => [
             'plugin'      => 'Ping',
             'action'      => 'commandWithoutFunctionForTest',
-            'description' => 'Use as a health check',
+            'description' => self::HEALTH_CHECK_PLUGIN_DESCRIPTION,
         ],
         'help' => [
             'plugin'      => 'Help',
