@@ -16,27 +16,28 @@ class ApiClient extends AbstractClient
 {
     const BASE_URL = 'https://slack.com/api/';
     const CONTENT_TYPE = 'application/x-www-form-urlencoded';
-    const REQUIRED_KEY = 'required';
-    const OPTIONAL_KEY = 'optional';
+    const REQUIRED_ARGUMENTS_KEY = 'required';
+    const OPTIONAL_ARGUMENTS_KEY = 'optional';
+    const TOKEN_ARGUMENT_KEY = 'token';
 
     private $arguments = [
         'rtm.start' => [
-            self::REQUIRED_KEY => [
-                'token',
+            self::REQUIRED_ARGUMENTS_KEY => [
+                self::TOKEN_ARGUMENT_KEY,
             ],
-            self::OPTIONAL_KEY => [
+            self::OPTIONAL_ARGUMENTS_KEY => [
                 'simple_latest',
                 'no_unreads',
                 'mpim_aware',
             ],
         ],
         'chat.postMessage' => [
-            self::REQUIRED_KEY => [
-                'token',
+            self::REQUIRED_ARGUMENTS_KEY => [
+                self::TOKEN_ARGUMENT_KEY,
                 'channel',
                 'text',
             ],
-            self::OPTIONAL_KEY => [
+            self::OPTIONAL_ARGUMENTS_KEY => [
                 'parse',
                 'link_names',
                 'attachments',
@@ -49,36 +50,36 @@ class ApiClient extends AbstractClient
             ],
         ],
         'oauth.access' => [
-            self::REQUIRED_KEY => [
+            self::REQUIRED_ARGUMENTS_KEY => [
                 'client_id',
                 'client_secret',
                 'code',
             ],
-            self::OPTIONAL_KEY => [
+            self::OPTIONAL_ARGUMENTS_KEY => [
                 'redirect_uri',
             ],
         ],
         'team.info' => [
-            self::REQUIRED_KEY => [
-                'token',
+            self::REQUIRED_ARGUMENTS_KEY => [
+                self::TOKEN_ARGUMENT_KEY,
             ],
         ],
         'im.list' => [
-            self::REQUIRED_KEY => [
-                'token',
+            self::REQUIRED_ARGUMENTS_KEY => [
+                self::TOKEN_ARGUMENT_KEY,
             ],
         ],
         'users.list' => [
-            self::REQUIRED_KEY => [
-                'token',
+            self::REQUIRED_ARGUMENTS_KEY => [
+                self::TOKEN_ARGUMENT_KEY,
             ],
-            self::OPTIONAL_KEY => [
+            self::OPTIONAL_ARGUMENTS_KEY => [
                 'presence',
             ],
         ],
         'users.info' => [
-            self::REQUIRED_KEY => [
-                'token',
+            self::REQUIRED_ARGUMENTS_KEY => [
+                self::TOKEN_ARGUMENT_KEY,
                 'user',
             ],
         ],
@@ -192,7 +193,7 @@ class ApiClient extends AbstractClient
     public function getArgs():array
     {
         return [
-            'token'    => $this->getToken(),
+            self::TOKEN_ARGUMENT_KEY    => $this->getToken(),
             'username' => $this->getConfig()->get('botUsername'),
             'as_user'  => $this->getConfig()->get('asUser'),
             'icon_url' => $this->getConfig()->get('iconURL'),
@@ -360,11 +361,11 @@ class ApiClient extends AbstractClient
     {
         $validArguments = $this->getArguments($method);
 
-        if (empty($validArguments[self::REQUIRED_KEY])) {
+        if (empty($validArguments[self::REQUIRED_ARGUMENTS_KEY])) {
             return true;
         }
 
-        foreach ($validArguments[self::REQUIRED_KEY] as $argument) {
+        foreach ($validArguments[self::REQUIRED_ARGUMENTS_KEY] as $argument) {
             if ($this->getArrayUtility()->arrayKeyValueExists($argument, $arguments) !== true) {
                 throw new BotonomousException("{$argument} must be provided for {$method}");
             }
@@ -416,11 +417,11 @@ class ApiClient extends AbstractClient
             return $arguments;
         }
 
-        if (!isset($validArguments[self::OPTIONAL_KEY])) {
-            $validArguments[self::OPTIONAL_KEY] = [];
+        if (!isset($validArguments[self::OPTIONAL_ARGUMENTS_KEY])) {
+            $validArguments[self::OPTIONAL_ARGUMENTS_KEY] = [];
         }
 
-        $extractedArguments = array_merge($validArguments[self::REQUIRED_KEY], $validArguments[self::OPTIONAL_KEY]);
+        $extractedArguments = array_merge($validArguments[self::REQUIRED_ARGUMENTS_KEY], $validArguments[self::OPTIONAL_ARGUMENTS_KEY]);
 
         return $this->getArrayUtility()->filterArray($arguments, $extractedArguments);
     }
