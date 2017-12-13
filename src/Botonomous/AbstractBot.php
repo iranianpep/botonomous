@@ -31,6 +31,7 @@ abstract class AbstractBot
 
     /**
      * @param null $key
+     *
      * @return mixed
      */
     abstract public function getRequest($key = null);

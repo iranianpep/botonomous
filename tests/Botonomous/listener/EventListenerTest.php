@@ -4,7 +4,6 @@ namespace Botonomous\listener;
 
 use Botonomous\Config;
 use Botonomous\Event;
-use Botonomous\utility\FileUtility;
 use Botonomous\utility\RequestUtility;
 use PHPUnit\Framework\TestCase;
 

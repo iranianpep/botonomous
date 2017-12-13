@@ -13,7 +13,7 @@ class EventListener extends AbstractBaseListener
 {
     const KEY = 'event';
     const MISSING_TOKEN_OR_APP_ID_MESSAGE = 'Token or api_app_id is not provided';
-    const MISSING_APP_ID_MESSAGE  = 'Api app id must be provided';
+    const MISSING_APP_ID_MESSAGE = 'Api app id must be provided';
     const MISSING_VERIFICATION_TOKEN_MESSAGE = 'Verification token must be provided';
     const MISSING_EVENT_TYPE_MESSAGE = 'Event type must be specified';
 
