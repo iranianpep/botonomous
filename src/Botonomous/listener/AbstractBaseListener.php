@@ -51,6 +51,11 @@ abstract class AbstractBaseListener
     abstract public function getChannelId(): string;
 
     /**
+     * @return string
+     */
+    abstract public function getKey(): string;
+
+    /**
      * @param null|string $key
      *
      * @return mixed

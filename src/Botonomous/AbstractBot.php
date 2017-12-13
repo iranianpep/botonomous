@@ -30,6 +30,12 @@ abstract class AbstractBot
     protected $commandExtractor;
 
     /**
+     * @param null $key
+     * @return mixed
+     */
+    abstract public function getRequest($key = null);
+
+    /**
      * @return Config
      */
     public function getConfig(): Config

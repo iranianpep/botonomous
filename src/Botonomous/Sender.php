@@ -2,11 +2,17 @@
 
 namespace Botonomous;
 
+use Botonomous\listener\EventListener;
+use Botonomous\listener\SlashCommandListener;
 use /* @noinspection PhpUndefinedClassInspection */
     GuzzleHttp\Psr7\Request;
 
 class Sender extends AbstractSender
 {
+    const SLACK_RESPONSE_TYPE = 'slack';
+    const SLASH_COMMAND_RESPONSE_TYPE = 'slashCommand';
+    const JSON_RESPONSE_TYPE = 'json';
+
     private $slackbot;
 
     /**
@@ -70,11 +76,11 @@ class Sender extends AbstractSender
         $this->getLoggerUtility()->logChat(__METHOD__, $text, $channel);
 
         $responseType = $this->getResponseType();
-        if ($responseType === 'slack') {
+        if ($responseType === self::SLACK_RESPONSE_TYPE) {
             $this->respondToSlack($data);
-        } elseif ($responseType === 'slashCommand') {
+        } elseif ($responseType === self::SLASH_COMMAND_RESPONSE_TYPE) {
             $this->respondToSlashCommand($text);
-        } elseif ($responseType === 'json') {
+        } elseif ($responseType === self::JSON_RESPONSE_TYPE) {
             $this->respondAsJSON($data);
         }
 
@@ -132,7 +138,7 @@ class Sender extends AbstractSender
     {
         if ($this->getSlackbot()->getRequest('debug') === true
             || $this->getSlackbot()->getRequest('debug') === 'true') {
-            return 'json';
+            return self::JSON_RESPONSE_TYPE;
         }
 
         // response type in the config is empty, so choose it based on listener type
@@ -146,12 +152,12 @@ class Sender extends AbstractSender
     {
         $listener = $this->getConfig()->get('listener');
         switch ($listener) {
-            case 'slashCommand':
-                return 'slashCommand';
-            case 'event':
-                return 'slack';
+            case SlashCommandListener::KEY:
+                return self::SLASH_COMMAND_RESPONSE_TYPE;
+            case EventListener::KEY:
+                return self::SLACK_RESPONSE_TYPE;
             default:
-                return 'slashCommand';
+                return self::SLASH_COMMAND_RESPONSE_TYPE;
         }
     }
 

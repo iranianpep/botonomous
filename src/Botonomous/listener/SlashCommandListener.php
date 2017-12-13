@@ -6,6 +6,7 @@ use Botonomous\BotonomousException;
 
 class SlashCommandListener extends AbstractBaseListener
 {
+    const KEY = 'slashCommand';
     const VERIFICATION_TOKEN = 'verificationToken';
     const MISSING_TOKEN_MESSAGE = 'Token is missing';
     const MISSING_TOKEN_CONFIG_MESSAGE = 'Token must be set in the config';
@@ -79,5 +80,13 @@ class SlashCommandListener extends AbstractBaseListener
     public function getChannelId(): string
     {
         return $this->getRequest('channel_id');
+    }
+
+    /**
+     * @return string
+     */
+    public function getKey(): string
+    {
+        return self::KEY;
     }
 }

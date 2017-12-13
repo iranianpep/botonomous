@@ -11,10 +11,11 @@ use Botonomous\utility\StringUtility;
  */
 class EventListener extends AbstractBaseListener
 {
+    const KEY = 'event';
     const MISSING_TOKEN_OR_APP_ID_MESSAGE = 'Token or api_app_id is not provided';
     const MISSING_APP_ID_MESSAGE  = 'Api app id must be provided';
     const MISSING_VERIFICATION_TOKEN_MESSAGE = 'Verification token must be provided';
-    const MISSING_EVENT_TYPE = 'Event type must be specified';
+    const MISSING_EVENT_TYPE_MESSAGE = 'Event type must be specified';
 
     private $token;
     private $teamId;
@@ -113,7 +114,7 @@ class EventListener extends AbstractBaseListener
 
         $request = $request['event'];
         if (!isset($request['type'])) {
-            throw new BotonomousException(self::MISSING_EVENT_TYPE);
+            throw new BotonomousException(self::MISSING_EVENT_TYPE_MESSAGE);
         }
 
         // create the event
@@ -210,5 +211,13 @@ class EventListener extends AbstractBaseListener
     public function getChannelId(): string
     {
         return $this->getEvent()->getChannel();
+    }
+
+    /**
+     * @return string
+     */
+    public function getKey(): string
+    {
+        return self::KEY;
     }
 }

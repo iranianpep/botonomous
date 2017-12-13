@@ -2,6 +2,8 @@
 
 namespace Botonomous;
 
+use Botonomous\listener\SlashCommandListener;
+
 /**
  * Class Config.
  */
@@ -27,8 +29,8 @@ class Config extends AbstractConfig
         ],
         'iconURL'              => 'YOUR_BOT_ICON_URL_48_BY_48',
         'asUser'               => true,
-        // possible values are: slashCommand, event
-        'listener'         => 'slashCommand',
+        // possible values are: SlashCommandListener::KEY, EventListener::KEY
+        'listener'         => SlashCommandListener::KEY,
         // this is used if there is no command has been specified in the message
         'defaultCommand'     => 'qa',
         'commandPrefix'      => '/',

@@ -104,7 +104,7 @@ class EventListenerTest extends TestCase
         $eventListener->setRequestUtility($requestUtility);
 
         $this->expectException('\Exception');
-        $this->expectExceptionMessage(EventListener::MISSING_EVENT_TYPE);
+        $this->expectExceptionMessage(EventListener::MISSING_EVENT_TYPE_MESSAGE);
 
         $eventListener->getEvent();
     }
