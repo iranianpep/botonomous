@@ -2,6 +2,7 @@
 
 namespace Botonomous\listener;
 
+use Botonomous\BotonomousException;
 use Botonomous\Config;
 use Botonomous\Event;
 use Botonomous\utility\RequestUtility;
@@ -188,7 +189,7 @@ abstract class AbstractBaseListener
         $originCheck = $this->verifyOrigin();
 
         if (!isset($originCheck['success'])) {
-            throw new \Exception('Success must be provided in verifyOrigin response');
+            throw new BotonomousException('Success must be provided in verifyOrigin response');
         }
 
         if ($originCheck['success'] !== true) {

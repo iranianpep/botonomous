@@ -2,6 +2,8 @@
 
 namespace Botonomous\utility;
 
+use Botonomous\BotonomousException;
+
 /**
  * Class FileUtility.
  */
@@ -23,15 +25,15 @@ class FileUtility extends AbstractUtility
     public function jsonFileToArray(string $filePath)
     {
         if (empty($filePath)) {
-            throw new \Exception(self::EMPTY_FILE_PATH_MESSAGE);
+            throw new BotonomousException(self::EMPTY_FILE_PATH_MESSAGE);
         }
 
         if (!file_exists($filePath) || !is_file($filePath)) {
-            throw new \Exception(self::MISSING_FILE_MESSAGE);
+            throw new BotonomousException(self::MISSING_FILE_MESSAGE);
         }
 
         if (pathinfo($filePath, PATHINFO_EXTENSION) !== 'json') {
-            throw new \Exception(self::INVALID_JSON_FILE_MESSAGE);
+            throw new BotonomousException(self::INVALID_JSON_FILE_MESSAGE);
         }
 
         return (new StringUtility())->jsonToArray(file_get_contents($filePath));

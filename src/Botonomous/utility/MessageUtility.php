@@ -2,6 +2,7 @@
 
 namespace Botonomous\utility;
 
+use Botonomous\BotonomousException;
 use Botonomous\CommandContainer;
 
 /**
@@ -107,7 +108,7 @@ class MessageUtility extends AbstractUtility
     public function linkToUser(string $userId, string $userName = '')
     {
         if (empty($userId)) {
-            throw new \Exception('User id is not provided');
+            throw new BotonomousException('User id is not provided');
         }
 
         if (!empty($userName)) {

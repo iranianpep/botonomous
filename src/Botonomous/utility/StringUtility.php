@@ -2,6 +2,8 @@
 
 namespace Botonomous\utility;
 
+use Botonomous\BotonomousException;
+
 /**
  * Class StringUtility.
  */
@@ -18,7 +20,7 @@ class StringUtility extends AbstractUtility
     {
         $array = empty($json) ? [] : json_decode($json, true);
         if ($array === null || !is_array($array) || json_last_error() !== 0) {
-            throw new \Exception('Invalid JSON content');
+            throw new BotonomousException('Invalid JSON content');
         }
 
         return $array;

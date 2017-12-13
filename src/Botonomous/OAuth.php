@@ -216,7 +216,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     {
         if (!isset($this->accessToken)) {
             if ($verifyState === true && $this->verifyState($state) !== true) {
-                throw new \Exception("State: '{$state}' is not valid");
+                throw new BotonomousException("State: '{$state}' is not valid");
             }
 
             try {
@@ -237,7 +237,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     private function handleRequestAccessTokenResponse($response)
     {
         if ($response['ok'] !== true) {
-            throw new \Exception($response['error']);
+            throw new BotonomousException($response['error']);
         }
 
         $this->setAccessToken($response['access_token']);
@@ -263,7 +263,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     private function requestAccessToken($code)
     {
         if (empty($code)) {
-            throw new \Exception('Code must be provided to get the access token');
+            throw new BotonomousException('Code must be provided to get the access token');
         }
 
         try {
@@ -480,7 +480,7 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     private function processAccessToken($accessToken)
     {
         if (empty($accessToken)) {
-            throw new \Exception('Access token is not provided');
+            throw new BotonomousException('Access token is not provided');
         }
 
         // do whatever you want with the access token

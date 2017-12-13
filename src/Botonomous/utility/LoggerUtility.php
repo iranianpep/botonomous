@@ -2,6 +2,7 @@
 
 namespace Botonomous\utility;
 
+use Botonomous\BotonomousException;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
@@ -62,7 +63,7 @@ class LoggerUtility extends AbstractUtility
         $monologConfig = $this->getMonologConfig();
 
         if (empty($monologConfig)) {
-            throw new \Exception('Monolog config is missing');
+            throw new BotonomousException('Monolog config is missing');
         }
 
         $logger = new Logger($monologConfig['channel']);
@@ -168,7 +169,7 @@ class LoggerUtility extends AbstractUtility
                 'channel'  => $channel,
             ]);
         } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            throw new BotonomousException($e->getMessage());
         }
     }
 
@@ -312,7 +313,7 @@ class LoggerUtility extends AbstractUtility
         $logger = $this->getLogger();
 
         if (!in_array($level, self::$levels)) {
-            throw new \Exception("'{$level}' is an invalid log level");
+            throw new BotonomousException("'{$level}' is an invalid log level");
         }
 
         $logger->$level($message, $context);

@@ -2,6 +2,8 @@
 
 namespace Botonomous\listener;
 
+use Botonomous\BotonomousException;
+
 class SlashCommandListener extends AbstractBaseListener
 {
     const VERIFICATION_TOKEN = 'verificationToken';
@@ -42,7 +44,7 @@ class SlashCommandListener extends AbstractBaseListener
         $expectedToken = $this->getConfig()->get(self::VERIFICATION_TOKEN);
 
         if (empty($expectedToken)) {
-            throw new \Exception(self::MISSING_TOKEN_CONFIG_MESSAGE);
+            throw new BotonomousException(self::MISSING_TOKEN_CONFIG_MESSAGE);
         }
 
         if ($token === $expectedToken) {

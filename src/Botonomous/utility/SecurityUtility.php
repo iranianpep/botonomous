@@ -2,6 +2,8 @@
 
 namespace Botonomous\utility;
 
+use Botonomous\BotonomousException;
+
 /**
  * Class SecurityUtility.
  */
@@ -32,7 +34,7 @@ class SecurityUtility
          * check if hashing algorithm is valid
          */
         if (!in_array($hashAlgorithm, hash_algos(), true)) {
-            throw new \Exception('Hash algorithm is not valid');
+            throw new BotonomousException('Hash algorithm is not valid');
         }
 
         $this->hashAlgorithm = $hashAlgorithm;

@@ -81,7 +81,7 @@ class Slackbot extends AbstractBot
             $verificationResult = $this->getListener()->verifyRequest();
 
             if ($verificationResult['success'] !== true) {
-                throw new \Exception($verificationResult['message']);
+                throw new BotonomousException($verificationResult['message']);
             }
         } catch (\Exception $e) {
             throw $e;
@@ -173,7 +173,7 @@ class Slackbot extends AbstractBot
         $request = $this->getRequestUtility()->getPostedBody();
 
         if (empty($request['challenge'])) {
-            throw new \Exception('Challenge is missing for URL verification');
+            throw new BotonomousException('Challenge is missing for URL verification');
         }
 
         echo $request['challenge'];
@@ -227,7 +227,7 @@ class Slackbot extends AbstractBot
             if (!method_exists($pluginClass, $action)) {
                 $className = get_class($pluginClass);
 
-                throw new \Exception("Action / function: '{$action}' does not exist in '{$className}'");
+                throw new BotonomousException("Action / function: '{$action}' does not exist in '{$className}'");
             }
 
             return $pluginClass->$action();
@@ -255,7 +255,7 @@ class Slackbot extends AbstractBot
         if (!$pluginClass instanceof AbstractPlugin) {
             $className = get_class($pluginClass);
 
-            throw new \Exception("Couldn't create class: '{$className}'");
+            throw new BotonomousException("Couldn't create class: '{$className}'");
         }
 
         return $pluginClass;

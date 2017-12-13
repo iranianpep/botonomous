@@ -2,6 +2,7 @@
 
 namespace Botonomous\client;
 
+use Botonomous\BotonomousException;
 use Botonomous\ImChannel;
 use Botonomous\Team;
 use /* @noinspection PhpUndefinedClassInspection */
@@ -136,7 +137,7 @@ class ApiClient extends AbstractClient
 
             return $this->getClient()->send($request);
         } catch (\Exception $e) {
-            throw new \Exception('Failed to send data to the Slack API: '.$e->getMessage());
+            throw new BotonomousException('Failed to send data to the Slack API: '.$e->getMessage());
         }
     }
 
@@ -156,7 +157,7 @@ class ApiClient extends AbstractClient
         try {
             $this->validateRequiredArguments($method, $arguments);
         } catch (\Exception $e) {
-            throw new \Exception('Missing required argument(s): '.$e->getMessage());
+            throw new BotonomousException('Missing required argument(s): '.$e->getMessage());
         }
 
         // filter unwanted arguments
@@ -175,7 +176,7 @@ class ApiClient extends AbstractClient
         $response = json_decode($response->getBody()->getContents(), true);
 
         if (!is_array($response)) {
-            throw new \Exception('Failed to process response from the Slack API');
+            throw new BotonomousException('Failed to process response from the Slack API');
         }
 
         return $response;
@@ -363,7 +364,7 @@ class ApiClient extends AbstractClient
 
         foreach ($validArguments['required'] as $argument) {
             if ($this->getArrayUtility()->arrayKeyValueExists($argument, $arguments) !== true) {
-                throw new \Exception("{$argument} must be provided for {$method}");
+                throw new BotonomousException("{$argument} must be provided for {$method}");
             }
         }
 

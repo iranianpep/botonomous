@@ -2,6 +2,7 @@
 
 namespace Botonomous\listener;
 
+use Botonomous\BotonomousException;
 use Botonomous\Event;
 use Botonomous\utility\StringUtility;
 
@@ -112,7 +113,7 @@ class EventListener extends AbstractBaseListener
 
         $request = $request['event'];
         if (!isset($request['type'])) {
-            throw new \Exception(self::MISSING_EVENT_TYPE);
+            throw new BotonomousException(self::MISSING_EVENT_TYPE);
         }
 
         // create the event
@@ -160,13 +161,13 @@ class EventListener extends AbstractBaseListener
         $verificationToken = $this->getConfig()->get('verificationToken');
 
         if (empty($verificationToken)) {
-            throw new \Exception('Verification token must be provided');
+            throw new BotonomousException('Verification token must be provided');
         }
 
         $expectedAppId = $this->getConfig()->get('appId');
 
         if (empty($expectedAppId)) {
-            throw new \Exception(self::MISSING_APP_ID_MESSAGE);
+            throw new BotonomousException(self::MISSING_APP_ID_MESSAGE);
         }
 
         if ($verificationToken === $request['token'] &&

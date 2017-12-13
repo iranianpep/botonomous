@@ -79,7 +79,7 @@ class Dictionary
         $fileContent = $this->get($fileName);
 
         if (!array_key_exists($key, $fileContent)) {
-            throw new \Exception("Key: '{$key}' does not exist in file: {$fileName}");
+            throw new BotonomousException("Key: '{$key}' does not exist in file: {$fileName}");
         }
 
         $found = $fileContent[$key];

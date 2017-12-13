@@ -35,7 +35,7 @@ abstract class AbstractConfig
         }
 
         if (!array_key_exists($key, $configs)) {
-            throw new \Exception("Key: '{$key}' does not exist in configs");
+            throw new BotonomousException("Key: '{$key}' does not exist in configs");
         }
 
         $found = $configs[$key];
@@ -56,7 +56,7 @@ abstract class AbstractConfig
             .'\\'.ucfirst($plugin).'Config';
 
         if (!class_exists($pluginConfigClass)) {
-            throw new \Exception("Config file: '{$pluginConfigClass}.php' does not exist");
+            throw new BotonomousException("Config file: '{$pluginConfigClass}.php' does not exist");
         }
 
         return new $pluginConfigClass();
