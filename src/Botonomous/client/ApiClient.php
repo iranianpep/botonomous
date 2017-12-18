@@ -421,7 +421,10 @@ class ApiClient extends AbstractClient
             $validArguments[self::OPTIONAL_ARGUMENTS_KEY] = [];
         }
 
-        $extractedArguments = array_merge($validArguments[self::REQUIRED_ARGUMENTS_KEY], $validArguments[self::OPTIONAL_ARGUMENTS_KEY]);
+        $extractedArguments = array_merge(
+            $validArguments[self::REQUIRED_ARGUMENTS_KEY],
+            $validArguments[self::OPTIONAL_ARGUMENTS_KEY]
+        );
 
         return $this->getArrayUtility()->filterArray($arguments, $extractedArguments);
     }

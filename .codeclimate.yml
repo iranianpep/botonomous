@@ -23,6 +23,8 @@ engines:
         enabled: false
       php:S1117:
         enabled: false
+      php:S1448:
+        enabled: false
 ratings:
    paths:
    - "src/**/*"

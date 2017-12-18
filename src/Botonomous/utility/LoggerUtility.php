@@ -24,6 +24,8 @@ class LoggerUtility extends AbstractUtility
     const ALERT = 'alert';
     const EMERGENCY = 'emergency';
 
+    const HANDLERS_KEY = 'handlers';
+
     public static $levels = [
         self::DEBUG,
         self::INFO,
@@ -68,7 +70,7 @@ class LoggerUtility extends AbstractUtility
 
         $logger = new Logger($monologConfig['channel']);
 
-        foreach (array_keys($monologConfig['handlers']) as $value) {
+        foreach (array_keys($monologConfig[self::HANDLERS_KEY]) as $value) {
             $logger = $this->pushMonologHandler($logger, $value);
         }
 
@@ -95,10 +97,9 @@ class LoggerUtility extends AbstractUtility
     {
         $activeHandlers = [];
 
-        switch ($handlerKey) {
-            case 'file':
-                $activeHandlers[] = new StreamHandler($this->getLogFilePath());
-                break;
+        // if there are more $handlerKey, use switch
+        if ($handlerKey === 'file') {
+            $activeHandlers[] = new StreamHandler($this->getLogFilePath());
         }
 
         if (!empty($activeHandlers)) {
@@ -130,8 +131,8 @@ class LoggerUtility extends AbstractUtility
     {
         $monologConfig = $this->getMonologConfig();
 
-        if (isset($monologConfig['handlers']['file']['fileName'])) {
-            return $monologConfig['handlers']['file']['fileName'];
+        if (isset($monologConfig[self::HANDLERS_KEY]['file']['fileName'])) {
+            return $monologConfig[self::HANDLERS_KEY]['file']['fileName'];
         }
     }
 
