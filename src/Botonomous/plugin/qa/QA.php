@@ -14,6 +14,7 @@ class QA extends AbstractPlugin
 
     /**
      * @return string
+     * @throws \Exception
      */
     public function index()
     {
@@ -38,6 +39,7 @@ class QA extends AbstractPlugin
 
     /**
      * @return array
+     * @throws \Exception
      */
     public function getQuestions(): array
     {

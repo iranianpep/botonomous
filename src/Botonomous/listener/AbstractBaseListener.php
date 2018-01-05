@@ -17,6 +17,7 @@ abstract class AbstractBaseListener
      * listen.
      *
      * @return mixed
+     * @throws \Exception
      */
     public function listen()
     {
@@ -232,6 +233,7 @@ abstract class AbstractBaseListener
      * If listener is event and event text is empty, fall back to request text.
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function getMessage()
     {

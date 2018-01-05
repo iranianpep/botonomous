@@ -57,6 +57,8 @@ abstract class AbstractBot
     }
 
     /**
+     * @throws \Exception
+     *
      * @return AbstractBaseListener
      */
     public function getListener(): AbstractBaseListener
@@ -176,6 +178,7 @@ abstract class AbstractBot
 
     /**
      * @return RequestUtility
+     * @throws \Exception
      */
     public function getRequestUtility(): RequestUtility
     {
@@ -184,6 +187,7 @@ abstract class AbstractBot
 
     /**
      * @param RequestUtility $requestUtility
+     * @throws \Exception
      */
     public function setRequestUtility(RequestUtility $requestUtility)
     {
@@ -192,6 +196,7 @@ abstract class AbstractBot
 
     /**
      * @return BlackList
+     * @throws \Exception
      */
     public function getBlackList(): BlackList
     {
@@ -212,6 +217,7 @@ abstract class AbstractBot
 
     /**
      * @return WhiteList
+     * @throws \Exception
      */
     public function getWhiteList(): WhiteList
     {

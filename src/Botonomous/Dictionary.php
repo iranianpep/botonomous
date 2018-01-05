@@ -47,7 +47,9 @@ class Dictionary
     }
 
     /**
-     * @param $fileName
+     * @param string $fileName
+     *
+     * @throws \Exception
      *
      * @return mixed
      */

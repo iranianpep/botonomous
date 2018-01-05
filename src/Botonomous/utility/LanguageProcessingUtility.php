@@ -30,6 +30,7 @@ class LanguageProcessingUtility extends AbstractUtility
      * @param string $language
      *
      * @return string
+     * @throws \Exception
      */
     public function removeStopWords($text, $language = 'en')
     {
@@ -51,6 +52,7 @@ class LanguageProcessingUtility extends AbstractUtility
      * @param $text
      *
      * @return string
+     * @throws \Exception
      */
     public function removePunctuations($text)
     {

@@ -16,6 +16,7 @@ class BlackList extends AbstractAccessList
 
     /**
      * @return bool
+     * @throws \Exception
      */
     public function isBlackListed(): bool
     {
@@ -26,6 +27,7 @@ class BlackList extends AbstractAccessList
 
     /**
      * @return bool
+     * @throws \Exception
      */
     public function isUsernameBlackListed(): bool
     {
@@ -35,6 +37,7 @@ class BlackList extends AbstractAccessList
 
     /**
      * @return bool
+     * @throws \Exception
      */
     public function isUserIdBlackListed(): bool
     {
@@ -44,7 +47,7 @@ class BlackList extends AbstractAccessList
 
     /**
      * @return bool
-     * @return mixed
+     * @throws \Exception
      */
     public function isEmailBlackListed()
     {

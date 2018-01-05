@@ -109,6 +109,7 @@ class Sender extends AbstractSender
 
     /**
      * @param $data
+     * @throws \Exception
      */
     private function respondToSlack($data)
     {
@@ -133,6 +134,7 @@ class Sender extends AbstractSender
      * If response in config is set to empty, it will be considered based on listener.
      *
      * @return mixed|string
+     * @throws \Exception
      */
     private function getResponseType()
     {
@@ -147,6 +149,7 @@ class Sender extends AbstractSender
 
     /**
      * @return string
+     * @throws \Exception
      */
     private function getResponseByListenerType(): string
     {
@@ -163,24 +166,29 @@ class Sender extends AbstractSender
 
     /**
      * Send confirmation.
+     * @throws BotonomousException
      */
     public function sendConfirmation()
     {
-        $userId = $this->getSlackbot()->getRequest('user_id');
+        try {
+            $userId = $this->getSlackbot()->getRequest('user_id');
 
-        $user = '';
-        if (!empty($userId)) {
-            $user = $this->getMessageUtility()->linkToUser($userId).' ';
-        }
+            $user = '';
+            if (!empty($userId)) {
+                $user = $this->getMessageUtility()->linkToUser($userId).' ';
+            }
 
-        $confirmMessage = $this->getSlackbot()->getDictionary()->getValueByKey(
-            'generic-messages',
-            'confirmReceivedMessage',
-            ['user' => $user]
-        );
+            $confirmMessage = $this->getSlackbot()->getDictionary()->getValueByKey(
+                'generic-messages',
+                'confirmReceivedMessage',
+                ['user' => $user]
+            );
 
-        if (!empty($confirmMessage)) {
-            $this->send($confirmMessage);
+            if (!empty($confirmMessage)) {
+                $this->send($confirmMessage);
+            }
+        } catch (\Exception $e) {
+            throw new BotonomousException('Failed to send confirmatyion: '.$e->getMessage());
         }
     }
 }

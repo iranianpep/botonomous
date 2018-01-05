@@ -22,6 +22,7 @@ class CommandExtractor
      * @param string $message
      *
      * @return Command|null|void
+     * @throws \Exception
      */
     public function getCommandByMessage(string $message)
     {
@@ -38,7 +39,9 @@ class CommandExtractor
     }
 
     /**
-     * @param $message
+     * @param string $message
+     *
+     * @throws \Exception
      *
      * @return array
      */
@@ -86,9 +89,10 @@ class CommandExtractor
     }
 
     /**
-     * @param $message
+     * @param string $message
      *
      * @return Command|null
+     * @throws \Exception
      */
     private function getCommandObjectByMessage(string $message)
     {
@@ -108,6 +112,7 @@ class CommandExtractor
 
     /**
      * @return mixed|void
+     * @throws \Exception
      */
     private function checkDefaultCommand()
     {
@@ -126,6 +131,7 @@ class CommandExtractor
      * @param $command
      *
      * @return Command|void
+     * @throws \Exception
      */
     private function getCommandObjectByCommand($command)
     {
@@ -148,6 +154,7 @@ class CommandExtractor
      * @param Command|null $commandObject
      *
      * @return bool
+     * @throws \Exception
      */
     private function validateCommandObject($commandObject): bool
     {

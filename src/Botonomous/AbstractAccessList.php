@@ -17,6 +17,7 @@ abstract class AbstractAccessList
 
     /**
      * @return mixed
+     * @throws \Exception
      */
     protected function getAccessControlList()
     {
@@ -27,6 +28,7 @@ abstract class AbstractAccessList
      * @param $sublistKey
      *
      * @return mixed
+     * @throws \Exception
      */
     protected function getSubAccessControlList($sublistKey)
     {
@@ -44,6 +46,7 @@ abstract class AbstractAccessList
      * @param array $list
      *
      * @return bool
+     * @throws \Exception
      */
     protected function isEmailInList(array $list): bool
     {
@@ -58,6 +61,7 @@ abstract class AbstractAccessList
      * If userEmail list is not set, return true for whitelist and false for blacklist.
      *
      * @return bool
+     * @throws \Exception
      */
     protected function checkEmail(): bool
     {
@@ -78,6 +82,7 @@ abstract class AbstractAccessList
      * @param string $subListKey
      *
      * @return bool|null
+     * @throws \Exception
      */
     protected function findInListByRequestKey(string $requestKey, string $listKey, string $subListKey)
     {
@@ -162,6 +167,7 @@ abstract class AbstractAccessList
 
     /**
      * @return array|bool
+     * @throws \Exception
      */
     public function getSlackUserInfo()
     {

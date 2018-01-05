@@ -16,6 +16,7 @@ class WhiteList extends AbstractAccessList
 
     /**
      * @return bool
+     * @throws \Exception
      */
     public function isWhiteListed(): bool
     {
@@ -40,6 +41,7 @@ class WhiteList extends AbstractAccessList
 
     /**
      * @return bool
+     * @throws \Exception
      */
     public function isUsernameWhiteListed(): bool
     {
@@ -48,6 +50,7 @@ class WhiteList extends AbstractAccessList
 
     /**
      * @return bool
+     * @throws \Exception
      */
     public function isUserIdWhiteListed(): bool
     {
@@ -56,7 +59,7 @@ class WhiteList extends AbstractAccessList
 
     /**
      * @return bool
-     * @return mixed
+     * @throws \Exception
      */
     public function isEmailWhiteListed()
     {

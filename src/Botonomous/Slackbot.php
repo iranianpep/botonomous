@@ -32,6 +32,7 @@ class Slackbot extends AbstractBot
 
     /**
      * Set the timezone.
+     * @throws \Exception
      */
     private function setTimezone()
     {
@@ -43,6 +44,7 @@ class Slackbot extends AbstractBot
      * @param null|string $key
      *
      * @return mixed
+     * @throws \Exception
      */
     public function getRequest($key = null)
     {
@@ -51,6 +53,7 @@ class Slackbot extends AbstractBot
 
     /**
      * @return AbstractBaseSlack|null|void
+     * @throws \Exception
      */
     private function handleMessageActions()
     {
@@ -115,6 +118,7 @@ class Slackbot extends AbstractBot
 
     /**
      * @return bool
+     * @throws \Exception
      */
     private function checkAccessControl(): bool
     {
@@ -159,6 +163,7 @@ class Slackbot extends AbstractBot
 
     /**
      * handle OAuth.
+     * @throws \Exception
      */
     private function handleOAuth()
     {
@@ -181,6 +186,7 @@ class Slackbot extends AbstractBot
 
     /**
      * Pre-process the request.
+     * @throws \Exception
      */
     private function preProcessRequest()
     {
@@ -263,6 +269,7 @@ class Slackbot extends AbstractBot
 
     /**
      * @return array
+     * @throws \Exception
      */
     public function getCommands(): array
     {
@@ -319,6 +326,7 @@ class Slackbot extends AbstractBot
      * Determine if bot user id is mentioned in the message.
      *
      * @return bool
+     * @throws \Exception
      */
     public function youTalkingToMe(): bool
     {

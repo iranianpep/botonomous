@@ -45,9 +45,10 @@ class MessageUtility extends AbstractUtility
     /**
      * Return command name in the message.
      *
-     * @param $message
+     * @param string $message
      *
      * @return null|string
+     * @throws \Exception
      */
     public function extractCommandName(string $message)
     {
@@ -71,9 +72,10 @@ class MessageUtility extends AbstractUtility
     /**
      * Return command details in the message.
      *
-     * @param $message
+     * @param string $message
      *
      * @return \Botonomous\Command|null
+     * @throws \Exception
      */
     public function extractCommandDetails(string $message)
     {
@@ -120,6 +122,7 @@ class MessageUtility extends AbstractUtility
 
     /**
      * @return string
+     * @throws \Exception
      */
     private function getUserLink(): string
     {

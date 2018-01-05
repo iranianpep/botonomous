@@ -201,9 +201,10 @@ class ApiClient extends AbstractClient
     }
 
     /**
-     * @param $arguments
+     * @param array $arguments
      *
      * @return mixed
+     * @throws \Exception
      */
     public function chatPostMessage(array $arguments)
     {
@@ -241,6 +242,7 @@ class ApiClient extends AbstractClient
 
     /**
      * @return \Botonomous\AbstractBaseSlack|null|void
+     * @throws \Exception
      */
     public function teamInfoAsObject()
     {
@@ -259,6 +261,7 @@ class ApiClient extends AbstractClient
      * List all the Slack users in the team.
      *
      * @return array
+     * @throws \Exception
      */
     public function usersList(): array
     {
@@ -320,6 +323,7 @@ class ApiClient extends AbstractClient
 
     /**
      * @return array
+     * @throws \Exception
      */
     public function imListAsObject(): array
     {
@@ -404,10 +408,11 @@ class ApiClient extends AbstractClient
     }
 
     /**
-     * @param       $method
+     * @param string $method
      * @param array $arguments
      *
      * @return array
+     * @throws \Exception
      */
     public function filterArguments(string $method, array $arguments): array
     {
@@ -431,6 +436,7 @@ class ApiClient extends AbstractClient
 
     /**
      * @return string
+     * @throws \Exception
      */
     public function getToken(): string
     {

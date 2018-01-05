@@ -13,6 +13,7 @@ class Help extends AbstractPlugin
 {
     /**
      * @return string
+     * @throws \Exception
      */
     public function index(): string
     {
