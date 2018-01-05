@@ -194,9 +194,9 @@ class ApiClient extends AbstractClient
     {
         return [
             self::TOKEN_ARGUMENT_KEY    => $this->getToken(),
-            'username' => $this->getConfig()->get('botUsername'),
-            'as_user'  => $this->getConfig()->get('asUser'),
-            'icon_url' => $this->getConfig()->get('iconURL'),
+            'username'                  => $this->getConfig()->get('botUsername'),
+            'as_user'                   => $this->getConfig()->get('asUser'),
+            'icon_url'                  => $this->getConfig()->get('iconURL'),
         ];
     }
 
