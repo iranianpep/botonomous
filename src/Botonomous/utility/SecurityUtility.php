@@ -16,8 +16,9 @@ class SecurityUtility
     /**
      * generate a token.
      *
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function generateToken(): string
     {
@@ -42,8 +43,9 @@ class SecurityUtility
     }
 
     /**
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function getHashAlgorithm(): string
     {

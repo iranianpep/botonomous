@@ -67,8 +67,9 @@ class OAuth
     }
 
     /**
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function getClientId(): string
     {
@@ -88,8 +89,9 @@ class OAuth
     }
 
     /**
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function getScopes(): array
     {
@@ -125,8 +127,9 @@ class OAuth
     }
 
     /**
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function getState(): string
     {
@@ -181,8 +184,9 @@ class OAuth
      * @param string $weight
      * @param string $cssClass
      *
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function generateAddButton($height = '40', $weight = '139', $cssClass = ''): string
     {
@@ -290,8 +294,9 @@ https://platform.slack-edge.com/img/add_to_slack@2x.png 2x' /></a>";
     }
 
     /**
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function getClientSecret(): string
     {

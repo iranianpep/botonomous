@@ -83,8 +83,9 @@ class EventListener extends AbstractBaseListener
     }
 
     /**
-     * @return Event
      * @throws \Exception
+     *
+     * @return Event
      */
     public function getEvent()
     {
@@ -207,8 +208,9 @@ class EventListener extends AbstractBaseListener
     }
 
     /**
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function getChannelId(): string
     {

@@ -13,8 +13,9 @@ class QA extends AbstractPlugin
     private $questions;
 
     /**
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function index()
     {
@@ -38,8 +39,9 @@ class QA extends AbstractPlugin
     }
 
     /**
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     public function getQuestions(): array
     {
