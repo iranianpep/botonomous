@@ -109,6 +109,7 @@ class Sender extends AbstractSender
 
     /**
      * @param $data
+     *
      * @throws \Exception
      */
     private function respondToSlack($data)
@@ -133,8 +134,9 @@ class Sender extends AbstractSender
      * Specify the response type
      * If response in config is set to empty, it will be considered based on listener.
      *
-     * @return mixed|string
      * @throws \Exception
+     *
+     * @return mixed|string
      */
     private function getResponseType()
     {
@@ -148,8 +150,9 @@ class Sender extends AbstractSender
     }
 
     /**
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     private function getResponseByListenerType(): string
     {
@@ -166,6 +169,7 @@ class Sender extends AbstractSender
 
     /**
      * Send confirmation.
+     *
      * @throws BotonomousException
      */
     public function sendConfirmation()

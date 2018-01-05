@@ -177,8 +177,9 @@ abstract class AbstractBot
     }
 
     /**
-     * @return RequestUtility
      * @throws \Exception
+     *
+     * @return RequestUtility
      */
     public function getRequestUtility(): RequestUtility
     {
@@ -187,6 +188,7 @@ abstract class AbstractBot
 
     /**
      * @param RequestUtility $requestUtility
+     *
      * @throws \Exception
      */
     public function setRequestUtility(RequestUtility $requestUtility)
@@ -195,8 +197,9 @@ abstract class AbstractBot
     }
 
     /**
-     * @return BlackList
      * @throws \Exception
+     *
+     * @return BlackList
      */
     public function getBlackList(): BlackList
     {
@@ -216,8 +219,9 @@ abstract class AbstractBot
     }
 
     /**
-     * @return WhiteList
      * @throws \Exception
+     *
+     * @return WhiteList
      */
     public function getWhiteList(): WhiteList
     {

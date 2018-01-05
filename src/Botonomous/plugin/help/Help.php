@@ -12,8 +12,9 @@ use Botonomous\utility\FormattingUtility;
 class Help extends AbstractPlugin
 {
     /**
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function index(): string
     {

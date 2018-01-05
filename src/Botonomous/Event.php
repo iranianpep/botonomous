@@ -164,8 +164,9 @@ class Event extends AbstractBaseSlack
     /**
      * Check if the event belongs to a direct message.
      *
-     * @return bool|void
      * @throws \Exception
+     *
+     * @return bool|void
      */
     public function isDirectMessage()
     {

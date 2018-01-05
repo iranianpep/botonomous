@@ -59,6 +59,7 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * Init the logger.
+     *
      * @throws \Exception
      */
     private function initLogger()
@@ -79,8 +80,9 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     private function getMonologConfig()
     {
@@ -93,8 +95,9 @@ class LoggerUtility extends AbstractUtility
      * @param Logger $logger
      * @param string $handlerKey
      *
-     * @return Logger
      * @throws \Exception
+     *
+     * @return Logger
      */
     private function pushMonologHandler(Logger $logger, string $handlerKey): Logger
     {
@@ -115,8 +118,9 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @return false|string
      * @throws \Exception
+     *
+     * @return false|string
      */
     public function getLogFilePath()
     {
@@ -129,8 +133,9 @@ class LoggerUtility extends AbstractUtility
     }
 
     /**
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     private function getMonologConfigFileName()
     {
@@ -215,10 +220,11 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * @param string $message
-     * @param array $context
+     * @param array  $context
+     *
+     * @throws \Exception
      *
      * @return bool
-     * @throws \Exception
      */
     public function logDebug(string $message, array $context = []): bool
     {
@@ -227,10 +233,11 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * @param string $message
-     * @param array $context
+     * @param array  $context
+     *
+     * @throws \Exception
      *
      * @return bool
-     * @throws \Exception
      */
     public function logInfo(string $message, array $context = []): bool
     {
@@ -239,10 +246,11 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * @param string $message
-     * @param array $context
+     * @param array  $context
+     *
+     * @throws \Exception
      *
      * @return bool
-     * @throws \Exception
      */
     public function logNotice(string $message, array $context = []): bool
     {
@@ -251,10 +259,11 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * @param string $message
-     * @param array $context
+     * @param array  $context
+     *
+     * @throws \Exception
      *
      * @return bool
-     * @throws \Exception
      */
     public function logWarning(string $message, array $context = []): bool
     {
@@ -263,10 +272,11 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * @param string $message
-     * @param array $context
+     * @param array  $context
+     *
+     * @throws \Exception
      *
      * @return bool
-     * @throws \Exception
      */
     public function logError(string $message, array $context = []): bool
     {
@@ -275,10 +285,11 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * @param string $message
-     * @param array $context
+     * @param array  $context
+     *
+     * @throws \Exception
      *
      * @return bool
-     * @throws \Exception
      */
     public function logCritical(string $message, array $context = []): bool
     {
@@ -287,10 +298,11 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * @param string $message
-     * @param array $context
+     * @param array  $context
+     *
+     * @throws \Exception
      *
      * @return bool
-     * @throws \Exception
      */
     public function logAlert(string $message, array $context = []): bool
     {
@@ -299,10 +311,11 @@ class LoggerUtility extends AbstractUtility
 
     /**
      * @param string $message
-     * @param array $context
+     * @param array  $context
+     *
+     * @throws \Exception
      *
      * @return bool
-     * @throws \Exception
      */
     public function logEmergency(string $message, array $context = []): bool
     {
