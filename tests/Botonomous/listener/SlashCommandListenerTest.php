@@ -329,8 +329,8 @@ class SlashCommandListenerTest extends TestCase
         $result = $slashCommandListener->verifyOrigin();
 
         $this->assertEquals([
-            'success' => false,
-            'message' => SlashCommandListener::MISSING_TOKEN_MESSAGE,
+            AbstractBaseListener::ORIGIN_VERIFICATION_SUCCESS_KEY => false,
+            AbstractBaseListener::ORIGIN_VERIFICATION_MESSAGE_KEY => SlashCommandListener::MISSING_TOKEN_MESSAGE,
         ], $result);
 
         $request = ['token' => '12345'];
@@ -343,8 +343,8 @@ class SlashCommandListenerTest extends TestCase
         $result = $slashCommandListener->verifyOrigin();
 
         $this->assertEquals([
-            'success' => false,
-            'message' => 'Token is not valid',
+            AbstractBaseListener::ORIGIN_VERIFICATION_SUCCESS_KEY => false,
+            AbstractBaseListener::ORIGIN_VERIFICATION_MESSAGE_KEY => 'Token is not valid',
         ], $result);
 
         $config->set(self::VERIFICATION_TOKEN, '12345');
@@ -352,8 +352,8 @@ class SlashCommandListenerTest extends TestCase
         $result = $slashCommandListener->verifyOrigin();
 
         $this->assertEquals([
-            'success' => true,
-            'message' => 'Awesome!',
+            AbstractBaseListener::ORIGIN_VERIFICATION_SUCCESS_KEY => true,
+            AbstractBaseListener::ORIGIN_VERIFICATION_MESSAGE_KEY => 'Awesome!',
         ], $result);
 
         $config->set(self::VERIFICATION_TOKEN, '');

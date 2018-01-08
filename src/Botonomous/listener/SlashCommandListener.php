@@ -37,8 +37,8 @@ class SlashCommandListener extends AbstractBaseListener
 
         if (empty($token)) {
             return [
-                'success' => false,
-                'message' => self::MISSING_TOKEN_MESSAGE,
+                parent::ORIGIN_VERIFICATION_SUCCESS_KEY => false,
+                parent::ORIGIN_VERIFICATION_MESSAGE_KEY => self::MISSING_TOKEN_MESSAGE,
             ];
         }
 
@@ -50,14 +50,14 @@ class SlashCommandListener extends AbstractBaseListener
 
         if ($token === $expectedToken) {
             return [
-                'success' => true,
-                'message' => 'Awesome!',
+                parent::ORIGIN_VERIFICATION_SUCCESS_KEY => true,
+                parent::ORIGIN_VERIFICATION_MESSAGE_KEY => 'Awesome!',
             ];
         }
 
         return [
-            'success' => false,
-            'message' => 'Token is not valid',
+            parent::ORIGIN_VERIFICATION_SUCCESS_KEY => false,
+            parent::ORIGIN_VERIFICATION_MESSAGE_KEY => 'Token is not valid',
         ];
     }
 

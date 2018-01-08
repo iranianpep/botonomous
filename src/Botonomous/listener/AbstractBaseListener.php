@@ -9,6 +9,9 @@ use Botonomous\utility\RequestUtility;
 
 abstract class AbstractBaseListener
 {
+    const ORIGIN_VERIFICATION_SUCCESS_KEY = 'success';
+    const ORIGIN_VERIFICATION_MESSAGE_KEY = 'message';
+
     private $config;
     private $request;
     private $requestUtility;
@@ -195,19 +198,19 @@ abstract class AbstractBaseListener
     {
         $originCheck = $this->verifyOrigin();
 
-        if (!isset($originCheck['success'])) {
+        if (!isset($originCheck[self::ORIGIN_VERIFICATION_SUCCESS_KEY])) {
             throw new BotonomousException('Success must be provided in verifyOrigin response');
         }
 
-        if ($originCheck['success'] !== true) {
-            return ['success' => false, 'message' => $originCheck['message']];
+        if ($originCheck[self::ORIGIN_VERIFICATION_SUCCESS_KEY] !== true) {
+            return [self::ORIGIN_VERIFICATION_SUCCESS_KEY => false, self::ORIGIN_VERIFICATION_MESSAGE_KEY => $originCheck[self::ORIGIN_VERIFICATION_MESSAGE_KEY]];
         }
 
         if ($this->isThisBot() !== false) {
-            return ['success' => false, 'message' => 'Request comes from the bot'];
+            return [self::ORIGIN_VERIFICATION_SUCCESS_KEY => false, self::ORIGIN_VERIFICATION_MESSAGE_KEY => 'Request comes from the bot'];
         }
 
-        return ['success' => true, 'message' => 'Yay!'];
+        return [self::ORIGIN_VERIFICATION_SUCCESS_KEY => true, self::ORIGIN_VERIFICATION_MESSAGE_KEY => 'Yay!'];
     }
 
     /**

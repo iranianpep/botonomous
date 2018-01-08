@@ -220,8 +220,8 @@ class EventListenerTest extends TestCase
         $eventListener->setRequest([]);
 
         $this->assertEquals([
-            'success' => false,
-            'message' => EventListener::MISSING_TOKEN_OR_APP_ID_MESSAGE,
+            AbstractBaseListener::ORIGIN_VERIFICATION_SUCCESS_KEY => false,
+            AbstractBaseListener::ORIGIN_VERIFICATION_MESSAGE_KEY => EventListener::MISSING_TOKEN_OR_APP_ID_MESSAGE,
         ], $eventListener->verifyOrigin());
 
         $eventListener->setRequest([
@@ -230,8 +230,8 @@ class EventListenerTest extends TestCase
         ]);
 
         $this->assertEquals([
-            'success' => false,
-            'message' => 'Token or api_app_id mismatch',
+            AbstractBaseListener::ORIGIN_VERIFICATION_SUCCESS_KEY => false,
+            AbstractBaseListener::ORIGIN_VERIFICATION_MESSAGE_KEY => 'Token or api_app_id mismatch',
         ], $eventListener->verifyOrigin());
 
         $eventListener->setRequest([
@@ -240,8 +240,8 @@ class EventListenerTest extends TestCase
         ]);
 
         $this->assertEquals([
-            'success' => true,
-            'message' => 'O La la!',
+            AbstractBaseListener::ORIGIN_VERIFICATION_SUCCESS_KEY => true,
+            AbstractBaseListener::ORIGIN_VERIFICATION_MESSAGE_KEY => 'O La la!',
         ], $eventListener->verifyOrigin());
     }
 

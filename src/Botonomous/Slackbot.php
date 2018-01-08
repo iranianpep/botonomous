@@ -2,6 +2,7 @@
 
 namespace Botonomous;
 
+use Botonomous\listener\AbstractBaseListener;
 use Botonomous\listener\EventListener;
 use Botonomous\plugin\AbstractPlugin;
 
@@ -86,8 +87,8 @@ class Slackbot extends AbstractBot
         try {
             $verificationResult = $this->getListener()->verifyRequest();
 
-            if ($verificationResult['success'] !== true) {
-                throw new BotonomousException($verificationResult['message']);
+            if ($verificationResult[AbstractBaseListener::ORIGIN_VERIFICATION_SUCCESS_KEY] !== true) {
+                throw new BotonomousException($verificationResult[AbstractBaseListener::ORIGIN_VERIFICATION_MESSAGE_KEY]);
             }
         } catch (\Exception $e) {
             throw $e;

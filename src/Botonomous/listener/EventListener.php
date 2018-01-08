@@ -110,11 +110,13 @@ class EventListener extends AbstractBaseListener
     private function loadEvent()
     {
         $request = $this->getRequest();
-        if (!isset($request['event'])) {
+        $eventKey = 'event';
+
+        if (!isset($request[$eventKey])) {
             return;
         }
 
-        $request = $request['event'];
+        $request = $request[$eventKey];
         if (!isset($request['type'])) {
             throw new BotonomousException(self::MISSING_EVENT_TYPE_MESSAGE);
         }
@@ -156,8 +158,8 @@ class EventListener extends AbstractBaseListener
 
         if (!isset($request['token']) || !isset($request['api_app_id'])) {
             return [
-                'success' => false,
-                'message' => self::MISSING_TOKEN_OR_APP_ID_MESSAGE,
+                parent::ORIGIN_VERIFICATION_SUCCESS_KEY => false,
+                parent::ORIGIN_VERIFICATION_MESSAGE_KEY => self::MISSING_TOKEN_OR_APP_ID_MESSAGE,
             ];
         }
 
@@ -176,14 +178,14 @@ class EventListener extends AbstractBaseListener
         if ($verificationToken === $request['token'] &&
             $expectedAppId === $request['api_app_id']) {
             return [
-                'success' => true,
-                'message' => 'O La la!',
+                parent::ORIGIN_VERIFICATION_SUCCESS_KEY => true,
+                parent::ORIGIN_VERIFICATION_MESSAGE_KEY => 'O La la!',
             ];
         }
 
         return [
-            'success' => false,
-            'message' => 'Token or api_app_id mismatch',
+            parent::ORIGIN_VERIFICATION_SUCCESS_KEY => false,
+            parent::ORIGIN_VERIFICATION_MESSAGE_KEY => 'Token or api_app_id mismatch',
         ];
     }
 

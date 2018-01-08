@@ -222,34 +222,34 @@ class CommandExtractorTest extends TestCase
 
         $commands = [
             'dummy1' => [
-                'plugin'      => 'Ping',
-                'description' => 'Use as a health check',
-                'keywords'    => [
+                CommandContainer::PLUGIN_KEY      => 'Ping',
+                CommandContainer::DESCRIPTION_KEY => 'Use as a health check',
+                CommandContainer::KEYWORDS_KEY    => [
                     'play',
                     'sport',
                     'pong',
                 ],
             ],
             'dummy2' => [
-                'plugin'      => 'Ping',
-                'action'      => 'pong',
-                'description' => 'Use as a health check',
-                'keywords'    => [
+                CommandContainer::PLUGIN_KEY      => 'Ping',
+                CommandContainer::ACTION_KEY      => 'pong',
+                CommandContainer::DESCRIPTION_KEY => 'Use as a health check',
+                CommandContainer::KEYWORDS_KEY    => [
                     'play',
                     'sport',
                     'ping',
                 ],
             ],
             'dummy3' => [
-                'plugin'      => 'Ping',
-                'action'      => 'pong',
-                'description' => 'Use as a health check',
+                CommandContainer::PLUGIN_KEY      => 'Ping',
+                CommandContainer::ACTION_KEY      => 'pong',
+                CommandContainer::DESCRIPTION_KEY => 'Use as a health check',
             ],
             'dummy4' => [
-                'plugin'      => 'Ping',
-                'action'      => 'pong',
-                'description' => 'Use as a health check',
-                'keywords'    => [
+                CommandContainer::PLUGIN_KEY      => 'Ping',
+                CommandContainer::ACTION_KEY      => 'pong',
+                CommandContainer::DESCRIPTION_KEY => 'Use as a health check',
+                CommandContainer::KEYWORDS_KEY    => [
                     'play ping pong',
                     'play',
                     "let's play",
