@@ -22,29 +22,29 @@ class CommandContainer extends AbstractCommandContainer
      */
     protected static $commands = [
         'ping' => [
-            self::PLUGIN_KEY      => 'Ping',
+            self::PLUGIN_KEY              => 'Ping',
             self::DESCRIPTION_KEY         => self::HEALTH_CHECK_PLUGIN_DESCRIPTION,
         ],
         'pong' => [
-            self::PLUGIN_KEY      => 'Ping',
-            self::ACTION_KEY              => 'pong',
+            self::PLUGIN_KEY               => 'Ping',
+            self::ACTION_KEY               => 'pong',
             self::DESCRIPTION_KEY          => self::HEALTH_CHECK_PLUGIN_DESCRIPTION,
         ],
         'commandWithoutFunctionForTest' => [
-            self::PLUGIN_KEY      => 'Ping',
+            self::PLUGIN_KEY               => 'Ping',
             self::ACTION_KEY               => 'commandWithoutFunctionForTest',
             self::DESCRIPTION_KEY          => self::HEALTH_CHECK_PLUGIN_DESCRIPTION,
         ],
         'help' => [
-            self::PLUGIN_KEY      => 'Help',
+            self::PLUGIN_KEY               => 'Help',
             self::DESCRIPTION_KEY          => 'List all the available commands',
-            self::KEYWORDS_KEY            => [
+            self::KEYWORDS_KEY             => [
                 'help',
                 'ask',
             ],
         ],
         'qa' => [
-            self::PLUGIN_KEY      => 'QA',
+            self::PLUGIN_KEY               => 'QA',
             self::DESCRIPTION_KEY          => 'Answer questions',
         ],
     ];
