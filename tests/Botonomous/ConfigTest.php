@@ -86,4 +86,19 @@ class ConfigTest extends TestCase
         // reset config
         $config->set('testConfigKey', 'testConfigValue', 'help');
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function testSetExceptException()
+    {
+        $this->expectException('\Exception');
+        $invalidPluginPath = 'Botonomous\plugin\dummyinvalidplugin\DummyInvalidPluginConfig.php';
+        $this->expectExceptionMessage(
+            "Config file: '{$invalidPluginPath}' does not exist"
+        );
+
+        $config = new Config();
+        $config->set('testConfigKey', 'testConfigValueEdited', 'dummyInvalidPlugin');
+    }
 }
