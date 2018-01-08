@@ -192,7 +192,6 @@ abstract class AbstractBaseListener
     public function verifyRequest(): array
     {
         $originCheck = $this->verifyOrigin();
-
         if (!isset($originCheck[self::ORIGIN_VERIFICATION_SUCCESS_KEY])) {
             throw new BotonomousException('Success must be provided in verifyOrigin response');
         }
