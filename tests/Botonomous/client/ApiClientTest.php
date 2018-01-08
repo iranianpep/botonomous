@@ -219,7 +219,7 @@ class ApiClientTest extends TestCase
     }
 
     /**
-     * Test usersList.
+     * @throws \Exception
      */
     public function testUsersListEmpty()
     {

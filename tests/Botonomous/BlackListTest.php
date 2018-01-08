@@ -268,6 +268,9 @@ class BlackListTest extends TestCase
         $this->assertEquals(true, $blacklist->isBlackListed());
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testIsBlackListedFalse()
     {
         $blacklist = $this->getBlackList();

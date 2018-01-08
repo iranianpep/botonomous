@@ -202,6 +202,9 @@ class WhiteListTest extends TestCase
         $this->assertEmpty($whitelist->getSlackUserInfo());
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testGetSlackUserInfoNotFound()
     {
         $whitelist = $this->getWhiteList();
@@ -235,6 +238,9 @@ class WhiteListTest extends TestCase
         $this->assertEquals(true, $whitelist->isWhiteListed());
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testIsWhiteListedFalse()
     {
         $whitelist = $this->getWhiteList();

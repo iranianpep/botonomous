@@ -24,7 +24,7 @@ class EventTest extends TestCase
     }
 
     /**
-     * Test isDirectMessageEmpty.
+     * @throws \Exception
      */
     public function testIsDirectMessageEmpty()
     {
