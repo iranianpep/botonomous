@@ -205,14 +205,14 @@ abstract class AbstractBaseListener
         if ($originCheck[self::ORIGIN_VERIFICATION_SUCCESS_KEY] !== true) {
             return [
                 self::ORIGIN_VERIFICATION_SUCCESS_KEY => false,
-                self::ORIGIN_VERIFICATION_MESSAGE_KEY => $originCheck[self::ORIGIN_VERIFICATION_MESSAGE_KEY]
+                self::ORIGIN_VERIFICATION_MESSAGE_KEY => $originCheck[self::ORIGIN_VERIFICATION_MESSAGE_KEY],
             ];
         }
 
         if ($this->isThisBot() !== false) {
             return [
                 self::ORIGIN_VERIFICATION_SUCCESS_KEY => false,
-                self::ORIGIN_VERIFICATION_MESSAGE_KEY => 'Request comes from the bot'
+                self::ORIGIN_VERIFICATION_MESSAGE_KEY => 'Request comes from the bot',
             ];
         }
 
