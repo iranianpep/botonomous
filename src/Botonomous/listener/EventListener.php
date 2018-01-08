@@ -218,12 +218,4 @@ class EventListener extends AbstractBaseListener
     {
         return $this->getEvent()->getChannel();
     }
-
-    /**
-     * @return string
-     */
-    public function getKey(): string
-    {
-        return self::KEY;
-    }
 }

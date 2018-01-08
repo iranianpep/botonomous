@@ -81,12 +81,4 @@ class SlashCommandListener extends AbstractBaseListener
     {
         return $this->getRequest('channel_id');
     }
-
-    /**
-     * @return string
-     */
-    public function getKey(): string
-    {
-        return self::KEY;
-    }
 }
