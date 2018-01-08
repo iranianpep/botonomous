@@ -88,7 +88,9 @@ class Slackbot extends AbstractBot
             $verificationResult = $this->getListener()->verifyRequest();
 
             if ($verificationResult[AbstractBaseListener::ORIGIN_VERIFICATION_SUCCESS_KEY] !== true) {
-                throw new BotonomousException($verificationResult[AbstractBaseListener::ORIGIN_VERIFICATION_MESSAGE_KEY]);
+                throw new BotonomousException(
+                    $verificationResult[AbstractBaseListener::ORIGIN_VERIFICATION_MESSAGE_KEY]
+                );
             }
         } catch (\Exception $e) {
             throw $e;

@@ -25,6 +25,8 @@ engines:
         enabled: false
       php:S1448:
         enabled: false
+      php:S1142:
+        enabled: false
 ratings:
    paths:
    - "src/**/*"
