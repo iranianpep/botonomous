@@ -13,14 +13,16 @@
     "monolog/monolog": "^1.22"
   },
   "require-dev": {
-    "phpunit/phpunit": "^6.2"
+    "phpunit/phpunit": "^6.2 || ^7 || ^8 || ^9"
   },
   "autoload": {
     "psr-4": {
-      "Botonomous\\": ["src/Botonomous"]
+      "Botonomous\\": "src/Botonomous"
     }
   },
   "autoload-dev": {
-    "psr-4": {"Botonomous\\": "tests/Botonomous"}
+    "psr-4": {
+      "Botonomous\\": "tests/Botonomous"
+    }
   }
 }
