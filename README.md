@@ -1,7 +1,5 @@
 # Botonomous
-<p align="center">
-<a href="https://botonomous.io"><img src="http://botonomous.io/img/botonomous.png" alt="Botonomous Logo" width="250"></a>
-<br>
+<p align="left">
 <a href="https://packagist.org/packages/botonomous/botonomous"><img src="https://poser.pugx.org/botonomous/botonomous/v/stable" alt="Latest Stable Version"></a>
 <a href="https://raw.githubusercontent.com/iranianpep/botonomous/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license"></a>
 <a href="https://packagist.org/packages/botonomous/botonomous"><img src="https://img.shields.io/packagist/dt/botonomous/botonomous.svg" alt="Packagist"></a>
@@ -65,5 +63,3 @@ If you have built any awesome Slack bot with Botonomous let us know to list it h
 * [Jet Brains](https://www.jetbrains.com) - Without [PhpStorm](https://www.jetbrains.com/phpstorm) this project was in the middle of nowhere!
 * [Sara Salim Pour](http://sarasalimpour.com) - The outstanding artwork is because of her talent.
 * [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BXMKEZ23PX8K2)
-[![Beerpay](https://beerpay.io/iranianpep/botonomous/badge.svg?style=beer-square)](https://beerpay.io/iranianpep/botonomous)  [![Beerpay](https://beerpay.io/iranianpep/botonomous/make-wish.svg?style=flat-square)](https://beerpay.io/iranianpep/botonomous?focus=wish)
-[![Beerpay](https://img.shields.io/beerpay/iranianpep/botonomous.svg)](https://beerpay.io/iranianpep/botonomous)
