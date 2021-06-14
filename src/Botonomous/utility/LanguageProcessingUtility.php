@@ -12,7 +12,7 @@ use NlpTools\Tokenizers\WhitespaceTokenizer;
 class LanguageProcessingUtility extends AbstractUtility
 {
     /**
-     * @param   $text
+     * @param $text
      *
      * @return string
      */
