@@ -10,8 +10,6 @@ matrix:
   - php: 7.1
     env: coverage=true
   - php: 7.2
-  - php: 7.3
-  - php: 7.4
 
 sudo: false
 
