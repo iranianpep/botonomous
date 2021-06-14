@@ -16,7 +16,7 @@ class FileUtility extends AbstractUtility
     /**
      * Validate and convert a (JSON) file content to a PHP array.
      *
-     * @param   $filePath
+     * @param $filePath
      *
      * @throws \Exception
      *

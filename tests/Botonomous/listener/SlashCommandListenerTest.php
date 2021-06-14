@@ -60,13 +60,13 @@ class SlashCommandListenerTest extends TestCase
     private function getRequest(Config $config, $commandPrefix, $token = null)
     {
         return [
-                'token'        => $token === null ? $config->get(self::VERIFICATION_TOKEN) : $token,
-                'text'         => "mybot: {$commandPrefix}ping",
-                'user_id'      => 'dummyId',
-                'user_name'    => $config->get('botUsername'),
-                'trigger_word' => 'mybot:',
-                'channel_id'   => 'C2147483705',
-                'debug'        => true,
+            'token'        => $token === null ? $config->get(self::VERIFICATION_TOKEN) : $token,
+            'text'         => "mybot: {$commandPrefix}ping",
+            'user_id'      => 'dummyId',
+            'user_name'    => $config->get('botUsername'),
+            'trigger_word' => 'mybot:',
+            'channel_id'   => 'C2147483705',
+            'debug'        => true,
         ];
     }
 

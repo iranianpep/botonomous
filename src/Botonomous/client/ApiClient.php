@@ -190,7 +190,7 @@ class ApiClient extends AbstractClient
      *
      * @return array
      */
-    public function getArgs():array
+    public function getArgs(): array
     {
         return [
             self::TOKEN_ARGUMENT_KEY    => $this->getToken(),
